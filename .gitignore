@@ -181,3 +181,5 @@ project.assets.json
 #ignore web.config
 
 /catfish-published/Web.config
+/catfish/Web.config
+/catfish/Web.config
