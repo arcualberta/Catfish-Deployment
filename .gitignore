@@ -185,3 +185,4 @@ project.assets.json
 /catfish/Web.config
 /Web.config
 /catfish/App_Data
+/catfish/credentials.json
