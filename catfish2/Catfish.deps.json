@@ -46,6 +46,7 @@
           "Piranha.Manager.TinyMCE": "8.3.0",
           "Piranha.WebApi": "8.3.0",
           "System-Web-Helpers.dll": "1.0.0",
+          "jQuery": "3.5.1",
           "Piranha.AspNetCore.Identity.SQLServer": "8.3.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
@@ -421,6 +422,7 @@
           "lib/netstandard2.0/Google.Apis.Core.dll": {}
         }
       },
+      "jQuery/3.5.1": {},
       "log4net/2.0.8": {
         "dependencies": {
           "System.AppContext": "4.3.0",
@@ -4903,6 +4905,13 @@
       "sha512": "sha512-I7tUKeY70MJxHnYu4cRzug90e2oaClhgRAwYIrqWnqIvojF2DTB3D5DeGbrEcgKGHEGL5ADgjBMFIhdnAO2Iqg==",
       "path": "google.apis.core/1.46.0",
       "hashPath": "google.apis.core.1.46.0.nupkg.sha512"
+    },
+    "jQuery/3.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ji6sm/AI0vjASXAA/AG9Yf5ypALAqIDXFFKPHMAnFL8kp3xqULIWhACjg/OXZP88C56frYlIej2nrdBnhTMYQQ==",
+      "path": "jquery/3.5.1",
+      "hashPath": "jquery.3.5.1.nupkg.sha512"
     },
     "log4net/2.0.8": {
       "type": "package",

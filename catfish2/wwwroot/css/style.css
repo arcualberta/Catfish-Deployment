@@ -186,3 +186,11 @@ header {
 header{
     color: #000;
 }
+
+.search-match{
+    background-color:yellow;
+}
+
+.search-panel{
+    float:right;
+}
