@@ -27,6 +27,7 @@
           "Catfish.Core": "1.0.0",
           "Google.Apis": "1.46.0",
           "Google.Apis.Calendar.v3": "1.46.0.2001",
+          "Hangfire": "1.7.15",
           "Microsoft.AspNetCore.Authorization": "3.1.2",
           "Microsoft.CodeAnalysis.FxCopAnalyzers": "2.9.8",
           "Microsoft.EntityFrameworkCore": "3.1.3",
@@ -420,6 +421,88 @@
         },
         "compile": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {}
+        }
+      },
+      "Hangfire/1.7.15": {
+        "dependencies": {
+          "Hangfire.AspNetCore": "1.7.15",
+          "Hangfire.Core": "1.7.15",
+          "Hangfire.SqlServer": "1.7.15"
+        }
+      },
+      "Hangfire.AspNetCore/1.7.15": {
+        "dependencies": {
+          "Hangfire.Core": "1.7.15"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Hangfire.AspNetCore.dll": {
+            "assemblyVersion": "1.7.15.0",
+            "fileVersion": "1.7.15.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Hangfire.AspNetCore.dll": {}
+        }
+      },
+      "Hangfire.Core/1.7.15": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Hangfire.Core.dll": {
+            "assemblyVersion": "1.7.15.0",
+            "fileVersion": "1.7.15.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/ca/Hangfire.Core.resources.dll": {
+            "locale": "ca"
+          },
+          "lib/netstandard2.0/es/Hangfire.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/fa/Hangfire.Core.resources.dll": {
+            "locale": "fa"
+          },
+          "lib/netstandard2.0/fr/Hangfire.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/nl/Hangfire.Core.resources.dll": {
+            "locale": "nl"
+          },
+          "lib/netstandard2.0/pt-BR/Hangfire.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/pt-PT/Hangfire.Core.resources.dll": {
+            "locale": "pt-PT"
+          },
+          "lib/netstandard2.0/pt/Hangfire.Core.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/netstandard2.0/zh-TW/Hangfire.Core.resources.dll": {
+            "locale": "zh-TW"
+          },
+          "lib/netstandard2.0/zh/Hangfire.Core.resources.dll": {
+            "locale": "zh"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Hangfire.Core.dll": {}
+        }
+      },
+      "Hangfire.SqlServer/1.7.15": {
+        "dependencies": {
+          "Hangfire.Core": "1.7.15",
+          "System.Data.SqlClient": "4.8.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Hangfire.SqlServer.dll": {
+            "assemblyVersion": "1.7.15.0",
+            "fileVersion": "1.7.15.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Hangfire.SqlServer.dll": {}
         }
       },
       "jQuery/3.5.1": {},
@@ -4905,6 +4988,34 @@
       "sha512": "sha512-I7tUKeY70MJxHnYu4cRzug90e2oaClhgRAwYIrqWnqIvojF2DTB3D5DeGbrEcgKGHEGL5ADgjBMFIhdnAO2Iqg==",
       "path": "google.apis.core/1.46.0",
       "hashPath": "google.apis.core.1.46.0.nupkg.sha512"
+    },
+    "Hangfire/1.7.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ShdUeZQjuPx/Dzi3yyI9yBwYuskVM9j9dDbziR7RarDihzXlh5GkmMipGToajqvVUP6yFWpoPSqDpfuvG4CyDQ==",
+      "path": "hangfire/1.7.15",
+      "hashPath": "hangfire.1.7.15.nupkg.sha512"
+    },
+    "Hangfire.AspNetCore/1.7.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XV5o/gkfcYxMmeqsL9D/ep9dSCBXGu+QQ7zAniZh3hNaniJLRKoIedWZR/LhxCaZjQtKOau4JzeNut5vFobyxg==",
+      "path": "hangfire.aspnetcore/1.7.15",
+      "hashPath": "hangfire.aspnetcore.1.7.15.nupkg.sha512"
+    },
+    "Hangfire.Core/1.7.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SB1A1rPejQBISlXenetNtjhRkVOkD6RxPR6RuCyLsh20FKnk0lTyufD39QCvJzVoGtmMlLA/oOJPYbOMCMtJGw==",
+      "path": "hangfire.core/1.7.15",
+      "hashPath": "hangfire.core.1.7.15.nupkg.sha512"
+    },
+    "Hangfire.SqlServer/1.7.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OMrEuaFJsDTJ27H+ciNAAgkR3Xett8Fe0kfAEXg6n5IL9YXjnzz5u9IvTfAV4cOPUccf/7qpg1mg33eToKBlyw==",
+      "path": "hangfire.sqlserver/1.7.15",
+      "hashPath": "hangfire.sqlserver.1.7.15.nupkg.sha512"
     },
     "jQuery/3.5.1": {
       "type": "package",
