@@ -1,10 +1,10 @@
 ﻿//register global Vue component
-Vue.component("controlled-keywords", {
+Vue.component("controlled-categories", {
     props: ["uid", "toolbar", "model", "meta"],
     data() {
         return {
             //api strings
-            selectedOptions: this.model.allowedKeywords
+            selectedOptions: this.model.allowedCategories
                 .filter(item => item.selected)
                 .map(item => item.label)
         }
@@ -24,12 +24,12 @@ Vue.component("controlled-keywords", {
                 }
             }
 
-            this.model.selectedKeywords.Value = this.selectedOptions.join(",");
+            this.model.selectedCategories.Value = this.selectedOptions.join(",");
         }
     },
     template:
-        `<ul class='listStyleTypeNone ul-flex'>
-            <li v-for='item in model.allowedKeywords' :key = 'item.label' class='li-flexItem'>
+            `<ul class='controlledCategories listStyleTypeNone ul-flex'>
+            <li v-for='item in model.allowedCategories' :key = 'item.label' class='li-flexItem'>
                 <input type='checkbox' :value='item.label'  v-on:blur='onBlur'  v-model="item.selected" /> {{ item.label }}
             </li>
         </ul >`

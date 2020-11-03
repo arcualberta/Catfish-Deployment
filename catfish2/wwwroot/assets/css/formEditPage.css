@@ -235,9 +235,26 @@
 	border-radius: 5.25px;
 }
 
+#edit-field-form-page .has-error-in-field {
+	border: solid #a94441 3px;
+}
+
 #edit-field-form-page .option-title-holder {
 	display: flex;
 	justify-content: space-between;
 	padding-bottom: 10px;
 	width:100%;
+}
+
+#edit-field-form-page .refresh-enter-active {
+	
+	transition: opacity 0.5s;
+}
+
+ .refresh-leave-active{
+	display: none;
+}
+
+ .refresh-enter, .refresh-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	opacity: 0;
 }

@@ -389,3 +389,57 @@ VALUES (N'20201013055946_AddedDomainsPropertyToEntityTemplate', N'3.1.3');
 
 GO
 
+CREATE TABLE [Catfish_SystemStatuses] (
+    [Id] uniqueidentifier NOT NULL,
+    [SystemName] nvarchar(max) NULL,
+    [Status] nvarchar(max) NULL,
+    CONSTRAINT [PK_Catfish_SystemStatuses] PRIMARY KEY ([Id])
+);
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201028173635_AddSystemStatusesTable', N'3.1.3');
+
+GO
+
+ALTER TABLE [Catfish_Entities] ADD [StatusId] uniqueidentifier NULL;
+
+GO
+
+CREATE INDEX [IX_Catfish_Entities_StatusId] ON [Catfish_Entities] ([StatusId]);
+
+GO
+
+ALTER TABLE [Catfish_Entities] ADD CONSTRAINT [FK_Catfish_Entities_Catfish_SystemStatuses_StatusId] FOREIGN KEY ([StatusId]) REFERENCES [Catfish_SystemStatuses] ([Id]) ON DELETE NO ACTION;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201028174015_AddStatusToEntity', N'3.1.3');
+
+GO
+
+DECLARE @var8 sysname;
+SELECT @var8 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Catfish_SystemStatuses]') AND [c].[name] = N'SystemName');
+IF @var8 IS NOT NULL EXEC(N'ALTER TABLE [Catfish_SystemStatuses] DROP CONSTRAINT [' + @var8 + '];');
+ALTER TABLE [Catfish_SystemStatuses] DROP COLUMN [SystemName];
+
+GO
+
+ALTER TABLE [Catfish_SystemStatuses] ADD [EntityTemplateId] uniqueidentifier NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+
+GO
+
+ALTER TABLE [Catfish_SystemStatuses] ADD [NormalizedStatus] nvarchar(max) NULL;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201028191346_AddNormalizedStatusAndEntityTemplateIdToSystemStatuses', N'3.1.3');
+
+GO
+

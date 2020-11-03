@@ -3,13 +3,47 @@
 Vue.component("controlled-vocabulary-search", {
 
     props: ["uid", "toolbar", "model"],
+    data() {
+        var selectTemp = this.model.selectedKeywords.value === null
+            ? []
+            : this.model.selectedKeywords.value
+                .split(",")
+                .map(x => x.trim())
+                .filter(x => x.length > 0);
 
+        var availableKeywords = this.model.vocabularySettings.vocabulary.value === null
+            ? []
+            : this.model.vocabularySettings.vocabulary.value
+                .split(",")
+                .map(x => x.trim())
+                .filter(x => x.length > 0);
+        var selectCatTemp = this.model.selectedCategories.value === null
+            ? []
+            : this.model.selectedCategories.value
+                .split(",")
+                .map(x => x.trim())
+                .filter(x => x.length > 0);
+        var availableCategories = this.model.categorySettings.vocabulary.value === null
+            ? []
+            : this.model.categorySettings.vocabulary.value
+                .split(",")
+                .map(x => x.trim())
+                .filter(x => x.length > 0);
+        return {
+            selectedKeywords: selectTemp,
+            checkOptions: availableKeywords.map(word => ({ label: word, selected: selectTemp.includes(word) })),
+            selectedCategories: selectCatTemp,
+            checkCatOptions: availableCategories.map(word => ({ label: word, selected: selectCatTemp.includes(word) }))
+        }
+
+      
+    },
     methods: {
         onBlur: function (e) {
 
             var elName = e.target.name;
 
-            if (elName == "SearchPageName") {
+            if (elName === "SearchPageName") {
                 this.model.SearchPageName.value = e.target.value;
                 var content = this.model.SearchPageName.value;
                 if (content.length > 0) {
@@ -29,25 +63,29 @@ Vue.component("controlled-vocabulary-search", {
                     });
                 }
             }
-            else if (elName == "VocabList") {
-                this.model.VocabList.value = e.target.value;
-                var content = this.model.VocabList.value;
-                if (content.length > 0) {
-                    this.$emit('update-content', {
-                        uid: this.uid,
-                        VocabList: content
-                    });
+            else if (elName == "keywordCheckBox") {
+                if (e.target.checked) {
+                    this.selectedKeywords.push(e.target.value);
                 }
+                else {
+                    var index = this.selectedKeywords.indexOf(e.target.value);
+                    if (index >= 0) {
+                        this.selectedKeywords.splice(index, 1);
+                    }
+                }
+                this.model.selectedKeywords.value = this.selectedKeywords.join(",");
             }
-            else if (elName == "DesignatedSolrField") {
-                this.model.DesignatedSolrField.value = e.target.value;
-                var content = this.model.DesignatedSolrField.value;
-                if (content.length > 0) {
-                    this.$emit('update-content', {
-                        uid: this.uid,
-                        DesignatedSolrField: content
-                    });
+            else if (elName == "categoryCheckBox") {
+                if (e.target.checked) {
+                    this.selectedCategories.push(e.target.value);
                 }
+                else {
+                    var index = this.selectedCategories.indexOf(e.target.value);
+                    if (index >= 0) {
+                        this.selectedCategories.splice(index, 1);
+                    }
+                }
+                this.model.selectedCategories.value = this.selectedCategories.join(",");
             }
         }
     },
@@ -71,44 +109,42 @@ Vue.component("controlled-vocabulary-search", {
             get: function () {
                 return this.model.VocabList.value;
             }
-        },
-
-        DesignatedSolrField: {
-            get: function () {
-                return this.model.DesignatedSolrField.value;
-            }
         }
     },
 
-    template: "<div  class= 'block-body controlled-vocabulary-search-block'>" +
+    template: `<div  class= 'controlled-vocabulary-search-block'> 
+                  <div><h3> Controlled Vocabulary Search Block </h3></div>
+                  <div class='lead row'> 
+                    <label class = 'form-label col-md-3'> Block Title: </label>
+                    <input type='text' class= 'form-control col-md-4'  name='searchPageName'
+                        v-model='model.searchPageName.value' v-on:blur='onBlur'contenteditable='true'
+                        value= 'searchPageNameValue' />
+                  </div>
+                  <div class='lead row'> 
+                    <label class = 'form-label col-md-3'> Css Class: </label>
+                    <input type='text' class= 'form-control col-md-4'   name='vocabCss'
+                        v-model='model.vocabCss.value' v-on:blur='onBlur'contenteditable='true'
+                        value= 'vocabCssValue' />
+                  </div>
+                  <div class='lead row' > 
+                    <label class = 'form-label col-md-3'> Selected Vocabulary: </label>
+                    <div class='row col-md-9' id='vocabulary-check-block' >
+                       
+                        <div v-for='item in this.checkOptions' :key = 'item.label' class='col-md-3' >
+                            <input type='checkbox' name='keywordCheckBox' :value='item.label'  v-on:blur='onBlur'  v-model="item.selected" /> {{ item.label }}
+                        </div>
+                    </div>
+                  </div>
 
-        "<div>" +
-        "<h3> Controlled Vocabulary search: </h3>" +
-        "</div>" +
-
-        "<div  class='lead row'> <label class = 'form-label col-md-3'> Search Page Name: </label> "+
-        "<input type='text' class= 'form-control col-md-4'  name='searchPageName'"+
-        " v-model='model.searchPageName.value' v-on:blur='onBlur'contenteditable='true' "+
-        "value= 'searchPageNameValue' /></div > " +
- 
-
-        "<div   class='lead row'> <label class = 'form-label col-md-3'> Vocab Css Class: </label>  " +
-        "<input type='text' class= 'form-control col-md-4'   name='vocabCss'  " +
-        " v-model='model.vocabCss.value' v-on:blur='onBlur'contenteditable='true' " +
-        "value= 'vocabCssValue' /></div > "+
-
-        "<div    class='lead row'> <label class = 'form-label col-md-3'> Vocabulary List: </label>  " +
-        "<textarea name='vocabList'  v-model='model.vocabList.value' v-on:blur='onBlur'contenteditable='true'  " +
-        "value= 'vocabListValue' rows='5' cols = '35' > List words seperated by commas and/ or newlines.</textarea > " +
-        "</div> " +
-
-        "<div class='lead row'> <label class = 'form-label col-md-3'> Designated Solr Field: </label>" +
-        "<input type='text' class= 'form-control col-md-4' name='designatedSolrField' " +
-        " v-model='model.designatedSolrField.value' v-on:blur='onBlur'contenteditable='true' " +
-        "value='designatedSolrFieldValue' /></div> " +
-
-        "</div>" 
-
-
+                 <div class='lead row'> 
+                    <label class = 'form-label col-md-3'> Selected Category: </label>
+                    <div class='row col-md-9' id='category-check-block'>
+                       
+                        <div v-for='item in this.checkCatOptions' :key = 'item.label' class='col-md-3' >
+                            <input type='checkbox' name='categoryCheckBox' :value='item.label'  v-on:blur='onBlur'  v-model="item.selected" /> {{ item.label }}
+                        </div>
+                    </div>
+                  </div>
+               </div>`
 });
 

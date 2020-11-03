@@ -2,6 +2,7 @@
 //import 'quill/dist/quill.core.css'
 //import 'quill/dist/quill.snow.css'
 //import 'quill/dist/quill.bubble.css'
+import StaticItems from '../static/string-values.json';
 
 import { quillEditor } from 'vue-quill-editor'
 import { v1 as uuidv1 } from 'uuid';
@@ -25,12 +26,13 @@ if (document.getElementById("edit-field-form-page")) {
         el: '#edit-field-form-page',
         components: {
             draggable,
-            quillEditor
+            quillEditor,
         },
         data() {
             return {
                 itemId: null,
                 finishedGET: false,
+                attemptedSave: false,
 
                 //api strings
                 getString: "manager/api/forms/",
@@ -78,41 +80,6 @@ if (document.getElementById("edit-field-form-page")) {
                 //temp, need to call an api for these
                 fieldTypes: [
                     { DisplayLabel: 'Select One', $type: null },
-                    //{
-                    //    value: "Catfish.Core.Models.Contents.Fields.TextField, Catfish.Core",
-                    //    text: 'Short Answer',
-                    //    modelType: 'TextField'
-                    //},
-                    //{
-                    //    value: "Catfish.Core.Models.Contents.Fields.TextArea, Catfish.Core",
-                    //    text: 'Long Answer',
-                    //    modelType: 'TextArea'
-                    //},
-                    //{
-                    //    value: "Catfish.Core.Models.Contents.Fields.RadioField, Catfish.Core",
-                    //    text: 'Multiple Choice',
-                    //    modelType: 'Radio'
-                    //},
-                    //{
-                    //    value: "Catfish.Core.Models.Contents.Fields.CheckboxField, Catfish.Core",
-                    //    text: 'Check Box',
-                    //    modelType: 'Checkbox'
-                    //},
-                    //{
-                    //    value: "Catfish.Core.Models.Contents.Fields.SelectField, Catfish.Core",
-                    //    text: 'Dropdown List',
-                    //    modelType: 'Dropdown'
-                    //},
-                    //{
-                    //    value: "Catfish.Core.Models.Contents.Fields.FileAttachment, Catfish.Core",
-                    //    text: 'File Upload',
-                    //    modelType: 'FileAttachment'
-                    //},
-                    //{
-                    //    value: "Catfish.Core.Models.Contents.Fields.InfoSection, Catfish.Core",
-                    //    text: 'Display Text',
-                    //    modelType: 'DisplayField'
-                    //}
                 ],
 
                 rightColumnOptions: [
@@ -133,15 +100,41 @@ if (document.getElementById("edit-field-form-page")) {
 
 
                 saveStatus: 0,
-                //TODO: make a file of constant strings
-                saveSuccessfulLabel: "Save Successful",
-                saveFailedLabel: "Failed to Save",
-                saveFieldFormButtonLabel: "Save",
+
+                //Constants TODO change above items into constants from static file
+                saveSuccessfulLabel: null,
+                saveFailedLabel: null,
+                saveFieldFormButtonLabel: null,
+
+                formTitleLabel: null,
+                formTitlePlaceholder: null,
+                formDescriptionLabel: null,
+                formDescriptionPlaceholder: null,
+                formFieldLabel: null,
+                defaultFieldTitle: null,
+                fieldTitlePlaceholder: null,
+                fieldDescriptionLabel: null,
+                fieldDescriptionPlaceholder: null,
+                settingsLabel: null,
+
+                longAnswerFormatTextLabel: null,
+                choiceOptionLabel: null,
+                choiceDefaultOptionLabel: null,
+                choiceAdditionalInputLabel: null,
+                anyLabel: null,
+                allowMultipleFilesLabel: null,
+                wholeNumbersOnlyLabel: null,
+                requiredLabel: null,
+                addDescriptionLabel: null,
+                removeDescriptionLabel: null,
+                loadingLabel: null
             }
         },
-        validations: {
-            names: {
-                required,
+        validations() {
+
+            let validationJson = {
+                names: {
+                    required,
                     Values: {
                         $values: {
                             $each: {
@@ -150,79 +143,76 @@ if (document.getElementById("edit-field-form-page")) {
                                 }
                             }
                         }
-				    }
-            },
-            descriptions: {
-                Values: {
-                    $values: {
-                        $each: {
-                            Value: {
+                    }
+                },
+                descriptions: {
+                    Values: {
+                        $values: {
+                            $each: {
+                                Value: {
+                                }
                             }
                         }
                     }
-                }
-            },
-            fields: {
-                $each: {
-                    Values: {
-
-                        //currently the display text option can be submitted regardless of any text or not
-                        //it errors on reading an array instead of an empty string on creation, need different place to store it
-
-                        //all start with this value at Array(0)
-                        //want Array > 0 when the field type is radio/checkbox/dropdown/fileAttachment
-                        required: requiredIf(function (fieldModel) {
-                            return (fieldModel.$type == this.RADIO_TYPE || fieldModel.$type == this.CHECKBOX_TYPE ||
-                                fieldModel.$type == this.DROPDOWN_TYPE || fieldModel.$type ==
-                                'Catfish.Core.Models.Contents.Fields.FileAttachment, Catfish.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'
-                            )
-                        }),
-
-                        $values: {
-
-                            
-
-                            //only need the object for radio/checkbox/dropdown's inner content
-                            $each: {
-                                text: {
-                                    required: requiredIf(function (textModel) {
-                                        //this might not work with api update, hoping to store mc/radio/dropdown in different section from file attachment
-                                        return (textModel.text != null )  //(typeof (textModel) == 'object');
-                                    })
-                                }
-                            }
-                        }
-                    },
-                    Name: {
-                        Values: {
-                            $values: {
-                                $each: {
-                                    Value: {
-                                        required
+                },
+                fields: {
+                    $each: {
+                        Name: {
+                            Values: {
+                                $values: {
+                                    $each: {
+                                        Value: {
+                                            required
+                                        }
                                     }
                                 }
                             }
-                        }
-                    },
-                    Options: {
-                        $values: {
-                            $each: {
-                                OptionText: {
-                                    Values: {
-                                        $values: {
-                                            $each: {
-                                                Value: {
-                                                    required
-												}
-											}
-										}
-									}
+                        },
+                        Options: {
+                            $values: {
+                                $each: {
+                                    OptionText: {
+                                        Values: {
+                                            $values: {
+                                                $each: {
+                                                    Value: {
+                                                        required
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        //for info section - $values is an array of characters
+                        Content: {
+                            Values: {
+                                $values: {
+                                    required
 								}
 							}
 						}
-					}
+                    }
                 }
-            }
+            };
+
+            this.fields.forEach((field) => {
+                if (field.$type == this.RADIO_TYPE || field.$type == this.CHECKBOX_TYPE ||
+                    field.$type == this.DROPDOWN_TYPE ||
+                    field.$type == 'Catfish.Core.Models.Contents.Fields.FileAttachment, Catfish.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'
+                ) {
+                    console.log("ran this");
+                    validationJson.fields.$each['Values'] = { required };
+                    validationJson.fields.$each.Values['$values'] = {};
+                    validationJson.fields.$each.Values['$values']['$each'] = {};
+                    validationJson.fields.$each.Values['$values']['$each']['Value'] = { required };
+                    return validationJson;
+                }
+            });
+
+            validationJson.fields.$each['Values'] = {};
+            return validationJson;
         },
         methods: {
 
@@ -232,6 +222,8 @@ if (document.getElementById("edit-field-form-page")) {
 			 **/
             checkValidity(event) {
                 event.preventDefault();
+
+                this.attemptedSave = true;
 
                 if (this.$v.$invalid) {
                     console.log("something is invalid", this.$v);
@@ -320,6 +312,7 @@ if (document.getElementById("edit-field-form-page")) {
 				})
 
                 console.log("the name, description, and fields saved TBA", this.names, this.descriptions, this.fields);
+                this.attemptedSave = false;
             },
 
             /**
@@ -646,6 +639,37 @@ if (document.getElementById("edit-field-form-page")) {
             },
 
             /**
+             * Sets the static strings on the page 
+             **/
+            setStaticValues() {
+                this.saveSuccessfulLabel = StaticItems.editFieldFormLabels.SAVE_SUCCESS_LABEL;
+                this.saveFailedLabel = StaticItems.editFieldFormLabels.SAVE_FAILED_LABEL;
+                this.saveFieldFormButtonLabel = StaticItems.editFieldFormLabels.SAVE_FIELD_FORM_BUTTON_LABEL;
+
+                this.formTitleLabel = StaticItems.editFieldFormLabels.FORM_TITLE_LABEL;
+                this.formTitlePlaceholder = StaticItems.editFieldFormLabels.FORM_TITLE_PLACEHOLDER;
+                this.formDescriptionLabel = StaticItems.editFieldFormLabels.FORM_DESCRIPTION_LABEL;
+                this.formDescriptionPlaceholder = StaticItems.editFieldFormLabels.FORM_DESCRIPTION_PLACEHOLDER;
+                this.formFieldLabel = StaticItems.editFieldFormLabels.FORM_FIELD_LABEL;
+                this.defaultFieldTitle = StaticItems.editFieldFormLabels.DEFAULT_FIELD_TITLE;
+                this.fieldTitlePlaceholder = StaticItems.editFieldFormLabels.FIELD_TITLE_PLACEHOLDER;
+                this.fieldDescriptionLabel = StaticItems.editFieldFormLabels.FIELD_DESCRIPTION_LABEL;
+                this.fieldDescriptionPlaceholder = StaticItems.editFieldFormLabels.FIELD_DESCRIPTION_PLACEHOLDER;
+                this.settingsLabel = StaticItems.editFieldFormLabels.SETTINGS_LABEL;
+                this.longAnswerFormatTextLabel = StaticItems.editFieldFormLabels.LONG_ANSWER_FORMAT_TEXT_LABEL;
+                this.choiceOptionLabel = StaticItems.editFieldFormLabels.CHOICE_OPTION_LABEL;
+                this.choiceDefaultOptionLabel = StaticItems.editFieldFormLabels.CHOICE_DEFAULT_OPTION_LABEL;
+                this.choiceAdditionalInputLabel = StaticItems.editFieldFormLabels.CHOICE_ADDITIONAL_INPUT_LABEL;
+                this.anyLabel = StaticItems.editFieldFormLabels.ANY_LABEL;
+                this.allowMultipleFilesLabel = StaticItems.editFieldFormLabels.ALLOW_MULTIPLE_FILES_LABEL;
+                this.wholeNumbersOnlyLabel = StaticItems.editFieldFormLabels.WHOLE_NUMBERS_ONLY_LABEL;
+                this.requiredLabel = StaticItems.editFieldFormLabels.REQUIRED_LABEL;
+                this.addDescriptionLabel = StaticItems.editFieldFormLabels.ADD_DESCRIPTION_LABEL;
+                this.removeDescriptionLabel = StaticItems.editFieldFormLabels.REMOVE_DESCRIPTION_LABEL;
+                this.loadingLabel = StaticItems.editFieldFormLabels.LOADING_LABEL;
+            },
+
+            /**
               * Fetches and loads the data from an API call
               * */
             load() {
@@ -739,6 +763,9 @@ if (document.getElementById("edit-field-form-page")) {
 
                                         case this.INFOSECTION_TYPE:
                                             this.displayFieldTemplate = defaultField;
+                                            //temporary line to prevent an error. 
+                                            //QuillEditor expects $values to be type string, but it comes in as an array
+                                            this.displayFieldTemplate.Content.Values.$values = '';
 
                                             for (let languageIndex in this.displayFieldTemplate.Name.Values.$values) {
                                                 this.$set(this.displayFieldTemplate.Name.Values.$values[languageIndex], 'Value', '');
@@ -848,6 +875,7 @@ if (document.getElementById("edit-field-form-page")) {
         },
         created() {
             this.itemId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+            this.setStaticValues();
             this.load()
                 .then(() => {
                     //for popovers
