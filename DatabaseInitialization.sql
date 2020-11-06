@@ -443,3 +443,12 @@ VALUES (N'20201028191346_AddNormalizedStatusAndEntityTemplateIdToSystemStatuses'
 
 GO
 
+ALTER TABLE [Catfish_Entities] ADD [TemplateId] uniqueidentifier NULL;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201105021738_AddedTemplateIdToEntity', N'3.1.3');
+
+GO
+
