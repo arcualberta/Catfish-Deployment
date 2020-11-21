@@ -166,6 +166,12 @@
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(Vue) {/* harmony import */ var _static_string_values_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../static/string-values.json */ "./wwwroot/assets/static/string-values.json");
 var _static_string_values_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../static/string-values.json */ "./wwwroot/assets/static/string-values.json", 1);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 var vueApp = new Vue({
   el: '#keywords-search-block-public',
@@ -177,7 +183,7 @@ var vueApp = new Vue({
       searchResults: [],
       pagesTotal: 0,
       currentPage: 1,
-      cardsPerPage: 3,
+      cardsPerPage: 100,
       searchMade: false,
       loadingSearchResults: false,
       //error variable for if the fetch ever fails,
@@ -234,9 +240,24 @@ var vueApp = new Vue({
         return formData.append("keywords[" + index + "]", item);
       }); //formData.append("searchTerms", this.searchTerms);
 
-      formData.append("category[0]", this.categories); //this.categories.forEach((item, index) => formData.append("categories[" + index + "]", item));
+      formData.append("categories[0]", this.categories); //this.categories.forEach((item, index) => formData.append("categories[" + index + "]", item));
 
       this.loadingSearchResults = true;
+
+      var _iterator = _createForOfIteratorHelper(formData.entries()),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var pair = _step.value;
+          console.log(pair[0] + ', ' + pair[1]);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
       fetch(this.apiSearchUrl, {
         method: 'POST',
         body: formData
@@ -249,7 +270,7 @@ var vueApp = new Vue({
 
         _this.searchResults = data;
         console.log(_this.searchResults);
-        _this.pagesTotal = Math.ceil(_this.searchResults.length / 3);
+        _this.pagesTotal = Math.ceil(_this.searchResults.length / 100);
         _this.searchMade = true;
         _this.loadingSearchResults = false;
         _this.currentPage = 1;
