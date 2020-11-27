@@ -452,3 +452,12 @@ VALUES (N'20201105021738_AddedTemplateIdToEntity', N'3.1.3');
 
 GO
 
+ALTER TABLE [Catfish_Entities] ADD [UserEmail] nvarchar(max) NULL;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201125234416_AddedUserEmailToEntity', N'3.1.3');
+
+GO
+
