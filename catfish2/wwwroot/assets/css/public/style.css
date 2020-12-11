@@ -138,10 +138,6 @@ header {
     margin:15px;
 }
 
-.multilingual-input-block {
-    margin-left: 15px;
-}
-
 .btn-add-value {
     margin-left: 15px;
 }
@@ -283,4 +279,9 @@ ul.checkboxgroup li {
     border: 5px transparent solid;
     display: inline-block;
     width: 12em;
-} 
+}
+
+.radio-option-label {
+    margin-left: 8px;
+    margin-right: 20px;
+}
