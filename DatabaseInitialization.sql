@@ -461,3 +461,44 @@ VALUES (N'20201125234416_AddedUserEmailToEntity', N'3.1.3');
 
 GO
 
+ALTER TABLE [Catfish_SystemStatuses] ADD [IsEditable] bit NOT NULL DEFAULT CAST(0 AS bit);
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201127172511_AddedIsEnableToSystemSytatus', N'3.1.3');
+
+GO
+
+ALTER TABLE [Catfish_Entities] ADD [GroupId] uniqueidentifier NULL;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201201154744_AddedGroupIdToEntity', N'3.1.3');
+
+GO
+
+DECLARE @var9 sysname;
+SELECT @var9 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Catfish_SystemStatuses]') AND [c].[name] = N'IsEditable');
+IF @var9 IS NOT NULL EXEC(N'ALTER TABLE [Catfish_SystemStatuses] DROP CONSTRAINT [' + @var9 + '];');
+ALTER TABLE [Catfish_SystemStatuses] DROP COLUMN [IsEditable];
+
+GO
+
+CREATE INDEX [IX_Catfish_Entities_TemplateId] ON [Catfish_Entities] ([TemplateId]);
+
+GO
+
+ALTER TABLE [Catfish_Entities] ADD CONSTRAINT [FK_Catfish_Entities_Catfish_Entities_TemplateId] FOREIGN KEY ([TemplateId]) REFERENCES [Catfish_Entities] ([Id]) ON DELETE NO ACTION;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201210233257_IsEditableColumnRemovedFromSystemStatuses', N'3.1.3');
+
+GO
+

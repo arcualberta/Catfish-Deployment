@@ -29,7 +29,6 @@
           "ElmahCore.Sql": "1.2.5",
           "Google.Apis": "1.46.0",
           "Google.Apis.Calendar.v3": "1.46.0.2001",
-          "Hangfire": "1.7.15",
           "Microsoft.AspNetCore.Authorization": "3.1.2",
           "Microsoft.CodeAnalysis.FxCopAnalyzers": "2.9.8",
           "Microsoft.EntityFrameworkCore": "3.1.3",
@@ -48,7 +47,6 @@
           "Piranha.Manager": "8.3.1",
           "Piranha.Manager.TinyMCE": "8.3.0",
           "Piranha.WebApi": "8.3.0",
-          "System-Web-Helpers.dll": "1.0.0",
           "jQuery": "3.5.1",
           "Piranha.AspNetCore.Identity.SQLServer": "8.3.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -473,35 +471,35 @@
           "lib/netstandard2.0/Google.Apis.Core.dll": {}
         }
       },
-      "Hangfire/1.7.15": {
+      "Hangfire/1.7.18": {
         "dependencies": {
-          "Hangfire.AspNetCore": "1.7.15",
-          "Hangfire.Core": "1.7.15",
-          "Hangfire.SqlServer": "1.7.15"
+          "Hangfire.AspNetCore": "1.7.18",
+          "Hangfire.Core": "1.7.18",
+          "Hangfire.SqlServer": "1.7.18"
         }
       },
-      "Hangfire.AspNetCore/1.7.15": {
+      "Hangfire.AspNetCore/1.7.18": {
         "dependencies": {
-          "Hangfire.Core": "1.7.15"
+          "Hangfire.Core": "1.7.18"
         },
         "runtime": {
           "lib/netcoreapp3.0/Hangfire.AspNetCore.dll": {
-            "assemblyVersion": "1.7.15.0",
-            "fileVersion": "1.7.15.0"
+            "assemblyVersion": "1.7.18.0",
+            "fileVersion": "1.7.18.0"
           }
         },
         "compile": {
           "lib/netcoreapp3.0/Hangfire.AspNetCore.dll": {}
         }
       },
-      "Hangfire.Core/1.7.15": {
+      "Hangfire.Core/1.7.18": {
         "dependencies": {
           "Newtonsoft.Json": "12.0.3"
         },
         "runtime": {
           "lib/netstandard2.0/Hangfire.Core.dll": {
-            "assemblyVersion": "1.7.15.0",
-            "fileVersion": "1.7.15.0"
+            "assemblyVersion": "1.7.18.0",
+            "fileVersion": "1.7.18.0"
           }
         },
         "resources": {
@@ -540,15 +538,15 @@
           "lib/netstandard2.0/Hangfire.Core.dll": {}
         }
       },
-      "Hangfire.SqlServer/1.7.15": {
+      "Hangfire.SqlServer/1.7.18": {
         "dependencies": {
-          "Hangfire.Core": "1.7.15",
+          "Hangfire.Core": "1.7.18",
           "System.Data.SqlClient": "4.8.0"
         },
         "runtime": {
           "lib/netstandard2.0/Hangfire.SqlServer.dll": {
-            "assemblyVersion": "1.7.15.0",
-            "fileVersion": "1.7.15.0"
+            "assemblyVersion": "1.7.18.0",
+            "fileVersion": "1.7.18.0"
           }
         },
         "compile": {
@@ -2206,17 +2204,6 @@
           "lib/netstandard2.0/SolrNet.dll": {}
         }
       },
-      "SolrNet.DSL/1.0.19": {
-        "runtime": {
-          "lib/net46/SolrNet.DSL.dll": {
-            "assemblyVersion": "1.0.19.0",
-            "fileVersion": "1.0.19.0"
-          }
-        },
-        "compile": {
-          "lib/net46/SolrNet.DSL.dll": {}
-        }
-      },
       "SolrNet.Microsoft.DependencyInjection/1.0.19": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.3",
@@ -2230,17 +2217,6 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.DependencyInjection.SolrNet.dll": {}
-        }
-      },
-      "System-Web-Helpers.dll/1.0.0": {
-        "runtime": {
-          "lib/Net40/System.Web.Helpers.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "lib/Net40/System.Web.Helpers.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -3383,6 +3359,7 @@
           "ElmahCore": "1.2.5",
           "ElmahCore.Sql": "1.2.5",
           "EntityFramework": "6.4.0",
+          "Hangfire": "1.7.18",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.EntityFrameworkCore": "3.1.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.3",
@@ -3391,7 +3368,6 @@
           "Newtonsoft.Json": "12.0.3",
           "Piranha.AspNetCore.Identity.SQLServer": "8.3.0",
           "SolrNet.Core": "1.0.19",
-          "SolrNet.DSL": "1.0.19",
           "SolrNet.Microsoft.DependencyInjection": "1.0.19"
         },
         "runtime": {
@@ -5062,33 +5038,33 @@
       "path": "google.apis.core/1.46.0",
       "hashPath": "google.apis.core.1.46.0.nupkg.sha512"
     },
-    "Hangfire/1.7.15": {
+    "Hangfire/1.7.18": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ShdUeZQjuPx/Dzi3yyI9yBwYuskVM9j9dDbziR7RarDihzXlh5GkmMipGToajqvVUP6yFWpoPSqDpfuvG4CyDQ==",
-      "path": "hangfire/1.7.15",
-      "hashPath": "hangfire.1.7.15.nupkg.sha512"
+      "sha512": "sha512-xNwlGgY2pW5NJoREwHABw9Lm8vPScvBqsEmo34sQe2iw+KpaKERRX5F0RjXwXKhX8jxi4OCIPOIOnLwSXtlHXw==",
+      "path": "hangfire/1.7.18",
+      "hashPath": "hangfire.1.7.18.nupkg.sha512"
     },
-    "Hangfire.AspNetCore/1.7.15": {
+    "Hangfire.AspNetCore/1.7.18": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-XV5o/gkfcYxMmeqsL9D/ep9dSCBXGu+QQ7zAniZh3hNaniJLRKoIedWZR/LhxCaZjQtKOau4JzeNut5vFobyxg==",
-      "path": "hangfire.aspnetcore/1.7.15",
-      "hashPath": "hangfire.aspnetcore.1.7.15.nupkg.sha512"
+      "sha512": "sha512-n37EG9waT3dNJm+s7WKOkCYFFVd71Bxd8nwyU4a8afI4s2A+mYD6JllcecMPCmdkYgfqBrwGyu0mVhxLRMZC9g==",
+      "path": "hangfire.aspnetcore/1.7.18",
+      "hashPath": "hangfire.aspnetcore.1.7.18.nupkg.sha512"
     },
-    "Hangfire.Core/1.7.15": {
+    "Hangfire.Core/1.7.18": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SB1A1rPejQBISlXenetNtjhRkVOkD6RxPR6RuCyLsh20FKnk0lTyufD39QCvJzVoGtmMlLA/oOJPYbOMCMtJGw==",
-      "path": "hangfire.core/1.7.15",
-      "hashPath": "hangfire.core.1.7.15.nupkg.sha512"
+      "sha512": "sha512-Ka/QWgqlQBxKdq8kpQ943gA1KH5l0KqO0n53oKMZGYqHRBh3h39lZWIlA7JTpvN34v6Osd5eyU64xuvt0lgRoQ==",
+      "path": "hangfire.core/1.7.18",
+      "hashPath": "hangfire.core.1.7.18.nupkg.sha512"
     },
-    "Hangfire.SqlServer/1.7.15": {
+    "Hangfire.SqlServer/1.7.18": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OMrEuaFJsDTJ27H+ciNAAgkR3Xett8Fe0kfAEXg6n5IL9YXjnzz5u9IvTfAV4cOPUccf/7qpg1mg33eToKBlyw==",
-      "path": "hangfire.sqlserver/1.7.15",
-      "hashPath": "hangfire.sqlserver.1.7.15.nupkg.sha512"
+      "sha512": "sha512-KBzQEiRSW3QkakXWOLefHeEdzDUZPKxyPrnhhUpFm2zefpYirtoAnB/91RY5mvEUSCro7H6GGKeGCChxiuDmPQ==",
+      "path": "hangfire.sqlserver/1.7.18",
+      "hashPath": "hangfire.sqlserver.1.7.18.nupkg.sha512"
     },
     "jQuery/3.5.1": {
       "type": "package",
@@ -6007,26 +5983,12 @@
       "path": "solrnet.core/1.0.19",
       "hashPath": "solrnet.core.1.0.19.nupkg.sha512"
     },
-    "SolrNet.DSL/1.0.19": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-FbhUOF4a5GFfQXcBxHsxo5Dnh4oDppOalOAGsNJ7hdhAAokgwcdbb8EEdtZ6RhAuqbntmGjESCb/LTDdkcC3UQ==",
-      "path": "solrnet.dsl/1.0.19",
-      "hashPath": "solrnet.dsl.1.0.19.nupkg.sha512"
-    },
     "SolrNet.Microsoft.DependencyInjection/1.0.19": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-wO5WTNZZNKUgrXQW5V255XJ9I5Qqa6cSVqv4iVBvAXvSodd2M0kPS/OA/mZSVKIkXj+359PfOIagVeMeM0rsTA==",
       "path": "solrnet.microsoft.dependencyinjection/1.0.19",
       "hashPath": "solrnet.microsoft.dependencyinjection.1.0.19.nupkg.sha512"
-    },
-    "System-Web-Helpers.dll/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-YNi625gkYOPE1CN6HdDGW4Ve7/E4xxnBGsnTBdzz91b+Pk0WrE2hPPOrXJc9vTjW2PjRju0TeyUZYtBntYXuVA==",
-      "path": "system-web-helpers.dll/1.0.0",
-      "hashPath": "system-web-helpers.dll.1.0.0.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",
