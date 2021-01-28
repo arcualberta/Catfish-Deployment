@@ -24,7 +24,6 @@ function submitWorkflowForm(suffix, successMessage) {
     });
 
     $("#submissionForm_" + suffix).submit(function (event) {
-
         /* stop form from submitting normally */
         event.preventDefault();
 
@@ -33,6 +32,10 @@ function submitWorkflowForm(suffix, successMessage) {
         var name;
         var values = {};
         var form = $('#submissionForm_' + suffix);
+
+        $(form).validate({
+            debug: true
+        });
 
         //Handling text areas and input elements EXCLUDING checkboxes, radio buttons, and drop-down (select) menus
         $.each($('input, textarea', form).not('input[type=checkbox], input[type=radio], select').serializeArray(), function (i, field) {
