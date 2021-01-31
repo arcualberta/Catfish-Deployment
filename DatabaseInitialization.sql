@@ -502,3 +502,19 @@ VALUES (N'20201210233257_IsEditableColumnRemovedFromSystemStatuses', N'3.1.3');
 
 GO
 
+CREATE TABLE [Catfish_BackgroundJobs] (
+    [Id] uniqueidentifier NOT NULL,
+    [HangfireJobId] bigint NOT NULL,
+    [EntityId] uniqueidentifier NULL,
+    [SourceTaskId] uniqueidentifier NULL,
+    [Task] nvarchar(max) NULL,
+    CONSTRAINT [PK_Catfish_BackgroundJobs] PRIMARY KEY ([Id])
+);
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20201213175412_CreatedBackgroundJobModel', N'3.1.3');
+
+GO
+
