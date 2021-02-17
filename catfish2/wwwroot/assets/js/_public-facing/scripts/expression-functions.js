@@ -4,7 +4,7 @@
     var visibleIfFields = $("input[data-visible-if], textarea[data-visible-if], select[data-visible-if], option[data-visible-if]");
     for (i = 0; i < visibleIfFields.length; ++i) {
         let field = visibleIfFields[i];
-        //console.log(field);
+        console.log(field);
         let expression = $(field).attr("data-visible-if");
         if (expression) {
             let fieldId = $(field).attr("data-field-id");
@@ -14,6 +14,27 @@
             }
             else {
                 $("#" + fieldId).hide()
+
+                //If this is an option
+                if ($(field).prop("tagName").toLowerCase() === "option") {
+                    let parent = $(field).parent();
+                    //If this is a drop-down menu
+                    if ($(parent).prop("tagName").toLowerCase() === "select") {
+                        //We need to check whether the currently selected
+                        //value is equal to the current field that is made hidden and if so, reset 
+                        //the selected field.
+
+                        if ($(parent).val() === $(field).val()) {
+                            $(parent).val("")
+                        }
+                    }
+                }
+
+                //If this is a radio button
+                if ($(field).is(':radio')) {
+                    $(field).prop('checked', false);
+                }
+
             }
         }
     }
@@ -90,4 +111,29 @@ function RadioValue(fieldModelId) {
 
 function CheckboxValue(fieldId, optionId) {
     return $("[data-option-id='" + optionId + "']:checked").val() === "true";
+}
+
+function SelectFieldReadableValue(fieldModelId) {
+    var field = $("[data-model-id='" + fieldModelId + "']");
+    return $(field).children("option[value='" + $(field).val() + "']").text();
+}
+
+function RadioFieldReadableValue(fieldModelId) {
+    var fieldVal = RadioValue(fieldModelId);
+    return $("span[data-option-id='" + fieldVal + "']").text();
+}
+
+
+function Extract(str, delimiter, selectItemIndex, trimEnds) {
+
+    var value = str;
+    if (delimiter && value) {
+        value = value.split(delimiter);
+        value = value[selectItemIndex];
+    }
+
+    if (trimEnds && value)
+        value = value.trim();
+
+    return value;
 }
