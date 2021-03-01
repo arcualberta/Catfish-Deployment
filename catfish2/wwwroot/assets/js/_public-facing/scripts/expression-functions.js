@@ -4,7 +4,7 @@
     var visibleIfFields = $("input[data-visible-if], textarea[data-visible-if], select[data-visible-if], option[data-visible-if]");
     for (i = 0; i < visibleIfFields.length; ++i) {
         let field = visibleIfFields[i];
-        console.log(field);
+        //console.log(field);
         let expression = $(field).attr("data-visible-if");
         if (expression) {
             let fieldId = $(field).attr("data-field-id");
@@ -82,17 +82,17 @@ function StrValue(fieldModelId) {
 
 function IntValue(fieldModelId) {
     let val = StrValue(fieldModelId);
-    return parseInt(val);
+    return val ? parseInt(val) : 0;
 }
 
 function DoubleValue(fieldModelId) {
     let val = StrValue(fieldModelId);
-    return parseFloat(val);
+    return val ? parseFloat(val) : 0;
 }
 
 function FloatValue(fieldModelId) {
     let val = StrValue(fieldModelId);
-    return parseFloat(val);
+    return val ? parseFloat(val) : 0;
 }
 
 function DecimalValue(fieldModelId) {
@@ -102,7 +102,7 @@ function DecimalValue(fieldModelId) {
 
 function DateValue(fieldModelId) {
     let val = StrValue(fieldModelId);
-    return Date.parse(val);
+    return val ? Date.parse(val) : "";
 }
 
 function RadioValue(fieldModelId) {
@@ -123,7 +123,6 @@ function RadioFieldReadableValue(fieldModelId) {
     return $("span[data-option-id='" + fieldVal + "']").text();
 }
 
-
 function Extract(str, delimiter, selectItemIndex, trimEnds) {
 
     var value = str;
@@ -137,3 +136,28 @@ function Extract(str, delimiter, selectItemIndex, trimEnds) {
 
     return value;
 }
+
+function TableColumnSum(fieldModelId, columnIndex) {
+    let table = $("table[data-model-id='" + fieldModelId + "']")
+    let result = 0;
+    $(table).find("input[data-c=" + columnIndex + "]:visible").each(function () {
+        result += parseInt($(this).val(), 10);
+    });
+
+    return result;
+}
+
+////function TableRowSum(fieldModelId, srcColumns) {
+////    let dstField = $("input[data-model-id='" + fieldModelId + "']");
+////    let td = $(dstField).parent();
+////    let tr = $(td).parent();
+////    let result = 0;
+////    $.each(srcColumns, function (idx, col) {
+////        val = $(tr).find(`[data-c=${col}]:visible`).val();
+////        if (val)
+////            result += parseInt(val);
+////    });
+
+////    return result;
+////}
+
