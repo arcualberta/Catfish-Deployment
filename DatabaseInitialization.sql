@@ -518,3 +518,38 @@ VALUES (N'20201213175412_CreatedBackgroundJobModel', N'3.1.3');
 
 GO
 
+CREATE TABLE [Backups] (
+    [Id] uniqueidentifier NOT NULL,
+    [SourceId] uniqueidentifier NOT NULL,
+    [SourceType] nvarchar(max) NULL,
+    [SourceData] nvarchar(max) NULL,
+    [Timestamp] datetime2 NOT NULL,
+    [UserId] uniqueidentifier NOT NULL,
+    [Username] nvarchar(max) NULL,
+    CONSTRAINT [PK_Backups] PRIMARY KEY ([Id])
+);
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20210305005353_CreatedBackupModel', N'3.1.3');
+
+GO
+
+ALTER TABLE [Backups] DROP CONSTRAINT [PK_Backups];
+
+GO
+
+EXEC sp_rename N'[Backups]', N'Catfish_Backup';
+
+GO
+
+ALTER TABLE [Catfish_Backup] ADD CONSTRAINT [PK_Catfish_Backup] PRIMARY KEY ([Id]);
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20210305010116_RenamedBackupTable', N'3.1.3');
+
+GO
+
