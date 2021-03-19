@@ -30,7 +30,7 @@ $(document).ready(function () {
             dataFormdModified = false;
         }
     },
-    10 * 60000); //execute every 10 minutes.
+    5 * 60000); //execute every 5 minutes.
 });
 
 function removeRequiredAttribute(form) {
