@@ -413,7 +413,8 @@ if (document.getElementById("item-edit-page")) {
           fetch(piranha.baseUrl + this.postString, {
             method: "POST",
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json' //TODO add multipart for files possiblility
+
             },
             body: JSON.stringify(this.item)
           }).then(function (res) {
