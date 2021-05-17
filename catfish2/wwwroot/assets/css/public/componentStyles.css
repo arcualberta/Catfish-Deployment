@@ -227,7 +227,69 @@
     padding-right: 10px;
 }
 
+/*****************************************************/
 
+/* ListDisplay styles */
+
+.list-display-block-container{
+    min-height: 700px;
+}
+
+.item-list-image {
+    width: 30%;
+    height: auto;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.item-list-text-container{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.single-list-item {
+    position: relative;
+    display: flex;
+    margin: 4px;
+    border: solid black 1px;
+    border-radius: 5px;
+    background-color:white;
+    height:120px;
+}
+
+.list-display-block-container{
+    display:flex;
+}
+
+.items-top-title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.itemlist-scroller-container{
+    min-height:inherit;
+    overflow-y: auto;
+    max-height:700px;
+}
+
+.selected-indicator {
+    width: 20px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: absolute;
+}
+
+.no-image-extra-padding{
+    padding-left: 35px;
+}
+
+
+/*****************************************************/
 /* Extended Gallery carousel*/
 .extended-gallery-block .carousel-indicators {
     position: static;
