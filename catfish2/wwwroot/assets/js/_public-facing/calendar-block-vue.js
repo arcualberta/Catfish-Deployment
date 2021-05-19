@@ -369,7 +369,7 @@ Vue.component('calendar-block-vue', {
           } //FF issue with formatting, need to convert to ISO format due to the way FF handles Date objects
 
 
-          var regCalendarDate = new Date("".concat(year, "-").concat(month, "-").concat(day)).toISOString();
+          var regCalendarDate = new Date("".concat(year, "/").concat(month, "/").concat(day)).toISOString();
           var regCalendarDateConverted = dayjs__WEBPACK_IMPORTED_MODULE_0___default()(regCalendarDate, "YYYY-MM-DD").format("YYYY-MM-DD");
           var calendarDateConverted = dayjs__WEBPACK_IMPORTED_MODULE_0___default()(calendarEvent.StartDateTime, "YYYY-MM-DD").format("YYYY-MM-DD");
 
