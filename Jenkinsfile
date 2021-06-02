@@ -26,7 +26,7 @@ pipeline{
 						bat "copy ..\\_Test_Data\\tblt.ualberta.ca\\appsettings.json ${WORKSPACE}\\catfish2\\appsettings.json"
 						
 						
-						bat """ "C:\\Program Files\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -skip:objectName=E:\\inetpub\\wwwroot2\\catfish-dev.arts.ualberta.ca\\wwwroot\\assets\\css\\public\\custom.css -verb:sync -source:iisApp="${WORKSPACE}\\catfish2" -dest:iisApp="catfish-dev.artsrn.ualberta.ca" -enableRule:AppOffline """   	
+						bat """ "C:\\Program Files\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -skip:absolutePath=E:\\inetpub\\wwwroot2\\catfish-dev.arts.ualberta.ca\\wwwroot\\assets\\css\\public\\custom.css -verb:sync -source:iisApp="${WORKSPACE}\\catfish2" -dest:iisApp="catfish-dev.artsrn.ualberta.ca" -enableRule:AppOffline """   	
 					}
 				}
 		    }
