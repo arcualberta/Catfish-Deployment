@@ -553,3 +553,22 @@ VALUES (N'20210305010116_RenamedBackupTable', N'3.1.3');
 
 GO
 
+ALTER TABLE [Catfish_Entities] ADD [Updated] datetime2 NULL;
+
+GO
+
+CREATE TABLE [Catfish_IndexingHistory] (
+    [Id] uniqueidentifier NOT NULL,
+    [ObjectId] uniqueidentifier NOT NULL,
+    [Created] datetime2 NOT NULL,
+    [LastIndexedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Catfish_IndexingHistory] PRIMARY KEY ([Id])
+);
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20210427144338_CreatedIndexingHitory', N'3.1.3');
+
+GO
+
