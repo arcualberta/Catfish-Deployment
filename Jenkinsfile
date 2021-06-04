@@ -24,6 +24,7 @@ pipeline{
 						
 						//Copying configuration for the TBLT project from the test-data folder
 						bat "copy ..\\_Test_Data\\tblt.ualberta.ca\\appsettings.json ${WORKSPACE}\\catfish2\\appsettings.json"
+						bat "copy ..\\_Test_Data\\tblt.ualberta.ca\\catfish2-0-GoogleCalendarServiceAccount.json ${WORKSPACE}\\catfish2\\catfish2-0-GoogleCalendarServiceAccount.json"
 						bat "copy E:\\inetpub\\wwwroot2\\catfish-dev.artsrn.ualberta.ca\\wwwroot\\assets\\css\\public\\custom.css  ${WORKSPACE}\\catfish2\\wwwroot\\assets\\css\\public\\custom.css"
 						
 						bat """ "C:\\Program Files\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="${WORKSPACE}\\catfish2" -dest:iisApp="catfish-dev.artsrn.ualberta.ca" -enableRule:AppOffline """   	
