@@ -1,7 +1,8 @@
-﻿.header-bg {
-    background-size: cover;
-    background-position: 50% 50%;
-}
+﻿@import "Style_RC.css";
+
+.header-bg {
+  background-size: cover;
+  background-position: 50% 50%; }
 
 header {
     padding: 1rem 0;
