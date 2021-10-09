@@ -1,12 +1,12 @@
 <template>
     <div class="data-item">
-        <img class="thumbnail" :src="item.thumbnail" />
+        <a :href="item.detailedViewUrl"><img class="thumbnail" :src="item.thumbnail" /></a>
         <div class="cat-outer">
             <div class="cat-inner col-6">
-                {{keywordStr}}
+                {{item.categories.join(", ")}}
             </div>
         </div>
-        <h3>{{item.title}}</h3>
+        <h3><a :href="item.detailedViewUrl">{{item.title}}</a></h3>
         <div class="content">
             {{ item.content }}
         </div>
@@ -14,17 +14,12 @@
 </template>
 <script lang="ts">
     import { defineComponent, PropType } from "vue";
-    import { Item } from "../store/defs/state"
+    import { Item } from "../models"
 
     export default defineComponent({
         name: "Tile",
         props: {
             item: null as null | PropType<Item>
-        },
-        computed: {
-            keywordStr() {
-                return "Category 1, Category 2, Category 3";
-            }
         }
     });
 </script>

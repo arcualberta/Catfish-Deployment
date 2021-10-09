@@ -1,5 +1,5 @@
 <template>
-    <KeywordFilter :keywords="keywords" />
+    <KeywordFilter :keywords="keywords" :page-id="pageId" :block-id="blockId" />
     <ItemList />
 </template>
 
@@ -7,6 +7,7 @@
     import { defineComponent, ref } from 'vue';
     import KeywordFilter from './components/KeywordFilter.vue';
     import ItemList from './components/ItemList.vue';
+import { Guid } from 'guid-typescript';
 
     export default defineComponent({
         name: "App",
@@ -15,14 +16,15 @@
             ItemList
         },
         setup() {
-            //console.log('App setup')
 
             //Definiting reactive variables
             const keywords = ref([''])
+            const pageId = ref(Guid.EMPTY)
+            const blockId = ref(Guid.EMPTY)
 
-            const loadKeywords = async (pageId: string, blockId: string) => {
+            const loadKeywords = async () => {
                 try {
-                    let api = `https://localhost:44385/api/tilegrid/keywords/page/${pageId}/block/${blockId}`;
+                    let api = window.location.origin + `/api/tilegrid/keywords/page/${pageId.value}/block/${blockId.value}`;
                     console.log('Loading keywords: ', api)
 
                     const res = await fetch(api);
@@ -33,13 +35,13 @@
                 }
             }
 
-            return { keywords, loadKeywords }
+            return { keywords, pageId, blockId, loadKeywords }
         },
         mounted() {
-            //console.log('App mounted')
-            let pageId = this.$el.parentElement.getAttribute("page-id");
-            let blockId = this.$el.parentElement.getAttribute("block-id");
-            this.loadKeywords(pageId, blockId);
+            this.pageId = this.$el.parentElement.getAttribute("page-id");
+            this.blockId = this.$el.parentElement.getAttribute("block-id");
+            this.loadKeywords();
+
         }
     });
 </script>

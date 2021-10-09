@@ -1,8 +1,7 @@
 <template>
     <div class="data-items">
-        <h1>Item List</h1>
         <div class="container row">
-            <div v-for="item in items" :key="item" class="col-md-4 col-sm-3">
+            <div v-for="item in items" :key="item" class="col-md-3 col-sm-3">
                 <tile :item="item"></tile>
             </div>
         </div>
@@ -20,7 +19,10 @@
         },
         setup() {
             const store = useStore()
-            return { items: computed(() => store.state.items), }
+
+            return {
+                items: computed(() => store.state.searchResult?.items),
+            }
         }
     });
 </script>
