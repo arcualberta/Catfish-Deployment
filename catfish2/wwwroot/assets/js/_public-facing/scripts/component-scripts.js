@@ -1,9 +1,38 @@
 ﻿/*
  * Function for the free-text panel in views/shared/partial/_search.cshtml
  */
+$(function () {
+    //advance search
+    //the query param need to be "?q=searchText"  ==> ?q= 
+    let searchMode = $('input[name="searchMode"]:checked').val();
+    let queryStr = window.location.search;
+    if (queryStr !== "") {
+      let qval = queryStr.substring(3);
+      if (qval.indexOf("___") < 1) {
+        //This is a simple search
+        $("#simpleSearchTerm").val(qval);
+      }
+      else {
+          //This is an advanced search.
+          //Separating key-value pairs
+          let pairs = qval.split("|||")
+          pairs.forEach((pair) => {
+            let keyval = pair.split("___");
+            $(`#${keyval[0]}`).val(keyval[1]);
+          });
+
+        //select the advance search mode
+        $("input[name='searchMode'][value='advanced']").attr("checked", true).click();
+        //$(".search-mode").hide();
+
+        }
+        $("#advanceSearchSubmitBtn").click();
+    }
+});
+
 function searchText() {
     var searchText = $("input[name='searchTerm']").val();
-    window.location.href = '/search?searchTerm=' + searchText;
+    window.location.href = '/search?q=' + searchText;
     return false;
 }
 
@@ -207,13 +236,36 @@ function showResultSlip(resultEntries) {
             $(anchor).attr("href", url);
         });
 
-        //setting any links to the detailed view of the item
-        $(slip).find("a[data-details-view-link]").each((k, anchor) => {
-            //TODO: Set the the appropriate url
-            let url = "#"
+        //setting any links to the detailed view of the item == commented out now, don't need it
+        //$(slip).find("a[data-details-view-link]").each((k, anchor) => {
+            // Set the the appropriate url
+          //  let url = window.location.origin + "/items/" + itemId;
 
-            $(anchor).attr("href", url);
-        });
+         //   $(anchor).attr("href", url);
+       // });
+
+        //replacing Id of data-details div to make it uniques 
+        //and the data target of the "More" button
+        let entryLink = $(slip).find("a.entryDetailLink")[0];
+        $(entryLink).attr("data-target", "#entryDetails_" + itemId);
+
+        //setting the list of fields to be displayed when the detailed-view link is clicked
+        let detailsDiv = $(slip).find("div[data-details]")[0];
+        $(detailsDiv).attr("id", "entryDetails_" + itemId)
+        
+
+      
+        if (moreFieldList) {
+          moreFieldList.forEach((fieldName) => {
+            let field = e.fields.filter((f) => {
+              return f.fieldName == fieldName;
+            })[0];
+
+            if (field) {
+              $(detailsDiv).append(`<div>${field.fieldName}: ${field.fieldContent.join()}</div>`)
+            }
+          });
+        }
 
         let thumbnailDiv = $(slip).find("div[data-details-view-link]")[0];
         if (thumbnailDiv) {
@@ -247,3 +299,4 @@ function wordLimit(str, limit, end) {
 
     return str.join(' ');
 }
+
