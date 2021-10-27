@@ -1,0 +1,33 @@
+{
+  "name": "basicweb",
+  "version": "4.2.0",
+  "description": "Basic Web Template for Piranha CMS",
+  "main": "index.js",
+  "author": "Håkan Edling",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode=development --config webpack.config.js",
+    "copy": "copy wwwroot\\assets\\dist\\calendar-block-vue.js wwwroot\\assets\\js\\_public-facing && copy wwwroot\\assets\\dist\\calendar-block-vue.js.map wwwroot\\assets\\js\\_public-facing"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
+    "node-gyp": "^7.1.2",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "dayjs": "^1.10.4",
+    "node-sass": "^5.0.0",
+    "uuid": "^8.3.2",
+    "vue": "^2.6.12",
+    "vue-quill-editor": "^3.0.6",
+    "vuedraggable": "^2.23.2",
+    "vuelidate": "^0.7.5"
+  }
+}
