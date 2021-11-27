@@ -1,4 +1,20 @@
-'use strict';var vue=require('vue');function _defineProperty(obj, key, value) {
+'use strict';var vue=require('vue');function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -86,8 +102,12 @@ function _nonIterableRest() {
   dataAttributes: {
     required: false,
     type: null
+  },
+  queryParameters: {
+    required: false,
+    type: null
   }
-};var script$3 = vue.defineComponent({
+};var script$5 = vue.defineComponent({
   name: "Carousel",
   components: {},
   props: props,
@@ -99,20 +119,20 @@ function _nonIterableRest() {
   mounted: function mounted() {
     console.log('Carousel mounted ...');
   }
-});var _hoisted_1$3 = /*#__PURE__*/vue.createElementVNode("h2", null, "Carousel", -1);
+});var _hoisted_1$4 = /*#__PURE__*/vue.createElementVNode("h2", null, "Carousel", -1);
 
-var _hoisted_2$3 = {
+var _hoisted_2$4 = {
   class: "row"
 };
-var _hoisted_3$2 = {
+var _hoisted_3$3 = {
   class: "row"
 };
 var _hoisted_4$2 = {
   class: "row"
 };
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
-  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$3, vue.createElementVNode("div", _hoisted_2$3, "Page Id: " + vue.toDisplayString(_ctx.pageId), 1), vue.createElementVNode("div", _hoisted_3$2, "Block Id: " + vue.toDisplayString(_ctx.blockId), 1), vue.createElementVNode("div", _hoisted_4$2, "Data Attributes " + vue.toDisplayString(_ctx.dataAttributes), 1)]);
-}script$3.render = render$3;function getDevtoolsGlobalHook() {
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$4, vue.createElementVNode("div", _hoisted_2$4, "Page Id: " + vue.toDisplayString(_ctx.pageId), 1), vue.createElementVNode("div", _hoisted_3$3, "Block Id: " + vue.toDisplayString(_ctx.blockId), 1), vue.createElementVNode("div", _hoisted_4$2, "Data Attributes " + vue.toDisplayString(_ctx.dataAttributes), 1)]);
+}script$5.render = render$5;function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
 function getTarget() {
@@ -1186,7 +1206,7 @@ Store.prototype._withCommit = function _withCommit (fn) {
 };
 
 Object.defineProperties( Store.prototype, prototypeAccessors );//Declare State interface
-var state = {
+var state$1 = {
   keywordQueryModel: null,
   searchResult: null,
   offset: 0,
@@ -1202,44 +1222,59 @@ var Mutations; //Create a mutation tree that implement all mutation interfaces
   Mutations["SET_SOURCE"] = "SET_SOURCE";
   Mutations["SET_KEYWORDS"] = "SET_KEYWORDS";
   Mutations["SET_RESULTS"] = "SET_RESULTS";
+  Mutations["SET_OFFSET"] = "SET_OFFSET";
+  Mutations["SET_PAGE_SIZE"] = "SET_PAGE_SIZE";
 })(Mutations || (Mutations = {}));
 
-var mutations = (_mutations = {}, _defineProperty(_mutations, Mutations.SET_SOURCE, function (state, payload) {
+var mutations$1 = (_mutations = {}, _defineProperty(_mutations, Mutations.SET_SOURCE, function (state, payload) {
   state.pageId = payload.pageId;
   state.blockId = payload.blockId;
 }), _defineProperty(_mutations, Mutations.SET_KEYWORDS, function (state, payload) {
   console.log('SET_KEYWORDS Payload: ', payload);
   state.keywordQueryModel = payload;
 }), _defineProperty(_mutations, Mutations.SET_RESULTS, function (state, payload) {
-  console.log('SET_RESULTS Payload: ', JSON.stringify(payload));
   state.searchResult = payload;
+  state.offset = payload.first - 1;
+}), _defineProperty(_mutations, Mutations.SET_OFFSET, function (state, payload) {
+  //console.log('SET_OFFSET: payload: ', payload)
+  state.offset = payload;
+}), _defineProperty(_mutations, Mutations.SET_PAGE_SIZE, function (state, payload) {
+  //console.log('SET_PAGE_SIZE: payload: ', payload)
+  state.max = payload;
 }), _mutations);var _actions;
-
 //Declare ActionTypes
 var Actions;
 
 (function (Actions) {
   Actions["INIT_FILTER"] = "INIT_FILTER";
-  Actions["INIT_FILTER_ASYNC"] = "INIT_FILTER_ASYNC";
   Actions["FILTER_BY_KEYWORDS"] = "FILTER_BY_KEYWORDS";
   Actions["NEXT_PAGE"] = "NEXT_PAGE";
   Actions["PREVIOUS_PAGE"] = "PREVIOUS_PAGE";
+  Actions["FRESH_SEARCH"] = "FRESH_SEARCH";
+  Actions["SAVE_KEYWORDS"] = "SAVE_KEYWORDS";
 })(Actions || (Actions = {}));
 
-var actions = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, function (store, source) {
-  console.log('Store: ', store);
-  console.log('Source: ', source);
-  store.commit(Mutations.SET_SOURCE, source);
-  var api = window.location.origin + "/applets/api/keywordsearch/keywords/page/".concat(source.pageId, "/block/").concat(source.blockId);
+var actions$1 = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, function (store) {
+  //console.log('Store: ', JSON.stringify(store.state))
+  var api = window.location.origin + "/applets/api/keywordsearch/keywords/page/".concat(store.state.pageId, "/block/").concat(store.state.blockId);
   console.log('Keyword Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
   }).then(function (data) {
-    console.log("Fetch results: ", data);
     store.commit(Mutations.SET_KEYWORDS, data);
   });
 }), _defineProperty(_actions, Actions.FILTER_BY_KEYWORDS, function (store) {
-  console.log("Dispatched Actions.FILTER_BY_KEYWORDS. Query model: ", JSON.stringify(store.state.keywordQueryModel));
+  console.log("Dispatched Actions.FILTER_BY_KEYWORDS. Query model: ", JSON.stringify(store.state.keywordQueryModel)); //Saving current search parameters in the local storage
+
+  if (store.state.blockId) {
+    var searchParams = {
+      keywords: store.state.keywordQueryModel,
+      offset: store.state.offset,
+      max: store.state.max
+    };
+    localStorage.setItem(store.getters.searchParamStorageKey, JSON.stringify(searchParams));
+  }
+
   var api = window.location.origin + "/applets/api/keywordsearch/items/";
   console.log("Item Load API: ", api);
   var formData = new FormData();
@@ -1247,8 +1282,8 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, fun
   if (store.state.blockId) formData.append("blockId", store.state.blockId.toString());
   formData.append("offset", store.state.offset.toString());
   formData.append("max", store.state.max.toString());
-  formData.append("queryParams", JSON.stringify(store.state.keywordQueryModel));
-  console.log("Form Data: ", formData);
+  formData.append("queryParams", JSON.stringify(store.state.keywordQueryModel)); //console.log("Form Data: ", formData)
+
   fetch(api, {
     method: 'POST',
     // or 'PUT'
@@ -1258,87 +1293,455 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, fun
   }).then(function (data) {
     store.commit(Mutations.SET_RESULTS, data);
   }).catch(function (error) {
-    console.error('Error:', error);
+    console.error('Item Load API Error:', error);
   });
-}), _actions);var getters = {//  items: (state): Item[] | undefined => {
+}), _defineProperty(_actions, Actions.NEXT_PAGE, function (store) {
+  store.commit(Mutations.SET_OFFSET, store.state.offset + store.state.max);
+  store.dispatch(Actions.FILTER_BY_KEYWORDS);
+}), _defineProperty(_actions, Actions.PREVIOUS_PAGE, function (store) {
+  var offset = Math.max(store.state.offset - store.state.max, 0);
+  store.commit(Mutations.SET_OFFSET, offset);
+  store.dispatch(Actions.FILTER_BY_KEYWORDS);
+}), _defineProperty(_actions, Actions.FRESH_SEARCH, function (store, pageSize) {
+  store.commit(Mutations.SET_OFFSET, 0);
+  if (pageSize) store.commit(Mutations.SET_PAGE_SIZE, pageSize);
+  store.dispatch(Actions.FILTER_BY_KEYWORDS);
+}), _defineProperty(_actions, Actions.SAVE_KEYWORDS, function (store, source) {
+  console.log("save keywords action :" + JSON.stringify(source));
+  store.commit(Mutations.SET_KEYWORDS, source);
+}), _actions);var getters$1 = {
+  //  items: (state): Item[] | undefined => {
   //    return state.searchResult?.items
   //  },
-};//import { Guid } from "guid-typescript";
-// import ItemList from './ItemList.vue';
-var script$2 = vue.defineComponent({
+  searchParamStorageKey: function searchParamStorageKey(state) {
+    var _state$blockId;
+
+    return ((_state$blockId = state.blockId) === null || _state$blockId === void 0 ? void 0 : _state$blockId.toString()) + "SearchParams";
+  }
+};var script$4 = vue.defineComponent({
   name: "KeywordFilter",
-  components: {//ItemList
-  },
-  props: {
-    queryModel: null
-  },
-  setup: function setup(props) {
-    console.log("KeywordFilter props: ", props);
-    var store = useStore();
-    console.log("Store: ", store);
+  setup: function setup() {
+    var store = useStore(); //console.log("Store: ", store)
 
     var runFreshSearch = function runFreshSearch() {
-      console.log("called runFreshSearch"); //When the keywords are changed, always set the search offset to zero.
-
-      dispatchSearch();
+      return store.dispatch(Actions.FRESH_SEARCH);
     };
-
-    var dispatchSearch = function dispatchSearch() {
-      console.log("called dispatchSearch"); ////Save the search being carried out in the Local Storage.
-      //localStorage.keywordSearchParams = JSON.stringify(searchParams.value);
-      ////Overwtite any collection ID value saved in the local storage because if we rely on it,
-      ////we may use a wrong value from the cache if we ever change the collection 
-      ////in the piranha nlock configuration.
-      //  searchParams.value.pageId = pageId.value;
-      //  searchParams.value.blockId = blockId.value;
-
-      store.dispatch(Actions.FILTER_BY_KEYWORDS);
-    };
-
-    var queryModel = vue.ref(store.state.keywordQueryModel);
-    vue.watch(queryModel, function () {
-      if (queryModel) {
-        console.log("KeywordFilter updated queryModel: ", queryModel);
-      }
-    }); //const searchParams = ref({} as SearchParams);
-    //const { pageId } = toRefs(props);
-    //const { blockId } = toRefs(props);
-    ////If the Local Storage contains search-params object, load it. Otherwise, create a default one.
-    //console.log("localStorage.keywordSearchParams: ", localStorage.keywordSearchParams)
-    //searchParams.value = (localStorage.keywordSearchParams)
-    //    ? JSON.parse(localStorage.keywordSearchParams)
-    //    : { keywords: [], offset: 0, max: 25 };
-    //watch([pageId, blockId], () => {
-    //    if (pageId.toString() !== Guid.EMPTY && blockId.toString() !== Guid.EMPTY) {
-    //        dispatchSearch()
-    //    }
-    //})
-    //const store = useStore()
-    //const previousPage = () => {
-    //    searchParams.value.offset = Math.max(0, searchParams.value.offset - searchParams.value.max);
-    //    dispatchSearch();
-    //}
-    //const nextPage = () => {
-    //    //NOTE: The prepended + sign is needed in the following statement to enforce 
-    //    //numerical addition instead of string concatenation
-    //    searchParams.value.offset = +searchParams.value.offset + +searchParams.value.max;
-    //    dispatchSearch();
-    //}
 
     return {
-      //searchParams,
-      //previousPage,
-      //nextPage,
-      dispatchSearch: dispatchSearch,
       runFreshSearch: runFreshSearch,
       keywordQueryModel: vue.computed(function () {
         return store.state.keywordQueryModel;
-      }),
+      })
+    };
+  }
+});var _hoisted_1$3 = {
+  key: 0
+};
+var _hoisted_2$3 = {
+  key: 0,
+  class: "font-weight-bold"
+};
+var _hoisted_3$2 = ["value", "onUpdate:modelValue"];
+var _hoisted_4$1 = {
+  class: "ml-1"
+};
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  var _ctx$keywordQueryMode;
+
+  return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList((_ctx$keywordQueryMode = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode === void 0 ? void 0 : _ctx$keywordQueryMode.containers, function (container, cIdx) {
+    var _ctx$keywordQueryMode2, _container$name;
+
+    return vue.openBlock(), vue.createElementBlock("div", {
+      key: container
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, vue.toDisplayString(container.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(container.fields, function (field, fIdx) {
+      return vue.openBlock(), vue.createElementBlock("div", {
+        key: field,
+        class: "mb-3"
+      }, [field.name.length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$3, vue.toDisplayString(field.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(field.values, function (value, vIdx) {
+        return vue.openBlock(), vue.createElementBlock("div", {
+          key: value
+        }, [vue.withDirectives(vue.createElementVNode("input", {
+          type: "checkbox",
+          value: value,
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx] = $event;
+          },
+          onChange: _cache[0] || (_cache[0] = function () {
+            return _ctx.runFreshSearch && _ctx.runFreshSearch.apply(_ctx, arguments);
+          })
+        }, null, 40, _hoisted_3$2), [[vue.vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), vue.createElementVNode("label", _hoisted_4$1, vue.toDisplayString(value), 1)]);
+      }), 128))]);
+    }), 128))]);
+  }), 128);
+}script$4.render = render$4;var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function createCommonjsModule(fn, basedir, module) {
+	return module = {
+	  path: basedir,
+	  exports: {},
+	  require: function (path, base) {
+      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+    }
+	}, fn(module, module.exports), module.exports;
+}
+
+function commonjsRequire () {
+	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+}var dayjs_min = createCommonjsModule(function (module, exports) {
+  !function (t, e) {
+    module.exports = e() ;
+  }(commonjsGlobal, function () {
+
+    var t = 1e3,
+        e = 6e4,
+        n = 36e5,
+        r = "millisecond",
+        i = "second",
+        s = "minute",
+        u = "hour",
+        a = "day",
+        o = "week",
+        f = "month",
+        h = "quarter",
+        c = "year",
+        d = "date",
+        $ = "Invalid Date",
+        l = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,
+        y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,
+        M = {
+      name: "en",
+      weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
+      months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_")
+    },
+        m = function m(t, e, n) {
+      var r = String(t);
+      return !r || r.length >= e ? t : "" + Array(e + 1 - r.length).join(n) + t;
+    },
+        g = {
+      s: m,
+      z: function z(t) {
+        var e = -t.utcOffset(),
+            n = Math.abs(e),
+            r = Math.floor(n / 60),
+            i = n % 60;
+        return (e <= 0 ? "+" : "-") + m(r, 2, "0") + ":" + m(i, 2, "0");
+      },
+      m: function t(e, n) {
+        if (e.date() < n.date()) return -t(n, e);
+        var r = 12 * (n.year() - e.year()) + (n.month() - e.month()),
+            i = e.clone().add(r, f),
+            s = n - i < 0,
+            u = e.clone().add(r + (s ? -1 : 1), f);
+        return +(-(r + (n - i) / (s ? i - u : u - i)) || 0);
+      },
+      a: function a(t) {
+        return t < 0 ? Math.ceil(t) || 0 : Math.floor(t);
+      },
+      p: function p(t) {
+        return {
+          M: f,
+          y: c,
+          w: o,
+          d: a,
+          D: d,
+          h: u,
+          m: s,
+          s: i,
+          ms: r,
+          Q: h
+        }[t] || String(t || "").toLowerCase().replace(/s$/, "");
+      },
+      u: function u(t) {
+        return void 0 === t;
+      }
+    },
+        D = "en",
+        v = {};
+
+    v[D] = M;
+
+    var p = function p(t) {
+      return t instanceof _;
+    },
+        S = function S(t, e, n) {
+      var r;
+      if (!t) return D;
+      if ("string" == typeof t) v[t] && (r = t), e && (v[t] = e, r = t);else {
+        var i = t.name;
+        v[i] = t, r = i;
+      }
+      return !n && r && (D = r), r || !n && D;
+    },
+        w = function w(t, e) {
+      if (p(t)) return t.clone();
+      var n = "object" == _typeof(e) ? e : {};
+      return n.date = t, n.args = arguments, new _(n);
+    },
+        O = g;
+
+    O.l = S, O.i = p, O.w = function (t, e) {
+      return w(t, {
+        locale: e.$L,
+        utc: e.$u,
+        x: e.$x,
+        $offset: e.$offset
+      });
+    };
+
+    var _ = function () {
+      function M(t) {
+        this.$L = S(t.locale, null, !0), this.parse(t);
+      }
+
+      var m = M.prototype;
+      return m.parse = function (t) {
+        this.$d = function (t) {
+          var e = t.date,
+              n = t.utc;
+          if (null === e) return new Date(NaN);
+          if (O.u(e)) return new Date();
+          if (e instanceof Date) return new Date(e);
+
+          if ("string" == typeof e && !/Z$/i.test(e)) {
+            var r = e.match(l);
+
+            if (r) {
+              var i = r[2] - 1 || 0,
+                  s = (r[7] || "0").substring(0, 3);
+              return n ? new Date(Date.UTC(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s)) : new Date(r[1], i, r[3] || 1, r[4] || 0, r[5] || 0, r[6] || 0, s);
+            }
+          }
+
+          return new Date(e);
+        }(t), this.$x = t.x || {}, this.init();
+      }, m.init = function () {
+        var t = this.$d;
+        this.$y = t.getFullYear(), this.$M = t.getMonth(), this.$D = t.getDate(), this.$W = t.getDay(), this.$H = t.getHours(), this.$m = t.getMinutes(), this.$s = t.getSeconds(), this.$ms = t.getMilliseconds();
+      }, m.$utils = function () {
+        return O;
+      }, m.isValid = function () {
+        return !(this.$d.toString() === $);
+      }, m.isSame = function (t, e) {
+        var n = w(t);
+        return this.startOf(e) <= n && n <= this.endOf(e);
+      }, m.isAfter = function (t, e) {
+        return w(t) < this.startOf(e);
+      }, m.isBefore = function (t, e) {
+        return this.endOf(e) < w(t);
+      }, m.$g = function (t, e, n) {
+        return O.u(t) ? this[e] : this.set(n, t);
+      }, m.unix = function () {
+        return Math.floor(this.valueOf() / 1e3);
+      }, m.valueOf = function () {
+        return this.$d.getTime();
+      }, m.startOf = function (t, e) {
+        var n = this,
+            r = !!O.u(e) || e,
+            h = O.p(t),
+            $ = function $(t, e) {
+          var i = O.w(n.$u ? Date.UTC(n.$y, e, t) : new Date(n.$y, e, t), n);
+          return r ? i : i.endOf(a);
+        },
+            l = function l(t, e) {
+          return O.w(n.toDate()[t].apply(n.toDate("s"), (r ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e)), n);
+        },
+            y = this.$W,
+            M = this.$M,
+            m = this.$D,
+            g = "set" + (this.$u ? "UTC" : "");
+
+        switch (h) {
+          case c:
+            return r ? $(1, 0) : $(31, 11);
+
+          case f:
+            return r ? $(1, M) : $(0, M + 1);
+
+          case o:
+            var D = this.$locale().weekStart || 0,
+                v = (y < D ? y + 7 : y) - D;
+            return $(r ? m - v : m + (6 - v), M);
+
+          case a:
+          case d:
+            return l(g + "Hours", 0);
+
+          case u:
+            return l(g + "Minutes", 1);
+
+          case s:
+            return l(g + "Seconds", 2);
+
+          case i:
+            return l(g + "Milliseconds", 3);
+
+          default:
+            return this.clone();
+        }
+      }, m.endOf = function (t) {
+        return this.startOf(t, !1);
+      }, m.$set = function (t, e) {
+        var n,
+            o = O.p(t),
+            h = "set" + (this.$u ? "UTC" : ""),
+            $ = (n = {}, n[a] = h + "Date", n[d] = h + "Date", n[f] = h + "Month", n[c] = h + "FullYear", n[u] = h + "Hours", n[s] = h + "Minutes", n[i] = h + "Seconds", n[r] = h + "Milliseconds", n)[o],
+            l = o === a ? this.$D + (e - this.$W) : e;
+
+        if (o === f || o === c) {
+          var y = this.clone().set(d, 1);
+          y.$d[$](l), y.init(), this.$d = y.set(d, Math.min(this.$D, y.daysInMonth())).$d;
+        } else $ && this.$d[$](l);
+
+        return this.init(), this;
+      }, m.set = function (t, e) {
+        return this.clone().$set(t, e);
+      }, m.get = function (t) {
+        return this[O.p(t)]();
+      }, m.add = function (r, h) {
+        var d,
+            $ = this;
+        r = Number(r);
+
+        var l = O.p(h),
+            y = function y(t) {
+          var e = w($);
+          return O.w(e.date(e.date() + Math.round(t * r)), $);
+        };
+
+        if (l === f) return this.set(f, this.$M + r);
+        if (l === c) return this.set(c, this.$y + r);
+        if (l === a) return y(1);
+        if (l === o) return y(7);
+        var M = (d = {}, d[s] = e, d[u] = n, d[i] = t, d)[l] || 1,
+            m = this.$d.getTime() + r * M;
+        return O.w(m, this);
+      }, m.subtract = function (t, e) {
+        return this.add(-1 * t, e);
+      }, m.format = function (t) {
+        var e = this,
+            n = this.$locale();
+        if (!this.isValid()) return n.invalidDate || $;
+
+        var r = t || "YYYY-MM-DDTHH:mm:ssZ",
+            i = O.z(this),
+            s = this.$H,
+            u = this.$m,
+            a = this.$M,
+            o = n.weekdays,
+            f = n.months,
+            h = function h(t, n, i, s) {
+          return t && (t[n] || t(e, r)) || i[n].substr(0, s);
+        },
+            c = function c(t) {
+          return O.s(s % 12 || 12, t, "0");
+        },
+            d = n.meridiem || function (t, e, n) {
+          var r = t < 12 ? "AM" : "PM";
+          return n ? r.toLowerCase() : r;
+        },
+            l = {
+          YY: String(this.$y).slice(-2),
+          YYYY: this.$y,
+          M: a + 1,
+          MM: O.s(a + 1, 2, "0"),
+          MMM: h(n.monthsShort, a, f, 3),
+          MMMM: h(f, a),
+          D: this.$D,
+          DD: O.s(this.$D, 2, "0"),
+          d: String(this.$W),
+          dd: h(n.weekdaysMin, this.$W, o, 2),
+          ddd: h(n.weekdaysShort, this.$W, o, 3),
+          dddd: o[this.$W],
+          H: String(s),
+          HH: O.s(s, 2, "0"),
+          h: c(1),
+          hh: c(2),
+          a: d(s, u, !0),
+          A: d(s, u, !1),
+          m: String(u),
+          mm: O.s(u, 2, "0"),
+          s: String(this.$s),
+          ss: O.s(this.$s, 2, "0"),
+          SSS: O.s(this.$ms, 3, "0"),
+          Z: i
+        };
+
+        return r.replace(y, function (t, e) {
+          return e || l[t] || i.replace(":", "");
+        });
+      }, m.utcOffset = function () {
+        return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
+      }, m.diff = function (r, d, $) {
+        var l,
+            y = O.p(d),
+            M = w(r),
+            m = (M.utcOffset() - this.utcOffset()) * e,
+            g = this - M,
+            D = O.m(this, M);
+        return D = (l = {}, l[c] = D / 12, l[f] = D, l[h] = D / 3, l[o] = (g - m) / 6048e5, l[a] = (g - m) / 864e5, l[u] = g / n, l[s] = g / e, l[i] = g / t, l)[y] || g, $ ? D : O.a(D);
+      }, m.daysInMonth = function () {
+        return this.endOf(f).$D;
+      }, m.$locale = function () {
+        return v[this.$L];
+      }, m.locale = function (t, e) {
+        if (!t) return this.$L;
+        var n = this.clone(),
+            r = S(t, e, !0);
+        return r && (n.$L = r), n;
+      }, m.clone = function () {
+        return O.w(this.$d, this);
+      }, m.toDate = function () {
+        return new Date(this.valueOf());
+      }, m.toJSON = function () {
+        return this.isValid() ? this.toISOString() : null;
+      }, m.toISOString = function () {
+        return this.$d.toISOString();
+      }, m.toString = function () {
+        return this.$d.toUTCString();
+      }, M;
+    }(),
+        b = _.prototype;
+
+    return w.prototype = b, [["$ms", r], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", f], ["$y", c], ["$D", d]].forEach(function (t) {
+      b[t[1]] = function (e) {
+        return this.$g(e, t[0], t[1]);
+      };
+    }), w.extend = function (t, e) {
+      return t.$i || (t(e, _, w), t.$i = !0), w;
+    }, w.locale = S, w.isDayjs = p, w.unix = function (t) {
+      return w(1e3 * t);
+    }, w.en = v[D], w.Ls = v, w.p = {}, w;
+  });
+});
+var dayjs = dayjs_min;var script$3 = vue.defineComponent({
+  name: "ItemList",
+  props: {},
+  setup: function setup() {
+    var store = useStore();
+
+    var nextPage = function nextPage() {
+      return store.dispatch(Actions.NEXT_PAGE);
+    };
+
+    var previousPage = function previousPage() {
+      return store.dispatch(Actions.PREVIOUS_PAGE);
+    };
+
+    var freshSearch = function freshSearch(pageSize) {
+      return store.dispatch(Actions.FRESH_SEARCH, pageSize);
+    };
+
+    var selectedPageSize = vue.ref(25);
+    return {
       items: vue.computed(function () {
         var _store$state$searchRe;
 
         return (_store$state$searchRe = store.state.searchResult) === null || _store$state$searchRe === void 0 ? void 0 : _store$state$searchRe.items;
       }),
+      freshSearch: freshSearch,
+      nextPage: nextPage,
+      previousPage: previousPage,
+      selectedPageSize: selectedPageSize,
       count: vue.computed(function () {
         var _store$state$searchRe2;
 
@@ -1355,118 +1758,170 @@ var script$2 = vue.defineComponent({
         return (_store$state$searchRe4 = store.state.searchResult) === null || _store$state$searchRe4 === void 0 ? void 0 : _store$state$searchRe4.last;
       })
     };
+  },
+  methods: {
+    formatDate: function formatDate(dateString) {
+      var date = dayjs(dateString);
+      return date.format('MMM DD, YYYY');
+    }
   }
 });var _hoisted_1$2 = {
-  key: 0
-};
-var _hoisted_2$2 = {
-  key: 0,
-  class: "font-weight-bold"
-};
-var _hoisted_3$1 = ["value", "onUpdate:modelValue"];
-var _hoisted_4$1 = {
-  class: "ml-1"
-};
-function render$2(_ctx, _cache, $props, $setup, $data, $options) {
-  var _ctx$keywordQueryMode;
-
-  return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList((_ctx$keywordQueryMode = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode === void 0 ? void 0 : _ctx$keywordQueryMode.containers, function (container, cIdx) {
-    var _ctx$keywordQueryMode2, _container$name;
-
-    return vue.openBlock(), vue.createElementBlock("div", {
-      key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, vue.toDisplayString(container.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(container.fields, function (field, fIdx) {
-      return vue.openBlock(), vue.createElementBlock("div", {
-        key: field,
-        class: "mb-3"
-      }, [field.name.length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$2, vue.toDisplayString(field.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(field.values, function (value, vIdx) {
-        return vue.openBlock(), vue.createElementBlock("div", {
-          key: value
-        }, [vue.withDirectives(vue.createElementVNode("input", {
-          type: "checkbox",
-          value: value,
-          "onUpdate:modelValue": function onUpdateModelValue($event) {
-            return _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx] = $event;
-          },
-          onChange: _cache[0] || (_cache[0] = function () {
-            return _ctx.runFreshSearch && _ctx.runFreshSearch.apply(_ctx, arguments);
-          })
-        }, null, 40, _hoisted_3$1), [[vue.vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), vue.createElementVNode("label", _hoisted_4$1, vue.toDisplayString(value), 1)]);
-      }), 128))]);
-    }), 128))]);
-  }), 128);
-}script$2.render = render$2;var script$1 = vue.defineComponent({
-  name: "ItemList",
-  props: {},
-  setup: function setup() {
-    var store = useStore();
-    return {
-      items: vue.computed(function () {
-        var _store$state$searchRe;
-
-        return (_store$state$searchRe = store.state.searchResult) === null || _store$state$searchRe === void 0 ? void 0 : _store$state$searchRe.items;
-      })
-    };
-  }
-});var _hoisted_1$1 = {
   class: "itemList"
 };
+var _hoisted_2$2 = {
+  key: 0
+};
+var _hoisted_3$1 = {
+  key: 0
+};
+var _hoisted_4 = {
+  key: 1
+};
 
-var _hoisted_2$1 = /*#__PURE__*/vue.createElementVNode("h1", null, "Result List", -1);
+var _hoisted_5 = /*#__PURE__*/vue.createElementVNode("option", null, "25", -1);
 
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [_hoisted_2$1, vue.createElementVNode("div", null, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.items, function (item) {
-    return vue.openBlock(), vue.createElementBlock("div", null, [vue.createElementVNode("div", null, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.items, function (item) {
-      return vue.openBlock(), vue.createElementBlock("div", {
-        key: item.id
-      }, vue.toDisplayString(item.title), 1);
-    }), 128))])]);
-  }), 256))])]);
-}script$1.render = render$1;var script = vue.defineComponent({
+var _hoisted_6 = /*#__PURE__*/vue.createElementVNode("option", null, "50", -1);
+
+var _hoisted_7 = /*#__PURE__*/vue.createElementVNode("option", null, "100", -1);
+
+var _hoisted_8 = [_hoisted_5, _hoisted_6, _hoisted_7];
+var _hoisted_9 = {
+  key: 1
+};
+var _hoisted_10 = {
+  class: "item"
+};
+var _hoisted_11 = {
+  class: "item-title"
+};
+var _hoisted_12 = ["href"];
+var _hoisted_13 = {
+  key: 1
+};
+var _hoisted_14 = {
+  class: "item-date"
+};
+var _hoisted_15 = {
+  class: "item-subtitle"
+};
+var _hoisted_16 = {
+  class: "categories"
+};
+var _hoisted_17 = {
+  class: "badge rounded-pill bg-dark text-white m-1"
+};
+var _hoisted_18 = {
+  class: "content"
+};
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  var _ctx$items;
+
+  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$2, [_ctx.first > 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$1, [vue.createElementVNode("i", {
+    class: "fas fa-angle-double-left",
+    onClick: _cache[0] || (_cache[0] = function () {
+      return _ctx.previousPage && _ctx.previousPage.apply(_ctx, arguments);
+    })
+  })])) : vue.createCommentVNode("", true), vue.createTextVNode(" " + vue.toDisplayString(_ctx.first) + "-" + vue.toDisplayString(_ctx.last) + " of " + vue.toDisplayString(_ctx.count) + " ", 1), _ctx.count > _ctx.last ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_4, [vue.createElementVNode("i", {
+    class: "fas fa-angle-double-right",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return _ctx.nextPage && _ctx.nextPage.apply(_ctx, arguments);
+    })
+  })])) : vue.createCommentVNode("", true), vue.createElementVNode("span", null, [vue.withDirectives(vue.createElementVNode("select", {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return _ctx.selectedPageSize = $event;
+    }),
+    class: "pull-right",
+    onChange: _cache[3] || (_cache[3] = function ($event) {
+      return _ctx.freshSearch(Number(_ctx.selectedPageSize));
+    })
+  }, _hoisted_8, 544), [[vue.vModelSelect, _ctx.selectedPageSize]])])])) : (vue.openBlock(), vue.createElementBlock("div", _hoisted_9, "No results found.")), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.items, function (item) {
+    var _item$detailedViewUrl;
+
+    return vue.openBlock(), vue.createElementBlock("div", {
+      key: item.id
+    }, [vue.createElementVNode("div", _hoisted_10, [vue.createElementVNode("h3", _hoisted_11, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (vue.openBlock(), vue.createElementBlock("a", {
+      key: 0,
+      href: item.detailedViewUrl
+    }, vue.toDisplayString(item.title), 9, _hoisted_12)) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_13, vue.toDisplayString(item.title), 1))]), vue.createElementVNode("div", _hoisted_14, vue.toDisplayString(_ctx.formatDate(item.date)), 1), vue.createElementVNode("h5", _hoisted_15, vue.toDisplayString(item.subtitle), 1), vue.createElementVNode("div", _hoisted_16, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(item.categories, function (cat) {
+      return vue.openBlock(), vue.createElementBlock("span", _hoisted_17, vue.toDisplayString(cat), 1);
+    }), 256))]), vue.createElementVNode("div", _hoisted_18, vue.toDisplayString(item.content), 1)])]);
+  }), 128))]);
+}script$3.render = render$3;var script$2 = vue.defineComponent({
   name: "Applet",
   components: {
-    KeywordFilter: script$2,
-    ItemList: script$1
+    KeywordFilter: script$4,
+    ItemList: script$3
   },
   props: props,
-  setup: function setup(propsVals) {
-    console.log('Keyword Search setup ...', propsVals);
-    var store = useStore();
-    store.dispatch(Actions.INIT_FILTER, {
-      pageId: propsVals.pageId,
-      blockId: propsVals.blockId
-    });
-    var keywordQueryModel = vue.ref(store.state.keywordQueryModel);
-    var pageSize = vue.ref(25); //Method that runs a fresh search that starts with index 0 and the already selected page size.
+  setup: function setup(p) {
+    console.log('Keyword Search setup ...', p); //We need to use store in this setup method. so let's load it first.
 
-    var runFreshSearch = function runFreshSearch() {
-      console.log("called runFreshSearch");
-      store.dispatch(Actions.FILTER_BY_KEYWORDS);
-    };
+    var store = useStore(); //Storing the page and block IDs in the store
+
+    store.commit(Mutations.SET_SOURCE, {
+      pageId: p.pageId,
+      blockId: p.blockId
+    }); //See if we can load a SearchParams object from local storage
+
+    var searchParamsStr = localStorage.getItem(store.getters.searchParamStorageKey);
+    var searchParams;
+
+    if (searchParamsStr && searchParamsStr.length > 0 && (searchParams = JSON.parse(searchParamsStr)) && searchParams.keywords) {
+      //Restoring the store state from data reloaded from the state
+      store.commit(Mutations.SET_KEYWORDS, searchParams.keywords);
+      store.commit(Mutations.SET_OFFSET, searchParams.offset);
+      store.commit(Mutations.SET_PAGE_SIZE, searchParams.max);
+    } else {
+      //Dispatch an action to loaf keywords
+      store.dispatch(Actions.INIT_FILTER);
+    } //When the component is mounted, execute a search query based on the current patameters in the store.state.
+
 
     vue.onMounted(function () {
-      runFreshSearch();
+      return store.dispatch(Actions.FILTER_BY_KEYWORDS);
     });
+    var keywordQueryModel = vue.ref(store.state.keywordQueryModel);
     return {
-      runFreshSearch: runFreshSearch,
-      keywordQueryModel: keywordQueryModel,
-      pageSize: pageSize,
-      count: vue.computed(function () {
-        var _store$state$searchRe;
-
-        return (_store$state$searchRe = store.state.searchResult) === null || _store$state$searchRe === void 0 ? void 0 : _store$state$searchRe.count;
-      }),
-      first: vue.computed(function () {
-        var _store$state$searchRe2;
-
-        return (_store$state$searchRe2 = store.state.searchResult) === null || _store$state$searchRe2 === void 0 ? void 0 : _store$state$searchRe2.first;
-      }),
-      last: vue.computed(function () {
-        var _store$state$searchRe3;
-
-        return (_store$state$searchRe3 = store.state.searchResult) === null || _store$state$searchRe3 === void 0 ? void 0 : _store$state$searchRe3.last;
-      })
+      keywordQueryModel: keywordQueryModel
     };
+  },
+  storeConfig: {
+    state: state$1,
+    actions: actions$1,
+    mutations: mutations$1,
+    getters: getters$1
+  }
+});var _hoisted_1$1 = {
+  class: "row"
+};
+var _hoisted_2$1 = {
+  class: "col-md-4 text-left"
+};
+var _hoisted_3 = {
+  class: "col-md-8"
+};
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_KeywordFilter = vue.resolveComponent("KeywordFilter");
+
+  var _component_ItemList = vue.resolveComponent("ItemList");
+
+  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [vue.createElementVNode("div", _hoisted_2$1, [vue.createVNode(_component_KeywordFilter)]), vue.createElementVNode("div", _hoisted_3, [vue.createVNode(_component_ItemList)])]);
+}script$2.render = render$2;//Declare State interface
+var state = {
+  Id: null
+};//Declare ActionTypes
+
+var actions = {};var getters = {};//Create a mutation tree that implement all mutation interfaces
+var mutations = {};var script$1 = vue.defineComponent({
+  name: "ItemTemplateEditor",
+  components: {},
+  props: props,
+  setup: function setup(p) {
+    console.log('Item Template Editor setup ...');
+    console.log('props: ', JSON.stringify(p));
+    var queryParams = p.queryParameters;
+    var pid = queryParams['pid'];
+    console.log(" pid : " + pid);
   },
   storeConfig: {
     state: state,
@@ -1474,62 +1929,28 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     mutations: mutations,
     getters: getters
   }
-});var _hoisted_1 = {
+});function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return vue.openBlock(), vue.createElementBlock("h3", null, "Item Template Editor");
+}script$1.render = render$1;var script = vue.defineComponent({
+  name: "ItemEditor",
+  components: {},
+  props: props,
+  setup: function setup(p, ctx) {
+    console.log('Editor setup ...');
+    console.log('props: ', p);
+    console.log('context: ', ctx);
+  },
+  mounted: function mounted() {
+    console.log('Editor mounted ...');
+  }
+});var _hoisted_1 = /*#__PURE__*/vue.createElementVNode("h2", null, "Item Ediror", -1);
+
+var _hoisted_2 = {
   class: "row"
 };
-var _hoisted_2 = {
-  class: "col-md-4"
-};
-var _hoisted_3 = {
-  class: "col-md-8"
-};
-var _hoisted_4 = {
-  key: 0
-};
-var _hoisted_5 = {
-  key: 0
-};
-var _hoisted_6 = {
-  key: 1
-};
-
-var _hoisted_7 = /*#__PURE__*/vue.createElementVNode("option", null, "25", -1);
-
-var _hoisted_8 = /*#__PURE__*/vue.createElementVNode("option", null, "50", -1);
-
-var _hoisted_9 = /*#__PURE__*/vue.createElementVNode("option", null, "100", -1);
-
-var _hoisted_10 = [_hoisted_7, _hoisted_8, _hoisted_9];
-var _hoisted_11 = {
-  key: 1
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_KeywordFilter = vue.resolveComponent("KeywordFilter");
-
-  var _component_ItemList = vue.resolveComponent("ItemList");
-
-  return vue.openBlock(), vue.createElementBlock("div", null, [vue.createElementVNode("div", _hoisted_1, [vue.createElementVNode("div", _hoisted_2, [vue.createVNode(_component_KeywordFilter, {
-    "query-model": _ctx.keywordQueryModel
-  }, null, 8, ["query-model"])]), vue.createElementVNode("div", _hoisted_3, [_ctx.count > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4, [_ctx.first > 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5, [vue.createElementVNode("i", {
-    class: "fas fa-angle-double-left",
-    onClick: _cache[0] || (_cache[0] = function () {
-      return _ctx.previousPage && _ctx.previousPage.apply(_ctx, arguments);
-    })
-  })])) : vue.createCommentVNode("", true), vue.createTextVNode(" " + vue.toDisplayString(_ctx.first + 1) + "-" + vue.toDisplayString(_ctx.last + 1) + " of " + vue.toDisplayString(_ctx.count) + " ", 1), _ctx.count > _ctx.last ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_6, [vue.createElementVNode("i", {
-    class: "fas fa-angle-double-right",
-    onClick: _cache[1] || (_cache[1] = function () {
-      return _ctx.nextPage && _ctx.nextPage.apply(_ctx, arguments);
-    })
-  })])) : vue.createCommentVNode("", true), vue.createElementVNode("span", null, [vue.withDirectives(vue.createElementVNode("select", {
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return _ctx.pageSize = $event;
-    }),
-    class: "pull-right",
-    onChange: _cache[3] || (_cache[3] = function () {
-      return _ctx.runFreshSearch && _ctx.runFreshSearch.apply(_ctx, arguments);
-    })
-  }, _hoisted_10, 544), [[vue.vModelSelect, _ctx.pageSize]])])])) : (vue.openBlock(), vue.createElementBlock("div", _hoisted_11, "No results found.")), vue.createVNode(_component_ItemList)])])]);
-}script.render = render;/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$3,KeywordSearch:script});var install = function installApplets(app) {
+  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1, vue.createElementVNode("div", _hoisted_2, "Item Id: " + vue.toDisplayString(_ctx.itemId), 1)]);
+}script.render = render;/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$5,KeywordSearch:script$2,ItemTemplateEditor:script$1,ItemEditor:script});var install = function installApplets(app) {
   Object.entries(components$1).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         componentName = _ref2[0],
@@ -1538,7 +1959,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     app.component(componentName, component);
   });
 }; // Create module definition for Vue.use()
-var components=/*#__PURE__*/Object.freeze({__proto__:null,'default':install,Carousel:script$3,KeywordSearch:script});// only expose one global var, with component exports exposed as properties of
+var components=/*#__PURE__*/Object.freeze({__proto__:null,'default':install,Carousel:script$5,KeywordSearch:script$2,ItemTemplateEditor:script$1,ItemEditor:script});// only expose one global var, with component exports exposed as properties of
 // that global var (eg. plugin.component)
 
 Object.entries(components).forEach(function (_ref) {
