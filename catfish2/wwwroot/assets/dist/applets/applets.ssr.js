@@ -88,11 +88,11 @@ function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }var props = {
   pageId: {
-    required: true,
+    required: false,
     type: null
   },
   blockId: {
-    required: true,
+    required: false,
     type: null
   },
   appletTitle: {
@@ -119,9 +119,9 @@ function _nonIterableRest() {
   mounted: function mounted() {
     console.log('Carousel mounted ...');
   }
-});var _hoisted_1$4 = /*#__PURE__*/vue.createElementVNode("h2", null, "Carousel", -1);
+});var _hoisted_1$5 = /*#__PURE__*/vue.createElementVNode("h2", null, "Carousel", -1);
 
-var _hoisted_2$4 = {
+var _hoisted_2$3 = {
   class: "row"
 };
 var _hoisted_3$3 = {
@@ -131,7 +131,7 @@ var _hoisted_4$2 = {
   class: "row"
 };
 function render$5(_ctx, _cache, $props, $setup, $data, $options) {
-  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$4, vue.createElementVNode("div", _hoisted_2$4, "Page Id: " + vue.toDisplayString(_ctx.pageId), 1), vue.createElementVNode("div", _hoisted_3$3, "Block Id: " + vue.toDisplayString(_ctx.blockId), 1), vue.createElementVNode("div", _hoisted_4$2, "Data Attributes " + vue.toDisplayString(_ctx.dataAttributes), 1)]);
+  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$5, vue.createElementVNode("div", _hoisted_2$3, "Page Id: " + vue.toDisplayString(_ctx.pageId), 1), vue.createElementVNode("div", _hoisted_3$3, "Block Id: " + vue.toDisplayString(_ctx.blockId), 1), vue.createElementVNode("div", _hoisted_4$2, "Data Attributes " + vue.toDisplayString(_ctx.dataAttributes), 1)]);
 }script$5.render = render$5;function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
@@ -1216,7 +1216,7 @@ var state$1 = {
 };var _mutations;
 
 //Declare MutationTypes
-var Mutations; //Create a mutation tree that implement all mutation interfaces
+var Mutations$1; //Create a mutation tree that implement all mutation interfaces
 
 (function (Mutations) {
   Mutations["SET_SOURCE"] = "SET_SOURCE";
@@ -1224,26 +1224,26 @@ var Mutations; //Create a mutation tree that implement all mutation interfaces
   Mutations["SET_RESULTS"] = "SET_RESULTS";
   Mutations["SET_OFFSET"] = "SET_OFFSET";
   Mutations["SET_PAGE_SIZE"] = "SET_PAGE_SIZE";
-})(Mutations || (Mutations = {}));
+})(Mutations$1 || (Mutations$1 = {}));
 
-var mutations$1 = (_mutations = {}, _defineProperty(_mutations, Mutations.SET_SOURCE, function (state, payload) {
+var mutations$1 = (_mutations = {}, _defineProperty(_mutations, Mutations$1.SET_SOURCE, function (state, payload) {
   state.pageId = payload.pageId;
   state.blockId = payload.blockId;
-}), _defineProperty(_mutations, Mutations.SET_KEYWORDS, function (state, payload) {
+}), _defineProperty(_mutations, Mutations$1.SET_KEYWORDS, function (state, payload) {
   console.log('SET_KEYWORDS Payload: ', payload);
   state.keywordQueryModel = payload;
-}), _defineProperty(_mutations, Mutations.SET_RESULTS, function (state, payload) {
+}), _defineProperty(_mutations, Mutations$1.SET_RESULTS, function (state, payload) {
   state.searchResult = payload;
   state.offset = payload.first - 1;
-}), _defineProperty(_mutations, Mutations.SET_OFFSET, function (state, payload) {
+}), _defineProperty(_mutations, Mutations$1.SET_OFFSET, function (state, payload) {
   //console.log('SET_OFFSET: payload: ', payload)
   state.offset = payload;
-}), _defineProperty(_mutations, Mutations.SET_PAGE_SIZE, function (state, payload) {
+}), _defineProperty(_mutations, Mutations$1.SET_PAGE_SIZE, function (state, payload) {
   //console.log('SET_PAGE_SIZE: payload: ', payload)
   state.max = payload;
-}), _mutations);var _actions;
+}), _mutations);var _actions$1;
 //Declare ActionTypes
-var Actions;
+var Actions$1;
 
 (function (Actions) {
   Actions["INIT_FILTER"] = "INIT_FILTER";
@@ -1252,18 +1252,18 @@ var Actions;
   Actions["PREVIOUS_PAGE"] = "PREVIOUS_PAGE";
   Actions["FRESH_SEARCH"] = "FRESH_SEARCH";
   Actions["SAVE_KEYWORDS"] = "SAVE_KEYWORDS";
-})(Actions || (Actions = {}));
+})(Actions$1 || (Actions$1 = {}));
 
-var actions$1 = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, function (store) {
+var actions$1 = (_actions$1 = {}, _defineProperty(_actions$1, Actions$1.INIT_FILTER, function (store) {
   //console.log('Store: ', JSON.stringify(store.state))
   var api = window.location.origin + "/applets/api/keywordsearch/keywords/page/".concat(store.state.pageId, "/block/").concat(store.state.blockId);
   console.log('Keyword Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
   }).then(function (data) {
-    store.commit(Mutations.SET_KEYWORDS, data);
+    store.commit(Mutations$1.SET_KEYWORDS, data);
   });
-}), _defineProperty(_actions, Actions.FILTER_BY_KEYWORDS, function (store) {
+}), _defineProperty(_actions$1, Actions$1.FILTER_BY_KEYWORDS, function (store) {
   console.log("Dispatched Actions.FILTER_BY_KEYWORDS. Query model: ", JSON.stringify(store.state.keywordQueryModel)); //Saving current search parameters in the local storage
 
   if (store.state.blockId) {
@@ -1291,25 +1291,25 @@ var actions$1 = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, f
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
-    store.commit(Mutations.SET_RESULTS, data);
+    store.commit(Mutations$1.SET_RESULTS, data);
   }).catch(function (error) {
     console.error('Item Load API Error:', error);
   });
-}), _defineProperty(_actions, Actions.NEXT_PAGE, function (store) {
-  store.commit(Mutations.SET_OFFSET, store.state.offset + store.state.max);
-  store.dispatch(Actions.FILTER_BY_KEYWORDS);
-}), _defineProperty(_actions, Actions.PREVIOUS_PAGE, function (store) {
+}), _defineProperty(_actions$1, Actions$1.NEXT_PAGE, function (store) {
+  store.commit(Mutations$1.SET_OFFSET, store.state.offset + store.state.max);
+  store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
+}), _defineProperty(_actions$1, Actions$1.PREVIOUS_PAGE, function (store) {
   var offset = Math.max(store.state.offset - store.state.max, 0);
-  store.commit(Mutations.SET_OFFSET, offset);
-  store.dispatch(Actions.FILTER_BY_KEYWORDS);
-}), _defineProperty(_actions, Actions.FRESH_SEARCH, function (store, pageSize) {
-  store.commit(Mutations.SET_OFFSET, 0);
-  if (pageSize) store.commit(Mutations.SET_PAGE_SIZE, pageSize);
-  store.dispatch(Actions.FILTER_BY_KEYWORDS);
-}), _defineProperty(_actions, Actions.SAVE_KEYWORDS, function (store, source) {
+  store.commit(Mutations$1.SET_OFFSET, offset);
+  store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
+}), _defineProperty(_actions$1, Actions$1.FRESH_SEARCH, function (store, pageSize) {
+  store.commit(Mutations$1.SET_OFFSET, 0);
+  if (pageSize) store.commit(Mutations$1.SET_PAGE_SIZE, pageSize);
+  store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
+}), _defineProperty(_actions$1, Actions$1.SAVE_KEYWORDS, function (store, source) {
   console.log("save keywords action :" + JSON.stringify(source));
-  store.commit(Mutations.SET_KEYWORDS, source);
-}), _actions);var getters$1 = {
+  store.commit(Mutations$1.SET_KEYWORDS, source);
+}), _actions$1);var getters$1 = {
   //  items: (state): Item[] | undefined => {
   //    return state.searchResult?.items
   //  },
@@ -1324,7 +1324,7 @@ var actions$1 = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, f
     var store = useStore(); //console.log("Store: ", store)
 
     var runFreshSearch = function runFreshSearch() {
-      return store.dispatch(Actions.FRESH_SEARCH);
+      return store.dispatch(Actions$1.FRESH_SEARCH);
     };
 
     return {
@@ -1334,10 +1334,10 @@ var actions$1 = (_actions = {}, _defineProperty(_actions, Actions.INIT_FILTER, f
       })
     };
   }
-});var _hoisted_1$3 = {
+});var _hoisted_1$4 = {
   key: 0
 };
-var _hoisted_2$3 = {
+var _hoisted_2$2 = {
   key: 0,
   class: "font-weight-bold"
 };
@@ -1353,11 +1353,11 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
 
     return vue.openBlock(), vue.createElementBlock("div", {
       key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, vue.toDisplayString(container.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(container.fields, function (field, fIdx) {
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$4, vue.toDisplayString(container.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(container.fields, function (field, fIdx) {
       return vue.openBlock(), vue.createElementBlock("div", {
         key: field,
         class: "mb-3"
-      }, [field.name.length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$3, vue.toDisplayString(field.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(field.values, function (value, vIdx) {
+      }, [field.name.length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$2, vue.toDisplayString(field.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(field.values, function (value, vIdx) {
         return vue.openBlock(), vue.createElementBlock("div", {
           key: value
         }, [vue.withDirectives(vue.createElementVNode("input", {
@@ -1720,15 +1720,15 @@ var dayjs = dayjs_min;var script$3 = vue.defineComponent({
     var store = useStore();
 
     var nextPage = function nextPage() {
-      return store.dispatch(Actions.NEXT_PAGE);
+      return store.dispatch(Actions$1.NEXT_PAGE);
     };
 
     var previousPage = function previousPage() {
-      return store.dispatch(Actions.PREVIOUS_PAGE);
+      return store.dispatch(Actions$1.PREVIOUS_PAGE);
     };
 
     var freshSearch = function freshSearch(pageSize) {
-      return store.dispatch(Actions.FRESH_SEARCH, pageSize);
+      return store.dispatch(Actions$1.FRESH_SEARCH, pageSize);
     };
 
     var selectedPageSize = vue.ref(25);
@@ -1765,10 +1765,10 @@ var dayjs = dayjs_min;var script$3 = vue.defineComponent({
       return date.format('MMM DD, YYYY');
     }
   }
-});var _hoisted_1$2 = {
+});var _hoisted_1$3 = {
   class: "itemList"
 };
-var _hoisted_2$2 = {
+var _hoisted_2$1 = {
   key: 0
 };
 var _hoisted_3$1 = {
@@ -1816,7 +1816,7 @@ var _hoisted_18 = {
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$items;
 
-  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$2, [_ctx.first > 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$1, [vue.createElementVNode("i", {
+  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$1, [_ctx.first > 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$1, [vue.createElementVNode("i", {
     class: "fas fa-angle-double-left",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.previousPage && _ctx.previousPage.apply(_ctx, arguments);
@@ -1858,7 +1858,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
 
     var store = useStore(); //Storing the page and block IDs in the store
 
-    store.commit(Mutations.SET_SOURCE, {
+    store.commit(Mutations$1.SET_SOURCE, {
       pageId: p.pageId,
       blockId: p.blockId
     }); //See if we can load a SearchParams object from local storage
@@ -1868,17 +1868,17 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
 
     if (searchParamsStr && searchParamsStr.length > 0 && (searchParams = JSON.parse(searchParamsStr)) && searchParams.keywords) {
       //Restoring the store state from data reloaded from the state
-      store.commit(Mutations.SET_KEYWORDS, searchParams.keywords);
-      store.commit(Mutations.SET_OFFSET, searchParams.offset);
-      store.commit(Mutations.SET_PAGE_SIZE, searchParams.max);
+      store.commit(Mutations$1.SET_KEYWORDS, searchParams.keywords);
+      store.commit(Mutations$1.SET_OFFSET, searchParams.offset);
+      store.commit(Mutations$1.SET_PAGE_SIZE, searchParams.max);
     } else {
       //Dispatch an action to loaf keywords
-      store.dispatch(Actions.INIT_FILTER);
+      store.dispatch(Actions$1.INIT_FILTER);
     } //When the component is mounted, execute a search query based on the current patameters in the store.state.
 
 
     vue.onMounted(function () {
-      return store.dispatch(Actions.FILTER_BY_KEYWORDS);
+      return store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
     });
     var keywordQueryModel = vue.ref(store.state.keywordQueryModel);
     return {
@@ -1891,10 +1891,10 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     mutations: mutations$1,
     getters: getters$1
   }
-});var _hoisted_1$1 = {
+});var _hoisted_1$2 = {
   class: "row"
 };
-var _hoisted_2$1 = {
+var _hoisted_2 = {
   class: "col-md-4 text-left"
 };
 var _hoisted_3 = {
@@ -1905,23 +1905,59 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_ItemList = vue.resolveComponent("ItemList");
 
-  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [vue.createElementVNode("div", _hoisted_2$1, [vue.createVNode(_component_KeywordFilter)]), vue.createElementVNode("div", _hoisted_3, [vue.createVNode(_component_ItemList)])]);
+  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [vue.createElementVNode("div", _hoisted_2, [vue.createVNode(_component_KeywordFilter)]), vue.createElementVNode("div", _hoisted_3, [vue.createVNode(_component_ItemList)])]);
 }script$2.render = render$2;//Declare State interface
 var state = {
   Id: null
-};//Declare ActionTypes
+};//Declare MutationTypes
+var Mutations; //Create a mutation tree that implement all mutation interfaces
 
-var actions = {};var getters = {};//Create a mutation tree that implement all mutation interfaces
-var mutations = {};var script$1 = vue.defineComponent({
+(function (Mutations) {
+  Mutations["SET_ID"] = "SET_ID";
+})(Mutations || (Mutations = {}));
+
+var mutations = _defineProperty({}, Mutations.SET_ID, function (state, payload) {
+  state.Id = payload;
+  console.log("template id : " + state.Id);
+});var _actions;
+
+var Actions;
+
+(function (Actions) {
+  Actions["LOAD_TEMPLATE"] = "LOAD_TEMPLATE";
+  Actions["SET_ID"] = "SET_ID";
+})(Actions || (Actions = {}));
+
+var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_TEMPLATE, function (store) {
+  //console.log('Store: ', JSON.stringify(store.state))
+  var api = window.location.origin + "/applets/api/itemtemplates/".concat(store.state.Id);
+  console.log('Keyword Load API: ', api);
+  fetch(api).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    //store.commit(Mutations.SET_KEYWORDS, data)
+    console.log(JSON.stringify(data));
+  });
+}), _defineProperty(_actions, Actions.SET_ID, function (store, payload) {
+  store.commit(Mutations.SET_ID, payload);
+}), _actions);var getters = {//getTemplateId: state => {
+  //    return state.queryParameters["templateId"];
+  //}
+};var script$1 = vue.defineComponent({
   name: "ItemTemplateEditor",
   components: {},
   props: props,
   setup: function setup(p) {
+    var store = useStore();
     console.log('Item Template Editor setup ...');
     console.log('props: ', JSON.stringify(p));
     var queryParams = p.queryParameters;
-    var pid = queryParams['pid'];
-    console.log(" pid : " + pid);
+    store.dispatch("SET_ID", queryParams.id); //load the data
+
+    store.dispatch("LOAD_TEMPLATE");
+    return {
+      queryParams: queryParams
+    };
   },
   storeConfig: {
     state: state,
@@ -1929,8 +1965,10 @@ var mutations = {};var script$1 = vue.defineComponent({
     mutations: mutations,
     getters: getters
   }
-});function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return vue.openBlock(), vue.createElementBlock("h3", null, "Item Template Editor");
+});var _hoisted_1$1 = /*#__PURE__*/vue.createElementVNode("h3", null, "Item Template Editor", -1);
+
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [_hoisted_1$1, vue.createElementVNode("div", null, "Item Template ID: " + vue.toDisplayString(_ctx.queryParameters.id), 1)], 64);
 }script$1.render = render$1;var script = vue.defineComponent({
   name: "ItemEditor",
   components: {},
@@ -1939,17 +1977,18 @@ var mutations = {};var script$1 = vue.defineComponent({
     console.log('Editor setup ...');
     console.log('props: ', p);
     console.log('context: ', ctx);
+    var queryParameters = p.queryParameters;
+    return {
+      queryParameters: queryParameters
+    };
   },
   mounted: function mounted() {
     console.log('Editor mounted ...');
   }
 });var _hoisted_1 = /*#__PURE__*/vue.createElementVNode("h2", null, "Item Ediror", -1);
 
-var _hoisted_2 = {
-  class: "row"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1, vue.createElementVNode("div", _hoisted_2, "Item Id: " + vue.toDisplayString(_ctx.itemId), 1)]);
+  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1, vue.createElementVNode("div", null, "Item ID: " + vue.toDisplayString(_ctx.queryParameters.id), 1)]);
 }script.render = render;/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$5,KeywordSearch:script$2,ItemTemplateEditor:script$1,ItemEditor:script});var install = function installApplets(app) {
   Object.entries(components$1).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),

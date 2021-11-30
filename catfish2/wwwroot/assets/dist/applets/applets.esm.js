@@ -2,11 +2,11 @@ import { defineComponent, openBlock, createElementBlock, createElementVNode, toD
 
 var props = {
   pageId: {
-    required: true,
+    required: false,
     type: null
   },
   blockId: {
-    required: true,
+    required: false,
     type: null
   },
   appletTitle: {
@@ -40,9 +40,9 @@ var script$5 = defineComponent({
 
 });
 
-const _hoisted_1$4 = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
+const _hoisted_1$5 = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
 
-const _hoisted_2$4 = {
+const _hoisted_2$3 = {
   class: "row"
 };
 const _hoisted_3$3 = {
@@ -52,7 +52,7 @@ const _hoisted_4$2 = {
   class: "row"
 };
 function render$5(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$4, createElementVNode("div", _hoisted_2$4, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$3, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$2, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$5, createElementVNode("div", _hoisted_2$3, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$3, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$2, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
 }
 
 script$5.render = render$5;
@@ -1150,7 +1150,7 @@ const state$1 = {
 };
 
 //Declare MutationTypes
-var Mutations;
+var Mutations$1;
 
 (function (Mutations) {
   Mutations["SET_SOURCE"] = "SET_SOURCE";
@@ -1158,38 +1158,38 @@ var Mutations;
   Mutations["SET_RESULTS"] = "SET_RESULTS";
   Mutations["SET_OFFSET"] = "SET_OFFSET";
   Mutations["SET_PAGE_SIZE"] = "SET_PAGE_SIZE";
-})(Mutations || (Mutations = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$1 || (Mutations$1 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$1 = {
-  [Mutations.SET_SOURCE](state, payload) {
+  [Mutations$1.SET_SOURCE](state, payload) {
     state.pageId = payload.pageId;
     state.blockId = payload.blockId;
   },
 
-  [Mutations.SET_KEYWORDS](state, payload) {
+  [Mutations$1.SET_KEYWORDS](state, payload) {
     console.log('SET_KEYWORDS Payload: ', payload);
     state.keywordQueryModel = payload;
   },
 
-  [Mutations.SET_RESULTS](state, payload) {
+  [Mutations$1.SET_RESULTS](state, payload) {
     state.searchResult = payload;
     state.offset = payload.first - 1;
   },
 
-  [Mutations.SET_OFFSET](state, payload) {
+  [Mutations$1.SET_OFFSET](state, payload) {
     //console.log('SET_OFFSET: payload: ', payload)
     state.offset = payload;
   },
 
-  [Mutations.SET_PAGE_SIZE](state, payload) {
+  [Mutations$1.SET_PAGE_SIZE](state, payload) {
     //console.log('SET_PAGE_SIZE: payload: ', payload)
     state.max = payload;
   }
 
 };
 
-var Actions;
+var Actions$1;
 
 (function (Actions) {
   Actions["INIT_FILTER"] = "INIT_FILTER";
@@ -1198,19 +1198,19 @@ var Actions;
   Actions["PREVIOUS_PAGE"] = "PREVIOUS_PAGE";
   Actions["FRESH_SEARCH"] = "FRESH_SEARCH";
   Actions["SAVE_KEYWORDS"] = "SAVE_KEYWORDS";
-})(Actions || (Actions = {}));
+})(Actions$1 || (Actions$1 = {}));
 
 const actions$1 = {
-  [Actions.INIT_FILTER](store) {
+  [Actions$1.INIT_FILTER](store) {
     //console.log('Store: ', JSON.stringify(store.state))
     const api = window.location.origin + `/applets/api/keywordsearch/keywords/page/${store.state.pageId}/block/${store.state.blockId}`;
     console.log('Keyword Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations.SET_KEYWORDS, data);
+      store.commit(Mutations$1.SET_KEYWORDS, data);
     });
   },
 
-  [Actions.FILTER_BY_KEYWORDS](store) {
+  [Actions$1.FILTER_BY_KEYWORDS](store) {
     console.log("Dispatched Actions.FILTER_BY_KEYWORDS. Query model: ", JSON.stringify(store.state.keywordQueryModel)); //Saving current search parameters in the local storage
 
     if (store.state.blockId) {
@@ -1235,32 +1235,32 @@ const actions$1 = {
       method: 'POST',
       body: formData
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations.SET_RESULTS, data);
+      store.commit(Mutations$1.SET_RESULTS, data);
     }).catch(error => {
       console.error('Item Load API Error:', error);
     });
   },
 
-  [Actions.NEXT_PAGE](store) {
-    store.commit(Mutations.SET_OFFSET, store.state.offset + store.state.max);
-    store.dispatch(Actions.FILTER_BY_KEYWORDS);
+  [Actions$1.NEXT_PAGE](store) {
+    store.commit(Mutations$1.SET_OFFSET, store.state.offset + store.state.max);
+    store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
   },
 
-  [Actions.PREVIOUS_PAGE](store) {
+  [Actions$1.PREVIOUS_PAGE](store) {
     const offset = Math.max(store.state.offset - store.state.max, 0);
-    store.commit(Mutations.SET_OFFSET, offset);
-    store.dispatch(Actions.FILTER_BY_KEYWORDS);
+    store.commit(Mutations$1.SET_OFFSET, offset);
+    store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
   },
 
-  [Actions.FRESH_SEARCH](store, pageSize) {
-    store.commit(Mutations.SET_OFFSET, 0);
-    if (pageSize) store.commit(Mutations.SET_PAGE_SIZE, pageSize);
-    store.dispatch(Actions.FILTER_BY_KEYWORDS);
+  [Actions$1.FRESH_SEARCH](store, pageSize) {
+    store.commit(Mutations$1.SET_OFFSET, 0);
+    if (pageSize) store.commit(Mutations$1.SET_PAGE_SIZE, pageSize);
+    store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
   },
 
-  [Actions.SAVE_KEYWORDS](store, source) {
+  [Actions$1.SAVE_KEYWORDS](store, source) {
     console.log("save keywords action :" + JSON.stringify(source));
-    store.commit(Mutations.SET_KEYWORDS, source);
+    store.commit(Mutations$1.SET_KEYWORDS, source);
   } ////async [Actions.INIT_FILTER_ASYNC](store, source: KeywordSource) {
   ////  store.commit(Mutations.SET_SOURCE, source);
   ////  const api = window.location.origin +
@@ -1291,7 +1291,7 @@ var script$4 = defineComponent({
   setup() {
     const store = useStore(); //console.log("Store: ", store)
 
-    const runFreshSearch = () => store.dispatch(Actions.FRESH_SEARCH);
+    const runFreshSearch = () => store.dispatch(Actions$1.FRESH_SEARCH);
 
     return {
       runFreshSearch,
@@ -1301,10 +1301,10 @@ var script$4 = defineComponent({
 
 });
 
-const _hoisted_1$3 = {
+const _hoisted_1$4 = {
   key: 0
 };
-const _hoisted_2$3 = {
+const _hoisted_2$2 = {
   key: 0,
   class: "font-weight-bold"
 };
@@ -1320,11 +1320,11 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
 
     return openBlock(), createElementBlock("div", {
       key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$3, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$4, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
       return openBlock(), createElementBlock("div", {
         key: field,
         class: "mb-3"
-      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$3, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
+      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$2, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
         return openBlock(), createElementBlock("div", {
           key: value
         }, [withDirectives(createElementVNode("input", {
@@ -1693,11 +1693,11 @@ var script$3 = defineComponent({
   setup() {
     const store = useStore();
 
-    const nextPage = () => store.dispatch(Actions.NEXT_PAGE);
+    const nextPage = () => store.dispatch(Actions$1.NEXT_PAGE);
 
-    const previousPage = () => store.dispatch(Actions.PREVIOUS_PAGE);
+    const previousPage = () => store.dispatch(Actions$1.PREVIOUS_PAGE);
 
-    const freshSearch = pageSize => store.dispatch(Actions.FRESH_SEARCH, pageSize);
+    const freshSearch = pageSize => store.dispatch(Actions$1.FRESH_SEARCH, pageSize);
 
     const selectedPageSize = ref(25);
     return {
@@ -1737,10 +1737,10 @@ var script$3 = defineComponent({
   }
 });
 
-const _hoisted_1$2 = {
+const _hoisted_1$3 = {
   class: "itemList"
 };
-const _hoisted_2$2 = {
+const _hoisted_2$1 = {
   key: 0
 };
 const _hoisted_3$1 = {
@@ -1788,7 +1788,7 @@ const _hoisted_18 = {
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$items;
 
-  return openBlock(), createElementBlock("div", _hoisted_1$2, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$2, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$1, [createElementVNode("i", {
+  return openBlock(), createElementBlock("div", _hoisted_1$3, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$1, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$1, [createElementVNode("i", {
     class: "fas fa-angle-double-left",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.previousPage && _ctx.previousPage(...arguments);
@@ -1831,7 +1831,7 @@ var script$2 = defineComponent({
 
     const store = useStore(); //Storing the page and block IDs in the store
 
-    store.commit(Mutations.SET_SOURCE, {
+    store.commit(Mutations$1.SET_SOURCE, {
       pageId: p.pageId,
       blockId: p.blockId
     }); //See if we can load a SearchParams object from local storage
@@ -1841,16 +1841,16 @@ var script$2 = defineComponent({
 
     if (searchParamsStr && searchParamsStr.length > 0 && (searchParams = JSON.parse(searchParamsStr)) && searchParams.keywords) {
       //Restoring the store state from data reloaded from the state
-      store.commit(Mutations.SET_KEYWORDS, searchParams.keywords);
-      store.commit(Mutations.SET_OFFSET, searchParams.offset);
-      store.commit(Mutations.SET_PAGE_SIZE, searchParams.max);
+      store.commit(Mutations$1.SET_KEYWORDS, searchParams.keywords);
+      store.commit(Mutations$1.SET_OFFSET, searchParams.offset);
+      store.commit(Mutations$1.SET_PAGE_SIZE, searchParams.max);
     } else {
       //Dispatch an action to loaf keywords
-      store.dispatch(Actions.INIT_FILTER);
+      store.dispatch(Actions$1.INIT_FILTER);
     } //When the component is mounted, execute a search query based on the current patameters in the store.state.
 
 
-    onMounted(() => store.dispatch(Actions.FILTER_BY_KEYWORDS));
+    onMounted(() => store.dispatch(Actions$1.FILTER_BY_KEYWORDS));
     const keywordQueryModel = ref(store.state.keywordQueryModel);
     return {
       keywordQueryModel
@@ -1865,10 +1865,10 @@ var script$2 = defineComponent({
   }
 });
 
-const _hoisted_1$1 = {
+const _hoisted_1$2 = {
   class: "row"
 };
-const _hoisted_2$1 = {
+const _hoisted_2 = {
   class: "col-md-4 text-left"
 };
 const _hoisted_3 = {
@@ -1879,7 +1879,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_ItemList = resolveComponent("ItemList");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$1, [createElementVNode("div", _hoisted_2$1, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3, [createVNode(_component_ItemList)])]);
+  return openBlock(), createElementBlock("div", _hoisted_1$2, [createElementVNode("div", _hoisted_2, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3, [createVNode(_component_ItemList)])]);
 }
 
 script$2.render = render$2;
@@ -1888,14 +1888,50 @@ const state = {
   Id: null
 };
 
-//Declare ActionTypes
+//Declare MutationTypes
+var Mutations;
 
-const actions = {};
+(function (Mutations) {
+  Mutations["SET_ID"] = "SET_ID";
+})(Mutations || (Mutations = {})); //Create a mutation tree that implement all mutation interfaces
 
-const getters = {};
 
-//Create a mutation tree that implement all mutation interfaces
-const mutations = {};
+const mutations = {
+  [Mutations.SET_ID](state, payload) {
+    state.Id = payload;
+    console.log("template id : " + state.Id);
+  }
+
+};
+
+var Actions;
+
+(function (Actions) {
+  Actions["LOAD_TEMPLATE"] = "LOAD_TEMPLATE";
+  Actions["SET_ID"] = "SET_ID";
+})(Actions || (Actions = {}));
+
+const actions = {
+  [Actions.LOAD_TEMPLATE](store) {
+    //console.log('Store: ', JSON.stringify(store.state))
+    const api = window.location.origin + `/applets/api/itemtemplates/${store.state.Id}`;
+    console.log('Keyword Load API: ', api);
+    fetch(api).then(response => response.json()).then(data => {
+      //store.commit(Mutations.SET_KEYWORDS, data)
+      console.log(JSON.stringify(data));
+    });
+  },
+
+  [Actions.SET_ID](store, payload) {
+    store.commit(Mutations.SET_ID, payload);
+  }
+
+};
+
+const getters = {//getTemplateId: state => {
+  //    return state.queryParameters["templateId"];
+  //}
+};
 
 var script$1 = defineComponent({
   name: "ItemTemplateEditor",
@@ -1903,11 +1939,16 @@ var script$1 = defineComponent({
   props,
 
   setup(p) {
+    const store = useStore();
     console.log('Item Template Editor setup ...');
     console.log('props: ', JSON.stringify(p));
-    let queryParams = p.queryParameters;
-    let pid = queryParams['pid'];
-    console.log(" pid : " + pid);
+    const queryParams = p.queryParameters;
+    store.dispatch("SET_ID", queryParams.id); //load the data
+
+    store.dispatch("LOAD_TEMPLATE");
+    return {
+      queryParams
+    };
   },
 
   storeConfig: {
@@ -1918,8 +1959,10 @@ var script$1 = defineComponent({
   }
 });
 
+const _hoisted_1$1 = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
+
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("h3", null, "Item Template Editor");
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$1, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1)], 64);
 }
 
 script$1.render = render$1;
@@ -1933,6 +1976,10 @@ var script = defineComponent({
     console.log('Editor setup ...');
     console.log('props: ', p);
     console.log('context: ', ctx);
+    const queryParameters = p.queryParameters;
+    return {
+      queryParameters
+    };
   },
 
   mounted() {
@@ -1943,11 +1990,8 @@ var script = defineComponent({
 
 const _hoisted_1 = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
 
-const _hoisted_2 = {
-  class: "row"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1, createElementVNode("div", _hoisted_2, "Item Id: " + toDisplayString(_ctx.itemId), 1)]);
+  return openBlock(), createElementBlock("div", null, [_hoisted_1, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
 }
 
 script.render = render;
