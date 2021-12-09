@@ -1,4 +1,4 @@
-import { defineComponent, openBlock, createElementBlock, createElementVNode, toDisplayString, inject, watch, reactive, computed, Fragment, renderList, createCommentVNode, withDirectives, vModelCheckbox, ref, createTextVNode, vModelSelect, onMounted, resolveComponent, createVNode } from 'vue';
+import { defineComponent, openBlock, createElementBlock, createElementVNode, toDisplayString, inject, watch, reactive, computed, Fragment, renderList, createCommentVNode, withDirectives, vModelCheckbox, ref, createTextVNode, vModelSelect, onMounted, resolveComponent, createVNode, normalizeClass, pushScopeId, popScopeId, createBlock } from 'vue';
 
 var props = {
   pageId: {
@@ -23,7 +23,7 @@ var props = {
   }
 };
 
-var script$5 = defineComponent({
+var script$g = defineComponent({
   name: "Carousel",
   components: {},
   props,
@@ -40,22 +40,22 @@ var script$5 = defineComponent({
 
 });
 
-const _hoisted_1$5 = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
+const _hoisted_1$8 = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
 
-const _hoisted_2$3 = {
+const _hoisted_2$6 = {
   class: "row"
 };
-const _hoisted_3$3 = {
+const _hoisted_3$6 = {
   class: "row"
 };
-const _hoisted_4$2 = {
+const _hoisted_4$4 = {
   class: "row"
 };
-function render$5(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$5, createElementVNode("div", _hoisted_2$3, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$3, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$2, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
+function render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$8, createElementVNode("div", _hoisted_2$6, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$6, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$4, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
 }
 
-script$5.render = render$5;
+script$g.render = render$g;
 
 function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
@@ -1140,7 +1140,7 @@ Store.prototype._withCommit = function _withCommit (fn) {
 
 Object.defineProperties( Store.prototype, prototypeAccessors );
 
-const state$1 = {
+const state$2 = {
   keywordQueryModel: null,
   searchResult: null,
   offset: 0,
@@ -1150,7 +1150,7 @@ const state$1 = {
 };
 
 //Declare MutationTypes
-var Mutations$1;
+var Mutations$2;
 
 (function (Mutations) {
   Mutations["SET_SOURCE"] = "SET_SOURCE";
@@ -1158,38 +1158,38 @@ var Mutations$1;
   Mutations["SET_RESULTS"] = "SET_RESULTS";
   Mutations["SET_OFFSET"] = "SET_OFFSET";
   Mutations["SET_PAGE_SIZE"] = "SET_PAGE_SIZE";
-})(Mutations$1 || (Mutations$1 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$2 || (Mutations$2 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
-const mutations$1 = {
-  [Mutations$1.SET_SOURCE](state, payload) {
+const mutations$2 = {
+  [Mutations$2.SET_SOURCE](state, payload) {
     state.pageId = payload.pageId;
     state.blockId = payload.blockId;
   },
 
-  [Mutations$1.SET_KEYWORDS](state, payload) {
+  [Mutations$2.SET_KEYWORDS](state, payload) {
     console.log('SET_KEYWORDS Payload: ', payload);
     state.keywordQueryModel = payload;
   },
 
-  [Mutations$1.SET_RESULTS](state, payload) {
+  [Mutations$2.SET_RESULTS](state, payload) {
     state.searchResult = payload;
     state.offset = payload.first - 1;
   },
 
-  [Mutations$1.SET_OFFSET](state, payload) {
+  [Mutations$2.SET_OFFSET](state, payload) {
     //console.log('SET_OFFSET: payload: ', payload)
     state.offset = payload;
   },
 
-  [Mutations$1.SET_PAGE_SIZE](state, payload) {
+  [Mutations$2.SET_PAGE_SIZE](state, payload) {
     //console.log('SET_PAGE_SIZE: payload: ', payload)
     state.max = payload;
   }
 
 };
 
-var Actions$1;
+var Actions$2;
 
 (function (Actions) {
   Actions["INIT_FILTER"] = "INIT_FILTER";
@@ -1198,19 +1198,19 @@ var Actions$1;
   Actions["PREVIOUS_PAGE"] = "PREVIOUS_PAGE";
   Actions["FRESH_SEARCH"] = "FRESH_SEARCH";
   Actions["SAVE_KEYWORDS"] = "SAVE_KEYWORDS";
-})(Actions$1 || (Actions$1 = {}));
+})(Actions$2 || (Actions$2 = {}));
 
-const actions$1 = {
-  [Actions$1.INIT_FILTER](store) {
+const actions$2 = {
+  [Actions$2.INIT_FILTER](store) {
     //console.log('Store: ', JSON.stringify(store.state))
     const api = window.location.origin + `/applets/api/keywordsearch/keywords/page/${store.state.pageId}/block/${store.state.blockId}`;
     console.log('Keyword Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$1.SET_KEYWORDS, data);
+      store.commit(Mutations$2.SET_KEYWORDS, data);
     });
   },
 
-  [Actions$1.FILTER_BY_KEYWORDS](store) {
+  [Actions$2.FILTER_BY_KEYWORDS](store) {
     console.log("Dispatched Actions.FILTER_BY_KEYWORDS. Query model: ", JSON.stringify(store.state.keywordQueryModel)); //Saving current search parameters in the local storage
 
     if (store.state.blockId) {
@@ -1235,32 +1235,32 @@ const actions$1 = {
       method: 'POST',
       body: formData
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations$1.SET_RESULTS, data);
+      store.commit(Mutations$2.SET_RESULTS, data);
     }).catch(error => {
       console.error('Item Load API Error:', error);
     });
   },
 
-  [Actions$1.NEXT_PAGE](store) {
-    store.commit(Mutations$1.SET_OFFSET, store.state.offset + store.state.max);
-    store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
+  [Actions$2.NEXT_PAGE](store) {
+    store.commit(Mutations$2.SET_OFFSET, store.state.offset + store.state.max);
+    store.dispatch(Actions$2.FILTER_BY_KEYWORDS);
   },
 
-  [Actions$1.PREVIOUS_PAGE](store) {
+  [Actions$2.PREVIOUS_PAGE](store) {
     const offset = Math.max(store.state.offset - store.state.max, 0);
-    store.commit(Mutations$1.SET_OFFSET, offset);
-    store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
+    store.commit(Mutations$2.SET_OFFSET, offset);
+    store.dispatch(Actions$2.FILTER_BY_KEYWORDS);
   },
 
-  [Actions$1.FRESH_SEARCH](store, pageSize) {
-    store.commit(Mutations$1.SET_OFFSET, 0);
-    if (pageSize) store.commit(Mutations$1.SET_PAGE_SIZE, pageSize);
-    store.dispatch(Actions$1.FILTER_BY_KEYWORDS);
+  [Actions$2.FRESH_SEARCH](store, pageSize) {
+    store.commit(Mutations$2.SET_OFFSET, 0);
+    if (pageSize) store.commit(Mutations$2.SET_PAGE_SIZE, pageSize);
+    store.dispatch(Actions$2.FILTER_BY_KEYWORDS);
   },
 
-  [Actions$1.SAVE_KEYWORDS](store, source) {
+  [Actions$2.SAVE_KEYWORDS](store, source) {
     console.log("save keywords action :" + JSON.stringify(source));
-    store.commit(Mutations$1.SET_KEYWORDS, source);
+    store.commit(Mutations$2.SET_KEYWORDS, source);
   } ////async [Actions.INIT_FILTER_ASYNC](store, source: KeywordSource) {
   ////  store.commit(Mutations.SET_SOURCE, source);
   ////  const api = window.location.origin +
@@ -1274,7 +1274,7 @@ const actions$1 = {
 
 };
 
-const getters$1 = {
+const getters$2 = {
   //  items: (state): Item[] | undefined => {
   //    return state.searchResult?.items
   //  },
@@ -1285,13 +1285,13 @@ const getters$1 = {
   }
 };
 
-var script$4 = defineComponent({
+var script$f = defineComponent({
   name: "KeywordFilter",
 
   setup() {
     const store = useStore(); //console.log("Store: ", store)
 
-    const runFreshSearch = () => store.dispatch(Actions$1.FRESH_SEARCH);
+    const runFreshSearch = () => store.dispatch(Actions$2.FRESH_SEARCH);
 
     return {
       runFreshSearch,
@@ -1301,18 +1301,18 @@ var script$4 = defineComponent({
 
 });
 
-const _hoisted_1$4 = {
+const _hoisted_1$7 = {
   key: 0
 };
-const _hoisted_2$2 = {
+const _hoisted_2$5 = {
   key: 0,
   class: "font-weight-bold"
 };
-const _hoisted_3$2 = ["value", "onUpdate:modelValue"];
-const _hoisted_4$1 = {
+const _hoisted_3$5 = ["value", "onUpdate:modelValue"];
+const _hoisted_4$3 = {
   class: "ml-1"
 };
-function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function render$f(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$keywordQueryMode;
 
   return openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$keywordQueryMode = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode === void 0 ? void 0 : _ctx$keywordQueryMode.containers, (container, cIdx) => {
@@ -1320,11 +1320,11 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
 
     return openBlock(), createElementBlock("div", {
       key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$4, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$7, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
       return openBlock(), createElementBlock("div", {
         key: field,
         class: "mb-3"
-      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$2, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
+      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$5, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
         return openBlock(), createElementBlock("div", {
           key: value
         }, [withDirectives(createElementVNode("input", {
@@ -1334,13 +1334,13 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
           onChange: _cache[0] || (_cache[0] = function () {
             return _ctx.runFreshSearch && _ctx.runFreshSearch(...arguments);
           })
-        }, null, 40, _hoisted_3$2), [[vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), createElementVNode("label", _hoisted_4$1, toDisplayString(value), 1)]);
+        }, null, 40, _hoisted_3$5), [[vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), createElementVNode("label", _hoisted_4$3, toDisplayString(value), 1)]);
       }), 128))]);
     }), 128))]);
   }), 128);
 }
 
-script$4.render = render$4;
+script$f.render = render$f;
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -1686,18 +1686,18 @@ var dayjs_min = createCommonjsModule(function (module, exports) {
 });
 var dayjs = dayjs_min;
 
-var script$3 = defineComponent({
+var script$e = defineComponent({
   name: "ItemList",
   props: {},
 
   setup() {
     const store = useStore();
 
-    const nextPage = () => store.dispatch(Actions$1.NEXT_PAGE);
+    const nextPage = () => store.dispatch(Actions$2.NEXT_PAGE);
 
-    const previousPage = () => store.dispatch(Actions$1.PREVIOUS_PAGE);
+    const previousPage = () => store.dispatch(Actions$2.PREVIOUS_PAGE);
 
-    const freshSearch = pageSize => store.dispatch(Actions$1.FRESH_SEARCH, pageSize);
+    const freshSearch = pageSize => store.dispatch(Actions$2.FRESH_SEARCH, pageSize);
 
     const selectedPageSize = ref(25);
     return {
@@ -1737,63 +1737,63 @@ var script$3 = defineComponent({
   }
 });
 
-const _hoisted_1$3 = {
+const _hoisted_1$6 = {
   class: "itemList"
 };
-const _hoisted_2$1 = {
+const _hoisted_2$4 = {
   key: 0
 };
-const _hoisted_3$1 = {
+const _hoisted_3$4 = {
   key: 0
 };
-const _hoisted_4 = {
+const _hoisted_4$2 = {
   key: 1
 };
 
-const _hoisted_5 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
+const _hoisted_5$2 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
 
-const _hoisted_6 = /*#__PURE__*/createElementVNode("option", null, "50", -1);
+const _hoisted_6$2 = /*#__PURE__*/createElementVNode("option", null, "50", -1);
 
-const _hoisted_7 = /*#__PURE__*/createElementVNode("option", null, "100", -1);
+const _hoisted_7$2 = /*#__PURE__*/createElementVNode("option", null, "100", -1);
 
-const _hoisted_8 = [_hoisted_5, _hoisted_6, _hoisted_7];
-const _hoisted_9 = {
+const _hoisted_8$2 = [_hoisted_5$2, _hoisted_6$2, _hoisted_7$2];
+const _hoisted_9$2 = {
   key: 1
 };
-const _hoisted_10 = {
+const _hoisted_10$2 = {
   class: "item"
 };
-const _hoisted_11 = {
+const _hoisted_11$2 = {
   class: "item-title"
 };
-const _hoisted_12 = ["href"];
-const _hoisted_13 = {
+const _hoisted_12$1 = ["href"];
+const _hoisted_13$1 = {
   key: 1
 };
-const _hoisted_14 = {
+const _hoisted_14$1 = {
   class: "item-date"
 };
-const _hoisted_15 = {
+const _hoisted_15$1 = {
   class: "item-subtitle"
 };
-const _hoisted_16 = {
+const _hoisted_16$1 = {
   class: "categories"
 };
-const _hoisted_17 = {
+const _hoisted_17$1 = {
   class: "badge rounded-pill bg-dark text-white m-1"
 };
-const _hoisted_18 = {
+const _hoisted_18$1 = {
   class: "content"
 };
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$items;
 
-  return openBlock(), createElementBlock("div", _hoisted_1$3, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$1, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$1, [createElementVNode("i", {
+  return openBlock(), createElementBlock("div", _hoisted_1$6, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$4, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$4, [createElementVNode("i", {
     class: "fas fa-angle-double-left",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.previousPage && _ctx.previousPage(...arguments);
     })
-  })])) : createCommentVNode("", true), createTextVNode(" " + toDisplayString(_ctx.first) + "-" + toDisplayString(_ctx.last) + " of " + toDisplayString(_ctx.count) + " ", 1), _ctx.count > _ctx.last ? (openBlock(), createElementBlock("span", _hoisted_4, [createElementVNode("i", {
+  })])) : createCommentVNode("", true), createTextVNode(" " + toDisplayString(_ctx.first) + "-" + toDisplayString(_ctx.last) + " of " + toDisplayString(_ctx.count) + " ", 1), _ctx.count > _ctx.last ? (openBlock(), createElementBlock("span", _hoisted_4$2, [createElementVNode("i", {
     class: "fas fa-angle-double-right",
     onClick: _cache[1] || (_cache[1] = function () {
       return _ctx.nextPage && _ctx.nextPage(...arguments);
@@ -1802,27 +1802,27 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => _ctx.selectedPageSize = $event),
     class: "pull-right",
     onChange: _cache[3] || (_cache[3] = $event => _ctx.freshSearch(Number(_ctx.selectedPageSize)))
-  }, _hoisted_8, 544), [[vModelSelect, _ctx.selectedPageSize]])])])) : (openBlock(), createElementBlock("div", _hoisted_9, "No results found.")), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.items, item => {
+  }, _hoisted_8$2, 544), [[vModelSelect, _ctx.selectedPageSize]])])])) : (openBlock(), createElementBlock("div", _hoisted_9$2, "No results found.")), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.items, item => {
     var _item$detailedViewUrl;
 
     return openBlock(), createElementBlock("div", {
       key: item.id
-    }, [createElementVNode("div", _hoisted_10, [createElementVNode("h3", _hoisted_11, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (openBlock(), createElementBlock("a", {
+    }, [createElementVNode("div", _hoisted_10$2, [createElementVNode("h3", _hoisted_11$2, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (openBlock(), createElementBlock("a", {
       key: 0,
       href: item.detailedViewUrl
-    }, toDisplayString(item.title), 9, _hoisted_12)) : (openBlock(), createElementBlock("span", _hoisted_13, toDisplayString(item.title), 1))]), createElementVNode("div", _hoisted_14, toDisplayString(_ctx.formatDate(item.date)), 1), createElementVNode("h5", _hoisted_15, toDisplayString(item.subtitle), 1), createElementVNode("div", _hoisted_16, [(openBlock(true), createElementBlock(Fragment, null, renderList(item.categories, cat => {
-      return openBlock(), createElementBlock("span", _hoisted_17, toDisplayString(cat), 1);
-    }), 256))]), createElementVNode("div", _hoisted_18, toDisplayString(item.content), 1)])]);
+    }, toDisplayString(item.title), 9, _hoisted_12$1)) : (openBlock(), createElementBlock("span", _hoisted_13$1, toDisplayString(item.title), 1))]), createElementVNode("div", _hoisted_14$1, toDisplayString(_ctx.formatDate(item.date)), 1), createElementVNode("h5", _hoisted_15$1, toDisplayString(item.subtitle), 1), createElementVNode("div", _hoisted_16$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(item.categories, cat => {
+      return openBlock(), createElementBlock("span", _hoisted_17$1, toDisplayString(cat), 1);
+    }), 256))]), createElementVNode("div", _hoisted_18$1, toDisplayString(item.content), 1)])]);
   }), 128))]);
 }
 
-script$3.render = render$3;
+script$e.render = render$e;
 
-var script$2 = defineComponent({
+var script$d = defineComponent({
   name: "Applet",
   components: {
-    KeywordFilter: script$4,
-    ItemList: script$3
+    KeywordFilter: script$f,
+    ItemList: script$e
   },
   props,
 
@@ -1831,7 +1831,7 @@ var script$2 = defineComponent({
 
     const store = useStore(); //Storing the page and block IDs in the store
 
-    store.commit(Mutations$1.SET_SOURCE, {
+    store.commit(Mutations$2.SET_SOURCE, {
       pageId: p.pageId,
       blockId: p.blockId
     }); //See if we can load a SearchParams object from local storage
@@ -1841,16 +1841,16 @@ var script$2 = defineComponent({
 
     if (searchParamsStr && searchParamsStr.length > 0 && (searchParams = JSON.parse(searchParamsStr)) && searchParams.keywords) {
       //Restoring the store state from data reloaded from the state
-      store.commit(Mutations$1.SET_KEYWORDS, searchParams.keywords);
-      store.commit(Mutations$1.SET_OFFSET, searchParams.offset);
-      store.commit(Mutations$1.SET_PAGE_SIZE, searchParams.max);
+      store.commit(Mutations$2.SET_KEYWORDS, searchParams.keywords);
+      store.commit(Mutations$2.SET_OFFSET, searchParams.offset);
+      store.commit(Mutations$2.SET_PAGE_SIZE, searchParams.max);
     } else {
       //Dispatch an action to loaf keywords
-      store.dispatch(Actions$1.INIT_FILTER);
+      store.dispatch(Actions$2.INIT_FILTER);
     } //When the component is mounted, execute a search query based on the current patameters in the store.state.
 
 
-    onMounted(() => store.dispatch(Actions$1.FILTER_BY_KEYWORDS));
+    onMounted(() => store.dispatch(Actions$2.FILTER_BY_KEYWORDS));
     const keywordQueryModel = ref(store.state.keywordQueryModel);
     return {
       keywordQueryModel
@@ -1858,84 +1858,353 @@ var script$2 = defineComponent({
   },
 
   storeConfig: {
-    state: state$1,
-    actions: actions$1,
-    mutations: mutations$1,
-    getters: getters$1
+    state: state$2,
+    actions: actions$2,
+    mutations: mutations$2,
+    getters: getters$2
   }
 });
 
-const _hoisted_1$2 = {
+const _hoisted_1$5 = {
   class: "row"
 };
-const _hoisted_2 = {
+const _hoisted_2$3 = {
   class: "col-md-4 text-left"
 };
-const _hoisted_3 = {
+const _hoisted_3$3 = {
   class: "col-md-8"
 };
-function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_KeywordFilter = resolveComponent("KeywordFilter");
 
   const _component_ItemList = resolveComponent("ItemList");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$2, [createElementVNode("div", _hoisted_2, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3, [createVNode(_component_ItemList)])]);
+  return openBlock(), createElementBlock("div", _hoisted_1$5, [createElementVNode("div", _hoisted_2$3, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3$3, [createVNode(_component_ItemList)])]);
 }
 
-script$2.render = render$2;
+script$d.render = render$d;
 
-const state = {
-  Id: null
+const state$1 = {
+  Id: null,
+  template: null
 };
 
 //Declare MutationTypes
-var Mutations;
+var Mutations$1;
 
 (function (Mutations) {
   Mutations["SET_ID"] = "SET_ID";
-})(Mutations || (Mutations = {})); //Create a mutation tree that implement all mutation interfaces
+  Mutations["SET_TEMPLATE"] = "SET_TEMPLATE";
+})(Mutations$1 || (Mutations$1 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
-const mutations = {
-  [Mutations.SET_ID](state, payload) {
-    state.Id = payload;
-    console.log("template id : " + state.Id);
+const mutations$1 = {
+  [Mutations$1.SET_ID](state, payload) {
+    state.Id = payload; // console.log("template id : " + state.Id)
+  },
+
+  [Mutations$1.SET_TEMPLATE](state, payload) {
+    state.template = payload; // console.log("template ID: " + state.template.id);
+    // console.log("template name: " + state.template.templateName);
+    // console.log("field length: " + state.template.dataContainer[0].fields.length)
   }
 
 };
 
-var Actions;
+var Actions$1;
 
 (function (Actions) {
   Actions["LOAD_TEMPLATE"] = "LOAD_TEMPLATE";
   Actions["SET_ID"] = "SET_ID";
-})(Actions || (Actions = {}));
+})(Actions$1 || (Actions$1 = {}));
 
-const actions = {
-  [Actions.LOAD_TEMPLATE](store) {
-    //console.log('Store: ', JSON.stringify(store.state))
-    const api = window.location.origin + `/applets/api/itemtemplates/${store.state.Id}`;
-    console.log('Keyword Load API: ', api);
+const actions$1 = {
+  [Actions$1.LOAD_TEMPLATE](store) {
+    const api = window.location.origin + `/applets/api/itemtemplates/${store.state.Id}`; //console.log('Keyword Load API: ', api)
+
     fetch(api).then(response => response.json()).then(data => {
-      //store.commit(Mutations.SET_KEYWORDS, data)
-      console.log(JSON.stringify(data));
+      var _store$state$template;
+
+      store.commit(Mutations$1.SET_TEMPLATE, data);
+      console.log("Loaded Template datacontainer: " + JSON.stringify((_store$state$template = store.state.template) === null || _store$state$template === void 0 ? void 0 : _store$state$template.dataContainer)); // console.log("Datacontainer count: " + store.state.template?.dataContainer.length)
     });
   },
 
-  [Actions.SET_ID](store, payload) {
-    store.commit(Mutations.SET_ID, payload);
+  [Actions$1.SET_ID](store, payload) {
+    store.commit(Mutations$1.SET_ID, payload);
   }
 
 };
 
-const getters = {//getTemplateId: state => {
+const getters$1 = {//getTemplateId: state => {
   //    return state.queryParameters["templateId"];
   //}
 };
 
-var script$1 = defineComponent({
+var script$c = defineComponent({
+  name: "NotificationEditor",
+  props: {
+    fieldContainer: {
+      required: false,
+      type: null
+    }
+  },
+
+  setup() {}
+
+});
+
+function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.fieldContainer.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.fieldContainer), 1)], 64);
+}
+
+script$c.render = render$c;
+
+var script$b = defineComponent({
+  name: "FormEditor",
+  props: ['form'],
+
+  setup() {}
+
+});
+
+function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.form.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.form), 1)], 64);
+}
+
+script$b.render = render$b;
+
+var script$a = defineComponent({
+  name: "MetadatasetEditor",
+  props: ['metadataset'],
+
+  setup() {}
+
+});
+
+function render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.metadataset.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.metadataset), 1)], 64);
+}
+
+script$a.render = render$a;
+
+var script$9 = defineComponent({
+  name: "ItemTemplate",
+  components: {
+    NotificationEditor: script$c,
+    FormEditor: script$b,
+    MetadatasetEditor: script$a
+  },
+  props: {},
+
+  setup() {
+    const store = useStore();
+    const activePanel = ref(null);
+    return {
+      template: computed(() => store.state.template),
+      metadataSets: computed(() => {
+        var _store$state$template;
+
+        return (_store$state$template = store.state.template) === null || _store$state$template === void 0 ? void 0 : _store$state$template.metadataSets;
+      }),
+      dataContainer: computed(() => {
+        var _store$state$template2;
+
+        return (_store$state$template2 = store.state.template) === null || _store$state$template2 === void 0 ? void 0 : _store$state$template2.dataContainer;
+      }),
+      activePanel
+    };
+  },
+
+  methods: {
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      return date.format('MMM DD, YYYY');
+    }
+
+  }
+});
+
+const _withScopeId = n => (pushScopeId("data-v-2579f0c4"), n = n(), popScopeId(), n);
+
+const _hoisted_1$4 = {
+  class: "container row itemTemplate"
+};
+const _hoisted_2$2 = {
+  class: "col-md-4"
+};
+
+const _hoisted_3$2 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+  class: "sectionLabel"
+}, "Overview", -1));
+
+const _hoisted_4$1 = [_hoisted_3$2];
+
+const _hoisted_5$1 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+  class: "sectionLabel"
+}, "Notifications", -1));
+
+const _hoisted_6$1 = [_hoisted_5$1];
+const _hoisted_7$1 = ["onClick"];
+
+const _hoisted_8$1 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+  class: "sectionLabel"
+}, "Forms", -1));
+
+const _hoisted_9$1 = [_hoisted_8$1];
+const _hoisted_10$1 = ["onClick"];
+
+const _hoisted_11$1 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+  class: "sectionLabel"
+}, "Metadata Forms", -1));
+
+const _hoisted_12 = [_hoisted_11$1];
+const _hoisted_13 = ["onClick"];
+const _hoisted_14 = {
+  class: "col-md-8"
+};
+const _hoisted_15 = {
+  key: 0,
+  class: "col-12 wrapper"
+};
+
+const _hoisted_16 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Overview", -1));
+
+const _hoisted_17 = [_hoisted_16];
+const _hoisted_18 = {
+  key: 1,
+  class: "col-12 wrapper"
+};
+
+const _hoisted_19 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Notifications", -1));
+
+const _hoisted_20 = [_hoisted_19];
+const _hoisted_21 = {
+  key: 0
+};
+const _hoisted_22 = {
+  key: 2,
+  class: "col-12 wrapper"
+};
+
+const _hoisted_23 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Forms", -1));
+
+const _hoisted_24 = [_hoisted_23];
+const _hoisted_25 = {
+  key: 0
+};
+const _hoisted_26 = {
+  key: 3,
+  class: "col-12 wrapper"
+};
+
+const _hoisted_27 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Metadata Forms", -1));
+
+const _hoisted_28 = [_hoisted_27];
+const _hoisted_29 = {
+  key: 0
+};
+function render$9(_ctx, _cache, $props, $setup, $data, $options) {
+  var _ctx$template, _ctx$metadataSets, _ctx$metadataSets2, _ctx$metadataSets3, _ctx$metadataSets4;
+
+  const _component_NotificationEditor = resolveComponent("NotificationEditor");
+
+  const _component_FormEditor = resolveComponent("FormEditor");
+
+  const _component_MetadatasetEditor = resolveComponent("MetadatasetEditor");
+
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h3", null, toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), createElementVNode("div", _hoisted_1$4, [createElementVNode("div", _hoisted_2$2, [createElementVNode("div", {
+    class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'overview' || _ctx.activePanel == null ? 'active' : '']),
+    onClick: _cache[0] || (_cache[0] = $event => _ctx.activePanel = 'overview')
+  }, _hoisted_4$1, 2), createElementVNode("div", {
+    class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'notifications' ? 'active' : '']),
+    onClick: _cache[1] || (_cache[1] = $event => _ctx.activePanel = 'notifications')
+  }, _hoisted_6$1, 2), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets = _ctx.metadataSets) === null || _ctx$metadataSets === void 0 ? void 0 : _ctx$metadataSets.filter(m => m.isTemplate == true), ms => {
+    return openBlock(), createElementBlock("div", {
+      key: ms.id,
+      class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == ms.id ? 'active' : '']),
+      onClick: $event => _ctx.activePanel = ms.id
+    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_7$1);
+  }), 128)), createElementVNode("div", {
+    class: "col-12 menuEntry",
+    onClick: _cache[2] || (_cache[2] = $event => _ctx.activePanel = 'forms')
+  }, _hoisted_9$1), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
+    return openBlock(), createElementBlock("div", {
+      key: form.id,
+      class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == form.id ? 'active' : '']),
+      onClick: $event => _ctx.activePanel = form.id
+    }, toDisplayString(form.name.concatenatedContent), 11, _hoisted_10$1);
+  }), 128)), createElementVNode("div", {
+    class: "col-12 menuEntry",
+    onClick: _cache[3] || (_cache[3] = $event => _ctx.activePanel = 'metadata-forms')
+  }, _hoisted_12), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets2 = _ctx.metadataSets) === null || _ctx$metadataSets2 === void 0 ? void 0 : _ctx$metadataSets2.filter(m => m.isTemplate == false), ms => {
+    return openBlock(), createElementBlock("div", {
+      key: ms.id,
+      class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == ms.id ? 'active' : '']),
+      onClick: $event => _ctx.activePanel = ms.id
+    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_13);
+  }), 128))]), createElementVNode("div", _hoisted_14, [_ctx.activePanel == null || _ctx.activePanel == 'overview' ? (openBlock(), createElementBlock("div", _hoisted_15, _hoisted_17)) : createCommentVNode("", true), _ctx.activePanel == 'notifications' ? (openBlock(), createElementBlock("div", _hoisted_18, _hoisted_20)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets3 = _ctx.metadataSets) === null || _ctx$metadataSets3 === void 0 ? void 0 : _ctx$metadataSets3.filter(m => m.isTemplate == true), ms => {
+    return openBlock(), createElementBlock("div", {
+      key: ms.id,
+      class: "col-12 wrapper"
+    }, [_ctx.activePanel == ms.id ? (openBlock(), createElementBlock("div", _hoisted_21, [createVNode(_component_NotificationEditor, {
+      fieldContainer: ms
+    }, null, 8, ["fieldContainer"])])) : createCommentVNode("", true)]);
+  }), 128)), _ctx.activePanel == 'forms' ? (openBlock(), createElementBlock("div", _hoisted_22, _hoisted_24)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
+    return openBlock(), createElementBlock("div", {
+      key: form.id,
+      class: "col-12 wrapper"
+    }, [_ctx.activePanel == form.id ? (openBlock(), createElementBlock("div", _hoisted_25, [createVNode(_component_FormEditor, {
+      form: form
+    }, null, 8, ["form"])])) : createCommentVNode("", true)]);
+  }), 128)), _ctx.activePanel == 'metadata-forms' ? (openBlock(), createElementBlock("div", _hoisted_26, _hoisted_28)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets4 = _ctx.metadataSets) === null || _ctx$metadataSets4 === void 0 ? void 0 : _ctx$metadataSets4.filter(m => m.isTemplate == false), ms => {
+    return openBlock(), createElementBlock("div", {
+      key: ms.id,
+      class: "col-12 wrapper"
+    }, [_ctx.activePanel == ms.id ? (openBlock(), createElementBlock("div", _hoisted_29, [createVNode(_component_MetadatasetEditor, {
+      metadataset: ms
+    }, null, 8, ["metadataset"])])) : createCommentVNode("", true)]);
+  }), 128))])])], 64);
+}
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z$1 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
+styleInject(css_248z$1);
+
+script$9.render = render$9;
+script$9.__scopeId = "data-v-2579f0c4";
+
+var script$8 = defineComponent({
   name: "ItemTemplateEditor",
-  components: {},
+  components: {
+    ItemTemplate: script$9
+  },
   props,
 
   setup(p) {
@@ -1952,22 +2221,24 @@ var script$1 = defineComponent({
   },
 
   storeConfig: {
-    state,
-    actions,
-    mutations,
-    getters
+    state: state$1,
+    actions: actions$1,
+    mutations: mutations$1,
+    getters: getters$1
   }
 });
 
-const _hoisted_1$1 = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
+const _hoisted_1$3 = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
 
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$1, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1)], 64);
+function render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_ItemTemplate = resolveComponent("ItemTemplate");
+
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$3, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1), createVNode(_component_ItemTemplate)], 64);
 }
 
-script$1.render = render$1;
+script$8.render = render$8;
 
-var script = defineComponent({
+var script$7 = defineComponent({
   name: "ItemEditor",
   components: {},
   props,
@@ -1988,22 +2259,454 @@ var script = defineComponent({
 
 });
 
-const _hoisted_1 = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
+const _hoisted_1$2 = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
 
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
+function render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$2, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
 }
 
+script$7.render = render$7;
+
+const state = {
+  id: null,
+  item: null
+};
+
+//Declare MutationTypes
+var Mutations;
+
+(function (Mutations) {
+  Mutations["SET_ID"] = "SET_ID";
+  Mutations["SET_ITEM"] = "SET_ITEM";
+})(Mutations || (Mutations = {})); //Create a mutation tree that implement all mutation interfaces
+
+
+const mutations = {
+  [Mutations.SET_ID](state, payload) {
+    state.id = payload;
+    console.log("Mutations.SET_ID: ", state.id);
+  },
+
+  [Mutations.SET_ITEM](state, payload) {
+    state.item = payload;
+  }
+
+};
+
+var Actions;
+
+(function (Actions) {
+  Actions["LOAD_ITEM"] = "LOAD_ITEM";
+})(Actions || (Actions = {}));
+
+const actions = {
+  [Actions.LOAD_ITEM](store) {
+    const api = window.location.origin + `/applets/api/itemeditor/${store.state.id}`; //console.log('Keyword Load API: ', api)
+
+    fetch(api).then(response => response.json()).then(data => {
+      store.commit(Mutations.SET_ITEM, data);
+    });
+  }
+
+};
+
+const getters = {
+  rootDataItem: state => {
+    var _state$item;
+
+    return (_state$item = state.item) === null || _state$item === void 0 ? void 0 : _state$item.dataContainer.filter(dc => dc.isRoot)[0];
+  }
+};
+
+//export enum eFieldType {
+//  AttachmentField = "AttachmentField",
+//  CheckboxField = "CheckboxField",
+//  CompositeField = "CompositeField",
+//  DateField = "DateField",
+//  DecimalField = "DecimalField",
+//  EmailField = "EmailField",
+//  FieldContainerReference = "FieldContainerReference",
+//  InfoSection = "InfoSection",
+//  IntegerField = "IntegerField",
+//  MonolingualTextField = "MonolingualTextField",
+//  RadioField = "RadioField",
+//  SelectField = "SelectField",
+//  TableField = "TableField",
+//  TextArea = "TextArea",
+//  TextField = "TextField",
+//}
+//export enum OptionType {
+//    Checkbox,
+//    Radio,
+//    Select
+//}
+var eFieldType;
+
+(function (eFieldType) {
+  eFieldType[eFieldType["AttachmentField"] = 0] = "AttachmentField";
+  eFieldType[eFieldType["CheckboxField"] = 1] = "CheckboxField";
+  eFieldType[eFieldType["CompositeField"] = 2] = "CompositeField";
+  eFieldType[eFieldType["DateField"] = 3] = "DateField";
+  eFieldType[eFieldType["DecimalField"] = 4] = "DecimalField";
+  eFieldType[eFieldType["EmailField"] = 5] = "EmailField";
+  eFieldType[eFieldType["FieldContainerReference"] = 6] = "FieldContainerReference";
+  eFieldType[eFieldType["InfoSection"] = 7] = "InfoSection";
+  eFieldType[eFieldType["IntegerField"] = 8] = "IntegerField";
+  eFieldType[eFieldType["MonolingualTextField"] = 9] = "MonolingualTextField";
+  eFieldType[eFieldType["RadioField"] = 10] = "RadioField";
+  eFieldType[eFieldType["SelectField"] = 11] = "SelectField";
+  eFieldType[eFieldType["TableField"] = 12] = "TableField";
+  eFieldType[eFieldType["TextArea"] = 13] = "TextArea";
+  eFieldType[eFieldType["TextField"] = 14] = "TextField";
+})(eFieldType || (eFieldType = {}));
+
+class OptionsFieldMethods {
+  static getSelectedFieldLabels(options) {
+    return options === null || options === void 0 ? void 0 : options.filter(opt => opt.selected).map(opt => {
+      var _opt$optionText;
+
+      return (_opt$optionText = opt.optionText) === null || _opt$optionText === void 0 ? void 0 : _opt$optionText.values.map(txt => txt.value).join(" / ");
+    }).join(", ");
+  }
+
+}
+
+var script$6 = defineComponent({
+  name: "Text",
+  props: {
+    model: {
+      type: null,
+      required: true
+    }
+  },
+  methods: {
+    isUrl(text) {
+      return (text === null || text === void 0 ? void 0 : text.startsWith("http://")) || (text === null || text === void 0 ? void 0 : text.startsWith("https://"));
+    }
+
+  }
+});
+
+const _hoisted_1$1 = {
+  key: 0
+};
+const _hoisted_2$1 = ["href"];
+const _hoisted_3$1 = {
+  key: 1
+};
+function render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  return _ctx.isUrl(_ctx.model.value) ? (openBlock(), createElementBlock("div", _hoisted_1$1, [createElementVNode("a", {
+    href: _ctx.model.value
+  }, toDisplayString(_ctx.model.value), 9, _hoisted_2$1)])) : (openBlock(), createElementBlock("div", _hoisted_3$1, toDisplayString(_ctx.model.value), 1));
+}
+
+script$6.render = render$6;
+
+var script$5 = defineComponent({
+  name: "TextCollection",
+  props: {
+    model: {
+      type: null,
+      required: true
+    }
+  },
+  components: {
+    Text: script$6
+  }
+});
+
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_Text = resolveComponent("Text");
+
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, txt => {
+    return openBlock(), createElementBlock("div", null, [createVNode(_component_Text, {
+      model: txt
+    }, null, 8, ["model"])]);
+  }), 256);
+}
+
+script$5.render = render$5;
+
+var script$4 = defineComponent({
+  name: "TextField",
+  props: {
+    model: {
+      type: null,
+      required: true
+    },
+    isMultivalued: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    isMultiline: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
+  },
+  components: {
+    TextCollection: script$5
+  }
+});
+
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_TextCollection = resolveComponent("TextCollection");
+
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, val => {
+    return openBlock(), createElementBlock("div", {
+      key: val.id
+    }, [createVNode(_component_TextCollection, {
+      model: val
+    }, null, 8, ["model"])]);
+  }), 128);
+}
+
+script$4.render = render$4;
+
+var script$3 = defineComponent({
+  name: "EmailField",
+  props: {
+    model: {
+      type: null,
+      required: true
+    },
+    isMultivalue: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  } //    methods: {
+  //    },
+  //    setup(props) {
+  //        const val = ref(props.model?.values?.slice(0, 1));
+  //        return {
+  //            val
+  //        }
+  //    }
+
+});
+
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, val => {
+    return openBlock(), createElementBlock("div", null, toDisplayString(val.value), 1);
+  }), 256);
+}
+
+script$3.render = render$3;
+
+var script$2 = defineComponent({
+  name: "OptionsField",
+  components: {},
+  props: {
+    model: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    getSelectedFieldLabels(field) {
+      return OptionsFieldMethods.getSelectedFieldLabels(field.options);
+    }
+
+  }
+});
+
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  return toDisplayString(_ctx.getSelectedFieldLabels(_ctx.model));
+}
+
+script$2.render = render$2;
+
+var script$1 = defineComponent({
+  name: "FieldContainerView",
+  props: {
+    model: null
+  },
+  components: {
+    TextField: script$4,
+    EmailField: script$3,
+    OptionsField: script$2
+  },
+  methods: {
+    getFieldType(field) {
+      var _typeName;
+
+      var typeName = field === null || field === void 0 ? void 0 : field.modelType.substring(0, field.modelType.indexOf(","));
+      typeName = (_typeName = typeName) === null || _typeName === void 0 ? void 0 : _typeName.substring(typeName.lastIndexOf(".") + 1);
+      return eFieldType[typeName];
+    },
+
+    isAttachmentField(field) {
+      return this.getFieldType(field) === eFieldType.AttachmentField;
+    },
+
+    isOptionsField(field) {
+      return this.getFieldType(field) === eFieldType.CheckboxField || this.getFieldType(field) === eFieldType.RadioField || this.getFieldType(field) === eFieldType.SelectField;
+    },
+
+    isCompositeField(field) {
+      return this.getFieldType(field) === eFieldType.CompositeField;
+    },
+
+    isDateField(field) {
+      return this.getFieldType(field) === eFieldType.DateField;
+    },
+
+    isDecimalField(field) {
+      return this.getFieldType(field) === eFieldType.DecimalField;
+    },
+
+    isEmailField(field) {
+      return this.getFieldType(field) === eFieldType.EmailField;
+    },
+
+    isFieldContainerReference(field) {
+      return this.getFieldType(field) === eFieldType.FieldContainerReference;
+    },
+
+    isInfoSection(field) {
+      return this.getFieldType(field) === eFieldType.InfoSection;
+    },
+
+    isIntegerField(field) {
+      return this.getFieldType(field) === eFieldType.IntegerField;
+    },
+
+    isMonolingualTextField(field) {
+      return this.getFieldType(field) === eFieldType.MonolingualTextField;
+    },
+
+    isTableField(field) {
+      return this.getFieldType(field) === eFieldType.TableField;
+    },
+
+    isTextArea(field) {
+      return this.getFieldType(field) === eFieldType.TextArea;
+    },
+
+    isTextField(field) {
+      return this.getFieldType(field) === eFieldType.TextField;
+    }
+
+  }
+});
+
+const _hoisted_1 = {
+  class: "row"
+};
+const _hoisted_2 = {
+  class: "field-name col-md-3"
+};
+const _hoisted_3 = {
+  class: "field-value col-md-9"
+};
+const _hoisted_4 = {
+  key: 4
+};
+const _hoisted_5 = {
+  key: 5
+};
+const _hoisted_6 = {
+  key: 6
+};
+const _hoisted_7 = {
+  key: 7
+};
+const _hoisted_8 = {
+  key: 8
+};
+const _hoisted_9 = {
+  key: 9
+};
+const _hoisted_10 = {
+  key: 10
+};
+const _hoisted_11 = {
+  key: 12
+};
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_TextField = resolveComponent("TextField");
+
+  const _component_EmailField = resolveComponent("EmailField");
+
+  const _component_OptionsField = resolveComponent("OptionsField");
+
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields, field => {
+    return openBlock(), createElementBlock("div", _hoisted_1, [createElementVNode("div", _hoisted_2, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_3, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
+      key: 0,
+      model: field
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isTextArea(field) ? (openBlock(), createBlock(_component_TextField, {
+      key: 1,
+      model: field
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isEmailField(field) ? (openBlock(), createBlock(_component_EmailField, {
+      key: 2,
+      model: field
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isOptionsField(field) ? (openBlock(), createBlock(_component_OptionsField, {
+      key: 3,
+      model: field
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5, " CompositeField ")) : createCommentVNode("", true), this.isDateField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_6, " DateField ")) : createCommentVNode("", true), this.isDecimalField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_7, " DecimalField ")) : createCommentVNode("", true), this.isFieldContainerReference(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_8, " FieldContainerReference ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_9, " InfoSection ")) : createCommentVNode("", true), this.isIntegerField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_10, " IntegerField ")) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
+      key: 11,
+      model: field
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isTableField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_11, " TableField ")) : createCommentVNode("", true)])]);
+  }), 256);
+}
+
+script$1.render = render$1;
+
+var script = defineComponent({
+  name: "ItemViewer",
+  components: {
+    FieldContainer: script$1
+  },
+  props,
+
+  setup(p) {
+    const store = useStore();
+    console.log('Item Viewer setup ...');
+    console.log('props: ', JSON.stringify(p));
+    const queryParams = p.queryParameters;
+    store.commit(Mutations.SET_ID, queryParams.iid); //load the data
+
+    store.dispatch(Actions.LOAD_ITEM);
+    return {
+      queryParams,
+      dataItem: computed(() => store.getters.rootDataItem)
+    };
+  },
+
+  storeConfig: {
+    state,
+    actions,
+    mutations,
+    getters
+  }
+});
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_FieldContainer = resolveComponent("FieldContainer");
+
+  return _ctx.dataItem ? (openBlock(), createBlock(_component_FieldContainer, {
+    key: 0,
+    model: _ctx.dataItem
+  }, null, 8, ["model"])) : createCommentVNode("", true);
+}
+
+var css_248z = "\n.field-name[data-v-a52f5804]{\r\n        font-weight:bold !important;\n}\r\n";
+styleInject(css_248z);
+
 script.render = render;
+script.__scopeId = "data-v-a52f5804";
 
 /* eslint-disable import/prefer-default-export */
 
 var components = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  Carousel: script$5,
-  KeywordSearch: script$2,
-  ItemTemplateEditor: script$1,
-  ItemEditor: script
+  Carousel: script$g,
+  KeywordSearch: script$d,
+  ItemTemplateEditor: script$8,
+  ItemEditor: script$7,
+  ItemViewer: script
 });
 
 // Import vue components
@@ -2015,4 +2718,4 @@ const install = function installApplets(app) {
   });
 }; // Create module definition for Vue.use()
 
-export { script$5 as Carousel, script as ItemEditor, script$1 as ItemTemplateEditor, script$2 as KeywordSearch, install as default };
+export { script$g as Carousel, script$7 as ItemEditor, script$8 as ItemTemplateEditor, script as ItemViewer, script$d as KeywordSearch, install as default };
