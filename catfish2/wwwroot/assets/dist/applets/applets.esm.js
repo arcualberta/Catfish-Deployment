@@ -23,7 +23,7 @@ var props = {
   }
 };
 
-var script$l = defineComponent({
+var script$n = defineComponent({
   name: "Carousel",
   components: {},
   props,
@@ -40,9 +40,9 @@ var script$l = defineComponent({
 
 });
 
-const _hoisted_1$9 = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
+const _hoisted_1$b = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
 
-const _hoisted_2$7 = {
+const _hoisted_2$8 = {
   class: "row"
 };
 const _hoisted_3$7 = {
@@ -51,11 +51,11 @@ const _hoisted_3$7 = {
 const _hoisted_4$5 = {
   class: "row"
 };
-function render$l(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$9, createElementVNode("div", _hoisted_2$7, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$7, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$5, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
+function render$n(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$b, createElementVNode("div", _hoisted_2$8, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$7, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$5, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
 }
 
-script$l.render = render$l;
+script$n.render = render$n;
 
 function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
@@ -1285,7 +1285,7 @@ const getters$2 = {
   }
 };
 
-var script$k = defineComponent({
+var script$m = defineComponent({
   name: "KeywordFilter",
 
   setup() {
@@ -1301,10 +1301,10 @@ var script$k = defineComponent({
 
 });
 
-const _hoisted_1$8 = {
+const _hoisted_1$a = {
   key: 0
 };
-const _hoisted_2$6 = {
+const _hoisted_2$7 = {
   key: 0,
   class: "font-weight-bold"
 };
@@ -1312,7 +1312,7 @@ const _hoisted_3$6 = ["value", "onUpdate:modelValue"];
 const _hoisted_4$4 = {
   class: "ml-1"
 };
-function render$k(_ctx, _cache, $props, $setup, $data, $options) {
+function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$keywordQueryMode;
 
   return openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$keywordQueryMode = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode === void 0 ? void 0 : _ctx$keywordQueryMode.containers, (container, cIdx) => {
@@ -1320,11 +1320,11 @@ function render$k(_ctx, _cache, $props, $setup, $data, $options) {
 
     return openBlock(), createElementBlock("div", {
       key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$8, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$a, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
       return openBlock(), createElementBlock("div", {
         key: field,
         class: "mb-3"
-      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$6, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
+      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$7, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
         return openBlock(), createElementBlock("div", {
           key: value
         }, [withDirectives(createElementVNode("input", {
@@ -1340,7 +1340,7 @@ function render$k(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128);
 }
 
-script$k.render = render$k;
+script$m.render = render$m;
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -1686,7 +1686,7 @@ var dayjs_min = createCommonjsModule(function (module, exports) {
 });
 var dayjs = dayjs_min;
 
-var script$j = defineComponent({
+var script$l = defineComponent({
   name: "ItemList",
   props: {},
 
@@ -1737,10 +1737,10 @@ var script$j = defineComponent({
   }
 });
 
-const _hoisted_1$7 = {
+const _hoisted_1$9 = {
   class: "itemList"
 };
-const _hoisted_2$5 = {
+const _hoisted_2$6 = {
   key: 0
 };
 const _hoisted_3$5 = {
@@ -1750,13 +1750,13 @@ const _hoisted_4$3 = {
   key: 1
 };
 
-const _hoisted_5$3 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
+const _hoisted_5$2 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
 
-const _hoisted_6$3 = /*#__PURE__*/createElementVNode("option", null, "50", -1);
+const _hoisted_6$2 = /*#__PURE__*/createElementVNode("option", null, "50", -1);
 
 const _hoisted_7$1 = /*#__PURE__*/createElementVNode("option", null, "100", -1);
 
-const _hoisted_8$1 = [_hoisted_5$3, _hoisted_6$3, _hoisted_7$1];
+const _hoisted_8$1 = [_hoisted_5$2, _hoisted_6$2, _hoisted_7$1];
 const _hoisted_9$1 = {
   key: 1
 };
@@ -1785,10 +1785,10 @@ const _hoisted_17$1 = {
 const _hoisted_18$1 = {
   class: "content"
 };
-function render$j(_ctx, _cache, $props, $setup, $data, $options) {
+function render$l(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$items;
 
-  return openBlock(), createElementBlock("div", _hoisted_1$7, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$5, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$5, [createElementVNode("i", {
+  return openBlock(), createElementBlock("div", _hoisted_1$9, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$6, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$5, [createElementVNode("i", {
     class: "fas fa-angle-double-left",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.previousPage && _ctx.previousPage(...arguments);
@@ -1816,13 +1816,13 @@ function render$j(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128))]);
 }
 
-script$j.render = render$j;
+script$l.render = render$l;
 
-var script$i = defineComponent({
+var script$k = defineComponent({
   name: "Applet",
   components: {
-    KeywordFilter: script$k,
-    ItemList: script$j
+    KeywordFilter: script$m,
+    ItemList: script$l
   },
   props,
 
@@ -1865,24 +1865,24 @@ var script$i = defineComponent({
   }
 });
 
-const _hoisted_1$6 = {
+const _hoisted_1$8 = {
   class: "row"
 };
-const _hoisted_2$4 = {
+const _hoisted_2$5 = {
   class: "col-md-4 text-left"
 };
 const _hoisted_3$4 = {
   class: "col-md-8"
 };
-function render$i(_ctx, _cache, $props, $setup, $data, $options) {
+function render$k(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_KeywordFilter = resolveComponent("KeywordFilter");
 
   const _component_ItemList = resolveComponent("ItemList");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$6, [createElementVNode("div", _hoisted_2$4, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3$4, [createVNode(_component_ItemList)])]);
+  return openBlock(), createElementBlock("div", _hoisted_1$8, [createElementVNode("div", _hoisted_2$5, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3$4, [createVNode(_component_ItemList)])]);
 }
 
-script$i.render = render$i;
+script$k.render = render$k;
 
 const state$1 = {
   Id: null,
@@ -1941,7 +1941,7 @@ const getters$1 = {//getTemplateId: state => {
   //}
 };
 
-var script$h = defineComponent({
+var script$j = defineComponent({
   name: "NotificationEditor",
   props: {
     fieldContainer: {
@@ -1954,13 +1954,13 @@ var script$h = defineComponent({
 
 });
 
-function render$h(_ctx, _cache, $props, $setup, $data, $options) {
+function render$j(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.fieldContainer.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.fieldContainer), 1)], 64);
 }
 
-script$h.render = render$h;
+script$j.render = render$j;
 
-var script$g = defineComponent({
+var script$i = defineComponent({
   name: "FormEditor",
   props: ['form'],
 
@@ -1968,13 +1968,13 @@ var script$g = defineComponent({
 
 });
 
-function render$g(_ctx, _cache, $props, $setup, $data, $options) {
+function render$i(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.form.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.form), 1)], 64);
 }
 
-script$g.render = render$g;
+script$i.render = render$i;
 
-var script$f = defineComponent({
+var script$h = defineComponent({
   name: "MetadatasetEditor",
   props: ['metadataset'],
 
@@ -1982,18 +1982,18 @@ var script$f = defineComponent({
 
 });
 
-function render$f(_ctx, _cache, $props, $setup, $data, $options) {
+function render$h(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.metadataset.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.metadataset), 1)], 64);
 }
 
-script$f.render = render$f;
+script$h.render = render$h;
 
-var script$e = defineComponent({
+var script$g = defineComponent({
   name: "ItemTemplate",
   components: {
-    NotificationEditor: script$h,
-    FormEditor: script$g,
-    MetadatasetEditor: script$f
+    NotificationEditor: script$j,
+    FormEditor: script$i,
+    MetadatasetEditor: script$h
   },
   props: {},
 
@@ -2027,10 +2027,10 @@ var script$e = defineComponent({
 
 const _withScopeId = n => (pushScopeId("data-v-2579f0c4"), n = n(), popScopeId(), n);
 
-const _hoisted_1$5 = {
+const _hoisted_1$7 = {
   class: "container row itemTemplate"
 };
-const _hoisted_2$3 = {
+const _hoisted_2$4 = {
   class: "col-md-4"
 };
 
@@ -2040,11 +2040,11 @@ const _hoisted_3$3 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementV
 
 const _hoisted_4$2 = [_hoisted_3$3];
 
-const _hoisted_5$2 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_5$1 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Notifications", -1));
 
-const _hoisted_6$2 = [_hoisted_5$2];
+const _hoisted_6$1 = [_hoisted_5$1];
 const _hoisted_7 = ["onClick"];
 
 const _hoisted_8 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
@@ -2104,7 +2104,7 @@ const _hoisted_28 = [_hoisted_27];
 const _hoisted_29 = {
   key: 0
 };
-function render$e(_ctx, _cache, $props, $setup, $data, $options) {
+function render$g(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$template, _ctx$metadataSets, _ctx$metadataSets2, _ctx$metadataSets3, _ctx$metadataSets4;
 
   const _component_NotificationEditor = resolveComponent("NotificationEditor");
@@ -2113,13 +2113,13 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_MetadatasetEditor = resolveComponent("MetadatasetEditor");
 
-  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h3", null, toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), createElementVNode("div", _hoisted_1$5, [createElementVNode("div", _hoisted_2$3, [createElementVNode("div", {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h3", null, toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), createElementVNode("div", _hoisted_1$7, [createElementVNode("div", _hoisted_2$4, [createElementVNode("div", {
     class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'overview' || _ctx.activePanel == null ? 'active' : '']),
     onClick: _cache[0] || (_cache[0] = $event => _ctx.activePanel = 'overview')
   }, _hoisted_4$2, 2), createElementVNode("div", {
     class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'notifications' ? 'active' : '']),
     onClick: _cache[1] || (_cache[1] = $event => _ctx.activePanel = 'notifications')
-  }, _hoisted_6$2, 2), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets = _ctx.metadataSets) === null || _ctx$metadataSets === void 0 ? void 0 : _ctx$metadataSets.filter(m => m.isTemplate == true), ms => {
+  }, _hoisted_6$1, 2), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets = _ctx.metadataSets) === null || _ctx$metadataSets === void 0 ? void 0 : _ctx$metadataSets.filter(m => m.isTemplate == true), ms => {
     return openBlock(), createElementBlock("div", {
       key: ms.id,
       class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == ms.id ? 'active' : '']),
@@ -2194,16 +2194,16 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$1 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
-styleInject(css_248z$1);
+var css_248z$2 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
+styleInject(css_248z$2);
 
-script$e.render = render$e;
-script$e.__scopeId = "data-v-2579f0c4";
+script$g.render = render$g;
+script$g.__scopeId = "data-v-2579f0c4";
 
-var script$d = defineComponent({
+var script$f = defineComponent({
   name: "ItemTemplateEditor",
   components: {
-    ItemTemplate: script$e
+    ItemTemplate: script$g
   },
   props,
 
@@ -2228,17 +2228,17 @@ var script$d = defineComponent({
   }
 });
 
-const _hoisted_1$4 = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
+const _hoisted_1$6 = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
 
-function render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function render$f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ItemTemplate = resolveComponent("ItemTemplate");
 
-  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$4, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1), createVNode(_component_ItemTemplate)], 64);
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$6, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1), createVNode(_component_ItemTemplate)], 64);
 }
 
-script$d.render = render$d;
+script$f.render = render$f;
 
-var script$c = defineComponent({
+var script$e = defineComponent({
   name: "ItemEditor",
   components: {},
   props,
@@ -2259,13 +2259,13 @@ var script$c = defineComponent({
 
 });
 
-const _hoisted_1$3 = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
+const _hoisted_1$5 = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
 
-function render$c(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$3, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
+function render$e(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$5, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
 }
 
-script$c.render = render$c;
+script$e.render = render$e;
 
 const state = {
   id: null,
@@ -2301,8 +2301,8 @@ var Actions;
 
 const actions = {
   [Actions.LOAD_ITEM](store) {
-    const api = window.location.origin + `/applets/api/itemeditor/${store.state.id}`; //console.log('Keyword Load API: ', api)
-
+    const api = window.location.origin + `/applets/api/itemeditor/${store.state.id}`;
+    console.log('Item Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
       store.commit(Mutations.SET_ITEM, data);
     });
@@ -2321,26 +2321,14 @@ const getters = {
 
     console.log("metadataset getter id: " + JSON.stringify(id));
     return (_state$item2 = state.item) === null || _state$item2 === void 0 ? void 0 : (_state$item2$metadata = _state$item2.metadataSets) === null || _state$item2$metadata === void 0 ? void 0 : _state$item2$metadata.find(ms => ms.templateId === id);
+  },
+  dataItemId: state => {
+    var _state$item3, _state$item3$dataCont;
+
+    return (_state$item3 = state.item) === null || _state$item3 === void 0 ? void 0 : (_state$item3$dataCont = _state$item3.dataContainer.filter(dc => dc.isRoot)[0]) === null || _state$item3$dataCont === void 0 ? void 0 : _state$item3$dataCont.id;
   }
 };
 
-//export enum eFieldType {
-//  AttachmentField = "AttachmentField",
-//  CheckboxField = "CheckboxField",
-//  CompositeField = "CompositeField",
-//  DateField = "DateField",
-//  DecimalField = "DecimalField",
-//  EmailField = "EmailField",
-//  FieldContainerReference = "FieldContainerReference",
-//  InfoSection = "InfoSection",
-//  IntegerField = "IntegerField",
-//  MonolingualTextField = "MonolingualTextField",
-//  RadioField = "RadioField",
-//  SelectField = "SelectField",
-//  TableField = "TableField",
-//  TextArea = "TextArea",
-//  TextField = "TextField",
-//}
 var eRefType;
 
 (function (eRefType) {
@@ -2380,7 +2368,7 @@ class OptionsFieldMethods {
 
 }
 
-var script$b = defineComponent({
+var script$d = defineComponent({
   name: "Text",
   props: {
     model: {
@@ -2396,22 +2384,22 @@ var script$b = defineComponent({
   }
 });
 
-const _hoisted_1$2 = {
+const _hoisted_1$4 = {
   key: 0
 };
-const _hoisted_2$2 = ["href"];
+const _hoisted_2$3 = ["href"];
 const _hoisted_3$2 = {
   key: 1
 };
-function render$b(_ctx, _cache, $props, $setup, $data, $options) {
-  return _ctx.isUrl(_ctx.model.value) ? (openBlock(), createElementBlock("div", _hoisted_1$2, [createElementVNode("a", {
+function render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  return _ctx.isUrl(_ctx.model.value) ? (openBlock(), createElementBlock("div", _hoisted_1$4, [createElementVNode("a", {
     href: _ctx.model.value
-  }, toDisplayString(_ctx.model.value), 9, _hoisted_2$2)])) : (openBlock(), createElementBlock("div", _hoisted_3$2, toDisplayString(_ctx.model.value), 1));
+  }, toDisplayString(_ctx.model.value), 9, _hoisted_2$3)])) : (openBlock(), createElementBlock("div", _hoisted_3$2, toDisplayString(_ctx.model.value), 1));
 }
 
-script$b.render = render$b;
+script$d.render = render$d;
 
-var script$a = defineComponent({
+var script$c = defineComponent({
   name: "TextCollection",
   props: {
     model: {
@@ -2420,11 +2408,11 @@ var script$a = defineComponent({
     }
   },
   components: {
-    Text: script$b
+    Text: script$d
   }
 });
 
-function render$a(_ctx, _cache, $props, $setup, $data, $options) {
+function render$c(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Text = resolveComponent("Text");
 
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, txt => {
@@ -2434,9 +2422,9 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$a.render = render$a;
+script$c.render = render$c;
 
-var script$9 = defineComponent({
+var script$b = defineComponent({
   name: "TextField",
   props: {
     model: {
@@ -2455,11 +2443,11 @@ var script$9 = defineComponent({
     }
   },
   components: {
-    TextCollection: script$a
+    TextCollection: script$c
   }
 });
 
-function render$9(_ctx, _cache, $props, $setup, $data, $options) {
+function render$b(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_TextCollection = resolveComponent("TextCollection");
 
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, val => {
@@ -2471,9 +2459,9 @@ function render$9(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128);
 }
 
-script$9.render = render$9;
+script$b.render = render$b;
 
-var script$8 = defineComponent({
+var script$a = defineComponent({
   name: "EmailField",
   props: {
     model: {
@@ -2496,15 +2484,15 @@ var script$8 = defineComponent({
 
 });
 
-function render$8(_ctx, _cache, $props, $setup, $data, $options) {
+function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(val.value), 1);
   }), 256);
 }
 
-script$8.render = render$8;
+script$a.render = render$a;
 
-var script$7 = defineComponent({
+var script$9 = defineComponent({
   name: "OptionsField",
   components: {},
   props: {
@@ -2521,13 +2509,13 @@ var script$7 = defineComponent({
   }
 });
 
-function render$7(_ctx, _cache, $props, $setup, $data, $options) {
+function render$9(_ctx, _cache, $props, $setup, $data, $options) {
   return toDisplayString(_ctx.getSelectedFieldLabels(_ctx.model));
 }
 
-script$7.render = render$7;
+script$9.render = render$9;
 
-var script$6 = defineComponent({
+var script$8 = defineComponent({
   name: "DecimalField",
   props: {
     model: {
@@ -2559,15 +2547,15 @@ var script$6 = defineComponent({
   }
 });
 
-function render$6(_ctx, _cache, $props, $setup, $data, $options) {
+function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(_ctx.formatToDecimal(val, _ctx.numDecimalPlaces)), 1);
   }), 256);
 }
 
-script$6.render = render$6;
+script$8.render = render$8;
 
-var script$5 = defineComponent({
+var script$7 = defineComponent({
   name: "IntegerField",
   props: {
     model: {
@@ -2582,15 +2570,15 @@ var script$5 = defineComponent({
   }
 });
 
-function render$5(_ctx, _cache, $props, $setup, $data, $options) {
+function render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(val.value), 1);
   }), 256);
 }
 
-script$5.render = render$5;
+script$7.render = render$7;
 
-var script$4 = defineComponent({
+var script$6 = defineComponent({
   name: "DateField",
   props: {
     model: {
@@ -2612,26 +2600,26 @@ var script$4 = defineComponent({
   }
 });
 
-function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function render$6(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(_ctx.formatDate(val.value)), 1);
   }), 256);
 }
 
-script$4.render = render$4;
+script$6.render = render$6;
 
-var script$3 = defineComponent({
+var script$5 = defineComponent({
   name: "ChildFieldContainer",
   props: {
     model: null
   },
   components: {
-    TextField: script$9,
-    EmailField: script$8,
-    OptionsField: script$7,
-    DecimalField: script$6,
-    IntegerField: script$5,
-    DateField: script$4
+    TextField: script$b,
+    EmailField: script$a,
+    OptionsField: script$9,
+    DecimalField: script$8,
+    IntegerField: script$7,
+    DateField: script$6
   },
   methods: {
     getFieldType(field) {
@@ -2701,10 +2689,10 @@ var script$3 = defineComponent({
   }
 });
 
-const _hoisted_1$1 = {
+const _hoisted_1$3 = {
   class: "field-name col-md-3"
 };
-const _hoisted_2$1 = {
+const _hoisted_2$2 = {
   class: "field-value col-md-9"
 };
 const _hoisted_3$1 = {
@@ -2713,13 +2701,13 @@ const _hoisted_3$1 = {
 const _hoisted_4$1 = {
   key: 8
 };
-const _hoisted_5$1 = {
+const _hoisted_5 = {
   key: 9
 };
-const _hoisted_6$1 = {
+const _hoisted_6 = {
   key: 11
 };
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_TextField = resolveComponent("TextField");
 
   const _component_EmailField = resolveComponent("EmailField");
@@ -2735,7 +2723,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields, field => {
     return openBlock(), createElementBlock("div", {
       class: normalizeClass(["row", _ctx.cssClass(field)])
-    }, [createElementVNode("div", _hoisted_1$1, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_2$1, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
+    }, [createElementVNode("div", _hoisted_1$3, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_2$2, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
       key: 0,
       model: field
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isTextArea(field) ? (openBlock(), createBlock(_component_TextField, {
@@ -2756,20 +2744,20 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isDateField(field) ? (openBlock(), createBlock(_component_DateField, {
       key: 6,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_3$1, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4$1, " CompositeField ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5$1, " InfoSection ")) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_3$1, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4$1, " CompositeField ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5, " InfoSection ")) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
       key: 10,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isTableField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_6$1, " TableField ")) : createCommentVNode("", true)])], 2);
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isTableField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_6, " TableField ")) : createCommentVNode("", true)])], 2);
   }), 256);
 }
 
-script$3.render = render$3;
+script$5.render = render$5;
 
 //import { Guid } from "guid-typescript";
-var script$2 = defineComponent({
+var script$4 = defineComponent({
   name: "FieldContainerReference",
   components: {
-    ChildFieldContainer: script$3
+    ChildFieldContainer: script$5
   },
   props: {
     model: {
@@ -2790,12 +2778,77 @@ var script$2 = defineComponent({
 
 });
 
-function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ChildFieldContainer = resolveComponent("ChildFieldContainer");
 
   return openBlock(), createBlock(_component_ChildFieldContainer, {
     model: _ctx.source
   }, null, 8, ["model"]);
+}
+
+script$4.render = render$4;
+
+var script$3 = defineComponent({
+  name: "AttachmentField",
+  components: {},
+  props: {
+    model: {
+      type: null,
+      required: true
+    }
+  },
+
+  setup(p) {
+    const store = useStore();
+    const itemId = ref(store.state.item.id);
+    const dataItemId = ref(store.getters.dataItemId);
+    const fileUrl = '/api/items/' + itemId.value + '/' + dataItemId.value + '/' + p.model.id + '/';
+    return {
+      itemId,
+      fileUrl
+    };
+  }
+
+});
+
+const _hoisted_1$2 = ["href"];
+const _hoisted_2$1 = ["src"];
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.files, file => {
+    return openBlock(), createElementBlock("div", null, [createElementVNode("a", {
+      href: _ctx.fileUrl + file.fileName
+    }, [createElementVNode("img", {
+      src: file.thumbnail,
+      class: "img-thumbnail"
+    }, null, 8, _hoisted_2$1)], 8, _hoisted_1$2), createTextVNode(toDisplayString(file.originalFileName), 1)]);
+  }), 256);
+}
+
+var css_248z$1 = "\n.img-thumbnail[data-v-15e814f2]{\r\n        width:35px;\r\n        height: auto;\r\n        margin-right: 10px;\n}\r\n";
+styleInject(css_248z$1);
+
+script$3.render = render$3;
+script$3.__scopeId = "data-v-15e814f2";
+
+var script$2 = defineComponent({
+  name: "InfoField",
+  props: {
+    model: {
+      type: null,
+      required: true
+    }
+  }
+});
+
+const _hoisted_1$1 = ["innerHTML"];
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.content.values, val => {
+    return openBlock(), createElementBlock("div", {
+      key: val.id
+    }, [createElementVNode("div", {
+      innerHTML: val.value
+    }, null, 8, _hoisted_1$1)]);
+  }), 128);
 }
 
 script$2.render = render$2;
@@ -2806,13 +2859,15 @@ var script$1 = defineComponent({
     model: null
   },
   components: {
-    TextField: script$9,
-    EmailField: script$8,
-    OptionsField: script$7,
-    DecimalField: script$6,
-    IntegerField: script$5,
-    DateField: script$4,
-    ReferenceField: script$2
+    TextField: script$b,
+    EmailField: script$a,
+    OptionsField: script$9,
+    DecimalField: script$8,
+    IntegerField: script$7,
+    DateField: script$6,
+    ReferenceField: script$4,
+    AttachmentField: script$3,
+    InfoField: script$2
   },
   methods: {
     getFieldType(field) {
@@ -2889,15 +2944,9 @@ const _hoisted_2 = {
   class: "field-value col-md-9"
 };
 const _hoisted_3 = {
-  key: 8
-};
-const _hoisted_4 = {
-  key: 9
-};
-const _hoisted_5 = {
   key: 10
 };
-const _hoisted_6 = {
+const _hoisted_4 = {
   key: 11
 };
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
@@ -2914,6 +2963,10 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IntegerField = resolveComponent("IntegerField");
 
   const _component_DateField = resolveComponent("DateField");
+
+  const _component_AttachmentField = resolveComponent("AttachmentField");
+
+  const _component_InfoField = resolveComponent("InfoField");
 
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields, field => {
     return openBlock(), createElementBlock("div", null, [this.isFieldContainerReference(field) ? (openBlock(), createElementBlock("div", {
@@ -2948,7 +3001,13 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
       key: 7,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_3, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4, " CompositeField ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5, " InfoSection ")) : createCommentVNode("", true), this.isTableField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_6, " TableField ")) : createCommentVNode("", true)])], 2))]);
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(field) ? (openBlock(), createBlock(_component_AttachmentField, {
+      key: 8,
+      model: field
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isInfoSection(field) ? (openBlock(), createBlock(_component_InfoField, {
+      key: 9,
+      model: field
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isCompositeField(field) ? (openBlock(), createElementBlock("div", _hoisted_3, " CompositeField ")) : createCommentVNode("", true), this.isTableField(field) ? (openBlock(), createElementBlock("div", _hoisted_4, " TableField ")) : createCommentVNode("", true)])], 2))]);
   }), 256);
 }
 
@@ -3002,10 +3061,10 @@ script.__scopeId = "data-v-a52f5804";
 
 var components = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  Carousel: script$l,
-  KeywordSearch: script$i,
-  ItemTemplateEditor: script$d,
-  ItemEditor: script$c,
+  Carousel: script$n,
+  KeywordSearch: script$k,
+  ItemTemplateEditor: script$f,
+  ItemEditor: script$e,
   ItemViewer: script
 });
 
@@ -3018,4 +3077,4 @@ const install = function installApplets(app) {
   });
 }; // Create module definition for Vue.use()
 
-export { script$l as Carousel, script$c as ItemEditor, script$d as ItemTemplateEditor, script as ItemViewer, script$i as KeywordSearch, install as default };
+export { script$n as Carousel, script$e as ItemEditor, script$f as ItemTemplateEditor, script as ItemViewer, script$k as KeywordSearch, install as default };
