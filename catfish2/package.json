@@ -24,7 +24,7 @@
     "@babel/preset-env": "^7.15.8",
     "dayjs": "^1.10.7",
     "joi": "^17.4.2",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.21",
     "vue-quill-editor": "^3.0.6",
