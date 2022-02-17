@@ -1763,9 +1763,9 @@ const _hoisted_22$1 = {
   class: "col-12 wrapper"
 };
 
-const _hoisted_23$1 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("h4", null, "Forms", -1));
+const _hoisted_23 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("h4", null, "Forms", -1));
 
-const _hoisted_24 = [_hoisted_23$1];
+const _hoisted_24 = [_hoisted_23];
 const _hoisted_25 = {
   key: 0
 };
@@ -3837,7 +3837,7 @@ const mutations = {
 
     const indexToRemove = (_state$formInstances4 = state.formInstances) === null || _state$formInstances4 === void 0 ? void 0 : (_state$formInstances5 = _state$formInstances4.$values) === null || _state$formInstances5 === void 0 ? void 0 : _state$formInstances5.indexOf(payload);
 
-    if (typeof indexToRemove != 'undefined' && indexToRemove >= 0) {
+    if (typeof indexToRemove !== 'undefined' && indexToRemove >= 0) {
       var _state$formInstances6;
 
       (_state$formInstances6 = state.formInstances) === null || _state$formInstances6 === void 0 ? void 0 : _state$formInstances6.$values.splice(indexToRemove, 1);
@@ -3960,7 +3960,7 @@ const actions$1 = {
     }).then(response => response.json()).then(data => {
       if (data.id) {
         console.log("deleteChildForm response received");
-        store.commit(Mutations.DELETE_CHILD_RESPONSE_INSTANCE, payload);
+        store.commit(Mutations.DELETE_CHILD_INSTANCE, payload);
       }
     }).catch(error => {
       store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
@@ -5238,7 +5238,7 @@ var script$1 = defineComponent({
   }
 });
 
-const _withScopeId = n => (pushScopeId("data-v-74fdfa3c"), n = n(), popScopeId(), n);
+const _withScopeId = n => (pushScopeId("data-v-101fde4c"), n = n(), popScopeId(), n);
 
 const _hoisted_1$1 = {
   key: 0,
@@ -5289,29 +5289,26 @@ const _hoisted_15 = {
   class: "ml-3 submissionInstanceList"
 };
 const _hoisted_16 = {
-  class: "submissionInstance"
-};
-const _hoisted_17 = {
-  key: 0,
-  class: "text-right"
-};
-const _hoisted_18 = ["onClick"];
-const _hoisted_19 = {
   key: 0,
   class: "mb-2"
 };
-const _hoisted_20 = {
+const _hoisted_17 = {
   key: 0,
   class: "childResponseForm"
 };
-const _hoisted_21 = {
+const _hoisted_18 = {
   key: 0,
   class: "alert alert-danger"
 };
+const _hoisted_19 = ["onClick"];
+const _hoisted_20 = {
+  class: "submissionInstance"
+};
+const _hoisted_21 = {
+  key: 0,
+  class: "text-right"
+};
 const _hoisted_22 = ["onClick"];
-
-const _hoisted_23 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("hr", null, null, -1));
-
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$childForm;
 
@@ -5341,30 +5338,30 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: $event => {
         _ctx.removeChildForm(child);
       }
-    }, null, 8, _hoisted_14)) : createCommentVNode("", true)])) : createCommentVNode("", true), createElementVNode("div", _hoisted_15, [(openBlock(true), createElementBlock(Fragment, null, renderList(child.childFieldContainers.$values, (response, resIdx) => {
-      return openBlock(), createElementBlock("div", _hoisted_16, [createVNode(_component_ChildView, {
+    }, null, 8, _hoisted_14)) : createCommentVNode("", true)])) : createCommentVNode("", true), createElementVNode("div", _hoisted_15, [_ctx.childResponseFormId ? (openBlock(), createElementBlock("div", _hoisted_16, [_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_17, [createVNode(_component_ChildForm, {
+      model: _ctx.childResponseForm
+    }, null, 8, ["model"]), ((_ctx$childResponseFor = _ctx.childResponseForm) === null || _ctx$childResponseFor === void 0 ? void 0 : _ctx$childResponseFor.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_18, "Response validation failed.")) : createCommentVNode("", true), createElementVNode("button", {
+      class: "btn btn-primary submitBtn",
+      onClick: $event => _ctx.submitChildResponse(index)
+    }, "Submit", 8, _hoisted_19)])) : createCommentVNode("", true)])) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(child.childFieldContainers.$values, (response, resIdx) => {
+      return openBlock(), createElementBlock("div", _hoisted_20, [createVNode(_component_ChildView, {
         model: response,
         "hide-field-names": true
-      }, null, 8, ["model"]), _ctx.isAdmin ? (openBlock(), createElementBlock("div", _hoisted_17, [createElementVNode("span", {
+      }, null, 8, ["model"]), _ctx.isAdmin ? (openBlock(), createElementBlock("div", _hoisted_21, [createElementVNode("span", {
         class: "fas fa-remove deleteBtn",
         onClick: $event => {
           _ctx.removeResponseForm(response);
         }
-      }, null, 8, _hoisted_18)])) : createCommentVNode("", true)]);
-    }), 256)), _ctx.childResponseFormId ? (openBlock(), createElementBlock("div", _hoisted_19, [_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_20, [createVNode(_component_ChildForm, {
-      model: _ctx.childResponseForm
-    }, null, 8, ["model"]), ((_ctx$childResponseFor = _ctx.childResponseForm) === null || _ctx$childResponseFor === void 0 ? void 0 : _ctx$childResponseFor.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_21, "Response validation failed.")) : createCommentVNode("", true), createElementVNode("button", {
-      class: "btn btn-primary submitBtn",
-      onClick: $event => _ctx.submitChildResponse(index)
-    }, "Submit", 8, _hoisted_22)])) : createCommentVNode("", true)])) : createCommentVNode("", true)]), _hoisted_23]);
+      }, null, 8, _hoisted_22)])) : createCommentVNode("", true)]);
+    }), 256))])]);
   }), 256))])) : createCommentVNode("", true)], 64);
 }
 
-var css_248z = "\n.fa-remove[data-v-74fdfa3c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
+var css_248z = "\n.fa-remove[data-v-101fde4c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
 styleInject(css_248z);
 
 script$1.render = render$1;
-script$1.__scopeId = "data-v-74fdfa3c";
+script$1.__scopeId = "data-v-101fde4c";
 
 //import { validateFields } from '../../shared/store/form-validators'
 //Declare ActionTypes

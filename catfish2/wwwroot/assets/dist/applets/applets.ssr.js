@@ -1804,11 +1804,11 @@ var _hoisted_22$1 = {
   class: "col-12 wrapper"
 };
 
-var _hoisted_23$1 = /*#__PURE__*/_withScopeId$1(function () {
+var _hoisted_23 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("h4", null, "Forms", -1);
 });
 
-var _hoisted_24 = [_hoisted_23$1];
+var _hoisted_24 = [_hoisted_23];
 var _hoisted_25 = {
   key: 0
 };
@@ -3681,7 +3681,7 @@ var mutations = _objectSpread2$1((_objectSpread2 = {}, _defineProperty(_objectSp
 
   var indexToRemove = (_state$formInstances4 = state.formInstances) === null || _state$formInstances4 === void 0 ? void 0 : (_state$formInstances5 = _state$formInstances4.$values) === null || _state$formInstances5 === void 0 ? void 0 : _state$formInstances5.indexOf(payload);
 
-  if (typeof indexToRemove != 'undefined' && indexToRemove >= 0) {
+  if (typeof indexToRemove !== 'undefined' && indexToRemove >= 0) {
     var _state$formInstances6;
 
     (_state$formInstances6 = state.formInstances) === null || _state$formInstances6 === void 0 ? void 0 : _state$formInstances6.$values.splice(indexToRemove, 1);
@@ -3802,7 +3802,7 @@ var actions$1 = (_actions$1 = {}, _defineProperty(_actions$1, Actions$1.LOAD_FOR
   }).then(function (data) {
     if (data.id) {
       console.log("deleteChildForm response received");
-      store.commit(Mutations.DELETE_CHILD_RESPONSE_INSTANCE, payload);
+      store.commit(Mutations.DELETE_CHILD_INSTANCE, payload);
     }
   }).catch(function (error) {
     store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
@@ -5003,7 +5003,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }
 });var _withScopeId = function _withScopeId(n) {
-  return vue.pushScopeId("data-v-74fdfa3c"), n = n(), vue.popScopeId(), n;
+  return vue.pushScopeId("data-v-101fde4c"), n = n(), vue.popScopeId(), n;
 };
 
 var _hoisted_1$1 = {
@@ -5059,31 +5059,26 @@ var _hoisted_15 = {
   class: "ml-3 submissionInstanceList"
 };
 var _hoisted_16 = {
-  class: "submissionInstance"
-};
-var _hoisted_17 = {
-  key: 0,
-  class: "text-right"
-};
-var _hoisted_18 = ["onClick"];
-var _hoisted_19 = {
   key: 0,
   class: "mb-2"
 };
-var _hoisted_20 = {
+var _hoisted_17 = {
   key: 0,
   class: "childResponseForm"
 };
-var _hoisted_21 = {
+var _hoisted_18 = {
   key: 0,
   class: "alert alert-danger"
 };
+var _hoisted_19 = ["onClick"];
+var _hoisted_20 = {
+  class: "submissionInstance"
+};
+var _hoisted_21 = {
+  key: 0,
+  class: "text-right"
+};
 var _hoisted_22 = ["onClick"];
-
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/vue.createElementVNode("hr", null, null, -1);
-});
-
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$childForm;
 
@@ -5117,28 +5112,28 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         _ctx.removeChildForm(child);
       }
-    }, null, 8, _hoisted_14)) : vue.createCommentVNode("", true)])) : vue.createCommentVNode("", true), vue.createElementVNode("div", _hoisted_15, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(child.childFieldContainers.$values, function (response, resIdx) {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_16, [vue.createVNode(_component_ChildView, {
-        model: response,
-        "hide-field-names": true
-      }, null, 8, ["model"]), _ctx.isAdmin ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_17, [vue.createElementVNode("span", {
-        class: "fas fa-remove deleteBtn",
-        onClick: function onClick($event) {
-          _ctx.removeResponseForm(response);
-        }
-      }, null, 8, _hoisted_18)])) : vue.createCommentVNode("", true)]);
-    }), 256)), _ctx.childResponseFormId ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_19, [_ctx.responseDisplayFlags[index] ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_20, [vue.createVNode(_component_ChildForm, {
+    }, null, 8, _hoisted_14)) : vue.createCommentVNode("", true)])) : vue.createCommentVNode("", true), vue.createElementVNode("div", _hoisted_15, [_ctx.childResponseFormId ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_16, [_ctx.responseDisplayFlags[index] ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_17, [vue.createVNode(_component_ChildForm, {
       model: _ctx.childResponseForm
-    }, null, 8, ["model"]), ((_ctx$childResponseFor = _ctx.childResponseForm) === null || _ctx$childResponseFor === void 0 ? void 0 : _ctx$childResponseFor.validationStatus) === _ctx.eValidationStatus.INVALID ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_21, "Response validation failed.")) : vue.createCommentVNode("", true), vue.createElementVNode("button", {
+    }, null, 8, ["model"]), ((_ctx$childResponseFor = _ctx.childResponseForm) === null || _ctx$childResponseFor === void 0 ? void 0 : _ctx$childResponseFor.validationStatus) === _ctx.eValidationStatus.INVALID ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_18, "Response validation failed.")) : vue.createCommentVNode("", true), vue.createElementVNode("button", {
       class: "btn btn-primary submitBtn",
       onClick: function onClick($event) {
         return _ctx.submitChildResponse(index);
       }
-    }, "Submit", 8, _hoisted_22)])) : vue.createCommentVNode("", true)])) : vue.createCommentVNode("", true)]), _hoisted_23]);
+    }, "Submit", 8, _hoisted_19)])) : vue.createCommentVNode("", true)])) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(child.childFieldContainers.$values, function (response, resIdx) {
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_20, [vue.createVNode(_component_ChildView, {
+        model: response,
+        "hide-field-names": true
+      }, null, 8, ["model"]), _ctx.isAdmin ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_21, [vue.createElementVNode("span", {
+        class: "fas fa-remove deleteBtn",
+        onClick: function onClick($event) {
+          _ctx.removeResponseForm(response);
+        }
+      }, null, 8, _hoisted_22)])) : vue.createCommentVNode("", true)]);
+    }), 256))])]);
   }), 256))])) : vue.createCommentVNode("", true)], 64);
-}var css_248z = "\n.fa-remove[data-v-74fdfa3c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
+}var css_248z = "\n.fa-remove[data-v-101fde4c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
 styleInject(css_248z);script$1.render = render$1;
-script$1.__scopeId = "data-v-74fdfa3c";var _actions;
+script$1.__scopeId = "data-v-101fde4c";var _actions;
 //import { validateFields } from '../../shared/store/form-validators'
 //Declare ActionTypes
 
