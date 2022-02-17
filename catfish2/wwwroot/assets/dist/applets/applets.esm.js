@@ -1,4 +1,4 @@
-import { defineComponent, openBlock, createElementBlock, createElementVNode, toDisplayString, inject, watch, reactive, computed, Fragment, renderList, createCommentVNode, withDirectives, vModelCheckbox, ref, createTextVNode, vModelSelect, onMounted, resolveComponent, createVNode, normalizeClass, pushScopeId, popScopeId, createBlock, toRefs, normalizeStyle, onBeforeUnmount, onActivated, onDeactivated, h, vModelText, vModelDynamic, vModelRadio, withCtx } from 'vue';
+import { defineComponent, openBlock, createElementBlock, createElementVNode, toDisplayString, inject, watch, reactive, computed, Fragment, renderList, createCommentVNode, withDirectives, vModelCheckbox, ref, createTextVNode, vModelSelect, onMounted, resolveComponent, createVNode, normalizeClass, pushScopeId, popScopeId, createBlock, toRefs, normalizeStyle, onBeforeUnmount, onActivated, onDeactivated, h, vModelText, vModelDynamic, vModelRadio } from 'vue';
 
 var props = {
   pageId: {
@@ -40,19 +40,19 @@ var script$J = defineComponent({
 
 });
 
-const _hoisted_1$p = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
+const _hoisted_1$q = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
 
 const _hoisted_2$i = {
   class: "row"
 };
-const _hoisted_3$c = {
+const _hoisted_3$d = {
   class: "row"
 };
 const _hoisted_4$9 = {
   class: "row"
 };
 function render$J(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$p, createElementVNode("div", _hoisted_2$i, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$c, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$9, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$q, createElementVNode("div", _hoisted_2$i, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$d, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$9, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
 }
 
 script$J.render = render$J;
@@ -1301,14 +1301,14 @@ var script$I = defineComponent({
 
 });
 
-const _hoisted_1$o = {
+const _hoisted_1$p = {
   key: 0
 };
 const _hoisted_2$h = {
   key: 0,
   class: "font-weight-bold"
 };
-const _hoisted_3$b = ["value", "onUpdate:modelValue"];
+const _hoisted_3$c = ["value", "onUpdate:modelValue"];
 const _hoisted_4$8 = {
   class: "ml-1"
 };
@@ -1320,7 +1320,7 @@ function render$I(_ctx, _cache, $props, $setup, $data, $options) {
 
     return openBlock(), createElementBlock("div", {
       key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$o, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$p, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
       return openBlock(), createElementBlock("div", {
         key: field,
         class: "mb-3"
@@ -1334,7 +1334,7 @@ function render$I(_ctx, _cache, $props, $setup, $data, $options) {
           onChange: _cache[0] || (_cache[0] = function () {
             return _ctx.runFreshSearch && _ctx.runFreshSearch(...arguments);
           })
-        }, null, 40, _hoisted_3$b), [[vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), createElementVNode("label", _hoisted_4$8, toDisplayString(value), 1)]);
+        }, null, 40, _hoisted_3$c), [[vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), createElementVNode("label", _hoisted_4$8, toDisplayString(value), 1)]);
       }), 128))]);
     }), 128))]);
   }), 128);
@@ -1415,58 +1415,58 @@ var script$H = defineComponent({
   }
 });
 
-const _hoisted_1$n = {
+const _hoisted_1$o = {
   class: "itemList"
 };
 const _hoisted_2$g = {
   key: 0
 };
-const _hoisted_3$a = {
+const _hoisted_3$b = {
   key: 0
 };
 const _hoisted_4$7 = {
   key: 1
 };
 
-const _hoisted_5$6 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
+const _hoisted_5$7 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
 
 const _hoisted_6$6 = /*#__PURE__*/createElementVNode("option", null, "50", -1);
 
 const _hoisted_7$4 = /*#__PURE__*/createElementVNode("option", null, "100", -1);
 
-const _hoisted_8$4 = [_hoisted_5$6, _hoisted_6$6, _hoisted_7$4];
+const _hoisted_8$4 = [_hoisted_5$7, _hoisted_6$6, _hoisted_7$4];
 const _hoisted_9$2 = {
   key: 1
 };
-const _hoisted_10$1 = {
+const _hoisted_10$2 = {
   class: "item"
 };
-const _hoisted_11$1 = {
+const _hoisted_11$2 = {
   class: "item-title"
 };
-const _hoisted_12$1 = ["href"];
-const _hoisted_13$1 = {
+const _hoisted_12$2 = ["href"];
+const _hoisted_13$2 = {
   key: 1
 };
-const _hoisted_14$1 = {
+const _hoisted_14$2 = {
   class: "item-date"
 };
-const _hoisted_15$1 = {
+const _hoisted_15$2 = {
   class: "item-subtitle"
 };
-const _hoisted_16$1 = {
+const _hoisted_16$2 = {
   class: "categories"
 };
-const _hoisted_17$1 = {
+const _hoisted_17$2 = {
   class: "badge rounded-pill bg-dark text-white m-1"
 };
-const _hoisted_18$1 = {
+const _hoisted_18$2 = {
   class: "content"
 };
 function render$H(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$items;
 
-  return openBlock(), createElementBlock("div", _hoisted_1$n, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$g, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$a, [createElementVNode("i", {
+  return openBlock(), createElementBlock("div", _hoisted_1$o, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$g, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$b, [createElementVNode("i", {
     class: "fas fa-angle-double-left",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.previousPage && _ctx.previousPage(...arguments);
@@ -1485,12 +1485,12 @@ function render$H(_ctx, _cache, $props, $setup, $data, $options) {
 
     return openBlock(), createElementBlock("div", {
       key: item.id
-    }, [createElementVNode("div", _hoisted_10$1, [createElementVNode("h3", _hoisted_11$1, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (openBlock(), createElementBlock("a", {
+    }, [createElementVNode("div", _hoisted_10$2, [createElementVNode("h3", _hoisted_11$2, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (openBlock(), createElementBlock("a", {
       key: 0,
       href: item.detailedViewUrl
-    }, toDisplayString(item.title), 9, _hoisted_12$1)) : (openBlock(), createElementBlock("span", _hoisted_13$1, toDisplayString(item.title), 1))]), createElementVNode("div", _hoisted_14$1, toDisplayString(_ctx.formatDate(item.date)), 1), createElementVNode("h5", _hoisted_15$1, toDisplayString(item.subtitle), 1), createElementVNode("div", _hoisted_16$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(item.categories, cat => {
-      return openBlock(), createElementBlock("span", _hoisted_17$1, toDisplayString(cat), 1);
-    }), 256))]), createElementVNode("div", _hoisted_18$1, toDisplayString(item.content), 1)])]);
+    }, toDisplayString(item.title), 9, _hoisted_12$2)) : (openBlock(), createElementBlock("span", _hoisted_13$2, toDisplayString(item.title), 1))]), createElementVNode("div", _hoisted_14$2, toDisplayString(_ctx.formatDate(item.date)), 1), createElementVNode("h5", _hoisted_15$2, toDisplayString(item.subtitle), 1), createElementVNode("div", _hoisted_16$2, [(openBlock(true), createElementBlock(Fragment, null, renderList(item.categories, cat => {
+      return openBlock(), createElementBlock("span", _hoisted_17$2, toDisplayString(cat), 1);
+    }), 256))]), createElementVNode("div", _hoisted_18$2, toDisplayString(item.content), 1)])]);
   }), 128))]);
 }
 
@@ -1543,13 +1543,13 @@ var script$G = defineComponent({
   }
 });
 
-const _hoisted_1$m = {
+const _hoisted_1$n = {
   class: "row"
 };
 const _hoisted_2$f = {
   class: "col-md-4 text-left"
 };
-const _hoisted_3$9 = {
+const _hoisted_3$a = {
   class: "col-md-8"
 };
 function render$G(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1557,7 +1557,7 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_ItemList = resolveComponent("ItemList");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$m, [createElementVNode("div", _hoisted_2$f, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3$9, [createVNode(_component_ItemList)])]);
+  return openBlock(), createElementBlock("div", _hoisted_1$n, [createElementVNode("div", _hoisted_2$f, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3$a, [createVNode(_component_ItemList)])]);
 }
 
 script$G.render = render$G;
@@ -1701,71 +1701,71 @@ var script$C = defineComponent({
   }
 });
 
-const _withScopeId = n => (pushScopeId("data-v-2579f0c4"), n = n(), popScopeId(), n);
+const _withScopeId$1 = n => (pushScopeId("data-v-2579f0c4"), n = n(), popScopeId(), n);
 
-const _hoisted_1$l = {
+const _hoisted_1$m = {
   class: "container row itemTemplate"
 };
 const _hoisted_2$e = {
   class: "col-md-4"
 };
 
-const _hoisted_3$8 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_3$9 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Overview", -1));
 
-const _hoisted_4$6 = [_hoisted_3$8];
+const _hoisted_4$6 = [_hoisted_3$9];
 
-const _hoisted_5$5 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_5$6 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Notifications", -1));
 
-const _hoisted_6$5 = [_hoisted_5$5];
+const _hoisted_6$5 = [_hoisted_5$6];
 const _hoisted_7$3 = ["onClick"];
 
-const _hoisted_8$3 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_8$3 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Forms", -1));
 
 const _hoisted_9$1 = [_hoisted_8$3];
-const _hoisted_10 = ["onClick"];
+const _hoisted_10$1 = ["onClick"];
 
-const _hoisted_11 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_11$1 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Metadata Forms", -1));
 
-const _hoisted_12 = [_hoisted_11];
-const _hoisted_13 = ["onClick"];
-const _hoisted_14 = {
+const _hoisted_12$1 = [_hoisted_11$1];
+const _hoisted_13$1 = ["onClick"];
+const _hoisted_14$1 = {
   class: "col-md-8"
 };
-const _hoisted_15 = {
+const _hoisted_15$1 = {
   key: 0,
   class: "col-12 wrapper"
 };
 
-const _hoisted_16 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Overview", -1));
+const _hoisted_16$1 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("h4", null, "Overview", -1));
 
-const _hoisted_17 = [_hoisted_16];
-const _hoisted_18 = {
+const _hoisted_17$1 = [_hoisted_16$1];
+const _hoisted_18$1 = {
   key: 1,
   class: "col-12 wrapper"
 };
 
-const _hoisted_19 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Notifications", -1));
+const _hoisted_19$1 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("h4", null, "Notifications", -1));
 
-const _hoisted_20 = [_hoisted_19];
-const _hoisted_21 = {
+const _hoisted_20$1 = [_hoisted_19$1];
+const _hoisted_21$1 = {
   key: 0
 };
-const _hoisted_22 = {
+const _hoisted_22$1 = {
   key: 2,
   class: "col-12 wrapper"
 };
 
-const _hoisted_23 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Forms", -1));
+const _hoisted_23$1 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("h4", null, "Forms", -1));
 
-const _hoisted_24 = [_hoisted_23];
+const _hoisted_24 = [_hoisted_23$1];
 const _hoisted_25 = {
   key: 0
 };
@@ -1774,7 +1774,7 @@ const _hoisted_26 = {
   class: "col-12 wrapper"
 };
 
-const _hoisted_27 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h4", null, "Metadata Forms", -1));
+const _hoisted_27 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("h4", null, "Metadata Forms", -1));
 
 const _hoisted_28 = [_hoisted_27];
 const _hoisted_29 = {
@@ -1789,7 +1789,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_MetadatasetEditor = resolveComponent("MetadatasetEditor");
 
-  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h3", null, toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), createElementVNode("div", _hoisted_1$l, [createElementVNode("div", _hoisted_2$e, [createElementVNode("div", {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h3", null, toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), createElementVNode("div", _hoisted_1$m, [createElementVNode("div", _hoisted_2$e, [createElementVNode("div", {
     class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'overview' || _ctx.activePanel == null ? 'active' : '']),
     onClick: _cache[0] || (_cache[0] = $event => _ctx.activePanel = 'overview')
   }, _hoisted_4$6, 2), createElementVNode("div", {
@@ -1809,24 +1809,24 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
       key: form.id,
       class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == form.id ? 'active' : '']),
       onClick: $event => _ctx.activePanel = form.id
-    }, toDisplayString(form.name.concatenatedContent), 11, _hoisted_10);
+    }, toDisplayString(form.name.concatenatedContent), 11, _hoisted_10$1);
   }), 128)), createElementVNode("div", {
     class: "col-12 menuEntry",
     onClick: _cache[3] || (_cache[3] = $event => _ctx.activePanel = 'metadata-forms')
-  }, _hoisted_12), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets2 = _ctx.metadataSets) === null || _ctx$metadataSets2 === void 0 ? void 0 : _ctx$metadataSets2.filter(m => m.isTemplate == false), ms => {
+  }, _hoisted_12$1), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets2 = _ctx.metadataSets) === null || _ctx$metadataSets2 === void 0 ? void 0 : _ctx$metadataSets2.filter(m => m.isTemplate == false), ms => {
     return openBlock(), createElementBlock("div", {
       key: ms.id,
       class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == ms.id ? 'active' : '']),
       onClick: $event => _ctx.activePanel = ms.id
-    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_13);
-  }), 128))]), createElementVNode("div", _hoisted_14, [_ctx.activePanel == null || _ctx.activePanel == 'overview' ? (openBlock(), createElementBlock("div", _hoisted_15, _hoisted_17)) : createCommentVNode("", true), _ctx.activePanel == 'notifications' ? (openBlock(), createElementBlock("div", _hoisted_18, _hoisted_20)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets3 = _ctx.metadataSets) === null || _ctx$metadataSets3 === void 0 ? void 0 : _ctx$metadataSets3.filter(m => m.isTemplate == true), ms => {
+    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_13$1);
+  }), 128))]), createElementVNode("div", _hoisted_14$1, [_ctx.activePanel == null || _ctx.activePanel == 'overview' ? (openBlock(), createElementBlock("div", _hoisted_15$1, _hoisted_17$1)) : createCommentVNode("", true), _ctx.activePanel == 'notifications' ? (openBlock(), createElementBlock("div", _hoisted_18$1, _hoisted_20$1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets3 = _ctx.metadataSets) === null || _ctx$metadataSets3 === void 0 ? void 0 : _ctx$metadataSets3.filter(m => m.isTemplate == true), ms => {
     return openBlock(), createElementBlock("div", {
       key: ms.id,
       class: "col-12 wrapper"
-    }, [_ctx.activePanel == ms.id ? (openBlock(), createElementBlock("div", _hoisted_21, [createVNode(_component_NotificationEditor, {
+    }, [_ctx.activePanel == ms.id ? (openBlock(), createElementBlock("div", _hoisted_21$1, [createVNode(_component_NotificationEditor, {
       fieldContainer: ms
     }, null, 8, ["fieldContainer"])])) : createCommentVNode("", true)]);
-  }), 128)), _ctx.activePanel == 'forms' ? (openBlock(), createElementBlock("div", _hoisted_22, _hoisted_24)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
+  }), 128)), _ctx.activePanel == 'forms' ? (openBlock(), createElementBlock("div", _hoisted_22$1, _hoisted_24)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
     return openBlock(), createElementBlock("div", {
       key: form.id,
       class: "col-12 wrapper"
@@ -1870,8 +1870,8 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$3 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
-styleInject(css_248z$3);
+var css_248z$4 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
+styleInject(css_248z$4);
 
 script$C.render = render$C;
 script$C.__scopeId = "data-v-2579f0c4";
@@ -1904,12 +1904,12 @@ var script$B = defineComponent({
   }
 });
 
-const _hoisted_1$k = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
+const _hoisted_1$l = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
 
 function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ItemTemplate = resolveComponent("ItemTemplate");
 
-  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$k, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1), createVNode(_component_ItemTemplate)], 64);
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$l, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1), createVNode(_component_ItemTemplate)], 64);
 }
 
 script$B.render = render$B;
@@ -1935,10 +1935,10 @@ var script$A = defineComponent({
 
 });
 
-const _hoisted_1$j = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
+const _hoisted_1$k = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
 
 function render$A(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$j, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$k, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
 }
 
 script$A.render = render$A;
@@ -1954,17 +1954,23 @@ var Mutations$4;
 (function (Mutations) {
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_ITEM"] = "SET_ITEM";
+  Mutations["CHANGE_STATE"] = "CHANGE_STATE";
 })(Mutations$4 || (Mutations$4 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$4 = {
   [Mutations$4.SET_ID](state, payload) {
     state.id = payload;
-    console.log("Mutations.SET_ID: ", state.id);
   },
 
   [Mutations$4.SET_ITEM](state, payload) {
     state.item = payload;
+  },
+
+  [Mutations$4.CHANGE_STATE](state, payload) {
+    //state.item
+    console.log(JSON.stringify(state));
+    console.log(JSON.stringify(payload));
   }
 
 };
@@ -1973,6 +1979,7 @@ var Actions$4;
 
 (function (Actions) {
   Actions["LOAD_ITEM"] = "LOAD_ITEM";
+  Actions["CHANGE_STATE"] = "CHANGE_STATE";
 })(Actions$4 || (Actions$4 = {}));
 
 const actions$4 = {
@@ -1981,6 +1988,53 @@ const actions$4 = {
     console.log('Item Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
       store.commit(Mutations$4.SET_ITEM, data);
+    });
+  },
+
+  [Actions$4.CHANGE_STATE](store, payload) {
+    console.log(JSON.stringify(store.state));
+    const api = window.location.origin + `/applets/api/itemeditor/deleteItem/${payload}`;
+    console.log('Item Load API: ', api);
+    fetch(api, {
+      method: "post"
+    }).then(response => {
+      //response.json()
+      console.log(response.status);
+
+      switch (response.status) {
+        case 200:
+          window.location.href = "/"; //alert("TODO: change me to redirect to home page.");
+
+          break;
+
+        case 401:
+          alert("Authorization failed.");
+          break;
+
+        case 404:
+          alert("Item not found.");
+          break;
+
+        case 500:
+          alert("Internal server error occurred.");
+          break;
+
+        default:
+          alert("Unknown error occurred.");
+          break;
+      }
+    }) ////.then(data => {
+    ////    console.log(data);
+    ////    //if (data.status == 200) {
+    ////    //    console.log("status ok "  + data.status);
+    ////    //    //window.location.href = window.location.origin;
+    ////    //} else {
+    ////    //    alert("HTTP response return status code " + data.status);
+    ////    //}
+    ////})
+    .catch(error => {
+      alert("Unknown error occurred.");
+      console.log(error);
     });
   }
 
@@ -2069,17 +2123,17 @@ var script$z = defineComponent({
   }
 });
 
-const _hoisted_1$i = {
+const _hoisted_1$j = {
   key: 0
 };
 const _hoisted_2$d = ["href"];
-const _hoisted_3$7 = {
+const _hoisted_3$8 = {
   key: 1
 };
 function render$z(_ctx, _cache, $props, $setup, $data, $options) {
-  return _ctx.isUrl(_ctx.model.value) ? (openBlock(), createElementBlock("div", _hoisted_1$i, [createElementVNode("a", {
+  return _ctx.isUrl(_ctx.model.value) ? (openBlock(), createElementBlock("div", _hoisted_1$j, [createElementVNode("a", {
     href: _ctx.model.value
-  }, toDisplayString(_ctx.model.value), 9, _hoisted_2$d)])) : (openBlock(), createElementBlock("div", _hoisted_3$7, toDisplayString(_ctx.model.value), 1));
+  }, toDisplayString(_ctx.model.value), 9, _hoisted_2$d)])) : (openBlock(), createElementBlock("div", _hoisted_3$8, toDisplayString(_ctx.model.value), 1));
 }
 
 script$z.render = render$z;
@@ -2374,19 +2428,19 @@ var script$r = defineComponent({
   }
 });
 
-const _hoisted_1$h = {
+const _hoisted_1$i = {
   class: "field-name col-md-3"
 };
 const _hoisted_2$c = {
   class: "field-value col-md-9"
 };
-const _hoisted_3$6 = {
+const _hoisted_3$7 = {
   key: 7
 };
 const _hoisted_4$5 = {
   key: 8
 };
-const _hoisted_5$4 = {
+const _hoisted_5$5 = {
   key: 9
 };
 const _hoisted_6$4 = {
@@ -2408,7 +2462,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields.$values, field => {
     return openBlock(), createElementBlock("div", {
       class: normalizeClass(["row", _ctx.cssClass(field)])
-    }, [createElementVNode("div", _hoisted_1$h, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_2$c, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
+    }, [createElementVNode("div", _hoisted_1$i, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_2$c, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
       key: 0,
       model: field
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isTextArea(field) ? (openBlock(), createBlock(_component_TextField, {
@@ -2429,7 +2483,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isDateField(field) ? (openBlock(), createBlock(_component_DateField, {
       key: 6,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_3$6, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4$5, " CompositeField ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5$4, " InfoSection ")) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_3$7, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4$5, " CompositeField ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5$5, " InfoSection ")) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
       key: 10,
       model: field
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isTableField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_6$4, " TableField ")) : createCommentVNode("", true)])], 2);
@@ -2496,7 +2550,7 @@ var script$p = defineComponent({
 
 });
 
-const _hoisted_1$g = ["href"];
+const _hoisted_1$h = ["href"];
 const _hoisted_2$b = ["src"];
 function render$p(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.files.$values, file => {
@@ -2505,12 +2559,12 @@ function render$p(_ctx, _cache, $props, $setup, $data, $options) {
     }, [createElementVNode("img", {
       src: file.thumbnail,
       class: "img-thumbnail"
-    }, null, 8, _hoisted_2$b)], 8, _hoisted_1$g), createTextVNode(toDisplayString(file.originalFileName), 1)]);
+    }, null, 8, _hoisted_2$b)], 8, _hoisted_1$h), createTextVNode(toDisplayString(file.originalFileName), 1)]);
   }), 256);
 }
 
-var css_248z$2 = "\n.img-thumbnail[data-v-307ae89a]{\r\n        width:35px;\r\n        height: auto;\r\n        margin-right: 10px;\n}\r\n";
-styleInject(css_248z$2);
+var css_248z$3 = "\n.img-thumbnail[data-v-307ae89a]{\r\n        width:35px;\r\n        height: auto;\r\n        margin-right: 10px;\n}\r\n";
+styleInject(css_248z$3);
 
 script$p.render = render$p;
 script$p.__scopeId = "data-v-307ae89a";
@@ -2525,14 +2579,14 @@ var script$o = defineComponent({
   }
 });
 
-const _hoisted_1$f = ["innerHTML"];
+const _hoisted_1$g = ["innerHTML"];
 function render$o(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.content.values.$values, val => {
     return openBlock(), createElementBlock("div", {
       key: val.id
     }, [createElementVNode("div", {
       innerHTML: val.value
-    }, null, 8, _hoisted_1$f)]);
+    }, null, 8, _hoisted_1$g)]);
   }), 128);
 }
 
@@ -2541,7 +2595,8 @@ script$o.render = render$o;
 var script$n = defineComponent({
   name: "FieldContainer",
   props: {
-    model: null
+    model: null,
+    hideFieldNames: Boolean
   },
   components: {
     TextField: script$x,
@@ -2617,21 +2672,30 @@ var script$n = defineComponent({
 
     cssClass(field) {
       return field.cssClass + " " + field.fieldCssClass;
+    },
+
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      return date.format('MMM DD, YYYY');
     }
 
   }
 });
 
-const _hoisted_1$e = {
-  class: "field-name col-md-3"
+const _hoisted_1$f = {
+  class: "timeStamp"
 };
 const _hoisted_2$a = {
+  key: 0,
+  class: "field-name col-md-3"
+};
+const _hoisted_3$6 = {
   class: "field-value col-md-9"
 };
-const _hoisted_3$5 = {
+const _hoisted_4$4 = {
   key: 10
 };
-const _hoisted_4$4 = {
+const _hoisted_5$4 = {
   key: 11
 };
 function render$n(_ctx, _cache, $props, $setup, $data, $options) {
@@ -2653,7 +2717,7 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_InfoField = resolveComponent("InfoField");
 
-  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields.$values, field => {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("div", _hoisted_1$f, toDisplayString(_ctx.formatDate(_ctx.model.created)), 1), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields.$values, field => {
     return openBlock(), createElementBlock("div", null, [this.isFieldContainerReference(field) ? (openBlock(), createElementBlock("div", {
       key: 0,
       class: normalizeClass(_ctx.cssClass(field))
@@ -2662,7 +2726,7 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])], 2)) : (openBlock(), createElementBlock("div", {
       key: 1,
       class: normalizeClass(["row", _ctx.cssClass(field)])
-    }, [createElementVNode("div", _hoisted_1$e, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_2$a, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
+    }, [!_ctx.hideFieldNames ? (openBlock(), createElementBlock("div", _hoisted_2$a, toDisplayString(field.name.concatenatedContent), 1)) : createCommentVNode("", true), createElementVNode("div", _hoisted_3$6, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
       key: 0,
       model: field
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isTextArea(field) ? (openBlock(), createBlock(_component_TextField, {
@@ -2692,8 +2756,8 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isInfoSection(field) ? (openBlock(), createBlock(_component_InfoField, {
       key: 9,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isCompositeField(field) ? (openBlock(), createElementBlock("div", _hoisted_3$5, " CompositeField ")) : createCommentVNode("", true), this.isTableField(field) ? (openBlock(), createElementBlock("div", _hoisted_4$4, " TableField ")) : createCommentVNode("", true)])], 2))]);
-  }), 256);
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isCompositeField(field) ? (openBlock(), createElementBlock("div", _hoisted_4$4, " CompositeField ")) : createCommentVNode("", true), this.isTableField(field) ? (openBlock(), createElementBlock("div", _hoisted_5$4, " TableField ")) : createCommentVNode("", true)])], 2))]);
+  }), 256))], 64);
 }
 
 script$n.render = render$n;
@@ -2707,15 +2771,20 @@ var script$m = defineComponent({
 
   setup(p) {
     const store = useStore();
+    const dataAttributes = p.dataAttributes;
     console.log('Item Viewer setup ...');
     console.log('props: ', JSON.stringify(p));
+    const isAdmin = dataAttributes["is-admin"];
+    console.log('isAdmin: ', isAdmin);
     const queryParams = p.queryParameters;
     store.commit(Mutations$4.SET_ID, queryParams.iid); //load the data
 
     store.dispatch(Actions$4.LOAD_ITEM);
     return {
+      store,
       queryParams,
-      dataItem: computed(() => store.getters.rootDataItem)
+      dataItem: computed(() => store.getters.rootDataItem),
+      isAdmin
     };
   },
 
@@ -2724,23 +2793,43 @@ var script$m = defineComponent({
     actions: actions$4,
     mutations: mutations$4,
     getters: getters$4
+  },
+  methods: {
+    changeItemState(itemId) {
+      if (confirm("Do you really want to delete this item?")) {
+        // this.store.dispatch(Actions.DELETE_CHILD_INSTANCE, itemToRemove);
+        console.log("id: " + itemId);
+        this.store.dispatch(Actions$4.CHANGE_STATE, itemId);
+      }
+    }
+
   }
 });
 
+const _hoisted_1$e = {
+  key: 0,
+  class: "text-right"
+};
 function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FieldContainer = resolveComponent("FieldContainer");
 
-  return _ctx.dataItem ? (openBlock(), createBlock(_component_FieldContainer, {
-    key: 0,
-    model: _ctx.dataItem
-  }, null, 8, ["model"])) : createCommentVNode("", true);
+  return openBlock(), createElementBlock(Fragment, null, [_ctx.isAdmin ? (openBlock(), createElementBlock("div", _hoisted_1$e, [createElementVNode("span", {
+    class: "fas fa-remove",
+    onClick: _cache[0] || (_cache[0] = $event => {
+      _ctx.changeItemState(_ctx.queryParams.iid);
+    })
+  })])) : createCommentVNode("", true), _ctx.dataItem ? (openBlock(), createBlock(_component_FieldContainer, {
+    key: 1,
+    model: _ctx.dataItem,
+    class: "item"
+  }, null, 8, ["model"])) : createCommentVNode("", true)], 64);
 }
 
-var css_248z$1 = "\n.field-name[data-v-a52f5804]{\r\n        font-weight:bold !important;\n}\r\n";
-styleInject(css_248z$1);
+var css_248z$2 = "\n.field-name[data-v-19fa11d4] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-19fa11d4] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
+styleInject(css_248z$2);
 
 script$m.render = render$m;
-script$m.__scopeId = "data-v-a52f5804";
+script$m.__scopeId = "data-v-19fa11d4";
 
 var eIndexingStatus;
 
@@ -2855,7 +2944,7 @@ const _hoisted_2$9 = /*#__PURE__*/createElementVNode("p", {
   class: "card-text"
 }, "With supporting text below as a natural lead-in to additional content.", -1);
 
-const _hoisted_3$4 = {
+const _hoisted_3$5 = {
   key: 1,
   class: "btn btn-danger",
   disabled: ""
@@ -2885,7 +2974,7 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.reindexData && _ctx.reindexData(...arguments);
     })
-  }, "Reindex")) : (openBlock(), createElementBlock("button", _hoisted_3$4, "Indexing In-progress")), _hoisted_4$3, _hoisted_5$3, _hoisted_6$3, _hoisted_7$2, _ctx.isPageIndexingReady ? (openBlock(), createElementBlock("button", {
+  }, "Reindex")) : (openBlock(), createElementBlock("button", _hoisted_3$5, "Indexing In-progress")), _hoisted_4$3, _hoisted_5$3, _hoisted_6$3, _hoisted_7$2, _ctx.isPageIndexingReady ? (openBlock(), createElementBlock("button", {
     key: 2,
     class: "btn btn-primary",
     onClick: _cache[1] || (_cache[1] = function () {
@@ -2925,13 +3014,13 @@ const _hoisted_2$8 = /*#__PURE__*/createElementVNode("div", {
   class: "card-header"
 }, " Indexing Processes ", -1);
 
-const _hoisted_3$3 = {
+const _hoisted_3$4 = {
   class: "card-body"
 };
 function render$k(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IndexingPanel = resolveComponent("IndexingPanel");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$c, [_hoisted_2$8, createElementVNode("div", _hoisted_3$3, [createVNode(_component_IndexingPanel)])]);
+  return openBlock(), createElementBlock("div", _hoisted_1$c, [_hoisted_2$8, createElementVNode("div", _hoisted_3$4, [createVNode(_component_IndexingPanel)])]);
 }
 
 script$k.render = render$k;
@@ -3157,8 +3246,8 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["image"]), createElementVNode("h2", null, toDisplayString(_ctx.title), 1), createElementVNode("h4", null, toDisplayString(_ctx.subTitle), 1)]);
 }
 
-var css_248z = "\n.cf-card{\r\n        text-align:center;\n}\r\n";
-styleInject(css_248z);
+var css_248z$1 = "\n.cf-card{\r\n        text-align:center;\n}\r\n";
+styleInject(css_248z$1);
 
 script$i.render = render$i;
 
@@ -3423,6 +3512,8 @@ function isRichTextField(field) {
 const state$1 = {
   itemTemplateId: null,
   formId: null,
+  collectionId: null,
+  groupId: null,
   form: null,
   flattenedTextModels: {},
   flattenedOptionModels: {},
@@ -3433,7 +3524,9 @@ const state$1 = {
 
 const state = {
   itemInstanceId: null,
-  formInstances: [],
+  childResponseFormId: null,
+  childResponseForm: null,
+  formInstances: null,
   ...state$1
 };
 
@@ -3617,14 +3710,22 @@ function validateFields(form) {
 var Mutations$1;
 
 (function (Mutations) {
+  Mutations["CLEAR_FLATTENED_FIELD_MODELS"] = "CLEAR_FLATTENED_FIELD_mODELS";
   Mutations["SET_ITEM_TEMPLATE_ID"] = "SET_ITEM_TEMPLATE_ID";
   Mutations["SET_FORM_ID"] = "SET_FORM_ID";
   Mutations["SET_FORM"] = "SET_FORM";
   Mutations["SET_SUBMISSION_STATUS"] = "SET_SUBMISSION_STATUS";
+  Mutations["SET_COLLECTION_ID"] = "SET_COLLECTION_ID";
+  Mutations["SET_GROUP_ID"] = "SET_GROUP_ID";
 })(Mutations$1 || (Mutations$1 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$1 = {
+  [Mutations$1.CLEAR_FLATTENED_FIELD_MODELS](state) {
+    state.flattenedTextModels = {};
+    state.flattenedOptionModels = {};
+  },
+
   [Mutations$1.SET_ITEM_TEMPLATE_ID](state, payload) {
     state.itemTemplateId = payload;
   },
@@ -3633,11 +3734,17 @@ const mutations$1 = {
     state.formId = payload;
   },
 
+  [Mutations$1.SET_COLLECTION_ID](state, payload) {
+    state.collectionId = payload;
+  },
+
+  [Mutations$1.SET_GROUP_ID](state, payload) {
+    state.groupId = payload;
+  },
+
   [Mutations$1.SET_FORM](state, payload) {
     state.form = payload;
-    state.flattenedTextModels = {};
-    state.flattenedOptionModels = {};
-    flattenFieldInputs(state.form, state); //    console.log("state\n", JSON.stringify(state))
+    flattenFieldInputs(state.form, state); //console.log("state\n", JSON.stringify(state))
   },
 
   [FlattenedFormFiledMutations.SET_TEXT_VALUE](state, payload) {
@@ -3665,7 +3772,13 @@ var Mutations;
 
 (function (Mutations) {
   Mutations["SET_SUBMISSIONS"] = "SET_SUBMISSIONS";
-  Mutations["SET_PATENT_ITEM_ID"] = "SET_PATENT_ITEM_ID";
+  Mutations["SET_PARENT_ITEM_ID"] = "SET_PARENT_ITEM_ID";
+  Mutations["APPEND_CHILD_INSTANCE"] = "APPEND_CHILD_INSTANCE";
+  Mutations["SET_RESPONSE_FORM_ID"] = "SET_RESPONSE_FORM_ID";
+  Mutations["SET_RESPONSE_FORM"] = "SET_RESPONSE_FORM";
+  Mutations["APPEND_CHILD_RESPONSE_INSTANCE"] = "APPEND_CHILD_RESPONSE_INSTANCE";
+  Mutations["DELETE_CHILD_RESPONSE_INSTANCE"] = "DELETE_CHILD_RESPONSE_INSTANCE";
+  Mutations["DELETE_CHILD_INSTANCE"] = "DELETE_CHILD_INSTANCE";
 })(Mutations || (Mutations = {})); //Create a mutation tree that implement all mutation interfaces
 
 
@@ -3674,8 +3787,61 @@ const mutations = {
     state.formInstances = payload;
   },
 
-  [Mutations.SET_PATENT_ITEM_ID](state, payload) {
+  [Mutations.SET_PARENT_ITEM_ID](state, payload) {
     state.itemInstanceId = payload;
+  },
+
+  [Mutations.APPEND_CHILD_INSTANCE](state, payload) {
+    var _state$formInstances;
+
+    (_state$formInstances = state.formInstances) === null || _state$formInstances === void 0 ? void 0 : _state$formInstances.$values.unshift(payload);
+  },
+
+  [Mutations.SET_RESPONSE_FORM_ID](state, payload) {
+    state.childResponseFormId = payload;
+  },
+
+  [Mutations.SET_RESPONSE_FORM](state, payload) {
+    state.childResponseForm = payload;
+    flattenFieldInputs(state.childResponseForm, state);
+  },
+
+  [Mutations.APPEND_CHILD_RESPONSE_INSTANCE](state, payload) {
+    var _state$formInstances2;
+
+    const parent = (_state$formInstances2 = state.formInstances) === null || _state$formInstances2 === void 0 ? void 0 : _state$formInstances2.$values.find(inst => inst.id === (payload === null || payload === void 0 ? void 0 : payload.parentId));
+
+    if (parent) {
+      var _parent$childFieldCon;
+
+      (_parent$childFieldCon = parent.childFieldContainers) === null || _parent$childFieldCon === void 0 ? void 0 : _parent$childFieldCon.$values.push(payload);
+    }
+  },
+
+  [Mutations.DELETE_CHILD_RESPONSE_INSTANCE](state, payload) {
+    var _state$formInstances3;
+
+    const parent = (_state$formInstances3 = state.formInstances) === null || _state$formInstances3 === void 0 ? void 0 : _state$formInstances3.$values.find(inst => inst.id === (payload === null || payload === void 0 ? void 0 : payload.parentId));
+
+    if (parent) {
+      var _parent$childFieldCon2, _parent$childFieldCon3;
+
+      const indexToRemove = parent === null || parent === void 0 ? void 0 : (_parent$childFieldCon2 = parent.childFieldContainers) === null || _parent$childFieldCon2 === void 0 ? void 0 : _parent$childFieldCon2.$values.indexOf(payload); //console.log("index to remove " + indexToRemove);
+
+      if (indexToRemove >= 0) (_parent$childFieldCon3 = parent.childFieldContainers) === null || _parent$childFieldCon3 === void 0 ? void 0 : _parent$childFieldCon3.$values.splice(indexToRemove, 1);
+    }
+  },
+
+  [Mutations.DELETE_CHILD_INSTANCE](state, payload) {
+    var _state$formInstances4, _state$formInstances5;
+
+    const indexToRemove = (_state$formInstances4 = state.formInstances) === null || _state$formInstances4 === void 0 ? void 0 : (_state$formInstances5 = _state$formInstances4.$values) === null || _state$formInstances5 === void 0 ? void 0 : _state$formInstances5.indexOf(payload);
+
+    if (typeof indexToRemove != 'undefined' && indexToRemove >= 0) {
+      var _state$formInstances6;
+
+      (_state$formInstances6 = state.formInstances) === null || _state$formInstances6 === void 0 ? void 0 : _state$formInstances6.$values.splice(indexToRemove, 1);
+    }
   },
 
   ...mutations$1
@@ -3686,16 +3852,27 @@ var Actions$1;
 (function (Actions) {
   Actions["LOAD_FORM"] = "LOAD_FORM";
   Actions["LOAD_SUBMISSIONS"] = "LOAD_SUBMISSIONS";
+  Actions["LOAD_RESPONSE_FORM"] = "LOAD_RESPONSE_FORM";
   Actions["SUBMIT_CHILD_FORM"] = "SUBMIT_CHILD_FORM";
+  Actions["SUBMIT_CHILD_RESPONSE_FORM"] = "SUBMIT_CHILD_RESPONSE_FORM";
+  Actions["DELETE_CHILD_RESPONSE_INSTANCE"] = "DELETE_CHILD_RESPONSE_INSTANCE";
+  Actions["DELETE_CHILD_INSTANCE"] = "DELETE_CHILD_INSTANCE";
 })(Actions$1 || (Actions$1 = {}));
 
 const actions$1 = {
   [Actions$1.LOAD_FORM](store) {
     const api = window.location.origin + `/applets/api/itemeditor/getchildform/${store.state.itemInstanceId}/${store.state.formId}`;
-    console.log('Form Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
-      //console.log('Data:\n', JSON.stringify(data));
       store.commit(Mutations$1.SET_FORM, data);
+    }).catch(error => {
+      console.error('Actions.LOAD_FORM Error: ', error);
+    });
+  },
+
+  [Actions$1.LOAD_RESPONSE_FORM](store) {
+    const api = window.location.origin + `/applets/api/itemeditor/getchildform/${store.state.itemInstanceId}/${store.state.childResponseFormId}`;
+    fetch(api).then(response => response.json()).then(data => {
+      store.commit(Mutations.SET_RESPONSE_FORM, data);
     }).catch(error => {
       console.error('Actions.LOAD_FORM Error: ', error);
     });
@@ -3718,19 +3895,73 @@ const actions$1 = {
     const api = window.location.origin + `/applets/api/itemeditor/appendchildforminstance/${store.state.itemInstanceId}`;
     const formData = new FormData();
     formData.append('datamodel', JSON.stringify(store.state.form));
-    console.log(JSON.stringify(store.state.form));
     fetch(api, {
       body: formData,
       method: "post"
     }).then(response => response.json()).then(data => {
-      console.log(JSON.stringify(data));
       const flattenModel = {
         flattenedOptionModels: store.state.flattenedOptionModels,
         flattenedTextModels: store.state.flattenedTextModels
       }; //clear the form content
 
       clearForm(flattenModel);
+      store.commit(Mutations.APPEND_CHILD_INSTANCE, data);
       store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Success");
+    }).catch(error => {
+      store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
+      console.log(error);
+    });
+  },
+
+  [Actions$1.SUBMIT_CHILD_RESPONSE_FORM](store, parentId) {
+    //Validating the form
+    if (!store.state.childResponseForm || !validateFields(store.state.childResponseForm)) return;
+    const api = window.location.origin + `/applets/api/itemeditor/appendchildforminstance/${store.state.itemInstanceId}`;
+    const formData = new FormData();
+    formData.append('datamodel', JSON.stringify(store.state.childResponseForm));
+    if (parentId) formData.append('parentId', parentId.toString());
+    fetch(api, {
+      body: formData,
+      method: "post"
+    }).then(response => response.json()).then(data => {
+      //console.log("Response Data: \n", JSON.stringify(data))
+      store.commit(Mutations.APPEND_CHILD_RESPONSE_INSTANCE, data);
+      const flattenModel = {
+        flattenedOptionModels: store.state.flattenedOptionModels,
+        flattenedTextModels: store.state.flattenedTextModels
+      }; //clear the form content
+
+      clearForm(flattenModel);
+    }).catch(error => {
+      store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
+      console.log(error);
+    });
+  },
+
+  [Actions$1.DELETE_CHILD_RESPONSE_INSTANCE](store, payload) {
+    const api = window.location.origin + `/applets/api/itemeditor/deleteChildForm/${store.state.itemInstanceId}/${payload.id}?parentId=${payload.parentId}`;
+    fetch(api, {
+      method: "post"
+    }).then(response => response.json()).then(data => {
+      if (data.id) {
+        console.log("deleteChildForm response received");
+        store.commit(Mutations.DELETE_CHILD_RESPONSE_INSTANCE, payload);
+      }
+    }).catch(error => {
+      store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
+      console.log(error);
+    });
+  },
+
+  [Actions$1.DELETE_CHILD_INSTANCE](store, payload) {
+    const api = window.location.origin + `/applets/api/itemeditor/deleteChildForm/${store.state.itemInstanceId}/${payload.id}`;
+    fetch(api, {
+      method: "post"
+    }).then(response => response.json()).then(data => {
+      if (data.id) {
+        console.log("deleteChildForm response received");
+        store.commit(Mutations.DELETE_CHILD_RESPONSE_INSTANCE, payload);
+      }
     }).catch(error => {
       store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
       console.log(error);
@@ -3824,7 +4055,7 @@ var script$f = defineComponent({
 const _hoisted_1$8 = ["id", "value"];
 const _hoisted_2$6 = ["for"];
 function render$f(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock(Fragment, null, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
     return openBlock(), createElementBlock("div", null, [withDirectives(createElementVNode("input", {
       type: "checkbox",
       id: option.id,
@@ -3834,7 +4065,7 @@ function render$f(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 40, _hoisted_1$8), [[vModelCheckbox, _ctx.selectedoptions]]), createElementVNode("label", {
       for: option.id
     }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$6)]);
-  }), 256)), createTextVNode(" Selected chekboxes: " + toDisplayString(JSON.stringify(_ctx.selectedoptions)), 1)], 64);
+  }), 256);
 }
 
 script$f.render = render$f;
@@ -4217,8 +4448,8 @@ var script$e = defineComponent({
 
   setup(p) {
     const store = useStore();
-    const field = p.field;
-    console.log("validationStatus: " + p.validationStatus);
+    const field = p.field; //console.log("validationStatus: " + p.validationStatus)
+
     return {
       store,
       field
@@ -4286,13 +4517,7 @@ var script$d = defineComponent({
       validationStatus,
       type
     };
-  } //methods:{
-  //    formatDate(dateString: string) {
-  //        const date = dayjs(dateString);
-  //        return date.format('MMM DD, YYYY');
-  //    }
-  //}
-
+  }
 
 });
 
@@ -4343,12 +4568,7 @@ var script$c = defineComponent({
       validationStatus,
       type
     };
-  } //methods: {
-  //    formatToDecimal: (value : number, decimalPlaces : number) => {
-  //        return Number(value).toFixed(decimalPlaces);
-  //    }
-  //}
-
+  }
 
 });
 
@@ -4546,23 +4766,19 @@ const _hoisted_1$5 = ["name", "id", "value"];
 
 const _hoisted_2$4 = /*#__PURE__*/createTextVNode();
 
+const _hoisted_3$3 = ["for"];
 function render$8(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_labe = resolveComponent("labe");
-
-  return openBlock(), createElementBlock(Fragment, null, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
+  return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
     return openBlock(), createElementBlock("div", null, [withDirectives(createElementVNode("input", {
       type: "radio",
       name: _ctx.name,
       id: option.id,
       value: option.id,
       "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => _ctx.selected = $event)
-    }, null, 8, _hoisted_1$5), [[vModelRadio, _ctx.selected]]), _hoisted_2$4, createVNode(_component_labe, {
+    }, null, 8, _hoisted_1$5), [[vModelRadio, _ctx.selected]]), _hoisted_2$4, createElementVNode("label", {
       for: option.id
-    }, {
-      default: withCtx(() => [createTextVNode(toDisplayString(this.getConcatenatedOptionLabels(option)), 1)]),
-      _: 2
-    }, 1032, ["for"])]);
-  }), 256)), createTextVNode(" " + toDisplayString(JSON.stringify(_ctx.selected)), 1)], 64);
+    }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_3$3)]);
+  }), 256);
 }
 
 script$8.render = render$8;
@@ -4631,7 +4847,7 @@ function render$7(_ctx, _cache, $props, $setup, $data, $options) {
       id: option.id,
       value: option.id
     }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$3);
-  }), 256))], 512), [[vModelSelect, _ctx.selected]]), createElementVNode("span", null, "Selected: " + toDisplayString(_ctx.selected), 1)]);
+  }), 256))], 512), [[vModelSelect, _ctx.selected]])]);
 }
 
 script$7.render = render$7;
@@ -4928,27 +5144,71 @@ var script$1 = defineComponent({
     const itemId = guid$1.Guid.parse(queryParameters.iid);
     const itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
     const childFormId = guid$1.Guid.parse(dataAttributes["child-form-id"]);
+    const childResponseFormIdStr = dataAttributes["response-form-id"];
+    const isAdmin = dataAttributes["is-admin"];
+    const childResponseFormId = (childResponseFormIdStr === null || childResponseFormIdStr === void 0 ? void 0 : childResponseFormIdStr.length) > 0 ? guid$1.Guid.parse(childResponseFormIdStr) : undefined;
     const store = useStore();
+    store.commit(Mutations$1.CLEAR_FLATTENED_FIELD_MODELS);
     store.commit(Mutations$1.SET_ITEM_TEMPLATE_ID, itemTemplateId);
     store.commit(Mutations$1.SET_FORM_ID, childFormId);
-    store.commit(Mutations.SET_PATENT_ITEM_ID, itemId); //load the data
+    store.commit(Mutations.SET_PARENT_ITEM_ID, itemId); //load the data
 
     store.dispatch(Actions$1.LOAD_FORM);
-    store.dispatch(Actions$1.LOAD_SUBMISSIONS); //const submissionStatus = store.state.submissionStatus as SubmissionStatus;
-    // const submissionStatus: eSubmissionStatus = store.state.submissionStatus as eSubmissionStatus;
+    store.dispatch(Actions$1.LOAD_SUBMISSIONS);
+
+    if (childResponseFormId) {
+      store.commit(Mutations.SET_RESPONSE_FORM_ID, childResponseFormId);
+      store.dispatch(Actions$1.LOAD_RESPONSE_FORM);
+    } //const submissionStatus = store.state.submissionStatus as SubmissionStatus;
+    //const submissionStatus: eSubmissionStatus = store.state.submissionStatus as eSubmissionStatus;
     //console.log("initial status " + JSON.stringify(submissionStatus));
+
+
+    const responseDisplayFlags = ref([]);
+    const childSubmissions = computed(() => {
+      var _store$state$formInst;
+
+      return (_store$state$formInst = store.state.formInstances) === null || _store$state$formInst === void 0 ? void 0 : _store$state$formInst.$values;
+    });
+
+    const toggleDisplayResponse = index => {
+      if (responseDisplayFlags.value[index] != undefined) {
+        responseDisplayFlags.value[index] = !responseDisplayFlags.value[index];
+      } else {
+        responseDisplayFlags.value[index] = !responseDisplayFlags.value[index]; //true;
+      } //Closing all other response boxes
+
+
+      responseDisplayFlags.value.forEach((val, idx) => {
+        if (val && idx !== index) responseDisplayFlags.value[idx] = false;
+      });
+      return false;
+    };
+
+    const submitChildResponse = index => {
+      var _childSubmissions$val;
+
+      store.dispatch(Actions$1.SUBMIT_CHILD_RESPONSE_FORM, (_childSubmissions$val = childSubmissions.value[index]) === null || _childSubmissions$val === void 0 ? void 0 : _childSubmissions$val.id);
+      toggleDisplayResponse(index);
+    };
 
     return {
       childForm: computed(() => store.state.form),
       childSubmissions: computed(() => {
-        var _store$state$formInst;
+        var _store$state$formInst2;
 
-        return (_store$state$formInst = store.state.formInstances) === null || _store$state$formInst === void 0 ? void 0 : _store$state$formInst.$values;
+        return (_store$state$formInst2 = store.state.formInstances) === null || _store$state$formInst2 === void 0 ? void 0 : _store$state$formInst2.$values;
       }),
       store,
       submissionStatus: computed(() => store.state.submissionStatus),
       eSubmissionStatus,
-      eValidationStatus
+      eValidationStatus,
+      childResponseFormId,
+      childResponseForm: computed(() => store.state.childResponseForm),
+      responseDisplayFlags,
+      toggleDisplayResponse,
+      submitChildResponse,
+      isAdmin
     };
   },
 
@@ -4961,13 +5221,28 @@ var script$1 = defineComponent({
   methods: {
     submitChildForm() {
       this.store.dispatch(Actions$1.SUBMIT_CHILD_FORM);
+    },
+
+    removeResponseForm(itemToRemove) {
+      if (confirm("Do you really want to delete this item?")) {
+        this.store.dispatch(Actions$1.DELETE_CHILD_RESPONSE_INSTANCE, itemToRemove);
+      }
+    },
+
+    removeChildForm(itemToRemove) {
+      if (confirm("Do you really want to delete this item?")) {
+        this.store.dispatch(Actions$1.DELETE_CHILD_INSTANCE, itemToRemove);
+      }
     }
 
   }
 });
 
+const _withScopeId = n => (pushScopeId("data-v-74fdfa3c"), n = n(), popScopeId(), n);
+
 const _hoisted_1$1 = {
-  key: 0
+  key: 0,
+  class: "submissionForm"
 };
 const _hoisted_2$1 = {
   key: 0,
@@ -4989,12 +5264,53 @@ const _hoisted_6$1 = {
   class: "alert alert-danger"
 };
 const _hoisted_7 = {
-  key: 1
+  key: 1,
+  class: "mt-2 submissionInstanceList"
 };
 
-const _hoisted_8 = /*#__PURE__*/createElementVNode("h3", null, "Responses", -1);
+const _hoisted_8 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h3", null, "Responses", -1));
 
-const _hoisted_9 = /*#__PURE__*/createElementVNode("hr", null, null, -1);
+const _hoisted_9 = {
+  class: "submissionInstance"
+};
+const _hoisted_10 = {
+  key: 0,
+  class: "text-right"
+};
+const _hoisted_11 = ["onClick"];
+
+const _hoisted_12 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("span", {
+  class: "fas fa-reply replyBtn"
+}, null, -1));
+
+const _hoisted_13 = [_hoisted_12];
+const _hoisted_14 = ["onClick"];
+const _hoisted_15 = {
+  class: "ml-3 submissionInstanceList"
+};
+const _hoisted_16 = {
+  class: "submissionInstance"
+};
+const _hoisted_17 = {
+  key: 0,
+  class: "text-right"
+};
+const _hoisted_18 = ["onClick"];
+const _hoisted_19 = {
+  key: 0,
+  class: "mb-2"
+};
+const _hoisted_20 = {
+  key: 0,
+  class: "childResponseForm"
+};
+const _hoisted_21 = {
+  key: 0,
+  class: "alert alert-danger"
+};
+const _hoisted_22 = ["onClick"];
+
+const _hoisted_23 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("hr", null, null, -1));
 
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$childForm;
@@ -5008,14 +5324,47 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["model"]), ((_ctx$childForm = _ctx.childForm) === null || _ctx$childForm === void 0 ? void 0 : _ctx$childForm.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_2$1, "Form validation failed.")) : (openBlock(), createElementBlock("div", _hoisted_3$1, [_ctx.submissionStatus === _ctx.eSubmissionStatus.InProgress ? (openBlock(), createElementBlock("div", _hoisted_4$1, "Submitting...")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Success ? (openBlock(), createElementBlock("div", _hoisted_5$1, "Submission successful")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Fail ? (openBlock(), createElementBlock("div", _hoisted_6$1, "Submission failed")) : createCommentVNode("", true)])), createElementVNode("button", {
     class: "btn btn-primary",
     onClick: _cache[0] || (_cache[0] = $event => _ctx.submitChildForm())
-  }, "Submit")])) : createCommentVNode("", true), _ctx.childSubmissions && _ctx.childSubmissions.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_7, [_hoisted_8, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.childSubmissions, child => {
-    return openBlock(), createElementBlock("div", null, [createVNode(_component_ChildView, {
-      model: child
-    }, null, 8, ["model"]), _hoisted_9]);
+  }, "Submit")])) : createCommentVNode("", true), _ctx.childSubmissions && _ctx.childSubmissions.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_7, [_hoisted_8, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.childSubmissions, (child, index) => {
+    var _ctx$childResponseFor;
+
+    return openBlock(), createElementBlock("div", _hoisted_9, [createVNode(_component_ChildView, {
+      model: child,
+      "hide-field-names": true
+    }, null, 8, ["model"]), !_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_10, [createElementVNode("a", {
+      href: "#",
+      class: "text-decoration-none",
+      onClick: $event => _ctx.toggleDisplayResponse(index),
+      onclick: "return false;"
+    }, _hoisted_13, 8, _hoisted_11), _ctx.isAdmin ? (openBlock(), createElementBlock("span", {
+      key: 0,
+      class: "fas fa-remove",
+      onClick: $event => {
+        _ctx.removeChildForm(child);
+      }
+    }, null, 8, _hoisted_14)) : createCommentVNode("", true)])) : createCommentVNode("", true), createElementVNode("div", _hoisted_15, [(openBlock(true), createElementBlock(Fragment, null, renderList(child.childFieldContainers.$values, (response, resIdx) => {
+      return openBlock(), createElementBlock("div", _hoisted_16, [createVNode(_component_ChildView, {
+        model: response,
+        "hide-field-names": true
+      }, null, 8, ["model"]), _ctx.isAdmin ? (openBlock(), createElementBlock("div", _hoisted_17, [createElementVNode("span", {
+        class: "fas fa-remove deleteBtn",
+        onClick: $event => {
+          _ctx.removeResponseForm(response);
+        }
+      }, null, 8, _hoisted_18)])) : createCommentVNode("", true)]);
+    }), 256)), _ctx.childResponseFormId ? (openBlock(), createElementBlock("div", _hoisted_19, [_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_20, [createVNode(_component_ChildForm, {
+      model: _ctx.childResponseForm
+    }, null, 8, ["model"]), ((_ctx$childResponseFor = _ctx.childResponseForm) === null || _ctx$childResponseFor === void 0 ? void 0 : _ctx$childResponseFor.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_21, "Response validation failed.")) : createCommentVNode("", true), createElementVNode("button", {
+      class: "btn btn-primary submitBtn",
+      onClick: $event => _ctx.submitChildResponse(index)
+    }, "Submit", 8, _hoisted_22)])) : createCommentVNode("", true)])) : createCommentVNode("", true)]), _hoisted_23]);
   }), 256))])) : createCommentVNode("", true)], 64);
 }
 
+var css_248z = "\n.fa-remove[data-v-74fdfa3c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
+styleInject(css_248z);
+
 script$1.render = render$1;
+script$1.__scopeId = "data-v-74fdfa3c";
 
 //import { validateFields } from '../../shared/store/form-validators'
 //Declare ActionTypes
@@ -5029,8 +5378,8 @@ var Actions;
 
 const actions = {
   [Actions.LOAD_FORM](store) {
-    const api = window.location.origin + `/applets/api/itemtemplates/${store.state.itemTemplateId}/data-form/${store.state.formId}`;
-    console.log('Form Load API: ', api);
+    const api = window.location.origin + `/applets/api/itemtemplates/${store.state.itemTemplateId}/data-form/${store.state.formId}`; // console.log('Form Load API: ', api)
+
     fetch(api).then(response => response.json()).then(data => {
       //console.log('Data:\n', JSON.stringify(data));
       store.commit(Mutations$1.SET_FORM, data);
@@ -5045,7 +5394,7 @@ const actions = {
     /*|| !validateFields(store.state.form)*/
     ) return;
     store.commit(Mutations$1.SET_SUBMISSION_STATUS, "InProgress");
-    const api = window.location.origin + `/applets/api/itemeditor/`;
+    const api = window.location.origin + `/applets/api/itemeditor/?itemTemplateId=${store.state.itemTemplateId}&groupId=${store.state.groupId}&collectionId=${store.state.collectionId}`;
     const formData = new FormData();
     formData.append('datamodel', JSON.stringify(store.state.form));
     fetch(api, {
@@ -5081,9 +5430,14 @@ var script = defineComponent({
     const dataAttributes = p.dataAttributes;
     const itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
     const formId = guid$1.Guid.parse(dataAttributes["form-id"]);
+    const collectionId = guid$1.Guid.parse(dataAttributes["collection-id"]);
+    const groupId = guid$1.Guid.parse(dataAttributes["group-id"]);
     const store = useStore();
+    store.commit(Mutations$1.CLEAR_FLATTENED_FIELD_MODELS);
     store.commit(Mutations$1.SET_ITEM_TEMPLATE_ID, itemTemplateId);
-    store.commit(Mutations$1.SET_FORM_ID, formId); //load the data
+    store.commit(Mutations$1.SET_FORM_ID, formId);
+    store.commit(Mutations$1.SET_COLLECTION_ID, collectionId);
+    store.commit(Mutations$1.SET_GROUP_ID, groupId); //load the data
 
     store.dispatch(Actions.LOAD_FORM);
     return {

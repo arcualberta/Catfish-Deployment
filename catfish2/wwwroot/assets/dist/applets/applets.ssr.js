@@ -163,19 +163,19 @@ function _nonIterableRest() {
   mounted: function mounted() {
     console.log('Carousel mounted ...');
   }
-});var _hoisted_1$p = /*#__PURE__*/vue.createElementVNode("h2", null, "Carousel", -1);
+});var _hoisted_1$q = /*#__PURE__*/vue.createElementVNode("h2", null, "Carousel", -1);
 
 var _hoisted_2$i = {
   class: "row"
 };
-var _hoisted_3$c = {
+var _hoisted_3$d = {
   class: "row"
 };
 var _hoisted_4$9 = {
   class: "row"
 };
 function render$J(_ctx, _cache, $props, $setup, $data, $options) {
-  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$p, vue.createElementVNode("div", _hoisted_2$i, "Page Id: " + vue.toDisplayString(_ctx.pageId), 1), vue.createElementVNode("div", _hoisted_3$c, "Block Id: " + vue.toDisplayString(_ctx.blockId), 1), vue.createElementVNode("div", _hoisted_4$9, "Data Attributes " + vue.toDisplayString(_ctx.dataAttributes), 1)]);
+  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$q, vue.createElementVNode("div", _hoisted_2$i, "Page Id: " + vue.toDisplayString(_ctx.pageId), 1), vue.createElementVNode("div", _hoisted_3$d, "Block Id: " + vue.toDisplayString(_ctx.blockId), 1), vue.createElementVNode("div", _hoisted_4$9, "Data Attributes " + vue.toDisplayString(_ctx.dataAttributes), 1)]);
 }script$J.render = render$J;function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
@@ -1285,7 +1285,7 @@ var mutations$6 = (_mutations$5 = {}, _defineProperty(_mutations$5, Mutations$6.
 }), _defineProperty(_mutations$5, Mutations$6.SET_PAGE_SIZE, function (state, payload) {
   //console.log('SET_PAGE_SIZE: payload: ', payload)
   state.max = payload;
-}), _mutations$5);var _actions$5;
+}), _mutations$5);var _actions$6;
 //Declare ActionTypes
 var Actions$6;
 
@@ -1298,7 +1298,7 @@ var Actions$6;
   Actions["SAVE_KEYWORDS"] = "SAVE_KEYWORDS";
 })(Actions$6 || (Actions$6 = {}));
 
-var actions$6 = (_actions$5 = {}, _defineProperty(_actions$5, Actions$6.INIT_FILTER, function (store) {
+var actions$6 = (_actions$6 = {}, _defineProperty(_actions$6, Actions$6.INIT_FILTER, function (store) {
   //console.log('Store: ', JSON.stringify(store.state))
   var api = window.location.origin + "/applets/api/keywordsearch/keywords/page/".concat(store.state.pageId, "/block/").concat(store.state.blockId);
   console.log('Keyword Load API: ', api);
@@ -1307,7 +1307,7 @@ var actions$6 = (_actions$5 = {}, _defineProperty(_actions$5, Actions$6.INIT_FIL
   }).then(function (data) {
     store.commit(Mutations$6.SET_KEYWORDS, data);
   });
-}), _defineProperty(_actions$5, Actions$6.FILTER_BY_KEYWORDS, function (store) {
+}), _defineProperty(_actions$6, Actions$6.FILTER_BY_KEYWORDS, function (store) {
   console.log("Dispatched Actions.FILTER_BY_KEYWORDS. Query model: ", JSON.stringify(store.state.keywordQueryModel)); //Saving current search parameters in the local storage
 
   if (store.state.blockId) {
@@ -1339,21 +1339,21 @@ var actions$6 = (_actions$5 = {}, _defineProperty(_actions$5, Actions$6.INIT_FIL
   }).catch(function (error) {
     console.error('Item Load API Error:', error);
   });
-}), _defineProperty(_actions$5, Actions$6.NEXT_PAGE, function (store) {
+}), _defineProperty(_actions$6, Actions$6.NEXT_PAGE, function (store) {
   store.commit(Mutations$6.SET_OFFSET, store.state.offset + store.state.max);
   store.dispatch(Actions$6.FILTER_BY_KEYWORDS);
-}), _defineProperty(_actions$5, Actions$6.PREVIOUS_PAGE, function (store) {
+}), _defineProperty(_actions$6, Actions$6.PREVIOUS_PAGE, function (store) {
   var offset = Math.max(store.state.offset - store.state.max, 0);
   store.commit(Mutations$6.SET_OFFSET, offset);
   store.dispatch(Actions$6.FILTER_BY_KEYWORDS);
-}), _defineProperty(_actions$5, Actions$6.FRESH_SEARCH, function (store, pageSize) {
+}), _defineProperty(_actions$6, Actions$6.FRESH_SEARCH, function (store, pageSize) {
   store.commit(Mutations$6.SET_OFFSET, 0);
   if (pageSize) store.commit(Mutations$6.SET_PAGE_SIZE, pageSize);
   store.dispatch(Actions$6.FILTER_BY_KEYWORDS);
-}), _defineProperty(_actions$5, Actions$6.SAVE_KEYWORDS, function (store, source) {
+}), _defineProperty(_actions$6, Actions$6.SAVE_KEYWORDS, function (store, source) {
   console.log("save keywords action :" + JSON.stringify(source));
   store.commit(Mutations$6.SET_KEYWORDS, source);
-}), _actions$5);var getters$6 = {
+}), _actions$6);var getters$6 = {
   //  items: (state): Item[] | undefined => {
   //    return state.searchResult?.items
   //  },
@@ -1378,14 +1378,14 @@ var actions$6 = (_actions$5 = {}, _defineProperty(_actions$5, Actions$6.INIT_FIL
       })
     };
   }
-});var _hoisted_1$o = {
+});var _hoisted_1$p = {
   key: 0
 };
 var _hoisted_2$h = {
   key: 0,
   class: "font-weight-bold"
 };
-var _hoisted_3$b = ["value", "onUpdate:modelValue"];
+var _hoisted_3$c = ["value", "onUpdate:modelValue"];
 var _hoisted_4$8 = {
   class: "ml-1"
 };
@@ -1397,7 +1397,7 @@ function render$I(_ctx, _cache, $props, $setup, $data, $options) {
 
     return vue.openBlock(), vue.createElementBlock("div", {
       key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$o, vue.toDisplayString(container.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(container.fields, function (field, fIdx) {
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$p, vue.toDisplayString(container.name), 1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(container.fields, function (field, fIdx) {
       return vue.openBlock(), vue.createElementBlock("div", {
         key: field,
         class: "mb-3"
@@ -1413,7 +1413,7 @@ function render$I(_ctx, _cache, $props, $setup, $data, $options) {
           onChange: _cache[0] || (_cache[0] = function () {
             return _ctx.runFreshSearch && _ctx.runFreshSearch.apply(_ctx, arguments);
           })
-        }, null, 40, _hoisted_3$b), [[vue.vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), vue.createElementVNode("label", _hoisted_4$8, vue.toDisplayString(value), 1)]);
+        }, null, 40, _hoisted_3$c), [[vue.vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), vue.createElementVNode("label", _hoisted_4$8, vue.toDisplayString(value), 1)]);
       }), 128))]);
     }), 128))]);
   }), 128);
@@ -1487,58 +1487,58 @@ var dayjs = dayjs_min;var script$H = vue.defineComponent({
       return date.format('MMM DD, YYYY');
     }
   }
-});var _hoisted_1$n = {
+});var _hoisted_1$o = {
   class: "itemList"
 };
 var _hoisted_2$g = {
   key: 0
 };
-var _hoisted_3$a = {
+var _hoisted_3$b = {
   key: 0
 };
 var _hoisted_4$7 = {
   key: 1
 };
 
-var _hoisted_5$6 = /*#__PURE__*/vue.createElementVNode("option", null, "25", -1);
+var _hoisted_5$7 = /*#__PURE__*/vue.createElementVNode("option", null, "25", -1);
 
 var _hoisted_6$6 = /*#__PURE__*/vue.createElementVNode("option", null, "50", -1);
 
 var _hoisted_7$4 = /*#__PURE__*/vue.createElementVNode("option", null, "100", -1);
 
-var _hoisted_8$4 = [_hoisted_5$6, _hoisted_6$6, _hoisted_7$4];
+var _hoisted_8$4 = [_hoisted_5$7, _hoisted_6$6, _hoisted_7$4];
 var _hoisted_9$2 = {
   key: 1
 };
-var _hoisted_10$1 = {
+var _hoisted_10$2 = {
   class: "item"
 };
-var _hoisted_11$1 = {
+var _hoisted_11$2 = {
   class: "item-title"
 };
-var _hoisted_12$1 = ["href"];
-var _hoisted_13$1 = {
+var _hoisted_12$2 = ["href"];
+var _hoisted_13$2 = {
   key: 1
 };
-var _hoisted_14$1 = {
+var _hoisted_14$2 = {
   class: "item-date"
 };
-var _hoisted_15$1 = {
+var _hoisted_15$2 = {
   class: "item-subtitle"
 };
-var _hoisted_16$1 = {
+var _hoisted_16$2 = {
   class: "categories"
 };
-var _hoisted_17$1 = {
+var _hoisted_17$2 = {
   class: "badge rounded-pill bg-dark text-white m-1"
 };
-var _hoisted_18$1 = {
+var _hoisted_18$2 = {
   class: "content"
 };
 function render$H(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$items;
 
-  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$n, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$g, [_ctx.first > 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$a, [vue.createElementVNode("i", {
+  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$o, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$g, [_ctx.first > 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$b, [vue.createElementVNode("i", {
     class: "fas fa-angle-double-left",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.previousPage && _ctx.previousPage.apply(_ctx, arguments);
@@ -1561,12 +1561,12 @@ function render$H(_ctx, _cache, $props, $setup, $data, $options) {
 
     return vue.openBlock(), vue.createElementBlock("div", {
       key: item.id
-    }, [vue.createElementVNode("div", _hoisted_10$1, [vue.createElementVNode("h3", _hoisted_11$1, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (vue.openBlock(), vue.createElementBlock("a", {
+    }, [vue.createElementVNode("div", _hoisted_10$2, [vue.createElementVNode("h3", _hoisted_11$2, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (vue.openBlock(), vue.createElementBlock("a", {
       key: 0,
       href: item.detailedViewUrl
-    }, vue.toDisplayString(item.title), 9, _hoisted_12$1)) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_13$1, vue.toDisplayString(item.title), 1))]), vue.createElementVNode("div", _hoisted_14$1, vue.toDisplayString(_ctx.formatDate(item.date)), 1), vue.createElementVNode("h5", _hoisted_15$1, vue.toDisplayString(item.subtitle), 1), vue.createElementVNode("div", _hoisted_16$1, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(item.categories, function (cat) {
-      return vue.openBlock(), vue.createElementBlock("span", _hoisted_17$1, vue.toDisplayString(cat), 1);
-    }), 256))]), vue.createElementVNode("div", _hoisted_18$1, vue.toDisplayString(item.content), 1)])]);
+    }, vue.toDisplayString(item.title), 9, _hoisted_12$2)) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_13$2, vue.toDisplayString(item.title), 1))]), vue.createElementVNode("div", _hoisted_14$2, vue.toDisplayString(_ctx.formatDate(item.date)), 1), vue.createElementVNode("h5", _hoisted_15$2, vue.toDisplayString(item.subtitle), 1), vue.createElementVNode("div", _hoisted_16$2, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(item.categories, function (cat) {
+      return vue.openBlock(), vue.createElementBlock("span", _hoisted_17$2, vue.toDisplayString(cat), 1);
+    }), 256))]), vue.createElementVNode("div", _hoisted_18$2, vue.toDisplayString(item.content), 1)])]);
   }), 128))]);
 }script$H.render = render$H;var script$G = vue.defineComponent({
   name: "Applet",
@@ -1613,13 +1613,13 @@ function render$H(_ctx, _cache, $props, $setup, $data, $options) {
     mutations: mutations$6,
     getters: getters$6
   }
-});var _hoisted_1$m = {
+});var _hoisted_1$n = {
   class: "row"
 };
 var _hoisted_2$f = {
   class: "col-md-4 text-left"
 };
-var _hoisted_3$9 = {
+var _hoisted_3$a = {
   class: "col-md-8"
 };
 function render$G(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1627,7 +1627,7 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_ItemList = vue.resolveComponent("ItemList");
 
-  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$m, [vue.createElementVNode("div", _hoisted_2$f, [vue.createVNode(_component_KeywordFilter)]), vue.createElementVNode("div", _hoisted_3$9, [vue.createVNode(_component_ItemList)])]);
+  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$n, [vue.createElementVNode("div", _hoisted_2$f, [vue.createVNode(_component_KeywordFilter)]), vue.createElementVNode("div", _hoisted_3$a, [vue.createVNode(_component_ItemList)])]);
 }script$G.render = render$G;//Declare State interface
 var state$4 = {
   Id: null,
@@ -1648,7 +1648,7 @@ var mutations$5 = (_mutations$4 = {}, _defineProperty(_mutations$4, Mutations$5.
   state.template = payload; // console.log("template ID: " + state.template.id);
   // console.log("template name: " + state.template.templateName);
   // console.log("field length: " + state.template.dataContainer[0].fields.length)
-}), _mutations$4);var _actions$4;
+}), _mutations$4);var _actions$5;
 
 var Actions$5;
 
@@ -1657,7 +1657,7 @@ var Actions$5;
   Actions["SET_ID"] = "SET_ID";
 })(Actions$5 || (Actions$5 = {}));
 
-var actions$5 = (_actions$4 = {}, _defineProperty(_actions$4, Actions$5.LOAD_TEMPLATE, function (store) {
+var actions$5 = (_actions$5 = {}, _defineProperty(_actions$5, Actions$5.LOAD_TEMPLATE, function (store) {
   var api = window.location.origin + "/applets/api/itemtemplates/".concat(store.state.Id); //console.log('Keyword Load API: ', api)
 
   fetch(api).then(function (response) {
@@ -1666,9 +1666,9 @@ var actions$5 = (_actions$4 = {}, _defineProperty(_actions$4, Actions$5.LOAD_TEM
     store.commit(Mutations$5.SET_TEMPLATE, data); //console.log("Loaded Template datacontainer: " + JSON.stringify(store.state.template?.dataContainer))
     // console.log("Datacontainer count: " + store.state.template?.dataContainer.length)
   });
-}), _defineProperty(_actions$4, Actions$5.SET_ID, function (store, payload) {
+}), _defineProperty(_actions$5, Actions$5.SET_ID, function (store, payload) {
   store.commit(Mutations$5.SET_ID, payload);
-}), _actions$4);var getters$5 = {//getTemplateId: state => {
+}), _actions$5);var getters$5 = {//getTemplateId: state => {
   //    return state.queryParameters["templateId"];
   //}
 };var script$F = vue.defineComponent({
@@ -1728,87 +1728,87 @@ var actions$5 = (_actions$4 = {}, _defineProperty(_actions$4, Actions$5.LOAD_TEM
       return date.format('MMM DD, YYYY');
     }
   }
-});var _withScopeId = function _withScopeId(n) {
+});var _withScopeId$1 = function _withScopeId(n) {
   return vue.pushScopeId("data-v-2579f0c4"), n = n(), vue.popScopeId(), n;
 };
 
-var _hoisted_1$l = {
+var _hoisted_1$m = {
   class: "container row itemTemplate"
 };
 var _hoisted_2$e = {
   class: "col-md-4"
 };
 
-var _hoisted_3$8 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_3$9 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("div", {
     class: "sectionLabel"
   }, "Overview", -1);
 });
 
-var _hoisted_4$6 = [_hoisted_3$8];
+var _hoisted_4$6 = [_hoisted_3$9];
 
-var _hoisted_5$5 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_5$6 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("div", {
     class: "sectionLabel"
   }, "Notifications", -1);
 });
 
-var _hoisted_6$5 = [_hoisted_5$5];
+var _hoisted_6$5 = [_hoisted_5$6];
 var _hoisted_7$3 = ["onClick"];
 
-var _hoisted_8$3 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_8$3 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("div", {
     class: "sectionLabel"
   }, "Forms", -1);
 });
 
 var _hoisted_9$1 = [_hoisted_8$3];
-var _hoisted_10 = ["onClick"];
+var _hoisted_10$1 = ["onClick"];
 
-var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_11$1 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("div", {
     class: "sectionLabel"
   }, "Metadata Forms", -1);
 });
 
-var _hoisted_12 = [_hoisted_11];
-var _hoisted_13 = ["onClick"];
-var _hoisted_14 = {
+var _hoisted_12$1 = [_hoisted_11$1];
+var _hoisted_13$1 = ["onClick"];
+var _hoisted_14$1 = {
   class: "col-md-8"
 };
-var _hoisted_15 = {
+var _hoisted_15$1 = {
   key: 0,
   class: "col-12 wrapper"
 };
 
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_16$1 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("h4", null, "Overview", -1);
 });
 
-var _hoisted_17 = [_hoisted_16];
-var _hoisted_18 = {
+var _hoisted_17$1 = [_hoisted_16$1];
+var _hoisted_18$1 = {
   key: 1,
   class: "col-12 wrapper"
 };
 
-var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_19$1 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("h4", null, "Notifications", -1);
 });
 
-var _hoisted_20 = [_hoisted_19];
-var _hoisted_21 = {
+var _hoisted_20$1 = [_hoisted_19$1];
+var _hoisted_21$1 = {
   key: 0
 };
-var _hoisted_22 = {
+var _hoisted_22$1 = {
   key: 2,
   class: "col-12 wrapper"
 };
 
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_23$1 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("h4", null, "Forms", -1);
 });
 
-var _hoisted_24 = [_hoisted_23];
+var _hoisted_24 = [_hoisted_23$1];
 var _hoisted_25 = {
   key: 0
 };
@@ -1817,7 +1817,7 @@ var _hoisted_26 = {
   class: "col-12 wrapper"
 };
 
-var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_27 = /*#__PURE__*/_withScopeId$1(function () {
   return /*#__PURE__*/vue.createElementVNode("h4", null, "Metadata Forms", -1);
 });
 
@@ -1834,7 +1834,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_MetadatasetEditor = vue.resolveComponent("MetadatasetEditor");
 
-  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [vue.createElementVNode("h3", null, vue.toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), vue.createElementVNode("div", _hoisted_1$l, [vue.createElementVNode("div", _hoisted_2$e, [vue.createElementVNode("div", {
+  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [vue.createElementVNode("h3", null, vue.toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), vue.createElementVNode("div", _hoisted_1$m, [vue.createElementVNode("div", _hoisted_2$e, [vue.createElementVNode("div", {
     class: vue.normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'overview' || _ctx.activePanel == null ? 'active' : '']),
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.activePanel = 'overview';
@@ -1866,13 +1866,13 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return _ctx.activePanel = form.id;
       }
-    }, vue.toDisplayString(form.name.concatenatedContent), 11, _hoisted_10);
+    }, vue.toDisplayString(form.name.concatenatedContent), 11, _hoisted_10$1);
   }), 128)), vue.createElementVNode("div", {
     class: "col-12 menuEntry",
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return _ctx.activePanel = 'metadata-forms';
     })
-  }, _hoisted_12), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList((_ctx$metadataSets2 = _ctx.metadataSets) === null || _ctx$metadataSets2 === void 0 ? void 0 : _ctx$metadataSets2.filter(function (m) {
+  }, _hoisted_12$1), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList((_ctx$metadataSets2 = _ctx.metadataSets) === null || _ctx$metadataSets2 === void 0 ? void 0 : _ctx$metadataSets2.filter(function (m) {
     return m.isTemplate == false;
   }), function (ms) {
     return vue.openBlock(), vue.createElementBlock("div", {
@@ -1881,17 +1881,17 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return _ctx.activePanel = ms.id;
       }
-    }, vue.toDisplayString(ms.name.concatenatedContent), 11, _hoisted_13);
-  }), 128))]), vue.createElementVNode("div", _hoisted_14, [_ctx.activePanel == null || _ctx.activePanel == 'overview' ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_15, _hoisted_17)) : vue.createCommentVNode("", true), _ctx.activePanel == 'notifications' ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_18, _hoisted_20)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList((_ctx$metadataSets3 = _ctx.metadataSets) === null || _ctx$metadataSets3 === void 0 ? void 0 : _ctx$metadataSets3.filter(function (m) {
+    }, vue.toDisplayString(ms.name.concatenatedContent), 11, _hoisted_13$1);
+  }), 128))]), vue.createElementVNode("div", _hoisted_14$1, [_ctx.activePanel == null || _ctx.activePanel == 'overview' ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_15$1, _hoisted_17$1)) : vue.createCommentVNode("", true), _ctx.activePanel == 'notifications' ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_18$1, _hoisted_20$1)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList((_ctx$metadataSets3 = _ctx.metadataSets) === null || _ctx$metadataSets3 === void 0 ? void 0 : _ctx$metadataSets3.filter(function (m) {
     return m.isTemplate == true;
   }), function (ms) {
     return vue.openBlock(), vue.createElementBlock("div", {
       key: ms.id,
       class: "col-12 wrapper"
-    }, [_ctx.activePanel == ms.id ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_21, [vue.createVNode(_component_NotificationEditor, {
+    }, [_ctx.activePanel == ms.id ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_21$1, [vue.createVNode(_component_NotificationEditor, {
       fieldContainer: ms
     }, null, 8, ["fieldContainer"])])) : vue.createCommentVNode("", true)]);
-  }), 128)), _ctx.activePanel == 'forms' ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_22, _hoisted_24)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.dataContainer, function (form) {
+  }), 128)), _ctx.activePanel == 'forms' ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_22$1, _hoisted_24)) : vue.createCommentVNode("", true), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.dataContainer, function (form) {
     return vue.openBlock(), vue.createElementBlock("div", {
       key: form.id,
       class: "col-12 wrapper"
@@ -1933,8 +1933,8 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   } else {
     style.appendChild(document.createTextNode(css));
   }
-}var css_248z$3 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
-styleInject(css_248z$3);script$C.render = render$C;
+}var css_248z$4 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
+styleInject(css_248z$4);script$C.render = render$C;
 script$C.__scopeId = "data-v-2579f0c4";var script$B = vue.defineComponent({
   name: "ItemTemplateEditor",
   components: {
@@ -1959,12 +1959,12 @@ script$C.__scopeId = "data-v-2579f0c4";var script$B = vue.defineComponent({
     mutations: mutations$5,
     getters: getters$5
   }
-});var _hoisted_1$k = /*#__PURE__*/vue.createElementVNode("h3", null, "Item Template Editor", -1);
+});var _hoisted_1$l = /*#__PURE__*/vue.createElementVNode("h3", null, "Item Template Editor", -1);
 
 function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ItemTemplate = vue.resolveComponent("ItemTemplate");
 
-  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [_hoisted_1$k, vue.createElementVNode("div", null, "Item Template ID: " + vue.toDisplayString(_ctx.queryParameters.id), 1), vue.createVNode(_component_ItemTemplate)], 64);
+  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [_hoisted_1$l, vue.createElementVNode("div", null, "Item Template ID: " + vue.toDisplayString(_ctx.queryParameters.id), 1), vue.createVNode(_component_ItemTemplate)], 64);
 }script$B.render = render$B;var script$A = vue.defineComponent({
   name: "ItemEditor",
   components: {},
@@ -1981,10 +1981,10 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   mounted: function mounted() {
     console.log('Editor mounted ...');
   }
-});var _hoisted_1$j = /*#__PURE__*/vue.createElementVNode("h2", null, "Item Ediror", -1);
+});var _hoisted_1$k = /*#__PURE__*/vue.createElementVNode("h2", null, "Item Ediror", -1);
 
 function render$A(_ctx, _cache, $props, $setup, $data, $options) {
-  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$j, vue.createElementVNode("div", null, "Item ID: " + vue.toDisplayString(_ctx.queryParameters.id), 1)]);
+  return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$k, vue.createElementVNode("div", null, "Item ID: " + vue.toDisplayString(_ctx.queryParameters.id), 1)]);
 }script$A.render = render$A;//Declare State interface
 var state$3 = {
   id: null,
@@ -1997,20 +1997,27 @@ var Mutations$4; //Create a mutation tree that implement all mutation interfaces
 (function (Mutations) {
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_ITEM"] = "SET_ITEM";
+  Mutations["CHANGE_STATE"] = "CHANGE_STATE";
 })(Mutations$4 || (Mutations$4 = {}));
 
 var mutations$4 = (_mutations$3 = {}, _defineProperty(_mutations$3, Mutations$4.SET_ID, function (state, payload) {
   state.id = payload;
-  console.log("Mutations.SET_ID: ", state.id);
 }), _defineProperty(_mutations$3, Mutations$4.SET_ITEM, function (state, payload) {
   state.item = payload;
-}), _mutations$3);var Actions$4;
+}), _defineProperty(_mutations$3, Mutations$4.CHANGE_STATE, function (state, payload) {
+  //state.item
+  console.log(JSON.stringify(state));
+  console.log(JSON.stringify(payload));
+}), _mutations$3);var _actions$4;
+//Declare ActionTypes
+var Actions$4;
 
 (function (Actions) {
   Actions["LOAD_ITEM"] = "LOAD_ITEM";
+  Actions["CHANGE_STATE"] = "CHANGE_STATE";
 })(Actions$4 || (Actions$4 = {}));
 
-var actions$4 = _defineProperty({}, Actions$4.LOAD_ITEM, function (store) {
+var actions$4 = (_actions$4 = {}, _defineProperty(_actions$4, Actions$4.LOAD_ITEM, function (store) {
   var api = window.location.origin + "/applets/api/itemeditor/".concat(store.state.id);
   console.log('Item Load API: ', api);
   fetch(api).then(function (response) {
@@ -2018,7 +2025,52 @@ var actions$4 = _defineProperty({}, Actions$4.LOAD_ITEM, function (store) {
   }).then(function (data) {
     store.commit(Mutations$4.SET_ITEM, data);
   });
-});var getters$4 = {
+}), _defineProperty(_actions$4, Actions$4.CHANGE_STATE, function (store, payload) {
+  console.log(JSON.stringify(store.state));
+  var api = window.location.origin + "/applets/api/itemeditor/deleteItem/".concat(payload);
+  console.log('Item Load API: ', api);
+  fetch(api, {
+    method: "post"
+  }).then(function (response) {
+    //response.json()
+    console.log(response.status);
+
+    switch (response.status) {
+      case 200:
+        window.location.href = "/"; //alert("TODO: change me to redirect to home page.");
+
+        break;
+
+      case 401:
+        alert("Authorization failed.");
+        break;
+
+      case 404:
+        alert("Item not found.");
+        break;
+
+      case 500:
+        alert("Internal server error occurred.");
+        break;
+
+      default:
+        alert("Unknown error occurred.");
+        break;
+    }
+  }) ////.then(data => {
+  ////    console.log(data);
+  ////    //if (data.status == 200) {
+  ////    //    console.log("status ok "  + data.status);
+  ////    //    //window.location.href = window.location.origin;
+  ////    //} else {
+  ////    //    alert("HTTP response return status code " + data.status);
+  ////    //}
+  ////})
+  .catch(function (error) {
+    alert("Unknown error occurred.");
+    console.log(error);
+  });
+}), _actions$4);var getters$4 = {
   rootDataItem: function rootDataItem(state) {
     var _state$item, _state$item$dataConta, _state$item$dataConta2;
 
@@ -2114,17 +2166,17 @@ var OptionsFieldMethods = /*#__PURE__*/function () {
       return (text === null || text === void 0 ? void 0 : text.startsWith("http://")) || (text === null || text === void 0 ? void 0 : text.startsWith("https://"));
     }
   }
-});var _hoisted_1$i = {
+});var _hoisted_1$j = {
   key: 0
 };
 var _hoisted_2$d = ["href"];
-var _hoisted_3$7 = {
+var _hoisted_3$8 = {
   key: 1
 };
 function render$z(_ctx, _cache, $props, $setup, $data, $options) {
-  return _ctx.isUrl(_ctx.model.value) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$i, [vue.createElementVNode("a", {
+  return _ctx.isUrl(_ctx.model.value) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$j, [vue.createElementVNode("a", {
     href: _ctx.model.value
-  }, vue.toDisplayString(_ctx.model.value), 9, _hoisted_2$d)])) : (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$7, vue.toDisplayString(_ctx.model.value), 1));
+  }, vue.toDisplayString(_ctx.model.value), 9, _hoisted_2$d)])) : (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$8, vue.toDisplayString(_ctx.model.value), 1));
 }script$z.render = render$z;var script$y = vue.defineComponent({
   name: "TextCollection",
   props: {
@@ -2354,19 +2406,19 @@ function render$z(_ctx, _cache, $props, $setup, $data, $options) {
       return (field.cssClass ? field.cssClass : "") + " " + (field.fieldCssClass ? field.fieldCssClass : "");
     }
   }
-});var _hoisted_1$h = {
+});var _hoisted_1$i = {
   class: "field-name col-md-3"
 };
 var _hoisted_2$c = {
   class: "field-value col-md-9"
 };
-var _hoisted_3$6 = {
+var _hoisted_3$7 = {
   key: 7
 };
 var _hoisted_4$5 = {
   key: 8
 };
-var _hoisted_5$4 = {
+var _hoisted_5$5 = {
   key: 9
 };
 var _hoisted_6$4 = {
@@ -2390,7 +2442,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
   return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.fields.$values, function (field) {
     return vue.openBlock(), vue.createElementBlock("div", {
       class: vue.normalizeClass(["row", _ctx.cssClass(field)])
-    }, [vue.createElementVNode("div", _hoisted_1$h, vue.toDisplayString(field.name.concatenatedContent), 1), vue.createElementVNode("div", _hoisted_2$c, [_this.isTextField(field) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
+    }, [vue.createElementVNode("div", _hoisted_1$i, vue.toDisplayString(field.name.concatenatedContent), 1), vue.createElementVNode("div", _hoisted_2$c, [_this.isTextField(field) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
       key: 0,
       model: field
     }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isTextArea(field) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
@@ -2411,7 +2463,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isDateField(field) ? (vue.openBlock(), vue.createBlock(_component_DateField, {
       key: 6,
       model: field
-    }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isAttachmentField(_ctx.model) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$6, " AttachmentField ")) : vue.createCommentVNode("", true), _this.isCompositeField(_ctx.model) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$5, " CompositeField ")) : vue.createCommentVNode("", true), _this.isInfoSection(_ctx.model) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$4, " InfoSection ")) : vue.createCommentVNode("", true), _this.isMonolingualTextField(_ctx.model) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
+    }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isAttachmentField(_ctx.model) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$7, " AttachmentField ")) : vue.createCommentVNode("", true), _this.isCompositeField(_ctx.model) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$5, " CompositeField ")) : vue.createCommentVNode("", true), _this.isInfoSection(_ctx.model) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$5, " InfoSection ")) : vue.createCommentVNode("", true), _this.isMonolingualTextField(_ctx.model) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
       key: 10,
       model: field
     }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isTableField(_ctx.model) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$4, " TableField ")) : vue.createCommentVNode("", true)])], 2);
@@ -2464,7 +2516,7 @@ var script$q = vue.defineComponent({
       fileUrl: fileUrl
     };
   }
-});var _hoisted_1$g = ["href"];
+});var _hoisted_1$h = ["href"];
 var _hoisted_2$b = ["src"];
 function render$p(_ctx, _cache, $props, $setup, $data, $options) {
   return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.files.$values, function (file) {
@@ -2473,10 +2525,10 @@ function render$p(_ctx, _cache, $props, $setup, $data, $options) {
     }, [vue.createElementVNode("img", {
       src: file.thumbnail,
       class: "img-thumbnail"
-    }, null, 8, _hoisted_2$b)], 8, _hoisted_1$g), vue.createTextVNode(vue.toDisplayString(file.originalFileName), 1)]);
+    }, null, 8, _hoisted_2$b)], 8, _hoisted_1$h), vue.createTextVNode(vue.toDisplayString(file.originalFileName), 1)]);
   }), 256);
-}var css_248z$2 = "\n.img-thumbnail[data-v-307ae89a]{\r\n        width:35px;\r\n        height: auto;\r\n        margin-right: 10px;\n}\r\n";
-styleInject(css_248z$2);script$p.render = render$p;
+}var css_248z$3 = "\n.img-thumbnail[data-v-307ae89a]{\r\n        width:35px;\r\n        height: auto;\r\n        margin-right: 10px;\n}\r\n";
+styleInject(css_248z$3);script$p.render = render$p;
 script$p.__scopeId = "data-v-307ae89a";var script$o = vue.defineComponent({
   name: "InfoField",
   props: {
@@ -2485,19 +2537,20 @@ script$p.__scopeId = "data-v-307ae89a";var script$o = vue.defineComponent({
       required: true
     }
   }
-});var _hoisted_1$f = ["innerHTML"];
+});var _hoisted_1$g = ["innerHTML"];
 function render$o(_ctx, _cache, $props, $setup, $data, $options) {
   return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.content.values.$values, function (val) {
     return vue.openBlock(), vue.createElementBlock("div", {
       key: val.id
     }, [vue.createElementVNode("div", {
       innerHTML: val.value
-    }, null, 8, _hoisted_1$f)]);
+    }, null, 8, _hoisted_1$g)]);
   }), 128);
 }script$o.render = render$o;var script$n = vue.defineComponent({
   name: "FieldContainer",
   props: {
-    model: null
+    model: null,
+    hideFieldNames: Boolean
   },
   components: {
     TextField: script$x,
@@ -2559,18 +2612,26 @@ function render$o(_ctx, _cache, $props, $setup, $data, $options) {
     },
     cssClass: function cssClass(field) {
       return field.cssClass + " " + field.fieldCssClass;
+    },
+    formatDate: function formatDate(dateString) {
+      var date = dayjs(dateString);
+      return date.format('MMM DD, YYYY');
     }
   }
-});var _hoisted_1$e = {
-  class: "field-name col-md-3"
+});var _hoisted_1$f = {
+  class: "timeStamp"
 };
 var _hoisted_2$a = {
+  key: 0,
+  class: "field-name col-md-3"
+};
+var _hoisted_3$6 = {
   class: "field-value col-md-9"
 };
-var _hoisted_3$5 = {
+var _hoisted_4$4 = {
   key: 10
 };
-var _hoisted_4$4 = {
+var _hoisted_5$4 = {
   key: 11
 };
 function render$n(_ctx, _cache, $props, $setup, $data, $options) {
@@ -2594,7 +2655,7 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_InfoField = vue.resolveComponent("InfoField");
 
-  return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.fields.$values, function (field) {
+  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [vue.createElementVNode("div", _hoisted_1$f, vue.toDisplayString(_ctx.formatDate(_ctx.model.created)), 1), (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.fields.$values, function (field) {
     return vue.openBlock(), vue.createElementBlock("div", null, [_this.isFieldContainerReference(field) ? (vue.openBlock(), vue.createElementBlock("div", {
       key: 0,
       class: vue.normalizeClass(_ctx.cssClass(field))
@@ -2603,7 +2664,7 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])], 2)) : (vue.openBlock(), vue.createElementBlock("div", {
       key: 1,
       class: vue.normalizeClass(["row", _ctx.cssClass(field)])
-    }, [vue.createElementVNode("div", _hoisted_1$e, vue.toDisplayString(field.name.concatenatedContent), 1), vue.createElementVNode("div", _hoisted_2$a, [_this.isTextField(field) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
+    }, [!_ctx.hideFieldNames ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$a, vue.toDisplayString(field.name.concatenatedContent), 1)) : vue.createCommentVNode("", true), vue.createElementVNode("div", _hoisted_3$6, [_this.isTextField(field) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
       key: 0,
       model: field
     }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isTextArea(field) ? (vue.openBlock(), vue.createBlock(_component_TextField, {
@@ -2633,8 +2694,8 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isInfoSection(field) ? (vue.openBlock(), vue.createBlock(_component_InfoField, {
       key: 9,
       model: field
-    }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isCompositeField(field) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$5, " CompositeField ")) : vue.createCommentVNode("", true), _this.isTableField(field) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$4, " TableField ")) : vue.createCommentVNode("", true)])], 2))]);
-  }), 256);
+    }, null, 8, ["model"])) : vue.createCommentVNode("", true), _this.isCompositeField(field) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$4, " CompositeField ")) : vue.createCommentVNode("", true), _this.isTableField(field) ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$4, " TableField ")) : vue.createCommentVNode("", true)])], 2))]);
+  }), 256))], 64);
 }script$n.render = render$n;var script$m = vue.defineComponent({
   name: "ItemViewer",
   components: {
@@ -2643,17 +2704,22 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
   props: props,
   setup: function setup(p) {
     var store = useStore();
+    var dataAttributes = p.dataAttributes;
     console.log('Item Viewer setup ...');
     console.log('props: ', JSON.stringify(p));
+    var isAdmin = dataAttributes["is-admin"];
+    console.log('isAdmin: ', isAdmin);
     var queryParams = p.queryParameters;
     store.commit(Mutations$4.SET_ID, queryParams.iid); //load the data
 
     store.dispatch(Actions$4.LOAD_ITEM);
     return {
+      store: store,
       queryParams: queryParams,
       dataItem: vue.computed(function () {
         return store.getters.rootDataItem;
-      })
+      }),
+      isAdmin: isAdmin
     };
   },
   storeConfig: {
@@ -2661,17 +2727,36 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
     actions: actions$4,
     mutations: mutations$4,
     getters: getters$4
+  },
+  methods: {
+    changeItemState: function changeItemState(itemId) {
+      if (confirm("Do you really want to delete this item?")) {
+        // this.store.dispatch(Actions.DELETE_CHILD_INSTANCE, itemToRemove);
+        console.log("id: " + itemId);
+        this.store.dispatch(Actions$4.CHANGE_STATE, itemId);
+      }
+    }
   }
-});function render$m(_ctx, _cache, $props, $setup, $data, $options) {
+});var _hoisted_1$e = {
+  key: 0,
+  class: "text-right"
+};
+function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_FieldContainer = vue.resolveComponent("FieldContainer");
 
-  return _ctx.dataItem ? (vue.openBlock(), vue.createBlock(_component_FieldContainer, {
-    key: 0,
-    model: _ctx.dataItem
-  }, null, 8, ["model"])) : vue.createCommentVNode("", true);
-}var css_248z$1 = "\n.field-name[data-v-a52f5804]{\r\n        font-weight:bold !important;\n}\r\n";
-styleInject(css_248z$1);script$m.render = render$m;
-script$m.__scopeId = "data-v-a52f5804";var eIndexingStatus;
+  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [_ctx.isAdmin ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$e, [vue.createElementVNode("span", {
+    class: "fas fa-remove",
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      _ctx.changeItemState(_ctx.queryParams.iid);
+    })
+  })])) : vue.createCommentVNode("", true), _ctx.dataItem ? (vue.openBlock(), vue.createBlock(_component_FieldContainer, {
+    key: 1,
+    model: _ctx.dataItem,
+    class: "item"
+  }, null, 8, ["model"])) : vue.createCommentVNode("", true)], 64);
+}var css_248z$2 = "\n.field-name[data-v-19fa11d4] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-19fa11d4] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
+styleInject(css_248z$2);script$m.render = render$m;
+script$m.__scopeId = "data-v-19fa11d4";var eIndexingStatus;
 
 (function (eIndexingStatus) {
   eIndexingStatus[eIndexingStatus["InProgress"] = 1] = "InProgress";
@@ -2774,7 +2859,7 @@ var _hoisted_2$9 = /*#__PURE__*/vue.createElementVNode("p", {
   class: "card-text"
 }, "With supporting text below as a natural lead-in to additional content.", -1);
 
-var _hoisted_3$4 = {
+var _hoisted_3$5 = {
   key: 1,
   class: "btn btn-danger",
   disabled: ""
@@ -2804,7 +2889,7 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.reindexData && _ctx.reindexData.apply(_ctx, arguments);
     })
-  }, "Reindex")) : (vue.openBlock(), vue.createElementBlock("button", _hoisted_3$4, "Indexing In-progress")), _hoisted_4$3, _hoisted_5$3, _hoisted_6$3, _hoisted_7$2, _ctx.isPageIndexingReady ? (vue.openBlock(), vue.createElementBlock("button", {
+  }, "Reindex")) : (vue.openBlock(), vue.createElementBlock("button", _hoisted_3$5, "Indexing In-progress")), _hoisted_4$3, _hoisted_5$3, _hoisted_6$3, _hoisted_7$2, _ctx.isPageIndexingReady ? (vue.openBlock(), vue.createElementBlock("button", {
     key: 2,
     class: "btn btn-primary",
     onClick: _cache[1] || (_cache[1] = function () {
@@ -2838,13 +2923,13 @@ var _hoisted_2$8 = /*#__PURE__*/vue.createElementVNode("div", {
   class: "card-header"
 }, " Indexing Processes ", -1);
 
-var _hoisted_3$3 = {
+var _hoisted_3$4 = {
   class: "card-body"
 };
 function render$k(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_IndexingPanel = vue.resolveComponent("IndexingPanel");
 
-  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$c, [_hoisted_2$8, vue.createElementVNode("div", _hoisted_3$3, [vue.createVNode(_component_IndexingPanel)])]);
+  return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$c, [_hoisted_2$8, vue.createElementVNode("div", _hoisted_3$4, [vue.createVNode(_component_IndexingPanel)])]);
 }script$k.render = render$k;var _mutations$1;
 
 //Declare MutationTypes
@@ -3045,8 +3130,8 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
     "debounce-ms": 250,
     class: "img-div"
   }, null, 8, ["image"]), vue.createElementVNode("h2", null, vue.toDisplayString(_ctx.title), 1), vue.createElementVNode("h4", null, vue.toDisplayString(_ctx.subTitle), 1)]);
-}var css_248z = "\n.cf-card{\r\n        text-align:center;\n}\r\n";
-styleInject(css_248z);script$i.render = render$i;var script$h = vue.defineComponent({
+}var css_248z$1 = "\n.cf-card{\r\n        text-align:center;\n}\r\n";
+styleInject(css_248z$1);script$i.render = render$i;var script$h = vue.defineComponent({
   name: "Applet",
   components: {
     CardTemplate: script$i
@@ -3149,7 +3234,7 @@ var Guid = /** @class */ (function () {
 exports.Guid = Guid;
 });
 
-var guid$1 = guid;var eSubmissionStatus; //Declare State interface
+var guid$1 = guid;var eSubmissionStatus;
 
 (function (eSubmissionStatus) {
   eSubmissionStatus["None"] = "None";
@@ -3322,6 +3407,8 @@ function isRichTextField(field) {
 }var state$1 = {
   itemTemplateId: null,
   formId: null,
+  collectionId: null,
+  groupId: null,
   form: null,
   flattenedTextModels: {},
   flattenedOptionModels: {},
@@ -3330,7 +3417,9 @@ function isRichTextField(field) {
   formSubmissionAPI: null
 };var state = _objectSpread2$1({
   itemInstanceId: null,
-  formInstances: []
+  childResponseFormId: null,
+  childResponseForm: null,
+  formInstances: null
 }, state$1);var RegExpressions = function RegExpressions() {
   _classCallCheck(this, RegExpressions);
 };
@@ -3497,21 +3586,29 @@ function validateFields(form) {
 var Mutations$1; //Create a mutation tree that implement all mutation interfaces
 
 (function (Mutations) {
+  Mutations["CLEAR_FLATTENED_FIELD_MODELS"] = "CLEAR_FLATTENED_FIELD_mODELS";
   Mutations["SET_ITEM_TEMPLATE_ID"] = "SET_ITEM_TEMPLATE_ID";
   Mutations["SET_FORM_ID"] = "SET_FORM_ID";
   Mutations["SET_FORM"] = "SET_FORM";
   Mutations["SET_SUBMISSION_STATUS"] = "SET_SUBMISSION_STATUS";
+  Mutations["SET_COLLECTION_ID"] = "SET_COLLECTION_ID";
+  Mutations["SET_GROUP_ID"] = "SET_GROUP_ID";
 })(Mutations$1 || (Mutations$1 = {}));
 
-var mutations$1 = (_mutations = {}, _defineProperty(_mutations, Mutations$1.SET_ITEM_TEMPLATE_ID, function (state, payload) {
+var mutations$1 = (_mutations = {}, _defineProperty(_mutations, Mutations$1.CLEAR_FLATTENED_FIELD_MODELS, function (state) {
+  state.flattenedTextModels = {};
+  state.flattenedOptionModels = {};
+}), _defineProperty(_mutations, Mutations$1.SET_ITEM_TEMPLATE_ID, function (state, payload) {
   state.itemTemplateId = payload;
 }), _defineProperty(_mutations, Mutations$1.SET_FORM_ID, function (state, payload) {
   state.formId = payload;
+}), _defineProperty(_mutations, Mutations$1.SET_COLLECTION_ID, function (state, payload) {
+  state.collectionId = payload;
+}), _defineProperty(_mutations, Mutations$1.SET_GROUP_ID, function (state, payload) {
+  state.groupId = payload;
 }), _defineProperty(_mutations, Mutations$1.SET_FORM, function (state, payload) {
   state.form = payload;
-  state.flattenedTextModels = {};
-  state.flattenedOptionModels = {};
-  flattenFieldInputs(state.form, state); //    console.log("state\n", JSON.stringify(state))
+  flattenFieldInputs(state.form, state); //console.log("state\n", JSON.stringify(state))
 }), _defineProperty(_mutations, FlattenedFormFiledMutations.SET_TEXT_VALUE, function (state, payload) {
   var _state$form;
 
@@ -3531,31 +3628,93 @@ var Mutations; //Create a mutation tree that implement all mutation interfaces
 
 (function (Mutations) {
   Mutations["SET_SUBMISSIONS"] = "SET_SUBMISSIONS";
-  Mutations["SET_PATENT_ITEM_ID"] = "SET_PATENT_ITEM_ID";
+  Mutations["SET_PARENT_ITEM_ID"] = "SET_PARENT_ITEM_ID";
+  Mutations["APPEND_CHILD_INSTANCE"] = "APPEND_CHILD_INSTANCE";
+  Mutations["SET_RESPONSE_FORM_ID"] = "SET_RESPONSE_FORM_ID";
+  Mutations["SET_RESPONSE_FORM"] = "SET_RESPONSE_FORM";
+  Mutations["APPEND_CHILD_RESPONSE_INSTANCE"] = "APPEND_CHILD_RESPONSE_INSTANCE";
+  Mutations["DELETE_CHILD_RESPONSE_INSTANCE"] = "DELETE_CHILD_RESPONSE_INSTANCE";
+  Mutations["DELETE_CHILD_INSTANCE"] = "DELETE_CHILD_INSTANCE";
 })(Mutations || (Mutations = {}));
 
 var mutations = _objectSpread2$1((_objectSpread2 = {}, _defineProperty(_objectSpread2, Mutations.SET_SUBMISSIONS, function (state, payload) {
   state.formInstances = payload;
-}), _defineProperty(_objectSpread2, Mutations.SET_PATENT_ITEM_ID, function (state, payload) {
+}), _defineProperty(_objectSpread2, Mutations.SET_PARENT_ITEM_ID, function (state, payload) {
   state.itemInstanceId = payload;
-}), _objectSpread2), mutations$1);var _actions$1;
+}), _defineProperty(_objectSpread2, Mutations.APPEND_CHILD_INSTANCE, function (state, payload) {
+  var _state$formInstances;
 
+  (_state$formInstances = state.formInstances) === null || _state$formInstances === void 0 ? void 0 : _state$formInstances.$values.unshift(payload);
+}), _defineProperty(_objectSpread2, Mutations.SET_RESPONSE_FORM_ID, function (state, payload) {
+  state.childResponseFormId = payload;
+}), _defineProperty(_objectSpread2, Mutations.SET_RESPONSE_FORM, function (state, payload) {
+  state.childResponseForm = payload;
+  flattenFieldInputs(state.childResponseForm, state);
+}), _defineProperty(_objectSpread2, Mutations.APPEND_CHILD_RESPONSE_INSTANCE, function (state, payload) {
+  var _state$formInstances2;
+
+  var parent = (_state$formInstances2 = state.formInstances) === null || _state$formInstances2 === void 0 ? void 0 : _state$formInstances2.$values.find(function (inst) {
+    return inst.id === (payload === null || payload === void 0 ? void 0 : payload.parentId);
+  });
+
+  if (parent) {
+    var _parent$childFieldCon;
+
+    (_parent$childFieldCon = parent.childFieldContainers) === null || _parent$childFieldCon === void 0 ? void 0 : _parent$childFieldCon.$values.push(payload);
+  }
+}), _defineProperty(_objectSpread2, Mutations.DELETE_CHILD_RESPONSE_INSTANCE, function (state, payload) {
+  var _state$formInstances3;
+
+  var parent = (_state$formInstances3 = state.formInstances) === null || _state$formInstances3 === void 0 ? void 0 : _state$formInstances3.$values.find(function (inst) {
+    return inst.id === (payload === null || payload === void 0 ? void 0 : payload.parentId);
+  });
+
+  if (parent) {
+    var _parent$childFieldCon2, _parent$childFieldCon3;
+
+    var indexToRemove = parent === null || parent === void 0 ? void 0 : (_parent$childFieldCon2 = parent.childFieldContainers) === null || _parent$childFieldCon2 === void 0 ? void 0 : _parent$childFieldCon2.$values.indexOf(payload); //console.log("index to remove " + indexToRemove);
+
+    if (indexToRemove >= 0) (_parent$childFieldCon3 = parent.childFieldContainers) === null || _parent$childFieldCon3 === void 0 ? void 0 : _parent$childFieldCon3.$values.splice(indexToRemove, 1);
+  }
+}), _defineProperty(_objectSpread2, Mutations.DELETE_CHILD_INSTANCE, function (state, payload) {
+  var _state$formInstances4, _state$formInstances5;
+
+  var indexToRemove = (_state$formInstances4 = state.formInstances) === null || _state$formInstances4 === void 0 ? void 0 : (_state$formInstances5 = _state$formInstances4.$values) === null || _state$formInstances5 === void 0 ? void 0 : _state$formInstances5.indexOf(payload);
+
+  if (typeof indexToRemove != 'undefined' && indexToRemove >= 0) {
+    var _state$formInstances6;
+
+    (_state$formInstances6 = state.formInstances) === null || _state$formInstances6 === void 0 ? void 0 : _state$formInstances6.$values.splice(indexToRemove, 1);
+  }
+}), _objectSpread2), mutations$1);var _actions$1;
+//Declare ActionTypes
 var Actions$1;
 
 (function (Actions) {
   Actions["LOAD_FORM"] = "LOAD_FORM";
   Actions["LOAD_SUBMISSIONS"] = "LOAD_SUBMISSIONS";
+  Actions["LOAD_RESPONSE_FORM"] = "LOAD_RESPONSE_FORM";
   Actions["SUBMIT_CHILD_FORM"] = "SUBMIT_CHILD_FORM";
+  Actions["SUBMIT_CHILD_RESPONSE_FORM"] = "SUBMIT_CHILD_RESPONSE_FORM";
+  Actions["DELETE_CHILD_RESPONSE_INSTANCE"] = "DELETE_CHILD_RESPONSE_INSTANCE";
+  Actions["DELETE_CHILD_INSTANCE"] = "DELETE_CHILD_INSTANCE";
 })(Actions$1 || (Actions$1 = {}));
 
 var actions$1 = (_actions$1 = {}, _defineProperty(_actions$1, Actions$1.LOAD_FORM, function (store) {
   var api = window.location.origin + "/applets/api/itemeditor/getchildform/".concat(store.state.itemInstanceId, "/").concat(store.state.formId);
-  console.log('Form Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
   }).then(function (data) {
-    //console.log('Data:\n', JSON.stringify(data));
     store.commit(Mutations$1.SET_FORM, data);
+  }).catch(function (error) {
+    console.error('Actions.LOAD_FORM Error: ', error);
+  });
+}), _defineProperty(_actions$1, Actions$1.LOAD_RESPONSE_FORM, function (store) {
+  var api = window.location.origin + "/applets/api/itemeditor/getchildform/".concat(store.state.itemInstanceId, "/").concat(store.state.childResponseFormId);
+  fetch(api).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    store.commit(Mutations.SET_RESPONSE_FORM, data);
   }).catch(function (error) {
     console.error('Actions.LOAD_FORM Error: ', error);
   });
@@ -3576,21 +3735,75 @@ var actions$1 = (_actions$1 = {}, _defineProperty(_actions$1, Actions$1.LOAD_FOR
   var api = window.location.origin + "/applets/api/itemeditor/appendchildforminstance/".concat(store.state.itemInstanceId);
   var formData = new FormData();
   formData.append('datamodel', JSON.stringify(store.state.form));
-  console.log(JSON.stringify(store.state.form));
   fetch(api, {
     body: formData,
     method: "post"
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
-    console.log(JSON.stringify(data));
     var flattenModel = {
       flattenedOptionModels: store.state.flattenedOptionModels,
       flattenedTextModels: store.state.flattenedTextModels
     }; //clear the form content
 
     clearForm(flattenModel);
+    store.commit(Mutations.APPEND_CHILD_INSTANCE, data);
     store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Success");
+  }).catch(function (error) {
+    store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
+    console.log(error);
+  });
+}), _defineProperty(_actions$1, Actions$1.SUBMIT_CHILD_RESPONSE_FORM, function (store, parentId) {
+  //Validating the form
+  if (!store.state.childResponseForm || !validateFields(store.state.childResponseForm)) return;
+  var api = window.location.origin + "/applets/api/itemeditor/appendchildforminstance/".concat(store.state.itemInstanceId);
+  var formData = new FormData();
+  formData.append('datamodel', JSON.stringify(store.state.childResponseForm));
+  if (parentId) formData.append('parentId', parentId.toString());
+  fetch(api, {
+    body: formData,
+    method: "post"
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    //console.log("Response Data: \n", JSON.stringify(data))
+    store.commit(Mutations.APPEND_CHILD_RESPONSE_INSTANCE, data);
+    var flattenModel = {
+      flattenedOptionModels: store.state.flattenedOptionModels,
+      flattenedTextModels: store.state.flattenedTextModels
+    }; //clear the form content
+
+    clearForm(flattenModel);
+  }).catch(function (error) {
+    store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
+    console.log(error);
+  });
+}), _defineProperty(_actions$1, Actions$1.DELETE_CHILD_RESPONSE_INSTANCE, function (store, payload) {
+  var api = window.location.origin + "/applets/api/itemeditor/deleteChildForm/".concat(store.state.itemInstanceId, "/").concat(payload.id, "?parentId=").concat(payload.parentId);
+  fetch(api, {
+    method: "post"
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    if (data.id) {
+      console.log("deleteChildForm response received");
+      store.commit(Mutations.DELETE_CHILD_RESPONSE_INSTANCE, payload);
+    }
+  }).catch(function (error) {
+    store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
+    console.log(error);
+  });
+}), _defineProperty(_actions$1, Actions$1.DELETE_CHILD_INSTANCE, function (store, payload) {
+  var api = window.location.origin + "/applets/api/itemeditor/deleteChildForm/".concat(store.state.itemInstanceId, "/").concat(payload.id);
+  fetch(api, {
+    method: "post"
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    if (data.id) {
+      console.log("deleteChildForm response received");
+      store.commit(Mutations.DELETE_CHILD_RESPONSE_INSTANCE, payload);
+    }
   }).catch(function (error) {
     store.commit(Mutations$1.SET_SUBMISSION_STATUS, "Fail");
     console.log(error);
@@ -3676,7 +3889,7 @@ var _hoisted_2$6 = ["for"];
 function render$f(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
 
-  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.options.$values, function (option) {
+  return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.options.$values, function (option) {
     return vue.openBlock(), vue.createElementBlock("div", null, [vue.withDirectives(vue.createElementVNode("input", {
       type: "checkbox",
       id: option.id,
@@ -3690,7 +3903,7 @@ function render$f(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 40, _hoisted_1$8), [[vue.vModelCheckbox, _ctx.selectedoptions]]), vue.createElementVNode("label", {
       for: option.id
     }, vue.toDisplayString(_this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$6)]);
-  }), 256)), vue.createTextVNode(" Selected chekboxes: " + vue.toDisplayString(JSON.stringify(_ctx.selectedoptions)), 1)], 64);
+  }), 256);
 }script$f.render = render$f;/**
  * Copyright (c) 2018-present, Ephox, Inc.
  *
@@ -4054,8 +4267,8 @@ var Editor = Editor$1;var script$e = vue.defineComponent({
   },
   setup: function setup(p) {
     var store = useStore();
-    var field = p.field;
-    console.log("validationStatus: " + p.validationStatus);
+    var field = p.field; //console.log("validationStatus: " + p.validationStatus)
+
     return {
       store: store,
       field: field
@@ -4127,13 +4340,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
       validationStatus: validationStatus,
       type: type
     };
-  } //methods:{
-  //    formatDate(dateString: string) {
-  //        const date = dayjs(dateString);
-  //        return date.format('MMM DD, YYYY');
-  //    }
-  //}
-
+  }
 });function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$values;
 
@@ -4178,12 +4385,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
       validationStatus: validationStatus,
       type: type
     };
-  } //methods: {
-  //    formatToDecimal: (value : number, decimalPlaces : number) => {
-  //        return Number(value).toFixed(decimalPlaces);
-  //    }
-  //}
-
+  }
 });function render$c(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$values;
 
@@ -4356,12 +4558,11 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
 
 var _hoisted_2$4 = /*#__PURE__*/vue.createTextVNode();
 
+var _hoisted_3$3 = ["for"];
 function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
 
-  var _component_labe = vue.resolveComponent("labe");
-
-  return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.options.$values, function (option) {
+  return vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.model.options.$values, function (option) {
     return vue.openBlock(), vue.createElementBlock("div", null, [vue.withDirectives(vue.createElementVNode("input", {
       type: "radio",
       name: _ctx.name,
@@ -4370,15 +4571,10 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
       "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
         return _ctx.selected = $event;
       })
-    }, null, 8, _hoisted_1$5), [[vue.vModelRadio, _ctx.selected]]), _hoisted_2$4, vue.createVNode(_component_labe, {
+    }, null, 8, _hoisted_1$5), [[vue.vModelRadio, _ctx.selected]]), _hoisted_2$4, vue.createElementVNode("label", {
       for: option.id
-    }, {
-      default: vue.withCtx(function () {
-        return [vue.createTextVNode(vue.toDisplayString(_this.getConcatenatedOptionLabels(option)), 1)];
-      }),
-      _: 2
-    }, 1032, ["for"])]);
-  }), 256)), vue.createTextVNode(" " + vue.toDisplayString(JSON.stringify(_ctx.selected)), 1)], 64);
+    }, vue.toDisplayString(_this.getConcatenatedOptionLabels(option)), 9, _hoisted_3$3)]);
+  }), 256);
 }script$8.render = render$8;var script$7 = vue.defineComponent({
   name: "SelectField",
   components: {},
@@ -4448,7 +4644,7 @@ function render$7(_ctx, _cache, $props, $setup, $data, $options) {
       id: option.id,
       value: option.id
     }, vue.toDisplayString(_this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$3);
-  }), 256))], 512), [[vue.vModelSelect, _ctx.selected]]), vue.createElementVNode("span", null, "Selected: " + vue.toDisplayString(_ctx.selected), 1)]);
+  }), 256))], 512), [[vue.vModelSelect, _ctx.selected]])]);
 }script$7.render = render$7;var script$6 = vue.defineComponent({
   name: "TextCollection",
   props: {
@@ -4712,31 +4908,77 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     var itemId = guid$1.Guid.parse(queryParameters.iid);
     var itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
     var childFormId = guid$1.Guid.parse(dataAttributes["child-form-id"]);
+    var childResponseFormIdStr = dataAttributes["response-form-id"];
+    var isAdmin = dataAttributes["is-admin"];
+    var childResponseFormId = (childResponseFormIdStr === null || childResponseFormIdStr === void 0 ? void 0 : childResponseFormIdStr.length) > 0 ? guid$1.Guid.parse(childResponseFormIdStr) : undefined;
     var store = useStore();
+    store.commit(Mutations$1.CLEAR_FLATTENED_FIELD_MODELS);
     store.commit(Mutations$1.SET_ITEM_TEMPLATE_ID, itemTemplateId);
     store.commit(Mutations$1.SET_FORM_ID, childFormId);
-    store.commit(Mutations.SET_PATENT_ITEM_ID, itemId); //load the data
+    store.commit(Mutations.SET_PARENT_ITEM_ID, itemId); //load the data
 
     store.dispatch(Actions$1.LOAD_FORM);
-    store.dispatch(Actions$1.LOAD_SUBMISSIONS); //const submissionStatus = store.state.submissionStatus as SubmissionStatus;
-    // const submissionStatus: eSubmissionStatus = store.state.submissionStatus as eSubmissionStatus;
+    store.dispatch(Actions$1.LOAD_SUBMISSIONS);
+
+    if (childResponseFormId) {
+      store.commit(Mutations.SET_RESPONSE_FORM_ID, childResponseFormId);
+      store.dispatch(Actions$1.LOAD_RESPONSE_FORM);
+    } //const submissionStatus = store.state.submissionStatus as SubmissionStatus;
+    //const submissionStatus: eSubmissionStatus = store.state.submissionStatus as eSubmissionStatus;
     //console.log("initial status " + JSON.stringify(submissionStatus));
+
+
+    var responseDisplayFlags = vue.ref([]);
+    var childSubmissions = vue.computed(function () {
+      var _store$state$formInst;
+
+      return (_store$state$formInst = store.state.formInstances) === null || _store$state$formInst === void 0 ? void 0 : _store$state$formInst.$values;
+    });
+
+    var toggleDisplayResponse = function toggleDisplayResponse(index) {
+      if (responseDisplayFlags.value[index] != undefined) {
+        responseDisplayFlags.value[index] = !responseDisplayFlags.value[index];
+      } else {
+        responseDisplayFlags.value[index] = !responseDisplayFlags.value[index]; //true;
+      } //Closing all other response boxes
+
+
+      responseDisplayFlags.value.forEach(function (val, idx) {
+        if (val && idx !== index) responseDisplayFlags.value[idx] = false;
+      });
+      return false;
+    };
+
+    var submitChildResponse = function submitChildResponse(index) {
+      var _childSubmissions$val;
+
+      store.dispatch(Actions$1.SUBMIT_CHILD_RESPONSE_FORM, (_childSubmissions$val = childSubmissions.value[index]) === null || _childSubmissions$val === void 0 ? void 0 : _childSubmissions$val.id);
+      toggleDisplayResponse(index);
+    };
 
     return {
       childForm: vue.computed(function () {
         return store.state.form;
       }),
       childSubmissions: vue.computed(function () {
-        var _store$state$formInst;
+        var _store$state$formInst2;
 
-        return (_store$state$formInst = store.state.formInstances) === null || _store$state$formInst === void 0 ? void 0 : _store$state$formInst.$values;
+        return (_store$state$formInst2 = store.state.formInstances) === null || _store$state$formInst2 === void 0 ? void 0 : _store$state$formInst2.$values;
       }),
       store: store,
       submissionStatus: vue.computed(function () {
         return store.state.submissionStatus;
       }),
       eSubmissionStatus: eSubmissionStatus,
-      eValidationStatus: eValidationStatus
+      eValidationStatus: eValidationStatus,
+      childResponseFormId: childResponseFormId,
+      childResponseForm: vue.computed(function () {
+        return store.state.childResponseForm;
+      }),
+      responseDisplayFlags: responseDisplayFlags,
+      toggleDisplayResponse: toggleDisplayResponse,
+      submitChildResponse: submitChildResponse,
+      isAdmin: isAdmin
     };
   },
   storeConfig: {
@@ -4748,10 +4990,25 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   methods: {
     submitChildForm: function submitChildForm() {
       this.store.dispatch(Actions$1.SUBMIT_CHILD_FORM);
+    },
+    removeResponseForm: function removeResponseForm(itemToRemove) {
+      if (confirm("Do you really want to delete this item?")) {
+        this.store.dispatch(Actions$1.DELETE_CHILD_RESPONSE_INSTANCE, itemToRemove);
+      }
+    },
+    removeChildForm: function removeChildForm(itemToRemove) {
+      if (confirm("Do you really want to delete this item?")) {
+        this.store.dispatch(Actions$1.DELETE_CHILD_INSTANCE, itemToRemove);
+      }
     }
   }
-});var _hoisted_1$1 = {
-  key: 0
+});var _withScopeId = function _withScopeId(n) {
+  return vue.pushScopeId("data-v-74fdfa3c"), n = n(), vue.popScopeId(), n;
+};
+
+var _hoisted_1$1 = {
+  key: 0,
+  class: "submissionForm"
 };
 var _hoisted_2$1 = {
   key: 0,
@@ -4773,12 +5030,59 @@ var _hoisted_6$1 = {
   class: "alert alert-danger"
 };
 var _hoisted_7 = {
-  key: 1
+  key: 1,
+  class: "mt-2 submissionInstanceList"
 };
 
-var _hoisted_8 = /*#__PURE__*/vue.createElementVNode("h3", null, "Responses", -1);
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/vue.createElementVNode("h3", null, "Responses", -1);
+});
 
-var _hoisted_9 = /*#__PURE__*/vue.createElementVNode("hr", null, null, -1);
+var _hoisted_9 = {
+  class: "submissionInstance"
+};
+var _hoisted_10 = {
+  key: 0,
+  class: "text-right"
+};
+var _hoisted_11 = ["onClick"];
+
+var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/vue.createElementVNode("span", {
+    class: "fas fa-reply replyBtn"
+  }, null, -1);
+});
+
+var _hoisted_13 = [_hoisted_12];
+var _hoisted_14 = ["onClick"];
+var _hoisted_15 = {
+  class: "ml-3 submissionInstanceList"
+};
+var _hoisted_16 = {
+  class: "submissionInstance"
+};
+var _hoisted_17 = {
+  key: 0,
+  class: "text-right"
+};
+var _hoisted_18 = ["onClick"];
+var _hoisted_19 = {
+  key: 0,
+  class: "mb-2"
+};
+var _hoisted_20 = {
+  key: 0,
+  class: "childResponseForm"
+};
+var _hoisted_21 = {
+  key: 0,
+  class: "alert alert-danger"
+};
+var _hoisted_22 = ["onClick"];
+
+var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/vue.createElementVNode("hr", null, null, -1);
+});
 
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$childForm;
@@ -4794,12 +5098,47 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.submitChildForm();
     })
-  }, "Submit")])) : vue.createCommentVNode("", true), _ctx.childSubmissions && _ctx.childSubmissions.length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7, [_hoisted_8, (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.childSubmissions, function (child) {
-    return vue.openBlock(), vue.createElementBlock("div", null, [vue.createVNode(_component_ChildView, {
-      model: child
-    }, null, 8, ["model"]), _hoisted_9]);
+  }, "Submit")])) : vue.createCommentVNode("", true), _ctx.childSubmissions && _ctx.childSubmissions.length > 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7, [_hoisted_8, (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.childSubmissions, function (child, index) {
+    var _ctx$childResponseFor;
+
+    return vue.openBlock(), vue.createElementBlock("div", _hoisted_9, [vue.createVNode(_component_ChildView, {
+      model: child,
+      "hide-field-names": true
+    }, null, 8, ["model"]), !_ctx.responseDisplayFlags[index] ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_10, [vue.createElementVNode("a", {
+      href: "#",
+      class: "text-decoration-none",
+      onClick: function onClick($event) {
+        return _ctx.toggleDisplayResponse(index);
+      },
+      onclick: "return false;"
+    }, _hoisted_13, 8, _hoisted_11), _ctx.isAdmin ? (vue.openBlock(), vue.createElementBlock("span", {
+      key: 0,
+      class: "fas fa-remove",
+      onClick: function onClick($event) {
+        _ctx.removeChildForm(child);
+      }
+    }, null, 8, _hoisted_14)) : vue.createCommentVNode("", true)])) : vue.createCommentVNode("", true), vue.createElementVNode("div", _hoisted_15, [(vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(child.childFieldContainers.$values, function (response, resIdx) {
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_16, [vue.createVNode(_component_ChildView, {
+        model: response,
+        "hide-field-names": true
+      }, null, 8, ["model"]), _ctx.isAdmin ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_17, [vue.createElementVNode("span", {
+        class: "fas fa-remove deleteBtn",
+        onClick: function onClick($event) {
+          _ctx.removeResponseForm(response);
+        }
+      }, null, 8, _hoisted_18)])) : vue.createCommentVNode("", true)]);
+    }), 256)), _ctx.childResponseFormId ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_19, [_ctx.responseDisplayFlags[index] ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_20, [vue.createVNode(_component_ChildForm, {
+      model: _ctx.childResponseForm
+    }, null, 8, ["model"]), ((_ctx$childResponseFor = _ctx.childResponseForm) === null || _ctx$childResponseFor === void 0 ? void 0 : _ctx$childResponseFor.validationStatus) === _ctx.eValidationStatus.INVALID ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_21, "Response validation failed.")) : vue.createCommentVNode("", true), vue.createElementVNode("button", {
+      class: "btn btn-primary submitBtn",
+      onClick: function onClick($event) {
+        return _ctx.submitChildResponse(index);
+      }
+    }, "Submit", 8, _hoisted_22)])) : vue.createCommentVNode("", true)])) : vue.createCommentVNode("", true)]), _hoisted_23]);
   }), 256))])) : vue.createCommentVNode("", true)], 64);
-}script$1.render = render$1;var _actions;
+}var css_248z = "\n.fa-remove[data-v-74fdfa3c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
+styleInject(css_248z);script$1.render = render$1;
+script$1.__scopeId = "data-v-74fdfa3c";var _actions;
 //import { validateFields } from '../../shared/store/form-validators'
 //Declare ActionTypes
 
@@ -4811,8 +5150,8 @@ var Actions;
 })(Actions || (Actions = {}));
 
 var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_FORM, function (store) {
-  var api = window.location.origin + "/applets/api/itemtemplates/".concat(store.state.itemTemplateId, "/data-form/").concat(store.state.formId);
-  console.log('Form Load API: ', api);
+  var api = window.location.origin + "/applets/api/itemtemplates/".concat(store.state.itemTemplateId, "/data-form/").concat(store.state.formId); // console.log('Form Load API: ', api)
+
   fetch(api).then(function (response) {
     return response.json();
   }).then(function (data) {
@@ -4827,7 +5166,7 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_FORM, funct
   /*|| !validateFields(store.state.form)*/
   ) return;
   store.commit(Mutations$1.SET_SUBMISSION_STATUS, "InProgress");
-  var api = window.location.origin + "/applets/api/itemeditor/";
+  var api = window.location.origin + "/applets/api/itemeditor/?itemTemplateId=".concat(store.state.itemTemplateId, "&groupId=").concat(store.state.groupId, "&collectionId=").concat(store.state.collectionId);
   var formData = new FormData();
   formData.append('datamodel', JSON.stringify(store.state.form));
   fetch(api, {
@@ -4859,9 +5198,14 @@ var getters = {};var script = vue.defineComponent({
     var dataAttributes = p.dataAttributes;
     var itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
     var formId = guid$1.Guid.parse(dataAttributes["form-id"]);
+    var collectionId = guid$1.Guid.parse(dataAttributes["collection-id"]);
+    var groupId = guid$1.Guid.parse(dataAttributes["group-id"]);
     var store = useStore();
+    store.commit(Mutations$1.CLEAR_FLATTENED_FIELD_MODELS);
     store.commit(Mutations$1.SET_ITEM_TEMPLATE_ID, itemTemplateId);
-    store.commit(Mutations$1.SET_FORM_ID, formId); //load the data
+    store.commit(Mutations$1.SET_FORM_ID, formId);
+    store.commit(Mutations$1.SET_COLLECTION_ID, collectionId);
+    store.commit(Mutations$1.SET_GROUP_ID, groupId); //load the data
 
     store.dispatch(Actions.LOAD_FORM);
     return {
