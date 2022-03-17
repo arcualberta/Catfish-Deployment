@@ -572,3 +572,20 @@ VALUES (N'20210427144338_CreatedIndexingHitory', N'3.1.3');
 
 GO
 
+ALTER TABLE [Catfish_Entities] ADD [GroupTemplateId] uniqueidentifier NULL;
+
+GO
+
+CREATE INDEX [IX_Catfish_Entities_GroupTemplateId] ON [Catfish_Entities] ([GroupTemplateId]);
+
+GO
+
+ALTER TABLE [Catfish_Entities] ADD CONSTRAINT [FK_Catfish_Entities_Catfish_GroupTemplates_GroupTemplateId] FOREIGN KEY ([GroupTemplateId]) REFERENCES [Catfish_GroupTemplates] ([Id]) ON DELETE NO ACTION;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20220218211649_AddedCollectionArrayToGroupTemplateModel', N'3.1.3');
+
+GO
+
