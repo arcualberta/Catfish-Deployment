@@ -1,4 +1,4 @@
-import { defineComponent, openBlock, createElementBlock, createElementVNode, toDisplayString, inject, watch, reactive, computed, Fragment, renderList, createCommentVNode, withDirectives, vModelCheckbox, ref, createTextVNode, vModelSelect, onMounted, resolveComponent, createVNode, normalizeClass, pushScopeId, popScopeId, createBlock, toRefs, normalizeStyle, withModifiers, onBeforeUnmount, onActivated, onDeactivated, h, vModelText, vModelDynamic, vModelRadio } from 'vue';
+import { defineComponent, openBlock, createElementBlock, createElementVNode, toDisplayString, inject, watch, reactive, computed, Fragment, renderList, createCommentVNode, withDirectives, vModelCheckbox, ref, createTextVNode, vModelSelect, onMounted, resolveComponent, createVNode, normalizeClass, pushScopeId, popScopeId, createBlock, toRefs, normalizeStyle, withModifiers, onBeforeUnmount, onActivated, onDeactivated, h, vModelText, vModelDynamic, vModelRadio, resolveDynamicComponent, withCtx } from 'vue';
 
 var props = {
   pageId: {
@@ -23,7 +23,7 @@ var props = {
   }
 };
 
-var script$M = defineComponent({
+var script$R = defineComponent({
   name: "Carousel",
   components: {},
   props,
@@ -40,22 +40,22 @@ var script$M = defineComponent({
 
 });
 
-const _hoisted_1$t = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
+const _hoisted_1$y = /*#__PURE__*/createElementVNode("h2", null, "Carousel", -1);
 
-const _hoisted_2$m = {
+const _hoisted_2$r = {
   class: "row"
 };
-const _hoisted_3$e = {
+const _hoisted_3$h = {
   class: "row"
 };
-const _hoisted_4$a = {
+const _hoisted_4$d = {
   class: "row"
 };
-function render$M(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$t, createElementVNode("div", _hoisted_2$m, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$e, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$a, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
+function render$R(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$y, createElementVNode("div", _hoisted_2$r, "Page Id: " + toDisplayString(_ctx.pageId), 1), createElementVNode("div", _hoisted_3$h, "Block Id: " + toDisplayString(_ctx.blockId), 1), createElementVNode("div", _hoisted_4$d, "Data Attributes " + toDisplayString(_ctx.dataAttributes), 1)]);
 }
 
-script$M.render = render$M;
+script$R.render = render$R;
 
 function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
@@ -1150,7 +1150,7 @@ const state$7 = {
 };
 
 //Declare MutationTypes
-var Mutations$8;
+var Mutations$7;
 
 (function (Mutations) {
   Mutations["SET_SOURCE"] = "SET_SOURCE";
@@ -1158,38 +1158,38 @@ var Mutations$8;
   Mutations["SET_RESULTS"] = "SET_RESULTS";
   Mutations["SET_OFFSET"] = "SET_OFFSET";
   Mutations["SET_PAGE_SIZE"] = "SET_PAGE_SIZE";
-})(Mutations$8 || (Mutations$8 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$7 || (Mutations$7 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$8 = {
-  [Mutations$8.SET_SOURCE](state, payload) {
+  [Mutations$7.SET_SOURCE](state, payload) {
     state.pageId = payload.pageId;
     state.blockId = payload.blockId;
   },
 
-  [Mutations$8.SET_KEYWORDS](state, payload) {
+  [Mutations$7.SET_KEYWORDS](state, payload) {
     console.log('SET_KEYWORDS Payload: ', payload);
     state.keywordQueryModel = payload;
   },
 
-  [Mutations$8.SET_RESULTS](state, payload) {
+  [Mutations$7.SET_RESULTS](state, payload) {
     state.searchResult = payload;
     state.offset = payload.first - 1;
   },
 
-  [Mutations$8.SET_OFFSET](state, payload) {
+  [Mutations$7.SET_OFFSET](state, payload) {
     //console.log('SET_OFFSET: payload: ', payload)
     state.offset = payload;
   },
 
-  [Mutations$8.SET_PAGE_SIZE](state, payload) {
+  [Mutations$7.SET_PAGE_SIZE](state, payload) {
     //console.log('SET_PAGE_SIZE: payload: ', payload)
     state.max = payload;
   }
 
 };
 
-var Actions$8;
+var Actions$7;
 
 (function (Actions) {
   Actions["INIT_FILTER"] = "INIT_FILTER";
@@ -1198,19 +1198,19 @@ var Actions$8;
   Actions["PREVIOUS_PAGE"] = "PREVIOUS_PAGE";
   Actions["FRESH_SEARCH"] = "FRESH_SEARCH";
   Actions["SAVE_KEYWORDS"] = "SAVE_KEYWORDS";
-})(Actions$8 || (Actions$8 = {}));
+})(Actions$7 || (Actions$7 = {}));
 
 const actions$8 = {
-  [Actions$8.INIT_FILTER](store) {
+  [Actions$7.INIT_FILTER](store) {
     //console.log('Store: ', JSON.stringify(store.state))
     const api = window.location.origin + `/applets/api/keywordsearch/keywords/page/${store.state.pageId}/block/${store.state.blockId}`;
     console.log('Keyword Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$8.SET_KEYWORDS, data);
+      store.commit(Mutations$7.SET_KEYWORDS, data);
     });
   },
 
-  [Actions$8.FILTER_BY_KEYWORDS](store) {
+  [Actions$7.FILTER_BY_KEYWORDS](store) {
     console.log("Dispatched Actions.FILTER_BY_KEYWORDS. Query model: ", JSON.stringify(store.state.keywordQueryModel)); //Saving current search parameters in the local storage
 
     if (store.state.blockId) {
@@ -1235,32 +1235,32 @@ const actions$8 = {
       method: 'POST',
       body: formData
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations$8.SET_RESULTS, data);
+      store.commit(Mutations$7.SET_RESULTS, data);
     }).catch(error => {
       console.error('Item Load API Error:', error);
     });
   },
 
-  [Actions$8.NEXT_PAGE](store) {
-    store.commit(Mutations$8.SET_OFFSET, store.state.offset + store.state.max);
-    store.dispatch(Actions$8.FILTER_BY_KEYWORDS);
+  [Actions$7.NEXT_PAGE](store) {
+    store.commit(Mutations$7.SET_OFFSET, store.state.offset + store.state.max);
+    store.dispatch(Actions$7.FILTER_BY_KEYWORDS);
   },
 
-  [Actions$8.PREVIOUS_PAGE](store) {
+  [Actions$7.PREVIOUS_PAGE](store) {
     const offset = Math.max(store.state.offset - store.state.max, 0);
-    store.commit(Mutations$8.SET_OFFSET, offset);
-    store.dispatch(Actions$8.FILTER_BY_KEYWORDS);
+    store.commit(Mutations$7.SET_OFFSET, offset);
+    store.dispatch(Actions$7.FILTER_BY_KEYWORDS);
   },
 
-  [Actions$8.FRESH_SEARCH](store, pageSize) {
-    store.commit(Mutations$8.SET_OFFSET, 0);
-    if (pageSize) store.commit(Mutations$8.SET_PAGE_SIZE, pageSize);
-    store.dispatch(Actions$8.FILTER_BY_KEYWORDS);
+  [Actions$7.FRESH_SEARCH](store, pageSize) {
+    store.commit(Mutations$7.SET_OFFSET, 0);
+    if (pageSize) store.commit(Mutations$7.SET_PAGE_SIZE, pageSize);
+    store.dispatch(Actions$7.FILTER_BY_KEYWORDS);
   },
 
-  [Actions$8.SAVE_KEYWORDS](store, source) {
+  [Actions$7.SAVE_KEYWORDS](store, source) {
     console.log("save keywords action :" + JSON.stringify(source));
-    store.commit(Mutations$8.SET_KEYWORDS, source);
+    store.commit(Mutations$7.SET_KEYWORDS, source);
   } ////async [Actions.INIT_FILTER_ASYNC](store, source: KeywordSource) {
   ////  store.commit(Mutations.SET_SOURCE, source);
   ////  const api = window.location.origin +
@@ -1285,13 +1285,13 @@ const getters$8 = {
   }
 };
 
-var script$L = defineComponent({
+var script$Q = defineComponent({
   name: "KeywordFilter",
 
   setup() {
     const store = useStore(); //console.log("Store: ", store)
 
-    const runFreshSearch = () => store.dispatch(Actions$8.FRESH_SEARCH);
+    const runFreshSearch = () => store.dispatch(Actions$7.FRESH_SEARCH);
 
     return {
       runFreshSearch,
@@ -1301,18 +1301,18 @@ var script$L = defineComponent({
 
 });
 
-const _hoisted_1$s = {
+const _hoisted_1$x = {
   key: 0
 };
-const _hoisted_2$l = {
+const _hoisted_2$q = {
   key: 0,
   class: "font-weight-bold"
 };
-const _hoisted_3$d = ["value", "onUpdate:modelValue"];
-const _hoisted_4$9 = {
+const _hoisted_3$g = ["value", "onUpdate:modelValue"];
+const _hoisted_4$c = {
   class: "ml-1"
 };
-function render$L(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$keywordQueryMode;
 
   return openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$keywordQueryMode = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode === void 0 ? void 0 : _ctx$keywordQueryMode.containers, (container, cIdx) => {
@@ -1320,11 +1320,11 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
 
     return openBlock(), createElementBlock("div", {
       key: container
-    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$s, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
+    }, [((_ctx$keywordQueryMode2 = _ctx.keywordQueryModel) === null || _ctx$keywordQueryMode2 === void 0 ? void 0 : _ctx$keywordQueryMode2.containers.length) > 1 && (container === null || container === void 0 ? void 0 : (_container$name = container.name) === null || _container$name === void 0 ? void 0 : _container$name.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$x, toDisplayString(container.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(container.fields, (field, fIdx) => {
       return openBlock(), createElementBlock("div", {
         key: field,
         class: "mb-3"
-      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$l, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
+      }, [field.name.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$q, toDisplayString(field.name), 1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(field.values, (value, vIdx) => {
         return openBlock(), createElementBlock("div", {
           key: value
         }, [withDirectives(createElementVNode("input", {
@@ -1334,13 +1334,13 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
           onChange: _cache[0] || (_cache[0] = function () {
             return _ctx.runFreshSearch && _ctx.runFreshSearch(...arguments);
           })
-        }, null, 40, _hoisted_3$d), [[vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), createElementVNode("label", _hoisted_4$9, toDisplayString(value), 1)]);
+        }, null, 40, _hoisted_3$g), [[vModelCheckbox, _ctx.keywordQueryModel.containers[cIdx].fields[fIdx].selected[vIdx]]]), createElementVNode("label", _hoisted_4$c, toDisplayString(value), 1)]);
       }), 128))]);
     }), 128))]);
   }), 128);
 }
 
-script$L.render = render$L;
+script$Q.render = render$Q;
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -1364,18 +1364,18 @@ var dayjs_min = createCommonjsModule(function (module, exports) {
 
 var dayjs = dayjs_min;
 
-var script$K = defineComponent({
+var script$P = defineComponent({
   name: "ItemList",
   props: {},
 
   setup() {
     const store = useStore();
 
-    const nextPage = () => store.dispatch(Actions$8.NEXT_PAGE);
+    const nextPage = () => store.dispatch(Actions$7.NEXT_PAGE);
 
-    const previousPage = () => store.dispatch(Actions$8.PREVIOUS_PAGE);
+    const previousPage = () => store.dispatch(Actions$7.PREVIOUS_PAGE);
 
-    const freshSearch = pageSize => store.dispatch(Actions$8.FRESH_SEARCH, pageSize);
+    const freshSearch = pageSize => store.dispatch(Actions$7.FRESH_SEARCH, pageSize);
 
     const selectedPageSize = ref(25);
     return {
@@ -1415,46 +1415,46 @@ var script$K = defineComponent({
   }
 });
 
-const _hoisted_1$r = {
+const _hoisted_1$w = {
   class: "itemList"
 };
-const _hoisted_2$k = {
+const _hoisted_2$p = {
   key: 0
 };
-const _hoisted_3$c = {
+const _hoisted_3$f = {
   key: 0
 };
-const _hoisted_4$8 = {
+const _hoisted_4$b = {
   key: 1
 };
 
-const _hoisted_5$7 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
+const _hoisted_5$9 = /*#__PURE__*/createElementVNode("option", null, "25", -1);
 
-const _hoisted_6$6 = /*#__PURE__*/createElementVNode("option", null, "50", -1);
+const _hoisted_6$8 = /*#__PURE__*/createElementVNode("option", null, "50", -1);
 
-const _hoisted_7$4 = /*#__PURE__*/createElementVNode("option", null, "100", -1);
+const _hoisted_7$5 = /*#__PURE__*/createElementVNode("option", null, "100", -1);
 
-const _hoisted_8$4 = [_hoisted_5$7, _hoisted_6$6, _hoisted_7$4];
-const _hoisted_9$2 = {
+const _hoisted_8$5 = [_hoisted_5$9, _hoisted_6$8, _hoisted_7$5];
+const _hoisted_9$3 = {
   key: 1
 };
-const _hoisted_10$2 = {
+const _hoisted_10$3 = {
   class: "item"
 };
-const _hoisted_11$2 = {
+const _hoisted_11$3 = {
   class: "item-title"
 };
-const _hoisted_12$2 = ["href"];
-const _hoisted_13$2 = {
+const _hoisted_12$3 = ["href"];
+const _hoisted_13$3 = {
   key: 1
 };
-const _hoisted_14$2 = {
+const _hoisted_14$3 = {
   class: "item-date"
 };
-const _hoisted_15$2 = {
+const _hoisted_15$3 = {
   class: "item-subtitle"
 };
-const _hoisted_16$2 = {
+const _hoisted_16$3 = {
   class: "categories"
 };
 const _hoisted_17$2 = {
@@ -1463,15 +1463,15 @@ const _hoisted_17$2 = {
 const _hoisted_18$2 = {
   class: "content"
 };
-function render$K(_ctx, _cache, $props, $setup, $data, $options) {
+function render$P(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$items;
 
-  return openBlock(), createElementBlock("div", _hoisted_1$r, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$k, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$c, [createElementVNode("i", {
+  return openBlock(), createElementBlock("div", _hoisted_1$w, [((_ctx$items = _ctx.items) === null || _ctx$items === void 0 ? void 0 : _ctx$items.length) > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$p, [_ctx.first > 1 ? (openBlock(), createElementBlock("span", _hoisted_3$f, [createElementVNode("i", {
     class: "fas fa-angle-double-left",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.previousPage && _ctx.previousPage(...arguments);
     })
-  })])) : createCommentVNode("", true), createTextVNode(" " + toDisplayString(_ctx.first) + "-" + toDisplayString(_ctx.last) + " of " + toDisplayString(_ctx.count) + " ", 1), _ctx.count > _ctx.last ? (openBlock(), createElementBlock("span", _hoisted_4$8, [createElementVNode("i", {
+  })])) : createCommentVNode("", true), createTextVNode(" " + toDisplayString(_ctx.first) + "-" + toDisplayString(_ctx.last) + " of " + toDisplayString(_ctx.count) + " ", 1), _ctx.count > _ctx.last ? (openBlock(), createElementBlock("span", _hoisted_4$b, [createElementVNode("i", {
     class: "fas fa-angle-double-right",
     onClick: _cache[1] || (_cache[1] = function () {
       return _ctx.nextPage && _ctx.nextPage(...arguments);
@@ -1480,27 +1480,27 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => _ctx.selectedPageSize = $event),
     class: "pull-right",
     onChange: _cache[3] || (_cache[3] = $event => _ctx.freshSearch(Number(_ctx.selectedPageSize)))
-  }, _hoisted_8$4, 544), [[vModelSelect, _ctx.selectedPageSize]])])])) : (openBlock(), createElementBlock("div", _hoisted_9$2, "No results found.")), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.items, item => {
+  }, _hoisted_8$5, 544), [[vModelSelect, _ctx.selectedPageSize]])])])) : (openBlock(), createElementBlock("div", _hoisted_9$3, "No results found.")), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.items, item => {
     var _item$detailedViewUrl;
 
     return openBlock(), createElementBlock("div", {
       key: item.id
-    }, [createElementVNode("div", _hoisted_10$2, [createElementVNode("h3", _hoisted_11$2, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (openBlock(), createElementBlock("a", {
+    }, [createElementVNode("div", _hoisted_10$3, [createElementVNode("h3", _hoisted_11$3, [((_item$detailedViewUrl = item.detailedViewUrl) === null || _item$detailedViewUrl === void 0 ? void 0 : _item$detailedViewUrl.length) > 0 ? (openBlock(), createElementBlock("a", {
       key: 0,
       href: item.detailedViewUrl
-    }, toDisplayString(item.title), 9, _hoisted_12$2)) : (openBlock(), createElementBlock("span", _hoisted_13$2, toDisplayString(item.title), 1))]), createElementVNode("div", _hoisted_14$2, toDisplayString(_ctx.formatDate(item.date)), 1), createElementVNode("h5", _hoisted_15$2, toDisplayString(item.subtitle), 1), createElementVNode("div", _hoisted_16$2, [(openBlock(true), createElementBlock(Fragment, null, renderList(item.categories, cat => {
+    }, toDisplayString(item.title), 9, _hoisted_12$3)) : (openBlock(), createElementBlock("span", _hoisted_13$3, toDisplayString(item.title), 1))]), createElementVNode("div", _hoisted_14$3, toDisplayString(_ctx.formatDate(item.date)), 1), createElementVNode("h5", _hoisted_15$3, toDisplayString(item.subtitle), 1), createElementVNode("div", _hoisted_16$3, [(openBlock(true), createElementBlock(Fragment, null, renderList(item.categories, cat => {
       return openBlock(), createElementBlock("span", _hoisted_17$2, toDisplayString(cat), 1);
     }), 256))]), createElementVNode("div", _hoisted_18$2, toDisplayString(item.content), 1)])]);
   }), 128))]);
 }
 
-script$K.render = render$K;
+script$P.render = render$P;
 
-var script$J = defineComponent({
+var script$O = defineComponent({
   name: "Applet",
   components: {
-    KeywordFilter: script$L,
-    ItemList: script$K
+    KeywordFilter: script$Q,
+    ItemList: script$P
   },
   props,
 
@@ -1509,7 +1509,7 @@ var script$J = defineComponent({
 
     const store = useStore(); //Storing the page and block IDs in the store
 
-    store.commit(Mutations$8.SET_SOURCE, {
+    store.commit(Mutations$7.SET_SOURCE, {
       pageId: p.pageId,
       blockId: p.blockId
     }); //See if we can load a SearchParams object from local storage
@@ -1519,16 +1519,16 @@ var script$J = defineComponent({
 
     if (searchParamsStr && searchParamsStr.length > 0 && (searchParams = JSON.parse(searchParamsStr)) && searchParams.keywords) {
       //Restoring the store state from data reloaded from the state
-      store.commit(Mutations$8.SET_KEYWORDS, searchParams.keywords);
-      store.commit(Mutations$8.SET_OFFSET, searchParams.offset);
-      store.commit(Mutations$8.SET_PAGE_SIZE, searchParams.max);
+      store.commit(Mutations$7.SET_KEYWORDS, searchParams.keywords);
+      store.commit(Mutations$7.SET_OFFSET, searchParams.offset);
+      store.commit(Mutations$7.SET_PAGE_SIZE, searchParams.max);
     } else {
       //Dispatch an action to loaf keywords
-      store.dispatch(Actions$8.INIT_FILTER);
+      store.dispatch(Actions$7.INIT_FILTER);
     } //When the component is mounted, execute a search query based on the current patameters in the store.state.
 
 
-    onMounted(() => store.dispatch(Actions$8.FILTER_BY_KEYWORDS));
+    onMounted(() => store.dispatch(Actions$7.FILTER_BY_KEYWORDS));
     const keywordQueryModel = ref(store.state.keywordQueryModel);
     return {
       keywordQueryModel
@@ -1543,24 +1543,24 @@ var script$J = defineComponent({
   }
 });
 
-const _hoisted_1$q = {
+const _hoisted_1$v = {
   class: "row"
 };
-const _hoisted_2$j = {
+const _hoisted_2$o = {
   class: "col-md-4 text-left"
 };
-const _hoisted_3$b = {
+const _hoisted_3$e = {
   class: "col-md-8"
 };
-function render$J(_ctx, _cache, $props, $setup, $data, $options) {
+function render$O(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_KeywordFilter = resolveComponent("KeywordFilter");
 
   const _component_ItemList = resolveComponent("ItemList");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$q, [createElementVNode("div", _hoisted_2$j, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3$b, [createVNode(_component_ItemList)])]);
+  return openBlock(), createElementBlock("div", _hoisted_1$v, [createElementVNode("div", _hoisted_2$o, [createVNode(_component_KeywordFilter)]), createElementVNode("div", _hoisted_3$e, [createVNode(_component_ItemList)])]);
 }
 
-script$J.render = render$J;
+script$O.render = render$O;
 
 const state$6 = {
   Id: null,
@@ -1568,20 +1568,20 @@ const state$6 = {
 };
 
 //Declare MutationTypes
-var Mutations$7;
+var Mutations$6;
 
 (function (Mutations) {
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_TEMPLATE"] = "SET_TEMPLATE";
-})(Mutations$7 || (Mutations$7 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$6 || (Mutations$6 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$7 = {
-  [Mutations$7.SET_ID](state, payload) {
+  [Mutations$6.SET_ID](state, payload) {
     state.Id = payload; // console.log("template id : " + state.Id)
   },
 
-  [Mutations$7.SET_TEMPLATE](state, payload) {
+  [Mutations$6.SET_TEMPLATE](state, payload) {
     state.template = payload; // console.log("template ID: " + state.template.id);
     // console.log("template name: " + state.template.templateName);
     // console.log("field length: " + state.template.dataContainer[0].fields.length)
@@ -1589,25 +1589,25 @@ const mutations$7 = {
 
 };
 
-var Actions$7;
+var Actions$6;
 
 (function (Actions) {
   Actions["LOAD_TEMPLATE"] = "LOAD_TEMPLATE";
   Actions["SET_ID"] = "SET_ID";
-})(Actions$7 || (Actions$7 = {}));
+})(Actions$6 || (Actions$6 = {}));
 
 const actions$7 = {
-  [Actions$7.LOAD_TEMPLATE](store) {
+  [Actions$6.LOAD_TEMPLATE](store) {
     const api = window.location.origin + `/applets/api/itemtemplates/${store.state.Id}`; //console.log('Keyword Load API: ', api)
 
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$7.SET_TEMPLATE, data); //console.log("Loaded Template datacontainer: " + JSON.stringify(store.state.template?.dataContainer))
+      store.commit(Mutations$6.SET_TEMPLATE, data); //console.log("Loaded Template datacontainer: " + JSON.stringify(store.state.template?.dataContainer))
       // console.log("Datacontainer count: " + store.state.template?.dataContainer.length)
     });
   },
 
-  [Actions$7.SET_ID](store, payload) {
-    store.commit(Mutations$7.SET_ID, payload);
+  [Actions$6.SET_ID](store, payload) {
+    store.commit(Mutations$6.SET_ID, payload);
   }
 
 };
@@ -1617,7 +1617,7 @@ const getters$7 = {//getTemplateId: state => {
   //}
 };
 
-var script$I = defineComponent({
+var script$N = defineComponent({
   name: "NotificationEditor",
   props: {
     fieldContainer: {
@@ -1630,13 +1630,13 @@ var script$I = defineComponent({
 
 });
 
-function render$I(_ctx, _cache, $props, $setup, $data, $options) {
+function render$N(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.fieldContainer.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.fieldContainer), 1)], 64);
 }
 
-script$I.render = render$I;
+script$N.render = render$N;
 
-var script$H = defineComponent({
+var script$M = defineComponent({
   name: "FormEditor",
   props: ['form'],
 
@@ -1644,13 +1644,13 @@ var script$H = defineComponent({
 
 });
 
-function render$H(_ctx, _cache, $props, $setup, $data, $options) {
+function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.form.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.form), 1)], 64);
 }
 
-script$H.render = render$H;
+script$M.render = render$M;
 
-var script$G = defineComponent({
+var script$L = defineComponent({
   name: "MetadatasetEditor",
   props: ['metadataset'],
 
@@ -1658,18 +1658,18 @@ var script$G = defineComponent({
 
 });
 
-function render$G(_ctx, _cache, $props, $setup, $data, $options) {
+function render$L(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h4", null, toDisplayString(_ctx.metadataset.name.concatenatedContent), 1), createElementVNode("div", null, toDisplayString(_ctx.metadataset), 1)], 64);
 }
 
-script$G.render = render$G;
+script$L.render = render$L;
 
-var script$F = defineComponent({
+var script$K = defineComponent({
   name: "ItemTemplate",
   components: {
-    NotificationEditor: script$I,
-    FormEditor: script$H,
-    MetadatasetEditor: script$G
+    NotificationEditor: script$N,
+    FormEditor: script$M,
+    MetadatasetEditor: script$L
   },
   props: {},
 
@@ -1703,50 +1703,50 @@ var script$F = defineComponent({
 
 const _withScopeId$2 = n => (pushScopeId("data-v-2579f0c4"), n = n(), popScopeId(), n);
 
-const _hoisted_1$p = {
+const _hoisted_1$u = {
   class: "container row itemTemplate"
 };
-const _hoisted_2$i = {
+const _hoisted_2$n = {
   class: "col-md-4"
 };
 
-const _hoisted_3$a = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_3$d = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Overview", -1));
 
-const _hoisted_4$7 = [_hoisted_3$a];
+const _hoisted_4$a = [_hoisted_3$d];
 
-const _hoisted_5$6 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_5$8 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Notifications", -1));
 
-const _hoisted_6$5 = [_hoisted_5$6];
-const _hoisted_7$3 = ["onClick"];
+const _hoisted_6$7 = [_hoisted_5$8];
+const _hoisted_7$4 = ["onClick"];
 
-const _hoisted_8$3 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_8$4 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Forms", -1));
 
-const _hoisted_9$1 = [_hoisted_8$3];
-const _hoisted_10$1 = ["onClick"];
+const _hoisted_9$2 = [_hoisted_8$4];
+const _hoisted_10$2 = ["onClick"];
 
-const _hoisted_11$1 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
+const _hoisted_11$2 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("div", {
   class: "sectionLabel"
 }, "Metadata Forms", -1));
 
-const _hoisted_12$1 = [_hoisted_11$1];
-const _hoisted_13$1 = ["onClick"];
-const _hoisted_14$1 = {
+const _hoisted_12$2 = [_hoisted_11$2];
+const _hoisted_13$2 = ["onClick"];
+const _hoisted_14$2 = {
   class: "col-md-8"
 };
-const _hoisted_15$1 = {
+const _hoisted_15$2 = {
   key: 0,
   class: "col-12 wrapper"
 };
 
-const _hoisted_16$1 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("h4", null, "Overview", -1));
+const _hoisted_16$2 = /*#__PURE__*/_withScopeId$2(() => /*#__PURE__*/createElementVNode("h4", null, "Overview", -1));
 
-const _hoisted_17$1 = [_hoisted_16$1];
+const _hoisted_17$1 = [_hoisted_16$2];
 const _hoisted_18$1 = {
   key: 1,
   class: "col-12 wrapper"
@@ -1780,7 +1780,7 @@ const _hoisted_28 = [_hoisted_27];
 const _hoisted_29 = {
   key: 0
 };
-function render$F(_ctx, _cache, $props, $setup, $data, $options) {
+function render$K(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$template, _ctx$metadataSets, _ctx$metadataSets2, _ctx$metadataSets3, _ctx$metadataSets4;
 
   const _component_NotificationEditor = resolveComponent("NotificationEditor");
@@ -1789,37 +1789,37 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_MetadatasetEditor = resolveComponent("MetadatasetEditor");
 
-  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h3", null, toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), createElementVNode("div", _hoisted_1$p, [createElementVNode("div", _hoisted_2$i, [createElementVNode("div", {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("h3", null, toDisplayString((_ctx$template = _ctx.template) === null || _ctx$template === void 0 ? void 0 : _ctx$template.templateName), 1), createElementVNode("div", _hoisted_1$u, [createElementVNode("div", _hoisted_2$n, [createElementVNode("div", {
     class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'overview' || _ctx.activePanel == null ? 'active' : '']),
     onClick: _cache[0] || (_cache[0] = $event => _ctx.activePanel = 'overview')
-  }, _hoisted_4$7, 2), createElementVNode("div", {
+  }, _hoisted_4$a, 2), createElementVNode("div", {
     class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == 'notifications' ? 'active' : '']),
     onClick: _cache[1] || (_cache[1] = $event => _ctx.activePanel = 'notifications')
-  }, _hoisted_6$5, 2), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets = _ctx.metadataSets) === null || _ctx$metadataSets === void 0 ? void 0 : _ctx$metadataSets.filter(m => m.isTemplate == true), ms => {
+  }, _hoisted_6$7, 2), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets = _ctx.metadataSets) === null || _ctx$metadataSets === void 0 ? void 0 : _ctx$metadataSets.filter(m => m.isTemplate == true), ms => {
     return openBlock(), createElementBlock("div", {
       key: ms.id,
       class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == ms.id ? 'active' : '']),
       onClick: $event => _ctx.activePanel = ms.id
-    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_7$3);
+    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_7$4);
   }), 128)), createElementVNode("div", {
     class: "col-12 menuEntry",
     onClick: _cache[2] || (_cache[2] = $event => _ctx.activePanel = 'forms')
-  }, _hoisted_9$1), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
+  }, _hoisted_9$2), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
     return openBlock(), createElementBlock("div", {
       key: form.id,
       class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == form.id ? 'active' : '']),
       onClick: $event => _ctx.activePanel = form.id
-    }, toDisplayString(form.name.concatenatedContent), 11, _hoisted_10$1);
+    }, toDisplayString(form.name.concatenatedContent), 11, _hoisted_10$2);
   }), 128)), createElementVNode("div", {
     class: "col-12 menuEntry",
     onClick: _cache[3] || (_cache[3] = $event => _ctx.activePanel = 'metadata-forms')
-  }, _hoisted_12$1), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets2 = _ctx.metadataSets) === null || _ctx$metadataSets2 === void 0 ? void 0 : _ctx$metadataSets2.filter(m => m.isTemplate == false), ms => {
+  }, _hoisted_12$2), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets2 = _ctx.metadataSets) === null || _ctx$metadataSets2 === void 0 ? void 0 : _ctx$metadataSets2.filter(m => m.isTemplate == false), ms => {
     return openBlock(), createElementBlock("div", {
       key: ms.id,
       class: normalizeClass(["col-12 menuEntry", _ctx.activePanel == ms.id ? 'active' : '']),
       onClick: $event => _ctx.activePanel = ms.id
-    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_13$1);
-  }), 128))]), createElementVNode("div", _hoisted_14$1, [_ctx.activePanel == null || _ctx.activePanel == 'overview' ? (openBlock(), createElementBlock("div", _hoisted_15$1, _hoisted_17$1)) : createCommentVNode("", true), _ctx.activePanel == 'notifications' ? (openBlock(), createElementBlock("div", _hoisted_18$1, _hoisted_20$1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets3 = _ctx.metadataSets) === null || _ctx$metadataSets3 === void 0 ? void 0 : _ctx$metadataSets3.filter(m => m.isTemplate == true), ms => {
+    }, toDisplayString(ms.name.concatenatedContent), 11, _hoisted_13$2);
+  }), 128))]), createElementVNode("div", _hoisted_14$2, [_ctx.activePanel == null || _ctx.activePanel == 'overview' ? (openBlock(), createElementBlock("div", _hoisted_15$2, _hoisted_17$1)) : createCommentVNode("", true), _ctx.activePanel == 'notifications' ? (openBlock(), createElementBlock("div", _hoisted_18$1, _hoisted_20$1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$metadataSets3 = _ctx.metadataSets) === null || _ctx$metadataSets3 === void 0 ? void 0 : _ctx$metadataSets3.filter(m => m.isTemplate == true), ms => {
     return openBlock(), createElementBlock("div", {
       key: ms.id,
       class: "col-12 wrapper"
@@ -1870,16 +1870,16 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$5 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
-styleInject(css_248z$5);
+var css_248z$6 = "\n.menuEntry[data-v-2579f0c4]{\r\n        border: 1px solid Grey;\r\n        margin: 10px;\r\n        padding: 10px 10px;\n}\n.menuEntry.active[data-v-2579f0c4] {\r\n            background-color: #BBBCAA;\n}\n.sectionLabel[data-v-2579f0c4]{\r\n        font-weight: bold;\n}\n.wrapper[data-v-2579f0c4]{\r\n        margin: 0;\r\n        padding: 0;\n}\r\n";
+styleInject(css_248z$6);
 
-script$F.render = render$F;
-script$F.__scopeId = "data-v-2579f0c4";
+script$K.render = render$K;
+script$K.__scopeId = "data-v-2579f0c4";
 
-var script$E = defineComponent({
+var script$J = defineComponent({
   name: "ItemTemplateEditor",
   components: {
-    ItemTemplate: script$F
+    ItemTemplate: script$K
   },
   props,
 
@@ -1904,17 +1904,17 @@ var script$E = defineComponent({
   }
 });
 
-const _hoisted_1$o = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
+const _hoisted_1$t = /*#__PURE__*/createElementVNode("h3", null, "Item Template Editor", -1);
 
-function render$E(_ctx, _cache, $props, $setup, $data, $options) {
+function render$J(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ItemTemplate = resolveComponent("ItemTemplate");
 
-  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$o, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1), createVNode(_component_ItemTemplate)], 64);
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$t, createElementVNode("div", null, "Item Template ID: " + toDisplayString(_ctx.queryParameters.id), 1), createVNode(_component_ItemTemplate)], 64);
 }
 
-script$E.render = render$E;
+script$J.render = render$J;
 
-var script$D = defineComponent({
+var script$I = defineComponent({
   name: "ItemEditor",
   components: {},
   props,
@@ -1935,13 +1935,13 @@ var script$D = defineComponent({
 
 });
 
-const _hoisted_1$n = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
+const _hoisted_1$s = /*#__PURE__*/createElementVNode("h2", null, "Item Ediror", -1);
 
-function render$D(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$n, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
+function render$I(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$s, createElementVNode("div", null, "Item ID: " + toDisplayString(_ctx.queryParameters.id), 1)]);
 }
 
-script$D.render = render$D;
+script$I.render = render$I;
 
 const state$5 = {
   id: null,
@@ -1949,25 +1949,25 @@ const state$5 = {
 };
 
 //Declare MutationTypes
-var Mutations$6;
+var Mutations$5;
 
 (function (Mutations) {
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_ITEM"] = "SET_ITEM";
   Mutations["CHANGE_STATE"] = "CHANGE_STATE";
-})(Mutations$6 || (Mutations$6 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$5 || (Mutations$5 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$6 = {
-  [Mutations$6.SET_ID](state, payload) {
+  [Mutations$5.SET_ID](state, payload) {
     state.id = payload;
   },
 
-  [Mutations$6.SET_ITEM](state, payload) {
+  [Mutations$5.SET_ITEM](state, payload) {
     state.item = payload;
   },
 
-  [Mutations$6.CHANGE_STATE](state, payload) {
+  [Mutations$5.CHANGE_STATE](state, payload) {
     //state.item
     console.log(JSON.stringify(state));
     console.log(JSON.stringify(payload));
@@ -1975,23 +1975,23 @@ const mutations$6 = {
 
 };
 
-var Actions$6;
+var Actions$5;
 
 (function (Actions) {
   Actions["LOAD_ITEM"] = "LOAD_ITEM";
   Actions["CHANGE_STATE"] = "CHANGE_STATE";
-})(Actions$6 || (Actions$6 = {}));
+})(Actions$5 || (Actions$5 = {}));
 
 const actions$6 = {
-  [Actions$6.LOAD_ITEM](store) {
+  [Actions$5.LOAD_ITEM](store) {
     const api = window.location.origin + `/applets/api/items/${store.state.id}`;
     console.log('Item Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$6.SET_ITEM, data);
+      store.commit(Mutations$5.SET_ITEM, data);
     });
   },
 
-  [Actions$6.CHANGE_STATE](store, payload) {
+  [Actions$5.CHANGE_STATE](store, payload) {
     console.log(JSON.stringify(store.state));
     const api = window.location.origin + `/applets/api/items/deleteItem/${payload}`;
     console.log('Item Load API: ', api);
@@ -2107,7 +2107,7 @@ class OptionsFieldMethods {
 
 }
 
-var script$C = defineComponent({
+var script$H = defineComponent({
   name: "Text",
   props: {
     model: {
@@ -2123,22 +2123,22 @@ var script$C = defineComponent({
   }
 });
 
-const _hoisted_1$m = {
+const _hoisted_1$r = {
   key: 0
 };
-const _hoisted_2$h = ["href"];
-const _hoisted_3$9 = {
+const _hoisted_2$m = ["href"];
+const _hoisted_3$c = {
   key: 1
 };
-function render$C(_ctx, _cache, $props, $setup, $data, $options) {
-  return _ctx.isUrl(_ctx.model.value) ? (openBlock(), createElementBlock("div", _hoisted_1$m, [createElementVNode("a", {
+function render$H(_ctx, _cache, $props, $setup, $data, $options) {
+  return _ctx.isUrl(_ctx.model.value) ? (openBlock(), createElementBlock("div", _hoisted_1$r, [createElementVNode("a", {
     href: _ctx.model.value
-  }, toDisplayString(_ctx.model.value), 9, _hoisted_2$h)])) : (openBlock(), createElementBlock("div", _hoisted_3$9, toDisplayString(_ctx.model.value), 1));
+  }, toDisplayString(_ctx.model.value), 9, _hoisted_2$m)])) : (openBlock(), createElementBlock("div", _hoisted_3$c, toDisplayString(_ctx.model.value), 1));
 }
 
-script$C.render = render$C;
+script$H.render = render$H;
 
-var script$B = defineComponent({
+var script$G = defineComponent({
   name: "TextCollection",
   props: {
     model: {
@@ -2147,11 +2147,11 @@ var script$B = defineComponent({
     }
   },
   components: {
-    Text: script$C
+    Text: script$H
   }
 });
 
-function render$B(_ctx, _cache, $props, $setup, $data, $options) {
+function render$G(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Text = resolveComponent("Text");
 
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values.$values, txt => {
@@ -2161,9 +2161,9 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$B.render = render$B;
+script$G.render = render$G;
 
-var script$A = defineComponent({
+var script$F = defineComponent({
   name: "TextField",
   props: {
     model: {
@@ -2182,11 +2182,11 @@ var script$A = defineComponent({
     }
   },
   components: {
-    TextCollection: script$B
+    TextCollection: script$G
   }
 });
 
-function render$A(_ctx, _cache, $props, $setup, $data, $options) {
+function render$F(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_TextCollection = resolveComponent("TextCollection");
 
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values.$values, val => {
@@ -2198,9 +2198,9 @@ function render$A(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128);
 }
 
-script$A.render = render$A;
+script$F.render = render$F;
 
-var script$z = defineComponent({
+var script$E = defineComponent({
   name: "EmailField",
   props: {
     model: {
@@ -2223,15 +2223,15 @@ var script$z = defineComponent({
 
 });
 
-function render$z(_ctx, _cache, $props, $setup, $data, $options) {
+function render$E(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values.$values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(val.value), 1);
   }), 256);
 }
 
-script$z.render = render$z;
+script$E.render = render$E;
 
-var script$y = defineComponent({
+var script$D = defineComponent({
   name: "OptionsField",
   components: {},
   props: {
@@ -2248,13 +2248,13 @@ var script$y = defineComponent({
   }
 });
 
-function render$y(_ctx, _cache, $props, $setup, $data, $options) {
+function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   return toDisplayString(_ctx.getSelectedFieldLabels(_ctx.model));
 }
 
-script$y.render = render$y;
+script$D.render = render$D;
 
-var script$x = defineComponent({
+var script$C = defineComponent({
   name: "DecimalField",
   props: {
     model: {
@@ -2286,15 +2286,15 @@ var script$x = defineComponent({
   }
 });
 
-function render$x(_ctx, _cache, $props, $setup, $data, $options) {
+function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values.$values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(_ctx.formatToDecimal(val, _ctx.numDecimalPlaces)), 1);
   }), 256);
 }
 
-script$x.render = render$x;
+script$C.render = render$C;
 
-var script$w = defineComponent({
+var script$B = defineComponent({
   name: "IntegerField",
   props: {
     model: {
@@ -2309,15 +2309,15 @@ var script$w = defineComponent({
   }
 });
 
-function render$w(_ctx, _cache, $props, $setup, $data, $options) {
+function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values.$values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(val.value), 1);
   }), 256);
 }
 
-script$w.render = render$w;
+script$B.render = render$B;
 
-var script$v = defineComponent({
+var script$A = defineComponent({
   name: "DateField",
   props: {
     model: {
@@ -2339,26 +2339,26 @@ var script$v = defineComponent({
   }
 });
 
-function render$v(_ctx, _cache, $props, $setup, $data, $options) {
+function render$A(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.values.$values, val => {
     return openBlock(), createElementBlock("div", null, toDisplayString(_ctx.formatDate(val.value)), 1);
   }), 256);
 }
 
-script$v.render = render$v;
+script$A.render = render$A;
 
-var script$u = defineComponent({
+var script$z = defineComponent({
   name: "ChildFieldContainer",
   props: {
     model: null
   },
   components: {
-    TextField: script$A,
-    EmailField: script$z,
-    OptionsField: script$y,
-    DecimalField: script$x,
-    IntegerField: script$w,
-    DateField: script$v
+    TextField: script$F,
+    EmailField: script$E,
+    OptionsField: script$D,
+    DecimalField: script$C,
+    IntegerField: script$B,
+    DateField: script$A
   },
   methods: {
     getFieldType(field) {
@@ -2428,25 +2428,25 @@ var script$u = defineComponent({
   }
 });
 
-const _hoisted_1$l = {
+const _hoisted_1$q = {
   class: "field-name col-md-3"
 };
-const _hoisted_2$g = {
+const _hoisted_2$l = {
   class: "field-value col-md-9"
 };
-const _hoisted_3$8 = {
+const _hoisted_3$b = {
   key: 7
 };
-const _hoisted_4$6 = {
+const _hoisted_4$9 = {
   key: 8
 };
-const _hoisted_5$5 = {
+const _hoisted_5$7 = {
   key: 9
 };
-const _hoisted_6$4 = {
+const _hoisted_6$6 = {
   key: 11
 };
-function render$u(_ctx, _cache, $props, $setup, $data, $options) {
+function render$z(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_TextField = resolveComponent("TextField");
 
   const _component_EmailField = resolveComponent("EmailField");
@@ -2462,7 +2462,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields.$values, field => {
     return openBlock(), createElementBlock("div", {
       class: normalizeClass(["row", _ctx.cssClass(field)])
-    }, [createElementVNode("div", _hoisted_1$l, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_2$g, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
+    }, [createElementVNode("div", _hoisted_1$q, toDisplayString(field.name.concatenatedContent), 1), createElementVNode("div", _hoisted_2$l, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
       key: 0,
       model: field
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isTextArea(field) ? (openBlock(), createBlock(_component_TextField, {
@@ -2483,20 +2483,20 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isDateField(field) ? (openBlock(), createBlock(_component_DateField, {
       key: 6,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_3$8, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4$6, " CompositeField ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5$5, " InfoSection ")) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isAttachmentField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_3$b, " AttachmentField ")) : createCommentVNode("", true), this.isCompositeField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_4$9, " CompositeField ")) : createCommentVNode("", true), this.isInfoSection(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_5$7, " InfoSection ")) : createCommentVNode("", true), this.isMonolingualTextField(_ctx.model) ? (openBlock(), createBlock(_component_TextField, {
       key: 10,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isTableField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_6$4, " TableField ")) : createCommentVNode("", true)])], 2);
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isTableField(_ctx.model) ? (openBlock(), createElementBlock("div", _hoisted_6$6, " TableField ")) : createCommentVNode("", true)])], 2);
   }), 256);
 }
 
-script$u.render = render$u;
+script$z.render = render$z;
 
 //import { Guid } from "guid-typescript";
-var script$t = defineComponent({
+var script$y = defineComponent({
   name: "FieldContainerReference",
   components: {
-    ChildFieldContainer: script$u
+    ChildFieldContainer: script$z
   },
   props: {
     model: {
@@ -2517,7 +2517,7 @@ var script$t = defineComponent({
 
 });
 
-function render$t(_ctx, _cache, $props, $setup, $data, $options) {
+function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ChildFieldContainer = resolveComponent("ChildFieldContainer");
 
   return openBlock(), createBlock(_component_ChildFieldContainer, {
@@ -2525,9 +2525,9 @@ function render$t(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["model"]);
 }
 
-script$t.render = render$t;
+script$y.render = render$y;
 
-var script$s = defineComponent({
+var script$x = defineComponent({
   name: "AttachmentField",
   components: {},
   props: {
@@ -2550,26 +2550,26 @@ var script$s = defineComponent({
 
 });
 
-const _hoisted_1$k = ["href"];
-const _hoisted_2$f = ["src"];
-function render$s(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$p = ["href"];
+const _hoisted_2$k = ["src"];
+function render$x(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.files.$values, file => {
     return openBlock(), createElementBlock("div", null, [createElementVNode("a", {
       href: _ctx.fileUrl + file.fileName
     }, [createElementVNode("img", {
       src: file.thumbnail,
       class: "img-thumbnail"
-    }, null, 8, _hoisted_2$f)], 8, _hoisted_1$k), createTextVNode(toDisplayString(file.originalFileName), 1)]);
+    }, null, 8, _hoisted_2$k)], 8, _hoisted_1$p), createTextVNode(toDisplayString(file.originalFileName), 1)]);
   }), 256);
 }
 
-var css_248z$4 = "\n.img-thumbnail[data-v-307ae89a]{\r\n        width:35px;\r\n        height: auto;\r\n        margin-right: 10px;\n}\r\n";
-styleInject(css_248z$4);
+var css_248z$5 = "\n.img-thumbnail[data-v-307ae89a]{\r\n        width:35px;\r\n        height: auto;\r\n        margin-right: 10px;\n}\r\n";
+styleInject(css_248z$5);
 
-script$s.render = render$s;
-script$s.__scopeId = "data-v-307ae89a";
+script$x.render = render$x;
+script$x.__scopeId = "data-v-307ae89a";
 
-var script$r = defineComponent({
+var script$w = defineComponent({
   name: "InfoField",
   props: {
     model: {
@@ -2579,35 +2579,35 @@ var script$r = defineComponent({
   }
 });
 
-const _hoisted_1$j = ["innerHTML"];
-function render$r(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$o = ["innerHTML"];
+function render$w(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.content.values.$values, val => {
     return openBlock(), createElementBlock("div", {
       key: val.id
     }, [createElementVNode("div", {
       innerHTML: val.value
-    }, null, 8, _hoisted_1$j)]);
+    }, null, 8, _hoisted_1$o)]);
   }), 128);
 }
 
-script$r.render = render$r;
+script$w.render = render$w;
 
-var script$q = defineComponent({
+var script$v = defineComponent({
   name: "FieldContainer",
   props: {
     model: null,
     hideFieldNames: Boolean
   },
   components: {
-    TextField: script$A,
-    EmailField: script$z,
-    OptionsField: script$y,
-    DecimalField: script$x,
-    IntegerField: script$w,
-    DateField: script$v,
-    ReferenceField: script$t,
-    AttachmentField: script$s,
-    InfoField: script$r
+    TextField: script$F,
+    EmailField: script$E,
+    OptionsField: script$D,
+    DecimalField: script$C,
+    IntegerField: script$B,
+    DateField: script$A,
+    ReferenceField: script$y,
+    AttachmentField: script$x,
+    InfoField: script$w
   },
   methods: {
     getFieldType(field) {
@@ -2682,23 +2682,23 @@ var script$q = defineComponent({
   }
 });
 
-const _hoisted_1$i = {
+const _hoisted_1$n = {
   class: "timeStamp"
 };
-const _hoisted_2$e = {
+const _hoisted_2$j = {
   key: 0,
   class: "field-name col-md-3"
 };
-const _hoisted_3$7 = {
+const _hoisted_3$a = {
   class: "field-value col-md-9"
 };
-const _hoisted_4$5 = {
+const _hoisted_4$8 = {
   key: 10
 };
-const _hoisted_5$4 = {
+const _hoisted_5$6 = {
   key: 11
 };
-function render$q(_ctx, _cache, $props, $setup, $data, $options) {
+function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ReferenceField = resolveComponent("ReferenceField");
 
   const _component_TextField = resolveComponent("TextField");
@@ -2717,7 +2717,7 @@ function render$q(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_InfoField = resolveComponent("InfoField");
 
-  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("div", _hoisted_1$i, toDisplayString(_ctx.formatDate(_ctx.model.created)), 1), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields.$values, field => {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("div", _hoisted_1$n, toDisplayString(_ctx.formatDate(_ctx.model.created)), 1), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.fields.$values, field => {
     return openBlock(), createElementBlock("div", null, [this.isFieldContainerReference(field) ? (openBlock(), createElementBlock("div", {
       key: 0,
       class: normalizeClass(_ctx.cssClass(field))
@@ -2726,7 +2726,7 @@ function render$q(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])], 2)) : (openBlock(), createElementBlock("div", {
       key: 1,
       class: normalizeClass(["row", _ctx.cssClass(field)])
-    }, [!_ctx.hideFieldNames ? (openBlock(), createElementBlock("div", _hoisted_2$e, toDisplayString(field.name.concatenatedContent), 1)) : createCommentVNode("", true), createElementVNode("div", _hoisted_3$7, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
+    }, [!_ctx.hideFieldNames ? (openBlock(), createElementBlock("div", _hoisted_2$j, toDisplayString(field.name.concatenatedContent), 1)) : createCommentVNode("", true), createElementVNode("div", _hoisted_3$a, [this.isTextField(field) ? (openBlock(), createBlock(_component_TextField, {
       key: 0,
       model: field
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isTextArea(field) ? (openBlock(), createBlock(_component_TextField, {
@@ -2756,16 +2756,16 @@ function render$q(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8, ["model"])) : createCommentVNode("", true), this.isInfoSection(field) ? (openBlock(), createBlock(_component_InfoField, {
       key: 9,
       model: field
-    }, null, 8, ["model"])) : createCommentVNode("", true), this.isCompositeField(field) ? (openBlock(), createElementBlock("div", _hoisted_4$5, " CompositeField ")) : createCommentVNode("", true), this.isTableField(field) ? (openBlock(), createElementBlock("div", _hoisted_5$4, " TableField ")) : createCommentVNode("", true)])], 2))]);
+    }, null, 8, ["model"])) : createCommentVNode("", true), this.isCompositeField(field) ? (openBlock(), createElementBlock("div", _hoisted_4$8, " CompositeField ")) : createCommentVNode("", true), this.isTableField(field) ? (openBlock(), createElementBlock("div", _hoisted_5$6, " TableField ")) : createCommentVNode("", true)])], 2))]);
   }), 256))], 64);
 }
 
-script$q.render = render$q;
+script$v.render = render$v;
 
-var script$p = defineComponent({
+var script$u = defineComponent({
   name: "ItemViewer",
   components: {
-    FieldContainer: script$q
+    FieldContainer: script$v
   },
   props,
 
@@ -2777,9 +2777,9 @@ var script$p = defineComponent({
     const isAdmin = dataAttributes["is-admin"];
     console.log('isAdmin: ', isAdmin);
     const queryParams = p.queryParameters;
-    store.commit(Mutations$6.SET_ID, queryParams.iid); //load the data
+    store.commit(Mutations$5.SET_ID, queryParams.iid); //load the data
 
-    store.dispatch(Actions$6.LOAD_ITEM);
+    store.dispatch(Actions$5.LOAD_ITEM);
     return {
       store,
       queryParams,
@@ -2799,39 +2799,39 @@ var script$p = defineComponent({
       if (confirm("Do you really want to delete this item?")) {
         // this.store.dispatch(Actions.DELETE_CHILD_INSTANCE, itemToRemove);
         console.log("id: " + itemId);
-        this.store.dispatch(Actions$6.CHANGE_STATE, itemId);
+        this.store.dispatch(Actions$5.CHANGE_STATE, itemId);
       }
     }
 
   }
 });
 
-const _hoisted_1$h = {
+const _hoisted_1$m = {
   key: 0,
   class: "text-right"
 };
-const _hoisted_2$d = {
+const _hoisted_2$i = {
   class: "item"
 };
-function render$p(_ctx, _cache, $props, $setup, $data, $options) {
+function render$u(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FieldContainer = resolveComponent("FieldContainer");
 
-  return openBlock(), createElementBlock(Fragment, null, [_ctx.isAdmin ? (openBlock(), createElementBlock("div", _hoisted_1$h, [createElementVNode("span", {
+  return openBlock(), createElementBlock(Fragment, null, [_ctx.isAdmin ? (openBlock(), createElementBlock("div", _hoisted_1$m, [createElementVNode("span", {
     class: "fas fa-remove",
     onClick: _cache[0] || (_cache[0] = $event => {
       _ctx.changeItemState(_ctx.queryParams.iid);
     })
-  })])) : createCommentVNode("", true), createElementVNode("div", _hoisted_2$d, [_ctx.dataItem ? (openBlock(), createBlock(_component_FieldContainer, {
+  })])) : createCommentVNode("", true), createElementVNode("div", _hoisted_2$i, [_ctx.dataItem ? (openBlock(), createBlock(_component_FieldContainer, {
     key: 0,
     model: _ctx.dataItem
   }, null, 8, ["model"])) : createCommentVNode("", true)])], 64);
 }
 
-var css_248z$3 = "\n.field-name[data-v-f3c870c6] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-f3c870c6] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
-styleInject(css_248z$3);
+var css_248z$4 = "\n.field-name[data-v-f3c870c6] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-f3c870c6] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
+styleInject(css_248z$4);
 
-script$p.render = render$p;
-script$p.__scopeId = "data-v-f3c870c6";
+script$u.render = render$u;
+script$u.__scopeId = "data-v-f3c870c6";
 
 var eIndexingStatus;
 
@@ -2849,70 +2849,70 @@ const state$4 = {
 };
 
 //Declare MutationTypes
-var Mutations$5;
+var Mutations$4;
 
 (function (Mutations) {
   Mutations["SET_REINDEX_PAGE_STATUS"] = "SET_REINDEX_PAGE_STATUS";
   Mutations["SET_REINDEX_DATA_STATUS"] = "SET_REINDEX_DATA_STATUS";
   Mutations["SET_REINDEX_STATUS"] = "SET_REINDEX_STATUS";
-})(Mutations$5 || (Mutations$5 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$4 || (Mutations$4 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$5 = {
-  [Mutations$5.SET_REINDEX_PAGE_STATUS](state, payload) {
+  [Mutations$4.SET_REINDEX_PAGE_STATUS](state, payload) {
     console.log("SET_REINDEX_PAGE_STATUS: ", payload);
     state.indexingStatus.pageIndexingStatus = payload;
   },
 
-  [Mutations$5.SET_REINDEX_DATA_STATUS](state, payload) {
+  [Mutations$4.SET_REINDEX_DATA_STATUS](state, payload) {
     console.log("SET_REINDEX_DATA_STATUS: ", payload);
     state.indexingStatus.dataIndexingStatus = payload;
   },
 
-  [Mutations$5.SET_REINDEX_STATUS](state, payload) {
+  [Mutations$4.SET_REINDEX_STATUS](state, payload) {
     console.log("SET_REINDEX_STATUS: ", payload);
     state.indexingStatus = payload;
   }
 
 };
 
-var Actions$5;
+var Actions$4;
 
 (function (Actions) {
   Actions["REINDEX_DATA"] = "REINDEX_DATA";
   Actions["REINDEX_PAGES"] = "REINDEX_PAGES";
   Actions["FETCH_REINDEX_STATUS"] = "FETCH_REINDEX_STATUS";
-})(Actions$5 || (Actions$5 = {}));
+})(Actions$4 || (Actions$4 = {}));
 
 const actions$5 = {
-  [Actions$5.REINDEX_DATA](store) {
+  [Actions$4.REINDEX_DATA](store) {
     const api = window.location.origin + `/applets/api/reindex/data`;
-    store.commit(Mutations$5.SET_REINDEX_DATA_STATUS, eIndexingStatus.InProgress);
+    store.commit(Mutations$4.SET_REINDEX_DATA_STATUS, eIndexingStatus.InProgress);
     fetch(api, {
       method: 'POST'
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations$5.SET_REINDEX_DATA_STATUS, data);
+      store.commit(Mutations$4.SET_REINDEX_DATA_STATUS, data);
     }).catch(error => {
       console.error('Data reindexing error:', error);
     });
   },
 
-  [Actions$5.REINDEX_PAGES](store) {
+  [Actions$4.REINDEX_PAGES](store) {
     const api = window.location.origin + `/applets/api/reindex/pages`;
-    store.commit(Mutations$5.SET_REINDEX_PAGE_STATUS, eIndexingStatus.InProgress);
+    store.commit(Mutations$4.SET_REINDEX_PAGE_STATUS, eIndexingStatus.InProgress);
     fetch(api, {
       method: 'POST'
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations$5.SET_REINDEX_PAGE_STATUS, data);
+      store.commit(Mutations$4.SET_REINDEX_PAGE_STATUS, data);
     }).catch(error => {
       console.error('Page reindexing error:', error);
     });
   },
 
-  [Actions$5.FETCH_REINDEX_STATUS](store) {
+  [Actions$4.FETCH_REINDEX_STATUS](store) {
     const api = window.location.origin + `/applets/api/reindex/status`;
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$5.SET_REINDEX_STATUS, data);
+      store.commit(Mutations$4.SET_REINDEX_STATUS, data);
     }).catch(error => {
       console.error('Fetch reindexing status error:', error);
     });
@@ -2922,15 +2922,15 @@ const actions$5 = {
 
 const getters$5 = {};
 
-var script$o = defineComponent({
+var script$t = defineComponent({
   name: "IndexingPanel",
   props: {},
 
   setup() {
     const store = useStore();
     return {
-      reindexData: () => store.dispatch(Actions$5.REINDEX_DATA),
-      reindexPages: () => store.dispatch(Actions$5.REINDEX_PAGES),
+      reindexData: () => store.dispatch(Actions$4.REINDEX_DATA),
+      reindexPages: () => store.dispatch(Actions$4.REINDEX_PAGES),
       isPageIndexingReady: computed(() => store.state.indexingStatus.pageIndexingStatus == eIndexingStatus.Ready),
       isDataIndexingReady: computed(() => store.state.indexingStatus.dataIndexingStatus == eIndexingStatus.Ready)
     };
@@ -2938,66 +2938,66 @@ var script$o = defineComponent({
 
 });
 
-const _hoisted_1$g = /*#__PURE__*/createElementVNode("h5", {
+const _hoisted_1$l = /*#__PURE__*/createElementVNode("h5", {
   class: "card-title"
 }, "Data Indexing", -1);
 
-const _hoisted_2$c = /*#__PURE__*/createElementVNode("p", {
+const _hoisted_2$h = /*#__PURE__*/createElementVNode("p", {
   class: "card-text"
 }, "With supporting text below as a natural lead-in to additional content.", -1);
 
-const _hoisted_3$6 = {
+const _hoisted_3$9 = {
   key: 1,
   class: "btn btn-danger",
   disabled: ""
 };
 
-const _hoisted_4$4 = /*#__PURE__*/createElementVNode("br", null, null, -1);
+const _hoisted_4$7 = /*#__PURE__*/createElementVNode("br", null, null, -1);
 
-const _hoisted_5$3 = /*#__PURE__*/createElementVNode("br", null, null, -1);
+const _hoisted_5$5 = /*#__PURE__*/createElementVNode("br", null, null, -1);
 
-const _hoisted_6$3 = /*#__PURE__*/createElementVNode("h5", {
+const _hoisted_6$5 = /*#__PURE__*/createElementVNode("h5", {
   class: "card-title"
 }, "Page Indexing", -1);
 
-const _hoisted_7$2 = /*#__PURE__*/createElementVNode("p", {
+const _hoisted_7$3 = /*#__PURE__*/createElementVNode("p", {
   class: "card-text"
 }, "With supporting text below as a natural lead-in to additional content.", -1);
 
-const _hoisted_8$2 = {
+const _hoisted_8$3 = {
   key: 3,
   class: "btn btn-danger",
   disabled: ""
 };
-function render$o(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$g, _hoisted_2$c, _ctx.isDataIndexingReady ? (openBlock(), createElementBlock("button", {
+function render$t(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$l, _hoisted_2$h, _ctx.isDataIndexingReady ? (openBlock(), createElementBlock("button", {
     key: 0,
     class: "btn btn-primary",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.reindexData && _ctx.reindexData(...arguments);
     })
-  }, "Reindex")) : (openBlock(), createElementBlock("button", _hoisted_3$6, "Indexing In-progress")), _hoisted_4$4, _hoisted_5$3, _hoisted_6$3, _hoisted_7$2, _ctx.isPageIndexingReady ? (openBlock(), createElementBlock("button", {
+  }, "Reindex")) : (openBlock(), createElementBlock("button", _hoisted_3$9, "Indexing In-progress")), _hoisted_4$7, _hoisted_5$5, _hoisted_6$5, _hoisted_7$3, _ctx.isPageIndexingReady ? (openBlock(), createElementBlock("button", {
     key: 2,
     class: "btn btn-primary",
     onClick: _cache[1] || (_cache[1] = function () {
       return _ctx.reindexPages && _ctx.reindexPages(...arguments);
     })
-  }, "Reindex")) : (openBlock(), createElementBlock("button", _hoisted_8$2, "Indexing In-progress"))], 64);
+  }, "Reindex")) : (openBlock(), createElementBlock("button", _hoisted_8$3, "Indexing In-progress"))], 64);
 }
 
-script$o.render = render$o;
+script$t.render = render$t;
 
-var script$n = defineComponent({
+var script$s = defineComponent({
   name: "Applet",
   components: {
-    IndexingPanel: script$o
+    IndexingPanel: script$t
   },
   props,
 
   setup(p) {
     console.log('Process Manager setup ...', p);
     const store = useStore();
-    onMounted(() => store.dispatch(Actions$5.FETCH_REINDEX_STATUS));
+    onMounted(() => store.dispatch(Actions$4.FETCH_REINDEX_STATUS));
   },
 
   storeConfig: {
@@ -3008,55 +3008,55 @@ var script$n = defineComponent({
   }
 });
 
-const _hoisted_1$f = {
+const _hoisted_1$k = {
   class: "card"
 };
 
-const _hoisted_2$b = /*#__PURE__*/createElementVNode("div", {
+const _hoisted_2$g = /*#__PURE__*/createElementVNode("div", {
   class: "card-header"
 }, " Indexing Processes ", -1);
 
-const _hoisted_3$5 = {
+const _hoisted_3$8 = {
   class: "card-body"
 };
-function render$n(_ctx, _cache, $props, $setup, $data, $options) {
+function render$s(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IndexingPanel = resolveComponent("IndexingPanel");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$f, [_hoisted_2$b, createElementVNode("div", _hoisted_3$5, [createVNode(_component_IndexingPanel)])]);
+  return openBlock(), createElementBlock("div", _hoisted_1$k, [_hoisted_2$g, createElementVNode("div", _hoisted_3$8, [createVNode(_component_IndexingPanel)])]);
 }
 
-script$n.render = render$n;
+script$s.render = render$s;
 
 //Declare MutationTypes
-var Mutations$4;
+var Mutations$3;
 
 (function (Mutations) {
   Mutations["SET_SOURCE"] = "SET_SOURCE";
   Mutations["SET_MODEL"] = "SET_MODEL";
-})(Mutations$4 || (Mutations$4 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$3 || (Mutations$3 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$4 = {
-  [Mutations$4.SET_SOURCE](state, payload) {
+  [Mutations$3.SET_SOURCE](state, payload) {
     state.pageId = payload.pageId;
     state.blockId = payload.blockId;
   },
 
-  [Mutations$4.SET_MODEL](state, payload) {
+  [Mutations$3.SET_MODEL](state, payload) {
     state.model = payload;
   }
 
 };
 
-var Actions$4;
+var Actions$3;
 
 (function (Actions) {
   Actions["LOAD_BLOCK"] = "LOAD_BLOCK";
   Actions["LOAD_PAGE"] = "LOAD_PAGE";
-})(Actions$4 || (Actions$4 = {}));
+})(Actions$3 || (Actions$3 = {}));
 
 const actions$4 = {
-  [Actions$4.LOAD_BLOCK](store) {
+  [Actions$3.LOAD_BLOCK](store) {
     if (!store.state.pageId) console.error("Page ID is null. It must be a valid GUID");
     if (!store.state.blockId) console.error("Block ID is null. It must be a valid GUID");
     const api = window.location.origin + `/applets/api/content/page/${store.state.pageId}/block/${store.state.blockId}`;
@@ -3064,20 +3064,20 @@ const actions$4 = {
     fetch(api, {
       method: 'GET'
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations$4.SET_MODEL, data);
+      store.commit(Mutations$3.SET_MODEL, data);
     }).catch(error => {
       console.error('LOAD_BLOCK error:', error);
     });
   },
 
-  [Actions$4.LOAD_PAGE](store) {
+  [Actions$3.LOAD_PAGE](store) {
     if (!store.state.pageId) throw new Error("Page ID is null. It must be a valid GUID");
     const api = window.location.origin + `/applets/api/content/page/${store.state.pageId}`;
     console.log('LOAD_PAGE API: ', api);
     fetch(api, {
       method: 'GET'
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations$4.SET_MODEL, data);
+      store.commit(Mutations$3.SET_MODEL, data);
     }).catch(error => {
       console.error('LOAD_PAGE error:', error);
     });
@@ -3096,7 +3096,7 @@ const getters$4 = {
   }
 };
 
-var script$m = defineComponent({
+var script$r = defineComponent({
   name: "ImgDiv",
   props: {
     image: {
@@ -3160,8 +3160,8 @@ var script$m = defineComponent({
 
 });
 
-const _hoisted_1$e = ["id"];
-function render$m(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$j = ["id"];
+function render$r(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     ref: "root",
     style: normalizeStyle([{
@@ -3171,15 +3171,15 @@ function render$m(_ctx, _cache, $props, $setup, $data, $options) {
     }]),
     id: _ctx.image.id,
     class: "cf-img-div"
-  }, null, 12, _hoisted_1$e);
+  }, null, 12, _hoisted_1$j);
 }
 
-script$m.render = render$m;
+script$r.render = render$r;
 
-var script$l = defineComponent({
+var script$q = defineComponent({
   name: "CardTemplate",
   components: {
-    ImgDiv: script$m
+    ImgDiv: script$r
   },
   props: {
     model: {
@@ -3235,28 +3235,28 @@ var script$l = defineComponent({
 
 });
 
-const _hoisted_1$d = {
+const _hoisted_1$i = {
   class: "col-md-4 cf-card"
 };
-function render$l(_ctx, _cache, $props, $setup, $data, $options) {
+function render$q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_img_div = resolveComponent("img-div");
 
-  return openBlock(), createElementBlock("div", _hoisted_1$d, [createVNode(_component_img_div, {
+  return openBlock(), createElementBlock("div", _hoisted_1$i, [createVNode(_component_img_div, {
     image: _ctx.cardImage,
     "debounce-ms": 250,
     class: "img-div"
   }, null, 8, ["image"]), createElementVNode("h2", null, toDisplayString(_ctx.title), 1), createElementVNode("h4", null, toDisplayString(_ctx.subTitle), 1)]);
 }
 
-var css_248z$2 = "\n.cf-card{\r\n        text-align:center;\n}\r\n";
-styleInject(css_248z$2);
+var css_248z$3 = "\n.cf-card{\r\n        text-align:center;\n}\r\n";
+styleInject(css_248z$3);
 
-script$l.render = render$l;
+script$q.render = render$q;
 
-var script$k = defineComponent({
+var script$p = defineComponent({
   name: "Applet",
   components: {
-    CardTemplate: script$l
+    CardTemplate: script$q
   },
   props,
 
@@ -3264,12 +3264,12 @@ var script$k = defineComponent({
     console.log('Grid setup ...');
     const store = useStore(); //Storing the page and block IDs in the store
 
-    store.commit(Mutations$4.SET_SOURCE, {
+    store.commit(Mutations$3.SET_SOURCE, {
       pageId: p.pageId,
       blockId: p.blockId
     }); //When the component is mounted, load the grid contents.
 
-    onMounted(() => store.dispatch(Actions$4.LOAD_BLOCK));
+    onMounted(() => store.dispatch(Actions$3.LOAD_BLOCK));
     return {
       model: computed(() => store.state.model)
     };
@@ -3282,24 +3282,24 @@ var script$k = defineComponent({
   }
 });
 
-const _hoisted_1$c = /*#__PURE__*/createElementVNode("h2", null, "Grid", -1);
+const _hoisted_1$h = /*#__PURE__*/createElementVNode("h2", null, "Grid", -1);
 
-const _hoisted_2$a = {
+const _hoisted_2$f = {
   class: "row"
 };
-function render$k(_ctx, _cache, $props, $setup, $data, $options) {
+function render$p(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model;
 
   const _component_CardTemplate = resolveComponent("CardTemplate");
 
-  return openBlock(), createElementBlock("div", null, [_hoisted_1$c, createElementVNode("div", _hoisted_2$a, [(openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$model = _ctx.model) === null || _ctx$model === void 0 ? void 0 : _ctx$model.items, card => {
+  return openBlock(), createElementBlock("div", null, [_hoisted_1$h, createElementVNode("div", _hoisted_2$f, [(openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$model = _ctx.model) === null || _ctx$model === void 0 ? void 0 : _ctx$model.items, card => {
     return openBlock(), createBlock(_component_CardTemplate, {
       model: card
     }, null, 8, ["model"]);
   }), 256))])]);
 }
 
-script$k.render = render$k;
+script$p.render = render$p;
 
 var guid = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
@@ -3716,7 +3716,7 @@ function validateFields(form) {
 //}
 //Declare MutationTypes
 
-var Mutations$3;
+var Mutations$2;
 
 (function (Mutations) {
   Mutations["CLEAR_FLATTENED_FIELD_MODELS"] = "CLEAR_FLATTENED_FIELD_mODELS";
@@ -3726,32 +3726,32 @@ var Mutations$3;
   Mutations["SET_SUBMISSION_STATUS"] = "SET_SUBMISSION_STATUS";
   Mutations["SET_COLLECTION_ID"] = "SET_COLLECTION_ID";
   Mutations["SET_GROUP_ID"] = "SET_GROUP_ID";
-})(Mutations$3 || (Mutations$3 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$2 || (Mutations$2 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$3 = {
-  [Mutations$3.CLEAR_FLATTENED_FIELD_MODELS](state) {
+  [Mutations$2.CLEAR_FLATTENED_FIELD_MODELS](state) {
     state.flattenedTextModels = {};
     state.flattenedOptionModels = {};
   },
 
-  [Mutations$3.SET_ITEM_TEMPLATE_ID](state, payload) {
+  [Mutations$2.SET_ITEM_TEMPLATE_ID](state, payload) {
     state.itemTemplateId = payload;
   },
 
-  [Mutations$3.SET_FORM_ID](state, payload) {
+  [Mutations$2.SET_FORM_ID](state, payload) {
     state.formId = payload;
   },
 
-  [Mutations$3.SET_COLLECTION_ID](state, payload) {
+  [Mutations$2.SET_COLLECTION_ID](state, payload) {
     state.collectionId = payload;
   },
 
-  [Mutations$3.SET_GROUP_ID](state, payload) {
+  [Mutations$2.SET_GROUP_ID](state, payload) {
     state.groupId = payload;
   },
 
-  [Mutations$3.SET_FORM](state, payload) {
+  [Mutations$2.SET_FORM](state, payload) {
     state.form = payload;
     flattenFieldInputs(state.form, state); //console.log("state\n", JSON.stringify(state))
   },
@@ -3770,7 +3770,7 @@ const mutations$3 = {
     state.flattenedOptionModels[payload.id.toString()].selected = payload.isSelected;
   },
 
-  [Mutations$3.SET_SUBMISSION_STATUS](state, status) {
+  [Mutations$2.SET_SUBMISSION_STATUS](state, status) {
     //const fieldType: eFieldType = eFieldType[fieldTypeStr as keyof typeof eFieldType];
     state.submissionStatus = eSubmissionStatus[status];
   },
@@ -3788,7 +3788,7 @@ const mutations$3 = {
 
 };
 
-var Mutations$2;
+var Mutations$1;
 
 (function (Mutations) {
   Mutations["SET_SUBMISSIONS"] = "SET_SUBMISSIONS";
@@ -3799,34 +3799,34 @@ var Mutations$2;
   Mutations["APPEND_CHILD_RESPONSE_INSTANCE"] = "APPEND_CHILD_RESPONSE_INSTANCE";
   Mutations["DELETE_CHILD_RESPONSE_INSTANCE"] = "DELETE_CHILD_RESPONSE_INSTANCE";
   Mutations["DELETE_CHILD_INSTANCE"] = "DELETE_CHILD_INSTANCE";
-})(Mutations$2 || (Mutations$2 = {})); //Create a mutation tree that implement all mutation interfaces
+})(Mutations$1 || (Mutations$1 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
 const mutations$2 = {
-  [Mutations$2.SET_SUBMISSIONS](state, payload) {
+  [Mutations$1.SET_SUBMISSIONS](state, payload) {
     state.formInstances = payload;
   },
 
-  [Mutations$2.SET_PARENT_ITEM_ID](state, payload) {
+  [Mutations$1.SET_PARENT_ITEM_ID](state, payload) {
     state.itemInstanceId = payload;
   },
 
-  [Mutations$2.APPEND_CHILD_INSTANCE](state, payload) {
+  [Mutations$1.APPEND_CHILD_INSTANCE](state, payload) {
     var _state$formInstances;
 
     (_state$formInstances = state.formInstances) === null || _state$formInstances === void 0 ? void 0 : _state$formInstances.$values.unshift(payload);
   },
 
-  [Mutations$2.SET_RESPONSE_FORM_ID](state, payload) {
+  [Mutations$1.SET_RESPONSE_FORM_ID](state, payload) {
     state.childResponseFormId = payload;
   },
 
-  [Mutations$2.SET_RESPONSE_FORM](state, payload) {
+  [Mutations$1.SET_RESPONSE_FORM](state, payload) {
     state.childResponseForm = payload;
     flattenFieldInputs(state.childResponseForm, state);
   },
 
-  [Mutations$2.APPEND_CHILD_RESPONSE_INSTANCE](state, payload) {
+  [Mutations$1.APPEND_CHILD_RESPONSE_INSTANCE](state, payload) {
     var _state$formInstances2;
 
     const parent = (_state$formInstances2 = state.formInstances) === null || _state$formInstances2 === void 0 ? void 0 : _state$formInstances2.$values.find(inst => inst.id === (payload === null || payload === void 0 ? void 0 : payload.parentId));
@@ -3838,7 +3838,7 @@ const mutations$2 = {
     }
   },
 
-  [Mutations$2.DELETE_CHILD_RESPONSE_INSTANCE](state, payload) {
+  [Mutations$1.DELETE_CHILD_RESPONSE_INSTANCE](state, payload) {
     var _state$formInstances3;
 
     const parent = (_state$formInstances3 = state.formInstances) === null || _state$formInstances3 === void 0 ? void 0 : _state$formInstances3.$values.find(inst => inst.id === (payload === null || payload === void 0 ? void 0 : payload.parentId));
@@ -3852,7 +3852,7 @@ const mutations$2 = {
     }
   },
 
-  [Mutations$2.DELETE_CHILD_INSTANCE](state, payload) {
+  [Mutations$1.DELETE_CHILD_INSTANCE](state, payload) {
     var _state$formInstances4, _state$formInstances5;
 
     const indexToRemove = (_state$formInstances4 = state.formInstances) === null || _state$formInstances4 === void 0 ? void 0 : (_state$formInstances5 = _state$formInstances4.$values) === null || _state$formInstances5 === void 0 ? void 0 : _state$formInstances5.indexOf(payload);
@@ -3867,7 +3867,7 @@ const mutations$2 = {
   ...mutations$3
 };
 
-var Actions$3;
+var Actions$2;
 
 (function (Actions) {
   Actions["LOAD_FORM"] = "LOAD_FORM";
@@ -3877,41 +3877,41 @@ var Actions$3;
   Actions["SUBMIT_CHILD_RESPONSE_FORM"] = "SUBMIT_CHILD_RESPONSE_FORM";
   Actions["DELETE_CHILD_RESPONSE_INSTANCE"] = "DELETE_CHILD_RESPONSE_INSTANCE";
   Actions["DELETE_CHILD_INSTANCE"] = "DELETE_CHILD_INSTANCE";
-})(Actions$3 || (Actions$3 = {}));
+})(Actions$2 || (Actions$2 = {}));
 
 const actions$3 = {
-  [Actions$3.LOAD_FORM](store) {
+  [Actions$2.LOAD_FORM](store) {
     const api = window.location.origin + `/applets/api/items/getchildform/${store.state.itemInstanceId}/${store.state.formId}`;
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$3.SET_FORM, data);
+      store.commit(Mutations$2.SET_FORM, data);
     }).catch(error => {
       console.error('Actions.LOAD_FORM Error: ', error);
     });
   },
 
-  [Actions$3.LOAD_RESPONSE_FORM](store) {
+  [Actions$2.LOAD_RESPONSE_FORM](store) {
     const api = window.location.origin + `/applets/api/items/getchildform/${store.state.itemInstanceId}/${store.state.childResponseFormId}`;
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$2.SET_RESPONSE_FORM, data);
+      store.commit(Mutations$1.SET_RESPONSE_FORM, data);
     }).catch(error => {
       console.error('Actions.LOAD_FORM Error: ', error);
     });
   },
 
-  [Actions$3.LOAD_SUBMISSIONS](store) {
+  [Actions$2.LOAD_SUBMISSIONS](store) {
     const api = window.location.origin + `/applets/api/items/getchildformsubmissions/${store.state.itemInstanceId}/${store.state.formId}`;
     console.log('Child Submissions Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations$2.SET_SUBMISSIONS, data);
+      store.commit(Mutations$1.SET_SUBMISSIONS, data);
     }).catch(error => {
       console.error('Submission loading error:', error);
     });
   },
 
-  [Actions$3.SUBMIT_CHILD_FORM](store) {
+  [Actions$2.SUBMIT_CHILD_FORM](store) {
     //Validating the form
     if (!store.state.form || !validateFields(store.state.form)) return;
-    store.commit(Mutations$3.SET_SUBMISSION_STATUS, "InProgress");
+    store.commit(Mutations$2.SET_SUBMISSION_STATUS, "InProgress");
     const api = window.location.origin + `/applets/api/items/appendchildforminstance/${store.state.itemInstanceId}`;
     const formData = new FormData();
     formData.append('datamodel', JSON.stringify(store.state.form));
@@ -3926,15 +3926,15 @@ const actions$3 = {
       }; //clear the form content
 
       clearForm(flattenModel);
-      store.commit(Mutations$2.APPEND_CHILD_INSTANCE, data);
-      store.commit(Mutations$3.SET_SUBMISSION_STATUS, "Success");
+      store.commit(Mutations$1.APPEND_CHILD_INSTANCE, data);
+      store.commit(Mutations$2.SET_SUBMISSION_STATUS, "Success");
     }).catch(error => {
-      store.commit(Mutations$3.SET_SUBMISSION_STATUS, "Fail");
+      store.commit(Mutations$2.SET_SUBMISSION_STATUS, "Fail");
       console.log(error);
     });
   },
 
-  [Actions$3.SUBMIT_CHILD_RESPONSE_FORM](store, parentId) {
+  [Actions$2.SUBMIT_CHILD_RESPONSE_FORM](store, parentId) {
     //Validating the form
     if (!store.state.childResponseForm || !validateFields(store.state.childResponseForm)) return;
     const api = window.location.origin + `/applets/api/items/appendchildforminstance/${store.state.itemInstanceId}`;
@@ -3946,7 +3946,7 @@ const actions$3 = {
       method: "post"
     }).then(response => response.json()).then(data => {
       //console.log("Response Data: \n", JSON.stringify(data))
-      store.commit(Mutations$2.APPEND_CHILD_RESPONSE_INSTANCE, data);
+      store.commit(Mutations$1.APPEND_CHILD_RESPONSE_INSTANCE, data);
       const flattenModel = {
         flattenedOptionModels: store.state.flattenedOptionModels,
         flattenedTextModels: store.state.flattenedTextModels,
@@ -3955,37 +3955,37 @@ const actions$3 = {
 
       clearForm(flattenModel);
     }).catch(error => {
-      store.commit(Mutations$3.SET_SUBMISSION_STATUS, "Fail");
+      store.commit(Mutations$2.SET_SUBMISSION_STATUS, "Fail");
       console.log(error);
     });
   },
 
-  [Actions$3.DELETE_CHILD_RESPONSE_INSTANCE](store, payload) {
+  [Actions$2.DELETE_CHILD_RESPONSE_INSTANCE](store, payload) {
     const api = window.location.origin + `/applets/api/items/deleteChildForm/${store.state.itemInstanceId}/${payload.id}?parentId=${payload.parentId}`;
     fetch(api, {
       method: "post"
     }).then(response => response.json()).then(data => {
       if (data.id) {
         console.log("deleteChildForm response received");
-        store.commit(Mutations$2.DELETE_CHILD_RESPONSE_INSTANCE, payload);
+        store.commit(Mutations$1.DELETE_CHILD_RESPONSE_INSTANCE, payload);
       }
     }).catch(error => {
-      store.commit(Mutations$3.SET_SUBMISSION_STATUS, "Fail");
+      store.commit(Mutations$2.SET_SUBMISSION_STATUS, "Fail");
       console.log(error);
     });
   },
 
-  [Actions$3.DELETE_CHILD_INSTANCE](store, payload) {
+  [Actions$2.DELETE_CHILD_INSTANCE](store, payload) {
     const api = window.location.origin + `/applets/api/items/deleteChildForm/${store.state.itemInstanceId}/${payload.id}`;
     fetch(api, {
       method: "post"
     }).then(response => response.json()).then(data => {
       if (data.id) {
         console.log("deleteChildForm response received");
-        store.commit(Mutations$2.DELETE_CHILD_INSTANCE, payload);
+        store.commit(Mutations$1.DELETE_CHILD_INSTANCE, payload);
       }
     }).catch(error => {
-      store.commit(Mutations$3.SET_SUBMISSION_STATUS, "Fail");
+      store.commit(Mutations$2.SET_SUBMISSION_STATUS, "Fail");
       console.log(error);
     });
   }
@@ -3995,7 +3995,7 @@ const actions$3 = {
 const getters$3 = {};
 
 //References:
-var script$j = defineComponent({
+var script$o = defineComponent({
   name: "DropZone",
   props: {
     id: {
@@ -4021,13 +4021,13 @@ var script$j = defineComponent({
 
 const _withScopeId$1 = n => (pushScopeId("data-v-eae6523c"), n = n(), popScopeId(), n);
 
-const _hoisted_1$b = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("span", null, "Drag and Drop File(s)", -1));
+const _hoisted_1$g = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("span", null, "Drag and Drop File(s)", -1));
 
-const _hoisted_2$9 = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("span", null, "OR", -1));
+const _hoisted_2$e = /*#__PURE__*/_withScopeId$1(() => /*#__PURE__*/createElementVNode("span", null, "OR", -1));
 
-const _hoisted_3$4 = ["for"];
-const _hoisted_4$3 = ["id"];
-function render$j(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_3$7 = ["for"];
+const _hoisted_4$6 = ["id"];
+function render$o(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     onDragenter: _cache[0] || (_cache[0] = withModifiers(function () {
       return _ctx.toggleActive && _ctx.toggleActive(...arguments);
@@ -4042,27 +4042,27 @@ function render$j(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass([{
       'active-dropzone': _ctx.active
     }, "dropzone"])
-  }, [_hoisted_1$b, _hoisted_2$9, createElementVNode("label", {
+  }, [_hoisted_1$g, _hoisted_2$e, createElementVNode("label", {
     for: _ctx.id
-  }, "Select File(s)", 8, _hoisted_3$4), createElementVNode("input", {
+  }, "Select File(s)", 8, _hoisted_3$7), createElementVNode("input", {
     type: "file",
     id: _ctx.id,
     class: "dropzoneFile",
     multiple: ""
-  }, null, 8, _hoisted_4$3)], 34);
+  }, null, 8, _hoisted_4$6)], 34);
 }
 
-var css_248z$1 = "\n.dropzone[data-v-eae6523c] {\r\n        width: 400px;\r\n        height: 200px;\r\n        margin-top:20px;\r\n        display: flex;\r\n        flex-direction: column;\r\n        justify-content: center;\r\n        align-items: center;\r\n        row-gap: 16px;\r\n        border: 2px dashed #41b883;\r\n        background-color: #fff;\r\n        transition: 0.3s ease all;\n}\n.dropzone label[data-v-eae6523c] {\r\n            padding: 8px 12px;\r\n            color: #fff;\r\n            background-color: #41b883;\r\n            transition: 0.3s ease all;\n}\n.dropzone input[data-v-eae6523c] {\r\n            display: none;\n}\n.active-dropzone[data-v-eae6523c] {\r\n        color: #fff;\r\n        border-color: #fff;\r\n        background-color: #41b883;\n}\n.active-dropzone label[data-v-eae6523c] {\r\n            background-color: #fff;\r\n            color: #41b883;\n}\r\n";
-styleInject(css_248z$1);
+var css_248z$2 = "\n.dropzone[data-v-eae6523c] {\r\n        width: 400px;\r\n        height: 200px;\r\n        margin-top:20px;\r\n        display: flex;\r\n        flex-direction: column;\r\n        justify-content: center;\r\n        align-items: center;\r\n        row-gap: 16px;\r\n        border: 2px dashed #41b883;\r\n        background-color: #fff;\r\n        transition: 0.3s ease all;\n}\n.dropzone label[data-v-eae6523c] {\r\n            padding: 8px 12px;\r\n            color: #fff;\r\n            background-color: #41b883;\r\n            transition: 0.3s ease all;\n}\n.dropzone input[data-v-eae6523c] {\r\n            display: none;\n}\n.active-dropzone[data-v-eae6523c] {\r\n        color: #fff;\r\n        border-color: #fff;\r\n        background-color: #41b883;\n}\n.active-dropzone label[data-v-eae6523c] {\r\n            background-color: #fff;\r\n            color: #41b883;\n}\r\n";
+styleInject(css_248z$2);
 
-script$j.render = render$j;
-script$j.__scopeId = "data-v-eae6523c";
+script$o.render = render$o;
+script$o.__scopeId = "data-v-eae6523c";
 
 // References: 
-var script$i = defineComponent({
+var script$n = defineComponent({
   name: "AttachmentField",
   components: {
-    DropZone: script$j
+    DropZone: script$o
   },
   props: {
     model: {
@@ -4111,7 +4111,7 @@ var script$i = defineComponent({
 
 });
 
-function render$i(_ctx, _cache, $props, $setup, $data, $options) {
+function render$n(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$selectedFileName;
 
   const _component_DropZone = resolveComponent("DropZone");
@@ -4123,9 +4123,9 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["id", "onDrop", "onChange"])], 64);
 }
 
-script$i.render = render$i;
+script$n.render = render$n;
 
-var script$h = defineComponent({
+var script$m = defineComponent({
   name: "CheckboxField",
   components: {},
   props: {
@@ -4164,9 +4164,9 @@ var script$h = defineComponent({
 
 });
 
-const _hoisted_1$a = ["id", "value"];
-const _hoisted_2$8 = ["for"];
-function render$h(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$f = ["id", "value"];
+const _hoisted_2$d = ["for"];
+function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
     return openBlock(), createElementBlock("div", null, [withDirectives(createElementVNode("input", {
       type: "checkbox",
@@ -4174,13 +4174,13 @@ function render$h(_ctx, _cache, $props, $setup, $data, $options) {
       value: option.id,
       "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => _ctx.selectedoptions = $event),
       onChange: _cache[1] || (_cache[1] = $event => _ctx.selectoption($event))
-    }, null, 40, _hoisted_1$a), [[vModelCheckbox, _ctx.selectedoptions]]), createElementVNode("label", {
+    }, null, 40, _hoisted_1$f), [[vModelCheckbox, _ctx.selectedoptions]]), createElementVNode("label", {
       for: option.id
-    }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$8)]);
+    }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$d)]);
   }), 256);
 }
 
-script$h.render = render$h;
+script$m.render = render$m;
 
 /**
  * Copyright (c) 2018-present, Ephox, Inc.
@@ -4513,7 +4513,7 @@ var Editor$1 = defineComponent({
  */
 var Editor = Editor$1;
 
-var script$g = defineComponent({
+var script$l = defineComponent({
   name: "Text",
   props: {
     model: {
@@ -4570,11 +4570,11 @@ var script$g = defineComponent({
 
 });
 
-const _hoisted_1$9 = {
+const _hoisted_1$e = {
   key: 2
 };
-const _hoisted_2$7 = ["type"];
-function render$g(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_2$c = ["type"];
+function render$l(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Editor = resolveComponent("Editor");
 
   return _ctx.isRichText ? (openBlock(), createBlock(_component_Editor, {
@@ -4586,7 +4586,7 @@ function render$g(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["modelValue"])) : _ctx.isMultiline ? withDirectives((openBlock(), createElementBlock("textarea", {
     key: 1,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => _ctx.content = $event)
-  }, null, 512)), [[vModelText, _ctx.content]]) : (openBlock(), createElementBlock("div", _hoisted_1$9, [_ctx.field === 'text' ? withDirectives((openBlock(), createElementBlock("input", {
+  }, null, 512)), [[vModelText, _ctx.content]]) : (openBlock(), createElementBlock("div", _hoisted_1$e, [_ctx.field === 'text' ? withDirectives((openBlock(), createElementBlock("input", {
     key: 0,
     type: "text",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => _ctx.content = $event)
@@ -4600,12 +4600,12 @@ function render$g(_ctx, _cache, $props, $setup, $data, $options) {
     key: 2,
     type: _ctx.field,
     "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => _ctx.content = $event)
-  }, null, 8, _hoisted_2$7)), [[vModelDynamic, _ctx.content]])]));
+  }, null, 8, _hoisted_2$c)), [[vModelDynamic, _ctx.content]])]));
 }
 
-script$g.render = render$g;
+script$l.render = render$l;
 
-var script$f = defineComponent({
+var script$k = defineComponent({
   name: "DateField",
   props: {
     model: {
@@ -4619,7 +4619,7 @@ var script$f = defineComponent({
     }
   },
   components: {
-    Text: script$g
+    Text: script$l
   },
 
   setup(p) {
@@ -4633,7 +4633,7 @@ var script$f = defineComponent({
 
 });
 
-function render$f(_ctx, _cache, $props, $setup, $data, $options) {
+function render$k(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$values;
 
   const _component_Text = resolveComponent("Text");
@@ -4649,9 +4649,9 @@ function render$f(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$f.render = render$f;
+script$k.render = render$k;
 
-var script$e = defineComponent({
+var script$j = defineComponent({
   name: "DecimalField",
   props: {
     model: {
@@ -4670,7 +4670,7 @@ var script$e = defineComponent({
     }
   },
   components: {
-    Text: script$g
+    Text: script$l
   },
 
   setup(p) {
@@ -4684,7 +4684,7 @@ var script$e = defineComponent({
 
 });
 
-function render$e(_ctx, _cache, $props, $setup, $data, $options) {
+function render$j(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$values;
 
   const _component_Text = resolveComponent("Text");
@@ -4700,9 +4700,9 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$e.render = render$e;
+script$j.render = render$j;
 
-var script$d = defineComponent({
+var script$i = defineComponent({
   name: "EmailField",
   props: {
     model: {
@@ -4716,7 +4716,7 @@ var script$d = defineComponent({
     }
   },
   components: {
-    Text: script$g
+    Text: script$l
   },
 
   setup(p) {
@@ -4730,7 +4730,7 @@ var script$d = defineComponent({
 
 });
 
-function render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function render$i(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$values;
 
   const _component_Text = resolveComponent("Text");
@@ -4746,9 +4746,9 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$d.render = render$d;
+script$i.render = render$i;
 
-var script$c = defineComponent({
+var script$h = defineComponent({
   name: "InfoField",
   props: {
     model: {
@@ -4758,8 +4758,8 @@ var script$c = defineComponent({
   }
 });
 
-const _hoisted_1$8 = ["innerHTML"];
-function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$d = ["innerHTML"];
+function render$h(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$content;
 
   return openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$model = _ctx.model) === null || _ctx$model === void 0 ? void 0 : (_ctx$model$content = _ctx$model.content) === null || _ctx$model$content === void 0 ? void 0 : _ctx$model$content.values, val => {
@@ -4767,13 +4767,13 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
       key: val.id
     }, [createElementVNode("div", {
       innerHTML: val.value
-    }, null, 8, _hoisted_1$8)]);
+    }, null, 8, _hoisted_1$d)]);
   }), 128);
 }
 
-script$c.render = render$c;
+script$h.render = render$h;
 
-var script$b = defineComponent({
+var script$g = defineComponent({
   name: "IntegerField",
   props: {
     model: {
@@ -4787,7 +4787,7 @@ var script$b = defineComponent({
     }
   },
   components: {
-    Text: script$g
+    Text: script$l
   },
 
   setup(p) {
@@ -4801,7 +4801,7 @@ var script$b = defineComponent({
 
 });
 
-function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+function render$g(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$values;
 
   const _component_Text = resolveComponent("Text");
@@ -4817,9 +4817,9 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$b.render = render$b;
+script$g.render = render$g;
 
-var script$a = defineComponent({
+var script$f = defineComponent({
   name: "RadioField",
   props: {
     model: {
@@ -4874,12 +4874,12 @@ var script$a = defineComponent({
 
 });
 
-const _hoisted_1$7 = ["name", "id", "value"];
+const _hoisted_1$c = ["name", "id", "value"];
 
-const _hoisted_2$6 = /*#__PURE__*/createTextVNode();
+const _hoisted_2$b = /*#__PURE__*/createTextVNode();
 
-const _hoisted_3$3 = ["for"];
-function render$a(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_3$6 = ["for"];
+function render$f(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
     return openBlock(), createElementBlock("div", null, [withDirectives(createElementVNode("input", {
       type: "radio",
@@ -4887,15 +4887,15 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
       id: option.id,
       value: option.id,
       "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => _ctx.selected = $event)
-    }, null, 8, _hoisted_1$7), [[vModelRadio, _ctx.selected]]), _hoisted_2$6, createElementVNode("label", {
+    }, null, 8, _hoisted_1$c), [[vModelRadio, _ctx.selected]]), _hoisted_2$b, createElementVNode("label", {
       for: option.id
-    }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_3$3)]);
+    }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_3$6)]);
   }), 256);
 }
 
-script$a.render = render$a;
+script$f.render = render$f;
 
-var script$9 = defineComponent({
+var script$e = defineComponent({
   name: "SelectField",
   components: {},
   props: {
@@ -4944,27 +4944,27 @@ var script$9 = defineComponent({
 
 });
 
-const _hoisted_1$6 = /*#__PURE__*/createElementVNode("option", {
+const _hoisted_1$b = /*#__PURE__*/createElementVNode("option", {
   disabled: "",
   value: ""
 }, "Please select one", -1);
 
-const _hoisted_2$5 = ["id", "value"];
-function render$9(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_2$a = ["id", "value"];
+function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", null, [withDirectives(createElementVNode("select", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => _ctx.selected = $event),
     class: "form-control col-md-6"
-  }, [_hoisted_1$6, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
+  }, [_hoisted_1$b, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.options.$values, option => {
     return openBlock(), createElementBlock("option", {
       id: option.id,
       value: option.id
-    }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$5);
+    }, toDisplayString(this.getConcatenatedOptionLabels(option)), 9, _hoisted_2$a);
   }), 256))], 512), [[vModelSelect, _ctx.selected]])]);
 }
 
-script$9.render = render$9;
+script$e.render = render$e;
 
-var script$8 = defineComponent({
+var script$d = defineComponent({
   name: "TextCollection",
   props: {
     model: {
@@ -4985,14 +4985,14 @@ var script$8 = defineComponent({
     }
   },
   components: {
-    Text: script$g
+    Text: script$l
   }
 });
 
-const _hoisted_1$5 = {
+const _hoisted_1$a = {
   key: 0
 };
-function render$8(_ctx, _cache, $props, $setup, $data, $options) {
+function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model$values;
 
   const _component_Text = resolveComponent("Text");
@@ -5000,7 +5000,7 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$model = _ctx.model) === null || _ctx$model === void 0 ? void 0 : (_ctx$model$values = _ctx$model.values) === null || _ctx$model$values === void 0 ? void 0 : _ctx$model$values.$values, val => {
     var _ctx$model2, _ctx$model2$values, _ctx$model2$values$$v;
 
-    return openBlock(), createElementBlock("div", null, [((_ctx$model2 = _ctx.model) === null || _ctx$model2 === void 0 ? void 0 : (_ctx$model2$values = _ctx$model2.values) === null || _ctx$model2$values === void 0 ? void 0 : (_ctx$model2$values$$v = _ctx$model2$values.$values) === null || _ctx$model2$values$$v === void 0 ? void 0 : _ctx$model2$values$$v.length) > 1 ? (openBlock(), createElementBlock("span", _hoisted_1$5, toDisplayString(val.language) + ": ", 1)) : createCommentVNode("", true), createVNode(_component_Text, {
+    return openBlock(), createElementBlock("div", null, [((_ctx$model2 = _ctx.model) === null || _ctx$model2 === void 0 ? void 0 : (_ctx$model2$values = _ctx$model2.values) === null || _ctx$model2$values === void 0 ? void 0 : (_ctx$model2$values$$v = _ctx$model2$values.$values) === null || _ctx$model2$values$$v === void 0 ? void 0 : _ctx$model2$values$$v.length) > 1 ? (openBlock(), createElementBlock("span", _hoisted_1$a, toDisplayString(val.language) + ": ", 1)) : createCommentVNode("", true), createVNode(_component_Text, {
       model: val,
       "is-multiline": _ctx.isMultiline,
       "is-rich-text": _ctx.isRichText,
@@ -5009,9 +5009,9 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$8.render = render$8;
+script$d.render = render$d;
 
-var script$7 = defineComponent({
+var script$c = defineComponent({
   name: "MultilingualTextField",
   props: {
     model: {
@@ -5024,7 +5024,7 @@ var script$7 = defineComponent({
     }
   },
   components: {
-    TextCollection: script$8
+    TextCollection: script$d
   },
 
   setup(p) {
@@ -5041,7 +5041,7 @@ var script$7 = defineComponent({
 
 });
 
-function render$7(_ctx, _cache, $props, $setup, $data, $options) {
+function render$c(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model$values;
 
   const _component_TextCollection = resolveComponent("TextCollection");
@@ -5056,9 +5056,9 @@ function render$7(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$7.render = render$7;
+script$c.render = render$c;
 
-var script$6 = defineComponent({
+var script$b = defineComponent({
   name: "AudioRecorder",
   components: {},
   props: {
@@ -5070,13 +5070,13 @@ var script$6 = defineComponent({
   methods: {}
 });
 
-function render$6(_ctx, _cache, $props, $setup, $data, $options) {
+function render$b(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", null, "My Audio Recorder");
 }
 
-script$6.render = render$6;
+script$b.render = render$b;
 
-var script$5 = defineComponent({
+var script$a = defineComponent({
   name: "Field",
   props: {
     model: {
@@ -5085,18 +5085,18 @@ var script$5 = defineComponent({
     }
   },
   components: {
-    AttachmentField: script$i,
-    CheckboxField: script$h,
-    DateField: script$f,
-    DecimalField: script$e,
-    EmailField: script$d,
+    AttachmentField: script$n,
+    CheckboxField: script$m,
+    DateField: script$k,
+    DecimalField: script$j,
+    EmailField: script$i,
     //FieldContainerReference,
-    InfoField: script$c,
-    IntegerField: script$b,
-    RadioField: script$a,
-    SelectField: script$9,
-    MultilingualTextField: script$7,
-    AudioRecorderField: script$6
+    InfoField: script$h,
+    IntegerField: script$g,
+    RadioField: script$f,
+    SelectField: script$e,
+    MultilingualTextField: script$c,
+    AudioRecorderField: script$b
   },
 
   setup(p) {
@@ -5112,40 +5112,40 @@ var script$5 = defineComponent({
 
 });
 
-const _hoisted_1$4 = {
+const _hoisted_1$9 = {
   key: 0
 };
-const _hoisted_2$4 = {
+const _hoisted_2$9 = {
   class: "col-md-3 field-name"
 };
-const _hoisted_3$2 = {
+const _hoisted_3$5 = {
   key: 0,
   style: {
     "color": "red"
   }
 };
-const _hoisted_4$2 = {
+const _hoisted_4$5 = {
   class: "col-md-9 field-value"
 };
-const _hoisted_5$2 = {
+const _hoisted_5$4 = {
   key: 0,
   style: {
     "color": "red"
   }
 };
-const _hoisted_6$2 = {
+const _hoisted_6$4 = {
   key: 1,
   style: {
     "color": "red"
   }
 };
-const _hoisted_7$1 = {
+const _hoisted_7$2 = {
   key: 13
 };
-const _hoisted_8$1 = {
+const _hoisted_8$2 = {
   key: 14
 };
-function render$5(_ctx, _cache, $props, $setup, $data, $options) {
+function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model, _ctx$model2;
 
   const _component_InfoField = resolveComponent("InfoField");
@@ -5170,14 +5170,14 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_AudioRecorderField = resolveComponent("AudioRecorderField");
 
-  return _ctx.fieldType === _ctx.FieldTypes.FieldContainerReference ? (openBlock(), createElementBlock("div", _hoisted_1$4, " TODO: Implement editor template for FieldContainerReference ")) : _ctx.fieldType === _ctx.FieldTypes.InfoSection ? (openBlock(), createBlock(_component_InfoField, {
+  return _ctx.fieldType === _ctx.FieldTypes.FieldContainerReference ? (openBlock(), createElementBlock("div", _hoisted_1$9, " TODO: Implement editor template for FieldContainerReference ")) : _ctx.fieldType === _ctx.FieldTypes.InfoSection ? (openBlock(), createBlock(_component_InfoField, {
     key: 1,
     model: _ctx.model,
     class: normalizeClass(_ctx.cssClass)
   }, null, 8, ["model", "class"])) : (openBlock(), createElementBlock("div", {
     key: 2,
     class: normalizeClass(_ctx.cssClass + ' row')
-  }, [createElementVNode("div", _hoisted_2$4, [createTextVNode(toDisplayString(_ctx.model.name.concatenatedContent) + " ", 1), this.model.required ? (openBlock(), createElementBlock("span", _hoisted_3$2, "*")) : createCommentVNode("", true)]), createElementVNode("div", _hoisted_4$2, [((_ctx$model = _ctx.model) === null || _ctx$model === void 0 ? void 0 : _ctx$model.validationStatus) === _ctx.ValidationStatus.VALUE_REQUIRED ? (openBlock(), createElementBlock("div", _hoisted_5$2, "This field requires a value.")) : createCommentVNode("", true), ((_ctx$model2 = _ctx.model) === null || _ctx$model2 === void 0 ? void 0 : _ctx$model2.validationStatus) === _ctx.ValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_6$2, "This field has an invalid value.")) : createCommentVNode("", true), _ctx.fieldType === _ctx.FieldTypes.AttachmentField ? (openBlock(), createBlock(_component_AttachmentField, {
+  }, [createElementVNode("div", _hoisted_2$9, [createTextVNode(toDisplayString(_ctx.model.name.concatenatedContent) + " ", 1), this.model.required ? (openBlock(), createElementBlock("span", _hoisted_3$5, "*")) : createCommentVNode("", true)]), createElementVNode("div", _hoisted_4$5, [((_ctx$model = _ctx.model) === null || _ctx$model === void 0 ? void 0 : _ctx$model.validationStatus) === _ctx.ValidationStatus.VALUE_REQUIRED ? (openBlock(), createElementBlock("div", _hoisted_5$4, "This field requires a value.")) : createCommentVNode("", true), ((_ctx$model2 = _ctx.model) === null || _ctx$model2 === void 0 ? void 0 : _ctx$model2.validationStatus) === _ctx.ValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_6$4, "This field has an invalid value.")) : createCommentVNode("", true), _ctx.fieldType === _ctx.FieldTypes.AttachmentField ? (openBlock(), createBlock(_component_AttachmentField, {
     key: 2,
     model: _ctx.model
   }, null, 8, ["model"])) : _ctx.fieldType === _ctx.FieldTypes.CheckboxField ? (openBlock(), createBlock(_component_CheckboxField, {
@@ -5212,22 +5212,22 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["model"])) : _ctx.fieldType === _ctx.FieldTypes.AudioRecorderField ? (openBlock(), createBlock(_component_AudioRecorderField, {
     key: 12,
     model: _ctx.model
-  }, null, 8, ["model"])) : _ctx.fieldType === _ctx.FieldTypes.CompositeField ? (openBlock(), createElementBlock("div", _hoisted_7$1, " TODO: Implement editor template for the CompositeField")) : _ctx.fieldType === _ctx.FieldTypes.TableField ? (openBlock(), createElementBlock("div", _hoisted_8$1, " TODO: Implement editor template for the TableField")) : createCommentVNode("", true)])], 2));
+  }, null, 8, ["model"])) : _ctx.fieldType === _ctx.FieldTypes.CompositeField ? (openBlock(), createElementBlock("div", _hoisted_7$2, " TODO: Implement editor template for the CompositeField")) : _ctx.fieldType === _ctx.FieldTypes.TableField ? (openBlock(), createElementBlock("div", _hoisted_8$2, " TODO: Implement editor template for the TableField")) : createCommentVNode("", true)])], 2));
 }
 
-script$5.render = render$5;
+script$a.render = render$a;
 
-var script$4 = defineComponent({
+var script$9 = defineComponent({
   name: "FieldContainer",
   props: {
     model: null
   },
   components: {
-    Field: script$5
+    Field: script$a
   }
 });
 
-function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function render$9(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$model$fields;
 
   const _component_Field = resolveComponent("Field");
@@ -5239,13 +5239,13 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256);
 }
 
-script$4.render = render$4;
+script$9.render = render$9;
 
-var script$3 = defineComponent({
+var script$8 = defineComponent({
   name: "ChildFormSubmission",
   components: {
-    ChildForm: script$4,
-    ChildView: script$q
+    ChildForm: script$9,
+    ChildView: script$v
   },
   props,
 
@@ -5260,17 +5260,17 @@ var script$3 = defineComponent({
     const isAdmin = dataAttributes["is-admin"];
     const childResponseFormId = (childResponseFormIdStr === null || childResponseFormIdStr === void 0 ? void 0 : childResponseFormIdStr.length) > 0 ? guid$1.Guid.parse(childResponseFormIdStr) : undefined;
     const store = useStore();
-    store.commit(Mutations$3.CLEAR_FLATTENED_FIELD_MODELS);
-    store.commit(Mutations$3.SET_ITEM_TEMPLATE_ID, itemTemplateId);
-    store.commit(Mutations$3.SET_FORM_ID, childFormId);
-    store.commit(Mutations$2.SET_PARENT_ITEM_ID, itemId); //load the data
+    store.commit(Mutations$2.CLEAR_FLATTENED_FIELD_MODELS);
+    store.commit(Mutations$2.SET_ITEM_TEMPLATE_ID, itemTemplateId);
+    store.commit(Mutations$2.SET_FORM_ID, childFormId);
+    store.commit(Mutations$1.SET_PARENT_ITEM_ID, itemId); //load the data
 
-    store.dispatch(Actions$3.LOAD_FORM);
-    store.dispatch(Actions$3.LOAD_SUBMISSIONS);
+    store.dispatch(Actions$2.LOAD_FORM);
+    store.dispatch(Actions$2.LOAD_SUBMISSIONS);
 
     if (childResponseFormId) {
-      store.commit(Mutations$2.SET_RESPONSE_FORM_ID, childResponseFormId);
-      store.dispatch(Actions$3.LOAD_RESPONSE_FORM);
+      store.commit(Mutations$1.SET_RESPONSE_FORM_ID, childResponseFormId);
+      store.dispatch(Actions$2.LOAD_RESPONSE_FORM);
     } //const submissionStatus = store.state.submissionStatus as SubmissionStatus;
     //const submissionStatus: eSubmissionStatus = store.state.submissionStatus as eSubmissionStatus;
     //console.log("initial status " + JSON.stringify(submissionStatus));
@@ -5300,7 +5300,7 @@ var script$3 = defineComponent({
     const submitChildResponse = index => {
       var _childSubmissions$val;
 
-      store.dispatch(Actions$3.SUBMIT_CHILD_RESPONSE_FORM, (_childSubmissions$val = childSubmissions.value[index]) === null || _childSubmissions$val === void 0 ? void 0 : _childSubmissions$val.id);
+      store.dispatch(Actions$2.SUBMIT_CHILD_RESPONSE_FORM, (_childSubmissions$val = childSubmissions.value[index]) === null || _childSubmissions$val === void 0 ? void 0 : _childSubmissions$val.id);
       toggleDisplayResponse(index);
     };
 
@@ -5332,18 +5332,18 @@ var script$3 = defineComponent({
   },
   methods: {
     submitChildForm() {
-      this.store.dispatch(Actions$3.SUBMIT_CHILD_FORM);
+      this.store.dispatch(Actions$2.SUBMIT_CHILD_FORM);
     },
 
     removeResponseForm(itemToRemove) {
       if (confirm("Do you really want to delete this item?")) {
-        this.store.dispatch(Actions$3.DELETE_CHILD_RESPONSE_INSTANCE, itemToRemove);
+        this.store.dispatch(Actions$2.DELETE_CHILD_RESPONSE_INSTANCE, itemToRemove);
       }
     },
 
     removeChildForm(itemToRemove) {
       if (confirm("Do you really want to delete this item?")) {
-        this.store.dispatch(Actions$3.DELETE_CHILD_INSTANCE, itemToRemove);
+        this.store.dispatch(Actions$2.DELETE_CHILD_INSTANCE, itemToRemove);
       }
     }
 
@@ -5352,55 +5352,55 @@ var script$3 = defineComponent({
 
 const _withScopeId = n => (pushScopeId("data-v-101fde4c"), n = n(), popScopeId(), n);
 
-const _hoisted_1$3 = {
+const _hoisted_1$8 = {
   key: 0,
   class: "submissionForm"
 };
-const _hoisted_2$3 = {
+const _hoisted_2$8 = {
   key: 0,
   class: "alert alert-danger"
 };
-const _hoisted_3$1 = {
+const _hoisted_3$4 = {
   key: 1
 };
-const _hoisted_4$1 = {
+const _hoisted_4$4 = {
   key: 0,
   class: "alert alert-info"
 };
-const _hoisted_5$1 = {
+const _hoisted_5$3 = {
   key: 1,
   class: "alert alert-info"
 };
-const _hoisted_6$1 = {
+const _hoisted_6$3 = {
   key: 2,
   class: "alert alert-danger"
 };
-const _hoisted_7 = {
+const _hoisted_7$1 = {
   key: 1,
   class: "mt-2 submissionInstanceList"
 };
 
-const _hoisted_8 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h3", null, "Responses", -1));
+const _hoisted_8$1 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("h3", null, "Responses", -1));
 
-const _hoisted_9 = {
+const _hoisted_9$1 = {
   class: "submissionInstance"
 };
-const _hoisted_10 = {
+const _hoisted_10$1 = {
   key: 0,
   class: "text-right"
 };
-const _hoisted_11 = ["onClick"];
+const _hoisted_11$1 = ["onClick"];
 
-const _hoisted_12 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("span", {
+const _hoisted_12$1 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/createElementVNode("span", {
   class: "fas fa-reply replyBtn"
 }, null, -1));
 
-const _hoisted_13 = [_hoisted_12];
-const _hoisted_14 = ["onClick"];
-const _hoisted_15 = {
+const _hoisted_13$1 = [_hoisted_12$1];
+const _hoisted_14$1 = ["onClick"];
+const _hoisted_15$1 = {
   class: "ml-3 submissionInstanceList"
 };
-const _hoisted_16 = {
+const _hoisted_16$1 = {
   key: 0,
   class: "mb-2"
 };
@@ -5421,36 +5421,36 @@ const _hoisted_21 = {
   class: "text-right"
 };
 const _hoisted_22 = ["onClick"];
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$childForm;
 
   const _component_ChildForm = resolveComponent("ChildForm");
 
   const _component_ChildView = resolveComponent("ChildView");
 
-  return openBlock(), createElementBlock(Fragment, null, [_ctx.childForm && Object.keys(_ctx.childForm).length > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$3, [createVNode(_component_ChildForm, {
+  return openBlock(), createElementBlock(Fragment, null, [_ctx.childForm && Object.keys(_ctx.childForm).length > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$8, [createVNode(_component_ChildForm, {
     model: _ctx.childForm
-  }, null, 8, ["model"]), ((_ctx$childForm = _ctx.childForm) === null || _ctx$childForm === void 0 ? void 0 : _ctx$childForm.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_2$3, "Form validation failed.")) : (openBlock(), createElementBlock("div", _hoisted_3$1, [_ctx.submissionStatus === _ctx.eSubmissionStatus.InProgress ? (openBlock(), createElementBlock("div", _hoisted_4$1, "Submitting...")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Success ? (openBlock(), createElementBlock("div", _hoisted_5$1, "Submission successful")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Fail ? (openBlock(), createElementBlock("div", _hoisted_6$1, "Submission failed")) : createCommentVNode("", true)])), createElementVNode("button", {
+  }, null, 8, ["model"]), ((_ctx$childForm = _ctx.childForm) === null || _ctx$childForm === void 0 ? void 0 : _ctx$childForm.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_2$8, "Form validation failed.")) : (openBlock(), createElementBlock("div", _hoisted_3$4, [_ctx.submissionStatus === _ctx.eSubmissionStatus.InProgress ? (openBlock(), createElementBlock("div", _hoisted_4$4, "Submitting...")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Success ? (openBlock(), createElementBlock("div", _hoisted_5$3, "Submission successful")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Fail ? (openBlock(), createElementBlock("div", _hoisted_6$3, "Submission failed")) : createCommentVNode("", true)])), createElementVNode("button", {
     class: "btn btn-primary",
     onClick: _cache[0] || (_cache[0] = $event => _ctx.submitChildForm())
-  }, "Submit")])) : createCommentVNode("", true), _ctx.childSubmissions && _ctx.childSubmissions.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_7, [_hoisted_8, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.childSubmissions, (child, index) => {
+  }, "Submit")])) : createCommentVNode("", true), _ctx.childSubmissions && _ctx.childSubmissions.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_7$1, [_hoisted_8$1, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.childSubmissions, (child, index) => {
     var _ctx$childResponseFor;
 
-    return openBlock(), createElementBlock("div", _hoisted_9, [createVNode(_component_ChildView, {
+    return openBlock(), createElementBlock("div", _hoisted_9$1, [createVNode(_component_ChildView, {
       model: child,
       "hide-field-names": true
-    }, null, 8, ["model"]), !_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_10, [createElementVNode("a", {
+    }, null, 8, ["model"]), !_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_10$1, [createElementVNode("a", {
       href: "#",
       class: "text-decoration-none",
       onClick: $event => _ctx.toggleDisplayResponse(index),
       onclick: "return false;"
-    }, _hoisted_13, 8, _hoisted_11), _ctx.isAdmin ? (openBlock(), createElementBlock("span", {
+    }, _hoisted_13$1, 8, _hoisted_11$1), _ctx.isAdmin ? (openBlock(), createElementBlock("span", {
       key: 0,
       class: "fas fa-remove",
       onClick: $event => {
         _ctx.removeChildForm(child);
       }
-    }, null, 8, _hoisted_14)) : createCommentVNode("", true)])) : createCommentVNode("", true), createElementVNode("div", _hoisted_15, [_ctx.childResponseFormId ? (openBlock(), createElementBlock("div", _hoisted_16, [_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_17, [createVNode(_component_ChildForm, {
+    }, null, 8, _hoisted_14$1)) : createCommentVNode("", true)])) : createCommentVNode("", true), createElementVNode("div", _hoisted_15$1, [_ctx.childResponseFormId ? (openBlock(), createElementBlock("div", _hoisted_16$1, [_ctx.responseDisplayFlags[index] ? (openBlock(), createElementBlock("div", _hoisted_17, [createVNode(_component_ChildForm, {
       model: _ctx.childResponseForm
     }, null, 8, ["model"]), ((_ctx$childResponseFor = _ctx.childResponseForm) === null || _ctx$childResponseFor === void 0 ? void 0 : _ctx$childResponseFor.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_18, "Response validation failed.")) : createCommentVNode("", true), createElementVNode("button", {
       class: "btn btn-primary submitBtn",
@@ -5469,40 +5469,40 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256))])) : createCommentVNode("", true)], 64);
 }
 
-var css_248z = "\n.fa-remove[data-v-101fde4c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
-styleInject(css_248z);
+var css_248z$1 = "\n.fa-remove[data-v-101fde4c] {\r\n\t\tcolor: red;\r\n\t\tmargin-left: 30px;\n}\r\n";
+styleInject(css_248z$1);
 
-script$3.render = render$3;
-script$3.__scopeId = "data-v-101fde4c";
+script$8.render = render$8;
+script$8.__scopeId = "data-v-101fde4c";
 
 //import { validateFields } from '../../shared/store/form-validators'
 //Declare ActionTypes
 
-var Actions$2;
+var Actions$1;
 
 (function (Actions) {
   Actions["LOAD_FORM"] = "LOAD_FORM";
   Actions["SUBMIT_FORM"] = "SUBMIT_FORM";
-})(Actions$2 || (Actions$2 = {}));
+})(Actions$1 || (Actions$1 = {}));
 
 const actions$2 = {
-  [Actions$2.LOAD_FORM](store) {
+  [Actions$1.LOAD_FORM](store) {
     const api = window.location.origin + `/applets/api/itemtemplates/${store.state.itemTemplateId}/data-form/${store.state.formId}`; // console.log('Form Load API: ', api)
 
     fetch(api).then(response => response.json()).then(data => {
       //console.log('Data:\n', JSON.stringify(data));
-      store.commit(Mutations$3.SET_FORM, data);
+      store.commit(Mutations$2.SET_FORM, data);
     }).catch(error => {
       console.error('Actions.LOAD_FORM Error: ', error);
     });
   },
 
-  [Actions$2.SUBMIT_FORM](store) {
+  [Actions$1.SUBMIT_FORM](store) {
     //Validating the form
     if (!store.state.form
     /*|| !validateFields(store.state.form)*/
     ) return;
-    store.commit(Mutations$3.SET_SUBMISSION_STATUS, "InProgress");
+    store.commit(Mutations$2.SET_SUBMISSION_STATUS, "InProgress");
     const api = window.location.origin + `/applets/api/items/?itemTemplateId=${store.state.itemTemplateId}&groupId=${store.state.groupId ? store.state.groupId : ""}&collectionId=${store.state.collectionId}`;
     const formData = new FormData(); //Setting the serialized JSON form model to the datamodel variable in formData
 
@@ -5534,9 +5534,9 @@ const actions$2 = {
       }; //clear the form content
 
       clearForm(flattenModel);
-      store.commit(Mutations$3.SET_SUBMISSION_STATUS, "Success");
+      store.commit(Mutations$2.SET_SUBMISSION_STATUS, "Success");
     }).catch(error => {
-      store.commit(Mutations$3.SET_SUBMISSION_STATUS, "Fail");
+      store.commit(Mutations$2.SET_SUBMISSION_STATUS, "Fail");
       console.log(error);
     });
   }
@@ -5545,10 +5545,10 @@ const actions$2 = {
 
 const getters$2 = {};
 
-var script$2 = defineComponent({
+var script$7 = defineComponent({
   name: "FormSubmission",
   components: {
-    SubmissionForm: script$4
+    SubmissionForm: script$9
   },
   props,
 
@@ -5560,13 +5560,13 @@ var script$2 = defineComponent({
     const collectionId = guid$1.Guid.parse(dataAttributes["collection-id"]);
     const groupId = dataAttributes["group-id"] ? guid$1.Guid.parse(dataAttributes["group-id"]) : null;
     const store = useStore();
-    store.commit(Mutations$3.CLEAR_FLATTENED_FIELD_MODELS);
-    store.commit(Mutations$3.SET_ITEM_TEMPLATE_ID, itemTemplateId);
-    store.commit(Mutations$3.SET_FORM_ID, formId);
-    store.commit(Mutations$3.SET_COLLECTION_ID, collectionId);
-    store.commit(Mutations$3.SET_GROUP_ID, groupId); //load the data
+    store.commit(Mutations$2.CLEAR_FLATTENED_FIELD_MODELS);
+    store.commit(Mutations$2.SET_ITEM_TEMPLATE_ID, itemTemplateId);
+    store.commit(Mutations$2.SET_FORM_ID, formId);
+    store.commit(Mutations$2.SET_COLLECTION_ID, collectionId);
+    store.commit(Mutations$2.SET_GROUP_ID, groupId); //load the data
 
-    store.dispatch(Actions$2.LOAD_FORM);
+    store.dispatch(Actions$1.LOAD_FORM);
     return {
       store,
       submissionForm: computed(() => store.state.form),
@@ -5584,48 +5584,48 @@ var script$2 = defineComponent({
   },
   methods: {
     submitForm() {
-      this.store.dispatch(Actions$2.SUBMIT_FORM);
+      this.store.dispatch(Actions$1.SUBMIT_FORM);
     }
 
   }
 });
 
-const _hoisted_1$2 = {
+const _hoisted_1$7 = {
   key: 0
 };
-const _hoisted_2$2 = {
+const _hoisted_2$7 = {
   key: 0,
   class: "alert alert-danger"
 };
-const _hoisted_3 = {
+const _hoisted_3$3 = {
   key: 1
 };
-const _hoisted_4 = {
+const _hoisted_4$3 = {
   key: 0,
   class: "alert alert-info"
 };
-const _hoisted_5 = {
+const _hoisted_5$2 = {
   key: 1,
   class: "alert alert-info"
 };
-const _hoisted_6 = {
+const _hoisted_6$2 = {
   key: 2,
   class: "alert alert-danger"
 };
-function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+function render$7(_ctx, _cache, $props, $setup, $data, $options) {
   var _ctx$submissionForm;
 
   const _component_SubmissionForm = resolveComponent("SubmissionForm");
 
-  return _ctx.submissionForm && Object.keys(_ctx.submissionForm).length > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$2, [createVNode(_component_SubmissionForm, {
+  return _ctx.submissionForm && Object.keys(_ctx.submissionForm).length > 0 ? (openBlock(), createElementBlock("div", _hoisted_1$7, [createVNode(_component_SubmissionForm, {
     model: _ctx.submissionForm
-  }, null, 8, ["model"]), ((_ctx$submissionForm = _ctx.submissionForm) === null || _ctx$submissionForm === void 0 ? void 0 : _ctx$submissionForm.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_2$2, "Form validation failed.")) : (openBlock(), createElementBlock("div", _hoisted_3, [_ctx.submissionStatus === _ctx.eSubmissionStatus.InProgress ? (openBlock(), createElementBlock("div", _hoisted_4, "Submitting...")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Success ? (openBlock(), createElementBlock("div", _hoisted_5, "Submission successful")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Fail ? (openBlock(), createElementBlock("div", _hoisted_6, "Submission failed")) : createCommentVNode("", true)])), createElementVNode("button", {
+  }, null, 8, ["model"]), ((_ctx$submissionForm = _ctx.submissionForm) === null || _ctx$submissionForm === void 0 ? void 0 : _ctx$submissionForm.validationStatus) === _ctx.eValidationStatus.INVALID ? (openBlock(), createElementBlock("div", _hoisted_2$7, "Form validation failed.")) : (openBlock(), createElementBlock("div", _hoisted_3$3, [_ctx.submissionStatus === _ctx.eSubmissionStatus.InProgress ? (openBlock(), createElementBlock("div", _hoisted_4$3, "Submitting...")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Success ? (openBlock(), createElementBlock("div", _hoisted_5$2, "Submission successful")) : createCommentVNode("", true), _ctx.submissionStatus === _ctx.eSubmissionStatus.Fail ? (openBlock(), createElementBlock("div", _hoisted_6$2, "Submission failed")) : createCommentVNode("", true)])), createElementVNode("button", {
     class: "btn btn-primary",
     onClick: _cache[0] || (_cache[0] = $event => _ctx.submitForm())
   }, "Submit")])) : createCommentVNode("", true);
 }
 
-script$2.render = render$2;
+script$7.render = render$7;
 
 const state$1 = {
   itemTemplateID: null,
@@ -5635,7 +5635,7 @@ const state$1 = {
   reportData: null
 };
 
-var Mutations$1;
+var Mutations;
 
 (function (Mutations) {
   Mutations["SET_TEMPLATE_ID"] = "SET_TEMPLATE_ID";
@@ -5643,26 +5643,26 @@ var Mutations$1;
   Mutations["SET_GROUP_ID"] = "SET_GROUP_ID";
   Mutations["SET_REPORT_FIELDS"] = "SET_REPORT_FIELDS";
   Mutations["SET_REPORT_DATA"] = "SET_REPORT_DATA";
-})(Mutations$1 || (Mutations$1 = {}));
+})(Mutations || (Mutations = {}));
 
 const mutations$1 = {
-  [Mutations$1.SET_TEMPLATE_ID](state, payload) {
+  [Mutations.SET_TEMPLATE_ID](state, payload) {
     state.itemTemplateID = payload;
   },
 
-  [Mutations$1.SET_COLLECTION_ID](state, payload) {
+  [Mutations.SET_COLLECTION_ID](state, payload) {
     state.collectionID = payload;
   },
 
-  [Mutations$1.SET_GROUP_ID](state, payload) {
+  [Mutations.SET_GROUP_ID](state, payload) {
     state.groupId = payload;
   },
 
-  [Mutations$1.SET_REPORT_FIELDS](state, payload) {
+  [Mutations.SET_REPORT_FIELDS](state, payload) {
     state.reportFields = payload;
   },
 
-  [Mutations$1.SET_REPORT_DATA](state, payload) {
+  [Mutations.SET_REPORT_DATA](state, payload) {
     state.reportData = [];
 
     for (let i = 0; i < payload.length; ++i) {
@@ -5673,10 +5673,10 @@ const mutations$1 = {
       (_state$reportFields = state.reportFields) === null || _state$reportFields === void 0 ? void 0 : _state$reportFields.forEach(repField => {
         var _reportRow$cells;
 
-        const form = item.dataContainer.$values.filter(frm => frm.id === repField.formId)[0];
+        const form = item.dataContainer.$values.filter(frm => frm.id === repField.formTemplateId)[0];
         const field = form === null || form === void 0 ? void 0 : form.fields.$values.filter(fld => fld.id === repField.fieldId)[0];
         const cell = {
-          formId: repField.formId,
+          formId: repField.formTemplateId,
           fieldId: repField.fieldId,
           value: field.id.toString()
         };
@@ -5688,14 +5688,14 @@ const mutations$1 = {
 
 };
 
-var Actions$1;
+var Actions;
 
 (function (Actions) {
   Actions["LOAD_DATA"] = "LOAD_DATA";
-})(Actions$1 || (Actions$1 = {}));
+})(Actions || (Actions = {}));
 
 const actions$1 = {
-  [Actions$1.LOAD_DATA](store) {
+  [Actions.LOAD_DATA](store) {
     console.log('Store: ', JSON.stringify(store.state));
     const api = window.location.origin + `/applets/api/items/GetReportData/${store.state.groupId}/template/${store.state.itemTemplateID}/collection/${store.state.collectionID}`;
     console.log('reports Load API: ', api);
@@ -5710,7 +5710,7 @@ const actions$1 = {
         "encType": "multipart/form-data"
       }
     }).then(response => response.json()).then(data => {
-      store.commit(Mutations$1.SET_REPORT_DATA, data);
+      store.commit(Mutations.SET_REPORT_DATA, data);
     });
   }
 
@@ -5718,7 +5718,7 @@ const actions$1 = {
 
 const getters$1 = {};
 
-var script$1 = defineComponent({
+var script$6 = defineComponent({
   name: "Report",
   components: {},
   props,
@@ -5729,16 +5729,16 @@ var script$1 = defineComponent({
 
     const dataAttributes = p.dataAttributes;
     const itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
-    store.commit(Mutations$1.SET_TEMPLATE_ID, itemTemplateId);
+    store.commit(Mutations.SET_TEMPLATE_ID, itemTemplateId);
     store.state.itemTemplateId = itemTemplateId;
     const collectionId = guid$1.Guid.parse(dataAttributes["collection-id"]);
-    store.commit(Mutations$1.SET_COLLECTION_ID, collectionId);
+    store.commit(Mutations.SET_COLLECTION_ID, collectionId);
     store.state.collectionId = collectionId;
     const groupId = guid$1.Guid.parse(dataAttributes["group-id"]);
-    store.commit(Mutations$1.SET_GROUP_ID, groupId);
+    store.commit(Mutations.SET_GROUP_ID, groupId);
     store.state.groupId = groupId;
     const selectedFields = JSON.parse(dataAttributes["selected-fields"]);
-    store.commit(Mutations$1.SET_REPORT_FIELDS, selectedFields);
+    store.commit(Mutations.SET_REPORT_FIELDS, selectedFields);
     store.state.reportFields = selectedFields; //console.log("item template id " + itemTemplateId)
     //console.log("selected Fields: " + selectedFields)
 
@@ -5756,7 +5756,7 @@ var script$1 = defineComponent({
       selectedFields,
       reportRows: computed(() => state$1.reportData),
       isAdmin,
-      loadData: () => store.dispatch(Actions$1.LOAD_DATA)
+      loadData: () => store.dispatch(Actions.LOAD_DATA)
     };
   },
 
@@ -5773,16 +5773,16 @@ var script$1 = defineComponent({
 
 });
 
-const _hoisted_1$1 = /*#__PURE__*/createElementVNode("h3", null, "Report", -1);
+const _hoisted_1$6 = /*#__PURE__*/createElementVNode("h3", null, "Report", -1);
 
-const _hoisted_2$1 = {
+const _hoisted_2$6 = {
   class: "table"
 };
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$1, createElementVNode("button", {
+function render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$6, createElementVNode("button", {
     class: "btn btn-primary",
     onClick: _cache[0] || (_cache[0] = $event => _ctx.loadData())
-  }, "Execute"), createElementVNode("div", null, toDisplayString(_ctx.selectedFields), 1), createElementVNode("div", null, toDisplayString(_ctx.selectedFields.length), 1), createElementVNode("table", _hoisted_2$1, [createElementVNode("thead", null, [createElementVNode("tr", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.selectedFields, field => {
+  }, "Execute"), createElementVNode("div", null, toDisplayString(_ctx.selectedFields), 1), createElementVNode("div", null, toDisplayString(_ctx.selectedFields.length), 1), createElementVNode("table", _hoisted_2$6, [createElementVNode("thead", null, [createElementVNode("tr", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.selectedFields, field => {
     return openBlock(), createElementBlock("th", null, toDisplayString(field.fieldName), 1);
   }), 256))])]), createElementVNode("tbody", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.reportRows, reportRow => {
     return openBlock(), createElementBlock("tr", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(reportRow.cells, cell => {
@@ -5791,150 +5791,516 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256))])])], 64);
 }
 
-script$1.render = render$1;
+script$6.render = render$6;
 
-const state = {
-  id: null,
-  item: null,
-  items: null,
-  template: null,
-  formIds: null,
-  templateId: null
+////import { Guid } from 'guid-typescript'
+const state = { //items: null,
+  //formIds: null,
+  //template: null,
+  //templateId: null,
+  ...state$5
 };
 
-//Declare MutationTypes
-var Mutations;
+//export enum Actions{
+//}
 
-(function (Mutations) {
-  Mutations["SET_ID"] = "SET_ID";
-  Mutations["SET_ITEM"] = "SET_ITEM";
-  Mutations["SET_ITEMS"] = "SET_ITEMS";
-  Mutations["SET_TEMPLATE"] = "SET_TEMPLATE";
-  Mutations["SET_FORM_IDS"] = "SET_FORM_IDS";
-  Mutations["SET_TEMPLATE_ID"] = "SET_TEMPLATE_ID";
-})(Mutations || (Mutations = {})); //Create a mutation tree that implement all mutation interfaces
-
-
-const mutations = {
-  [Mutations.SET_ID](state, payload) {
-    state.id = payload;
-  },
-
-  [Mutations.SET_FORM_IDS](state, payload) {
-    state.formIds = payload;
-  },
-
-  [Mutations.SET_ITEM](state, payload) {
-    state.item = payload;
-  },
-
-  [Mutations.SET_ITEMS](state, payload) {
-    state.items = payload;
-  },
-
-  [Mutations.SET_TEMPLATE](state, payload) {
-    state.template = payload;
-  },
-
-  [Mutations.SET_TEMPLATE_ID](state, payload) {
-    state.templateId = payload;
-  }
-
-};
-
-//Declare ActionTypes
-
-var Actions;
-
-(function (Actions) {
-  Actions["LOAD_ITEM"] = "LOAD_ITEM";
-  Actions["LOAD_TEMPLATE"] = "LOAD_TEMPLATE";
-  Actions["LOAD_ITEMS"] = "LOAD_ITEMS";
-})(Actions || (Actions = {}));
-
-const actions = {
-  //[Actions.LOAD_TEMPLATE](store) {
-  //    const api = window.location.origin +
-  //        `/applets/api/itemtemplates/${store.state.Id}`;
-  //    //console.log('Keyword Load API: ', api)
-  //    fetch(api)
-  //        .then(response => response.json())
-  //        .then(data => {
-  //            store.commit(Mutations.SET_TEMPLATE, data);
-  //            //console.log("Loaded Template datacontainer: " + JSON.stringify(store.state.template?.dataContainer))
-  //            // console.log("Datacontainer count: " + store.state.template?.dataContainer.length)
-  //        });
-  //},
-  [Actions.LOAD_ITEM](store) {
-    const api = window.location.origin + `/applets/api/items/${store.state.id}`;
-    console.log('Item Load API: ', api);
-    fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations.SET_ITEM, data);
-    });
-  },
-
-  [Actions.LOAD_ITEMS](store) {
-    //const api = window.location.origin +
-    //    `/applets/api/items/getItems/${store.state.templateId}/${store.state.formIds}`;
-    const api = window.location.origin + `/applets/api/items/getItems/${store.state.templateId}`;
-    console.log('Load Items API: ', api);
-    fetch(api).then(response => response.json()).then(data => {
-      store.commit(Mutations.SET_ITEMS, data);
-    });
-  }
-
+const actions = { ...actions$6
 };
 
 const getters = {
-  rootDataItem: state => {
+  dataItem: state => itemTemplateId => {
     var _state$item, _state$item$dataConta, _state$item$dataConta2;
 
-    return (_state$item = state.item) === null || _state$item === void 0 ? void 0 : (_state$item$dataConta = _state$item.dataContainer) === null || _state$item$dataConta === void 0 ? void 0 : (_state$item$dataConta2 = _state$item$dataConta.$values) === null || _state$item$dataConta2 === void 0 ? void 0 : _state$item$dataConta2.filter(dc => dc.isRoot)[0];
+    return (_state$item = state.item) === null || _state$item === void 0 ? void 0 : (_state$item$dataConta = _state$item.dataContainer) === null || _state$item$dataConta === void 0 ? void 0 : (_state$item$dataConta2 = _state$item$dataConta.$values) === null || _state$item$dataConta2 === void 0 ? void 0 : _state$item$dataConta2.filter(dc => dc.templateId === itemTemplateId)[0];
   },
-  metadataSet: state => id => {
-    var _state$item2, _state$item2$metadata, _state$item2$metadata2;
+  field: state => (itemTemplateId, fieldId) => {
+    var _state$item2, _state$item2$dataCont, _state$item2$dataCont2, _state$item2$dataCont3, _state$item2$dataCont4;
 
-    console.log("metadataset getter id: " + JSON.stringify(id));
-    return (_state$item2 = state.item) === null || _state$item2 === void 0 ? void 0 : (_state$item2$metadata = _state$item2.metadataSets) === null || _state$item2$metadata === void 0 ? void 0 : (_state$item2$metadata2 = _state$item2$metadata.$values) === null || _state$item2$metadata2 === void 0 ? void 0 : _state$item2$metadata2.find(ms => ms.templateId === id);
+    return (_state$item2 = state.item) === null || _state$item2 === void 0 ? void 0 : (_state$item2$dataCont = _state$item2.dataContainer) === null || _state$item2$dataCont === void 0 ? void 0 : (_state$item2$dataCont2 = _state$item2$dataCont.$values) === null || _state$item2$dataCont2 === void 0 ? void 0 : (_state$item2$dataCont3 = _state$item2$dataCont2.filter(dc => dc.templateId === itemTemplateId)[0]) === null || _state$item2$dataCont3 === void 0 ? void 0 : (_state$item2$dataCont4 = _state$item2$dataCont3.fields.$values) === null || _state$item2$dataCont4 === void 0 ? void 0 : _state$item2$dataCont4.filter(fd => fd.id === fieldId);
   },
-  dataItemId: state => {
-    var _state$item3, _state$item3$dataCont, _state$item3$dataCont2, _state$item3$dataCont3;
+  fields: state => components => {
+    const fields = [];
 
-    return (_state$item3 = state.item) === null || _state$item3 === void 0 ? void 0 : (_state$item3$dataCont = _state$item3.dataContainer) === null || _state$item3$dataCont === void 0 ? void 0 : (_state$item3$dataCont2 = _state$item3$dataCont.$values) === null || _state$item3$dataCont2 === void 0 ? void 0 : (_state$item3$dataCont3 = _state$item3$dataCont2.filter(dc => dc.isRoot)[0]) === null || _state$item3$dataCont3 === void 0 ? void 0 : _state$item3$dataCont3.id;
+    for (let i = 0; i < (components === null || components === void 0 ? void 0 : components.length); i++) {
+      //console.log("component count: " + components?.length);
+      // console.log("fieldId: " + components[i].fieldId);
+      const frmTemplateId = components[i].formTemplateId;
+      const fldId = components[i].fieldId;
+
+      if (typeof fldId != 'undefined' && fldId) {
+        var _state$item3, _state$item3$dataCont, _state$item3$dataCont2, _state$item3$dataCont3, _state$item3$dataCont4;
+
+        const field = (_state$item3 = state.item) === null || _state$item3 === void 0 ? void 0 : (_state$item3$dataCont = _state$item3.dataContainer) === null || _state$item3$dataCont === void 0 ? void 0 : (_state$item3$dataCont2 = _state$item3$dataCont.$values) === null || _state$item3$dataCont2 === void 0 ? void 0 : (_state$item3$dataCont3 = _state$item3$dataCont2.filter(dc => dc.templateId === frmTemplateId)[0]) === null || _state$item3$dataCont3 === void 0 ? void 0 : (_state$item3$dataCont4 = _state$item3$dataCont3.fields.$values) === null || _state$item3$dataCont4 === void 0 ? void 0 : _state$item3$dataCont4.filter(fd => fd.id === fldId)[0];
+        const comField = {
+          component: components[i],
+          field: field
+        };
+        fields.push(comField);
+      } // else {
+      //    const comField: ComponentField = {
+      //        component: components[i], field: {} as Field};
+      //    fields.push(comField);
+      //}
+
+    } // console.log("fields: " + JSON.stringify(fields));
+
+
+    return fields;
+  },
+  dataItemId: state => formTemplateId => {
+    var _state$item4, _state$item4$dataCont, _state$item4$dataCont2, _state$item4$dataCont3;
+
+    return (_state$item4 = state.item) === null || _state$item4 === void 0 ? void 0 : (_state$item4$dataCont = _state$item4.dataContainer) === null || _state$item4$dataCont === void 0 ? void 0 : (_state$item4$dataCont2 = _state$item4$dataCont.$values) === null || _state$item4$dataCont2 === void 0 ? void 0 : (_state$item4$dataCont3 = _state$item4$dataCont2.filter(dc => dc.templateId === formTemplateId)[0]) === null || _state$item4$dataCont3 === void 0 ? void 0 : _state$item4$dataCont3.id;
   }
 };
+
+//import { Guid } from 'guid-typescript'
+//export enum Mutations {
+//    SET_ID = 'SET_ID',
+//    //SET_ITEM = 'SET_ITEM',
+//    //SET_ITEMS = 'SET_ITEMS',
+//    //SET_FORM_IDS = 'SET_FORM_IDS',
+//    SET_TEMPLATE = 'SET_TEMPLATE',
+//    SET_TEMPLATE_ID = 'SET_TEMPLATE_ID'
+//}
+//Create a mutation tree that implement all mutation interfaces
+
+const mutations = { //[Mutations.SET_ID](state: State, payload: Guid) {
+  //    state.id = payload;
+  //},
+  //[Mutations.SET_FORM_IDS](state: State, payload: string) {
+  //    state.formIds = payload;
+  //},
+  //[Mutations.SET_ITEM](state: State, payload: Item) {
+  //  state.item = payload
+  //},
+  //[Mutations.SET_ITEMS](state: State, payload: Item[]) {
+  //      state.items = payload
+  //},
+  //[Mutations.SET_TEMPLATE](state: State, payload: ItemTemplate) {
+  //    state.template = payload
+  //},
+  //[Mutations.SET_TEMPLATE_ID](state: State, payload: Guid) {
+  //    state.templateId = payload
+  //},
+  ...mutations$6
+};
+
+var script$5 = defineComponent({
+  name: "ImageCarousel",
+  components: {},
+  props: {
+    model: {
+      type: null,
+      required: true
+    },
+    fileUrl: {
+      type: null,
+      required: true
+    }
+  },
+
+  setup(p) {
+    return {
+      files: computed(() => p.model.files.$values),
+      fieldUrl: computed(() => p.fileUrl),
+      file1stId: computed(() => p.model.files.$values[0].id)
+    };
+  }
+
+});
+
+const _hoisted_1$5 = /*#__PURE__*/createElementVNode("h5", null, "Carousel", -1);
+
+const _hoisted_2$5 = {
+  id: "carouselSlides",
+  class: "carousel slide",
+  "data-ride": "carousel"
+};
+const _hoisted_3$2 = {
+  class: "carousel-inner"
+};
+const _hoisted_4$2 = ["src"];
+
+const _hoisted_5$1 = /*#__PURE__*/createElementVNode("a", {
+  class: "carousel-control-prev",
+  href: "#carouselSlides",
+  role: "button",
+  "data-slide": "prev"
+}, [/*#__PURE__*/createElementVNode("span", {
+  class: "carousel-control-prev-icon",
+  "aria-hidden": "true"
+}), /*#__PURE__*/createElementVNode("span", {
+  class: "sr-only"
+}, "Previous")], -1);
+
+const _hoisted_6$1 = /*#__PURE__*/createElementVNode("a", {
+  class: "carousel-control-next",
+  href: "#carouselSlides",
+  role: "button",
+  "data-slide": "next"
+}, [/*#__PURE__*/createElementVNode("span", {
+  class: "carousel-control-next-icon",
+  "aria-hidden": "true"
+}), /*#__PURE__*/createElementVNode("span", {
+  class: "sr-only"
+}, "Next")], -1);
+
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$5, createElementVNode("div", _hoisted_2$5, [createElementVNode("div", _hoisted_3$2, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.model.files.$values, file => {
+    return openBlock(), createElementBlock("div", {
+      class: normalizeClass(file.id === _ctx.file1stId ? 'carousel-item active' : 'carousel-item'),
+      key: file.id
+    }, [createElementVNode("img", {
+      class: "d-block w-100",
+      src: _ctx.fileUrl + file.fileName
+    }, null, 8, _hoisted_4$2)], 2);
+  }), 128))]), _hoisted_5$1, _hoisted_6$1])], 64);
+}
+
+script$5.render = render$5;
+
+var script$4 = defineComponent({
+  name: "ImageGallery",
+  components: {},
+  props: {
+    model: {
+      type: null,
+      required: true
+    },
+    fileUrl: {
+      type: null,
+      required: true
+    }
+  },
+
+  setup(p) {
+    return {
+      files: computed(() => p.model.files.$values),
+      fieldUrl: computed(() => p.fileUrl)
+    };
+  }
+
+});
+
+const _hoisted_1$4 = /*#__PURE__*/createElementVNode("h5", null, "Gallery", -1);
+
+const _hoisted_2$4 = {
+  class: "container"
+};
+const _hoisted_3$1 = {
+  class: "d-flex flex-row"
+};
+const _hoisted_4$1 = ["src", "alt"];
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$4, createElementVNode("div", _hoisted_2$4, [createElementVNode("div", _hoisted_3$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.files, file => {
+    return openBlock(), createElementBlock("img", {
+      src: _ctx.fileUrl + file.fileName,
+      class: "w-100 shadow-1-strong rounded mb-4",
+      alt: file.originalFileName
+    }, null, 8, _hoisted_4$1);
+  }), 256))])])], 64);
+}
+
+script$4.render = render$4;
+
+var script$3 = defineComponent({
+  name: "PdfViewer",
+  components: {},
+  props: {
+    fileUrl: {
+      type: null,
+      required: false
+    }
+  },
+
+  setup(p) {
+    const pdfViewerPath = window.location.origin + "/assets/js/vendor/pdfjs-2.13.216/web/viewer.html?file=";
+    return {
+      fileUrl: computed(() => p.fileUrl),
+      pdfViewerPath
+    };
+  }
+
+});
+
+const _hoisted_1$3 = {
+  class: "pdfViewer"
+};
+const _hoisted_2$3 = ["src"];
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$3, [createElementVNode("iframe", {
+    height: "100%",
+    width: "100%",
+    src: _ctx.pdfViewerPath + _ctx.fileUrl
+  }, null, 8, _hoisted_2$3)]);
+}
+
+var css_248z = "\n.pdfViewer[data-v-97ebf75e] {\r\n        width: 50%;\r\n        height: 79vh;\r\n        min-width: 400px;\n}\r\n";
+styleInject(css_248z);
+
+script$3.render = render$3;
+script$3.__scopeId = "data-v-97ebf75e";
+
+var script$2 = defineComponent({
+  name: "FieldComponent",
+  components: {
+    ImageCarousel: script$5,
+    ImageGallery: script$4,
+    PdfViewer: script$3
+  },
+  props: {
+    model: {
+      type: null,
+      required: true
+    }
+  },
+
+  setup(p) {
+    var _p$model$field;
+
+    const store = useStore();
+    let fileUrl = "";
+
+    if ((_p$model$field = p.model.field) !== null && _p$model$field !== void 0 && _p$model$field.$type.includes("AttachmentField")) {
+      const itemId = ref(store.state.item.id);
+      const dataItemId = ref(store.getters.dataItemId(p.model.component.formTemplateId));
+      const fieldId = ref(p.model.component.fieldId);
+      fileUrl = window.location.origin + '/api/items/' + itemId.value + '/' + dataItemId.value + '/' + fieldId.value + '/';
+    }
+
+    let displayImagesMode = "";
+
+    if (p.model.component.displayImagesMode) {
+      displayImagesMode = p.model.component.displayImagesMode == 'gallery' ? 'gallery' : 'carousel';
+    }
+
+    return {
+      htmlWrapperTag: computed(() => {
+        var _p$model$component$ty;
+
+        return ((_p$model$component$ty = p.model.component.type) === null || _p$model$component$ty === void 0 ? void 0 : _p$model$component$ty.length) > 0 ? p.model.component.type : "div";
+      }),
+      componentType: computed(() => p.model.component.$type.split(',')[0]),
+      field: computed(() => p.model.field),
+      fieldType: computed(() => {
+        var _p$model$field2, _p$model$field2$$type;
+
+        return (_p$model$field2 = p.model.field) === null || _p$model$field2 === void 0 ? void 0 : (_p$model$field2$$type = _p$model$field2.$type) === null || _p$model$field2$$type === void 0 ? void 0 : _p$model$field2$$type.split(',')[0];
+      }),
+      fileUrl,
+      displayImagesMode,
+      cssClasses: computed(() => p.model.component.cssClasses ? p.model.component.cssClasses : "")
+    };
+  },
+
+  methods: {
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      return date.format('MMM DD, YYYY');
+    },
+
+    formatToDecimal: (value, decimalPlaces) => {
+      return Number(value).toFixed(decimalPlaces);
+    },
+
+    getSelectedFieldLabels(field) {
+      return OptionsFieldMethods.getSelectedFieldLabels(field.options.$values);
+    }
+
+  }
+});
+
+const _hoisted_1$2 = {
+  class: "fieldType"
+};
+
+const _hoisted_2$2 = /*#__PURE__*/createElementVNode("hr", null, null, -1);
+
+const _hoisted_3 = {
+  key: 0
+};
+const _hoisted_4 = {
+  key: 1
+};
+const _hoisted_5 = {
+  key: 2
+};
+const _hoisted_6 = {
+  key: 3
+};
+const _hoisted_7 = {
+  key: 4
+};
+const _hoisted_8 = {
+  key: 5
+};
+const _hoisted_9 = ["href"];
+
+const _hoisted_10 = /*#__PURE__*/createElementVNode("br", null, null, -1);
+
+const _hoisted_11 = ["src"];
+
+const _hoisted_12 = /*#__PURE__*/createElementVNode("br", null, null, -1);
+
+const _hoisted_13 = {
+  key: 3,
+  controls: ""
+};
+const _hoisted_14 = ["src", "type"];
+
+const _hoisted_15 = /*#__PURE__*/createTextVNode(" Your browser does not support the audio element. ");
+
+const _hoisted_16 = /*#__PURE__*/createElementVNode("hr", null, null, -1);
+
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_ImageCarousel = resolveComponent("ImageCarousel");
+
+  const _component_ImageGallery = resolveComponent("ImageGallery");
+
+  const _component_PdfViewer = resolveComponent("PdfViewer");
+
+  return openBlock(), createElementBlock("div", _hoisted_1$2, [_hoisted_2$2, _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.TextArea' || _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.TextField' ? (openBlock(), createElementBlock("div", _hoisted_3, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.field.values.$values, multilingualValue => {
+    return openBlock(), createElementBlock("div", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(multilingualValue.values.$values, valueInOneLanguage => {
+      return openBlock(), createBlock(resolveDynamicComponent(_ctx.htmlWrapperTag), {
+        class: normalizeClass(_ctx.cssClasses)
+      }, {
+        default: withCtx(() => [createTextVNode(toDisplayString(valueInOneLanguage.value), 1)]),
+        _: 2
+      }, 1032, ["class"]);
+    }), 256))]);
+  }), 256))])) : _ctx.fieldType.includes('Catfish.Core.Models.Contents.Fields.EmailField') || _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.MonolingualTextField' || _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.IntegerField' ? (openBlock(), createElementBlock("div", _hoisted_4, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.field.values.$values, val => {
+    return openBlock(), createBlock(resolveDynamicComponent(_ctx.htmlWrapperTag), {
+      class: normalizeClass(_ctx.cssClasses)
+    }, {
+      default: withCtx(() => [createTextVNode(toDisplayString(val.value), 1)]),
+      _: 2
+    }, 1032, ["class"]);
+  }), 256))])) : _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.DecimalField' ? (openBlock(), createElementBlock("div", _hoisted_5, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.field.values.$values, val => {
+    return openBlock(), createBlock(resolveDynamicComponent(_ctx.htmlWrapperTag), {
+      class: normalizeClass(_ctx.cssClasses)
+    }, {
+      default: withCtx(() => [createTextVNode(toDisplayString(_ctx.formatToDecimal(val.value, 2)), 1)]),
+      _: 2
+    }, 1032, ["class"]);
+  }), 256))])) : _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.DateField' ? (openBlock(), createElementBlock("div", _hoisted_6, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.field.values.$values, val => {
+    return openBlock(), createBlock(resolveDynamicComponent(_ctx.htmlWrapperTag), {
+      class: normalizeClass(_ctx.cssClasses)
+    }, {
+      default: withCtx(() => [createTextVNode(toDisplayString(_ctx.formatDate(val.value)), 1)]),
+      _: 2
+    }, 1032, ["class"]);
+  }), 256))])) : _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.OptionsField' || _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.CheckboxField' || _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.RadioField' || _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.SelectField' ? (openBlock(), createElementBlock("div", _hoisted_7, [(openBlock(), createBlock(resolveDynamicComponent(_ctx.htmlWrapperTag), {
+    class: normalizeClass(_ctx.cssClasses)
+  }, {
+    default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getSelectedFieldLabels(_ctx.field)), 1)]),
+    _: 1
+  }, 8, ["class"]))])) : _ctx.fieldType.includes('Catfish.Core.Models.Contents.Fields.AttachmentField') || _ctx.fieldType === 'Catfish.Core.Models.Contents.Fields.AudioRecorderField' ? (openBlock(), createElementBlock("div", _hoisted_8, [_ctx.displayImagesMode === 'carousel' ? (openBlock(), createBlock(_component_ImageCarousel, {
+    key: 0,
+    model: _ctx.field,
+    fileUrl: _ctx.fileUrl
+  }, null, 8, ["model", "fileUrl"])) : _ctx.displayImagesMode === 'gallery' ? (openBlock(), createBlock(_component_ImageGallery, {
+    key: 1,
+    model: _ctx.field,
+    fileUrl: _ctx.fileUrl
+  }, null, 8, ["model", "fileUrl"])) : (openBlock(true), createElementBlock(Fragment, {
+    key: 2
+  }, renderList(_ctx.field.files.$values, val => {
+    return openBlock(), createElementBlock("div", {
+      class: normalizeClass(_ctx.cssClasses)
+    }, [val.contentType.includes('pdf') ? (openBlock(), createBlock(_component_PdfViewer, {
+      key: 0,
+      fileUrl: _ctx.fileUrl + val.fileName
+    }, null, 8, ["fileUrl"])) : createCommentVNode("", true), val.contentType.includes('pdf') ? (openBlock(), createElementBlock("a", {
+      key: 1,
+      href: _ctx.fileUrl + val.fileName
+    }, toDisplayString(val.originalFileName), 9, _hoisted_9)) : createCommentVNode("", true), _hoisted_10, val.contentType.includes('image') ? (openBlock(), createElementBlock("img", {
+      key: 2,
+      src: _ctx.fileUrl + val.fileName
+    }, null, 8, _hoisted_11)) : createCommentVNode("", true), _hoisted_12, val.contentType.includes('audio') ? (openBlock(), createElementBlock("audio", _hoisted_13, [createElementVNode("source", {
+      src: _ctx.fileUrl + val.fileName,
+      type: val.contentType
+    }, null, 8, _hoisted_14), _hoisted_15])) : createCommentVNode("", true)], 2);
+  }), 256))])) : createCommentVNode("", true), _hoisted_16]);
+}
+
+script$2.render = render$2;
+
+var script$1 = defineComponent({
+  name: "StaticComponent",
+  components: {},
+  props: {
+    model: {
+      type: null,
+      required: true
+    }
+  },
+
+  setup(p) {
+    return {
+      htmlWrapperTag: computed(() => {
+        var _p$model$type;
+
+        return ((_p$model$type = p.model.type) === null || _p$model$type === void 0 ? void 0 : _p$model$type.length) > 0 ? p.model.type : "div";
+      })
+    };
+  }
+
+});
+
+const _hoisted_1$1 = {
+  class: "staticType"
+};
+
+const _hoisted_2$1 = /*#__PURE__*/createElementVNode("h3", null, "Static Field", -1);
+
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$1, [_hoisted_2$1, (openBlock(), createBlock(resolveDynamicComponent(_ctx.htmlWrapperTag), {
+    class: normalizeClass(_ctx.model.cssClasses)
+  }, {
+    default: withCtx(() => [createTextVNode(toDisplayString(_ctx.model.content), 1)]),
+    _: 1
+  }, 8, ["class"]))]);
+}
+
+script$1.render = render$1;
 
 // import { Guid } from 'guid-typescript'
 var script = defineComponent({
   name: "ItemLayout",
-  components: {},
+  components: {
+    FieldComponent: script$2,
+    StaticComponent: script$1
+  },
   props,
 
   setup(p) {
     const store = useStore();
-    const dataAttributes = p.dataAttributes;
-    const isAdmin = dataAttributes["is-admin"];
-    const templateId = dataAttributes["template-id"];
+    const queryParams = p.queryParameters;
+    store.commit(Mutations$5.SET_ID, queryParams.iid);
+    const dataAttributes = p.dataAttributes; //const templateId = dataAttributes["template-id"] as string;
+    //store.commit(Mutations.SET_TEMPLATE_ID, templateId);
+
     const selectedComponents = dataAttributes["selected-components"];
-    const components = JSON.parse(selectedComponents); // console.log(JSON.stringify(components));
-    //get all the unique formIds
+    const components = JSON.parse(selectedComponents);
+    const isAdmin = dataAttributes["is-admin"]; //load the data
 
-    let uniqueFormIds = [...new Set(components.map(com => com.formId))];
-    console.log("selected Forms Ids" + JSON.stringify(uniqueFormIds)); // const queryParams = p.queryParameters as QueryParameter;
+    store.dispatch(Actions$5.LOAD_ITEM); // console.log("selected Forms" + JSON.stringify(store.state.item));
 
-    store.commit(Mutations.SET_TEMPLATE_ID, templateId);
-    store.commit(Mutations.SET_FORM_IDS, uniqueFormIds); //load the data
+    console.log("components length:" + components.length); //const fields = store.getters.fields(components);
+    // console.log("fields length:" + fields.length);
 
-    store.dispatch(Actions.LOAD_ITEMS);
-    console.log("selected Forms" + JSON.stringify(state.items));
+    const staticFields = components.filter(comp => comp.$type.includes("StaticText"));
+    console.log("static Field:" + staticFields.length);
+    console.log(JSON.stringify(staticFields));
     return {
       store,
-      //queryParams,
-      dataItem: computed(() => store.getters.rootDataItem),
+      item: computed(() => store.state.item),
+      queryParams,
       isAdmin,
-      //  components,
-      selectedComponents,
-      items: computed(() => store.state.items)
+      components,
+      staticFields,
+      fields: computed(() => store.getters.fields(components))
     };
   },
 
@@ -5943,8 +6309,7 @@ var script = defineComponent({
     actions,
     mutations,
     getters
-  },
-  methods: {}
+  }
 });
 
 const _hoisted_1 = {
@@ -5954,7 +6319,19 @@ const _hoisted_1 = {
 const _hoisted_2 = /*#__PURE__*/createElementVNode("h3", null, "ItemLayout", -1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", _hoisted_1, [_hoisted_2, createTextVNode(" " + toDisplayString(_ctx.selectedComponents), 1)]);
+  const _component_StaticComponent = resolveComponent("StaticComponent");
+
+  const _component_FieldComponent = resolveComponent("FieldComponent");
+
+  return openBlock(), createElementBlock("div", _hoisted_1, [_hoisted_2, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.staticFields, field => {
+    return openBlock(), createBlock(_component_StaticComponent, {
+      model: field
+    }, null, 8, ["model"]);
+  }), 256)), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.fields, field => {
+    return openBlock(), createBlock(_component_FieldComponent, {
+      model: field
+    }, null, 8, ["model"]);
+  }), 256))]);
 }
 
 script.render = render;
@@ -5963,16 +6340,16 @@ script.render = render;
 
 var components = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    Carousel: script$M,
-    KeywordSearch: script$J,
-    ItemTemplateEditor: script$E,
-    ItemEditor: script$D,
-    ItemViewer: script$p,
-    ProcessManager: script$n,
-    Grid: script$k,
-    ChildFormSubmission: script$3,
-    FormSubmission: script$2,
-    Report: script$1,
+    Carousel: script$R,
+    KeywordSearch: script$O,
+    ItemTemplateEditor: script$J,
+    ItemEditor: script$I,
+    ItemViewer: script$u,
+    ProcessManager: script$s,
+    Grid: script$p,
+    ChildFormSubmission: script$8,
+    FormSubmission: script$7,
+    Report: script$6,
     ItemLayout: script
 });
 
@@ -5985,4 +6362,4 @@ const install = function installApplets(app) {
   });
 }; // Create module definition for Vue.use()
 
-export { script$M as Carousel, script$3 as ChildFormSubmission, script$2 as FormSubmission, script$k as Grid, script$D as ItemEditor, script as ItemLayout, script$E as ItemTemplateEditor, script$p as ItemViewer, script$J as KeywordSearch, script$n as ProcessManager, script$1 as Report, install as default };
+export { script$R as Carousel, script$8 as ChildFormSubmission, script$7 as FormSubmission, script$p as Grid, script$I as ItemEditor, script as ItemLayout, script$J as ItemTemplateEditor, script$u as ItemViewer, script$O as KeywordSearch, script$s as ProcessManager, script$6 as Report, install as default };

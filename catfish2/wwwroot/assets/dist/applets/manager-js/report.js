@@ -54,7 +54,6 @@
 
 
             this.selectedItemFields.push(field);
-            console.log(JSON.stringify(field));
 
             //Update this.model.selectedFields
             this.model.selectedFieldList.value = JSON.stringify(this.selectedItemFields);
