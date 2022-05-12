@@ -1419,17 +1419,6 @@ const actions$9 = { ...actions$a,
   [Actions$7.SET_SEARCH_TEXT](store, text) {
     // console.log("set serch text: " + text);
     store.commit(Mutations$7.SET_FREE_TEXT_SEARCH, text);
-  },
-
-  [Actions$7.SEARCH_FREE_TEXT](store) {
-    var _store$state$freeSear, _store$state$freeSear2;
-
-    console.log("executing search for: " + ((_store$state$freeSear = store.state.freeSearchText) === null || _store$state$freeSear === void 0 ? void 0 : _store$state$freeSear.toString()));
-    const api = window.location.origin + `/api/solr/executefreetext/${(_store$state$freeSear2 = store.state.freeSearchText) === null || _store$state$freeSear2 === void 0 ? void 0 : _store$state$freeSear2.toString()}`;
-    fetch(api).then(response => response.json()).then(data => {
-      console.log("results:");
-      console.log(data);
-    });
   }
 
 };
@@ -1703,7 +1692,8 @@ var script$Z = defineComponent({
 
     return {
       store,
-      freeTextSearch: computed(() => store.state.freeSearchText)
+      freeTextSearch: computed(() => store.state.freeSearchText),
+      results: computed(() => store.state.searchResult)
     };
   },
 
@@ -1720,8 +1710,8 @@ var script$Z = defineComponent({
       }
     },
     executeSearch: function () {
-      console.log("executing search ....");
-      this.store.dispatch(Actions$7.SEARCH_FREE_TEXT);
+      //console.log("executing search ....");
+      this.store.dispatch(Actions$7.FILTER_BY_KEYWORDS);
     }
   }
 });

@@ -1483,17 +1483,6 @@ var actions$9 = _objectSpread2$5(_objectSpread2$5({}, actions$a), {}, (_objectSp
 }), _defineProperty(_objectSpread2$3, Actions$7.SET_SEARCH_TEXT, function (store, text) {
   // console.log("set serch text: " + text);
   store.commit(Mutations$7.SET_FREE_TEXT_SEARCH, text);
-}), _defineProperty(_objectSpread2$3, Actions$7.SEARCH_FREE_TEXT, function (store) {
-  var _store$state$freeSear, _store$state$freeSear2;
-
-  console.log("executing search for: " + ((_store$state$freeSear = store.state.freeSearchText) === null || _store$state$freeSear === void 0 ? void 0 : _store$state$freeSear.toString()));
-  var api = window.location.origin + "/api/solr/executefreetext/".concat((_store$state$freeSear2 = store.state.freeSearchText) === null || _store$state$freeSear2 === void 0 ? void 0 : _store$state$freeSear2.toString());
-  fetch(api).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    console.log("results:");
-    console.log(data);
-  });
 }), _objectSpread2$3));var getters$9 = {
   //  items: (state): Item[] | undefined => {
   //    return state.searchResult?.items
@@ -1757,6 +1746,9 @@ function render$_(_ctx, _cache, $props, $setup, $data, $options) {
       store: store,
       freeTextSearch: vue.computed(function () {
         return store.state.freeSearchText;
+      }),
+      results: vue.computed(function () {
+        return store.state.searchResult;
       })
     };
   },
@@ -1773,8 +1765,8 @@ function render$_(_ctx, _cache, $props, $setup, $data, $options) {
       }
     },
     executeSearch: function executeSearch() {
-      console.log("executing search ....");
-      this.store.dispatch(Actions$7.SEARCH_FREE_TEXT);
+      //console.log("executing search ....");
+      this.store.dispatch(Actions$7.FILTER_BY_KEYWORDS);
     }
   }
 });var _hoisted_1$F = {
