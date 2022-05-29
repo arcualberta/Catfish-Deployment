@@ -11048,8 +11048,8 @@ var Actions$2;
 })(Actions$2 || (Actions$2 = {}));
 
 var actions$4 = (_actions$1 = {}, _defineProperty(_actions$1, Actions$2.LOAD_FORM, function (store) {
-  var api = window.location.origin + "/applets/api/itemtemplates/".concat(store.state.itemTemplateId, "/data-form/").concat(store.state.formId); //console.log('Form Load API: ', api)
-
+  var api = window.location.origin + "/applets/api/itemtemplates/".concat(store.state.itemTemplateId, "/data-form/").concat(store.state.formId);
+  console.log('Form Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
   }).then(function (data) {

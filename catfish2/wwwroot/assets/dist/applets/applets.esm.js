@@ -10778,8 +10778,8 @@ var Actions$2;
 
 const actions$4 = {
   [Actions$2.LOAD_FORM](store) {
-    const api = window.location.origin + `/applets/api/itemtemplates/${store.state.itemTemplateId}/data-form/${store.state.formId}`; //console.log('Form Load API: ', api)
-
+    const api = window.location.origin + `/applets/api/itemtemplates/${store.state.itemTemplateId}/data-form/${store.state.formId}`;
+    console.log('Form Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
       //console.log('Data:\n', JSON.stringify(data));
       store.commit(Mutations$3.SET_FORM, data);
