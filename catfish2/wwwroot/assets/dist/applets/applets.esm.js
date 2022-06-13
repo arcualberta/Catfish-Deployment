@@ -2656,9 +2656,9 @@ const _hoisted_22$2 = {
   class: "col-12 wrapper"
 };
 
-const _hoisted_23 = /*#__PURE__*/_withScopeId$3(() => /*#__PURE__*/createElementVNode("h4", null, "Forms", -1));
+const _hoisted_23$1 = /*#__PURE__*/_withScopeId$3(() => /*#__PURE__*/createElementVNode("h4", null, "Forms", -1));
 
-const _hoisted_24 = [_hoisted_23];
+const _hoisted_24$1 = [_hoisted_23$1];
 const _hoisted_25 = {
   key: 0
 };
@@ -2719,7 +2719,7 @@ function render$O(_ctx, _cache, $props, $setup, $data, $options) {
     }, [_ctx.activePanel == ms.id ? (openBlock(), createElementBlock("div", _hoisted_21$2, [createVNode(_component_NotificationEditor, {
       fieldContainer: ms
     }, null, 8, ["fieldContainer"])])) : createCommentVNode("", true)]);
-  }), 128)), _ctx.activePanel == 'forms' ? (openBlock(), createElementBlock("div", _hoisted_22$2, _hoisted_24)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
+  }), 128)), _ctx.activePanel == 'forms' ? (openBlock(), createElementBlock("div", _hoisted_22$2, _hoisted_24$1)) : createCommentVNode("", true), (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.dataContainer, form => {
     return openBlock(), createElementBlock("div", {
       key: form.id,
       class: "col-12 wrapper"
@@ -10913,7 +10913,9 @@ const state$3 = {
   reportData: null,
   detailedViewUrl: null,
   templateStatus: null,
-  id: null
+  id: null,
+  offset: 0,
+  pageSize: 25
 };
 
 var Mutations$1;
@@ -10927,6 +10929,8 @@ var Mutations$1;
   Mutations["SET_DETAILED_VIEW_URL"] = "SET_DETAILED_VIEW_URL";
   Mutations["SET_STATUS"] = "SET_STATUS";
   Mutations["SET_ID"] = "SET_ID";
+  Mutations["SET_OFFSET"] = "SET_OFFSET";
+  Mutations["SET_PAGE_SISE"] = "SET_PAGE_SISE";
 })(Mutations$1 || (Mutations$1 = {}));
 
 const mutations$3 = {
@@ -10960,6 +10964,14 @@ const mutations$3 = {
 
   [Mutations$1.SET_ID](state, payload) {
     state.id = payload;
+  },
+
+  [Mutations$1.SET_OFFSET](state, payload) {
+    state.offset = payload;
+  },
+
+  [Mutations$1.SET_PAGE_SISE](state, payload) {
+    state.pageSize = payload;
   }
 
 };
@@ -10972,12 +10984,15 @@ var Actions$1;
 
 const actions$3 = {
   [Actions$1.LOAD_DATA](store, searchParams) {
-    console.log('Store: ', JSON.stringify(store.state));
+    //console.log('Store: ', JSON.stringify(store.state))
     const api = window.location.origin + `/applets/api/items/GetReportData/${store.state.groupId}/template/${store.state.itemTemplateID}/collection/${store.state.collectionID}?startDate=${searchParams.startDate ? searchParams.startDate : ""}&endDate=${searchParams.endDate ? searchParams.endDate : ""}&status=${searchParams.status ? searchParams.status : ""}`;
     console.log('reports Load API: ', api);
     const formData = new FormData(); //Setting the serialized JSON form model to the datamodel variable in formData
 
     formData.append('datamodel', JSON.stringify(store.state.reportFields));
+    if (searchParams.freeText) formData.append('freeText', searchParams.freeText);
+    formData.append('offset', store.state.offset.toString());
+    formData.append('pageSize', store.state.pageSize.toString());
     fetch(api, {
       body: formData,
       method: "post",
@@ -11029,15 +11044,28 @@ var script$8 = defineComponent({
     const fromDate = ref(null);
     const toDate = ref(null);
     const selectedStatus = ref(null);
+    const freeText = ref(null);
+    const offset = computed({
+      get: () => store.state.offset,
+      set: val => store.commit(Mutations$1.SET_OFFSET, val)
+    });
+    const pageSize = computed({
+      get: () => store.state.pageSize,
+      set: val => store.commit(Mutations$1.SET_PAGE_SISE, val)
+    });
+
+    const loadData = () => store.dispatch(Actions$1.LOAD_DATA, {
+      startDate: fromDate.value,
+      endDate: toDate.value,
+      freeText: freeText.value,
+      status: selectedStatus.value
+    });
+
     return {
       store,
       selectedFields,
-      reportRows: computed(() => store.state.reportData),
-      loadData: () => store.dispatch(Actions$1.LOAD_DATA, {
-        startDate: fromDate.value,
-        endDate: toDate.value,
-        status: selectedStatus.value
-      }),
+      report: computed(() => store.state.reportData),
+      loadData,
       queryParams,
       templateStatus,
       detailedViewURL: id => {
@@ -11046,7 +11074,18 @@ var script$8 = defineComponent({
       },
       fromDate,
       toDate,
-      selectedStatus
+      freeText,
+      selectedStatus,
+      offset,
+      pageSize,
+      previousPage: () => {
+        offset.value = offset.value < pageSize.value ? 0 : offset.value - pageSize.value;
+        loadData();
+      },
+      nextPage: () => {
+        offset.value = offset.value + pageSize.value;
+        loadData();
+      }
     };
   },
 
@@ -11103,33 +11142,46 @@ const _hoisted_11$1 = ["value"];
 const _hoisted_12$1 = {
   class: "col-md-6 form-group"
 };
-const _hoisted_13$1 = {
+
+const _hoisted_13$1 = /*#__PURE__*/createElementVNode("label", {
+  class: "form-label"
+}, "Search text:", -1);
+
+const _hoisted_14$1 = {
+  class: "col-md-6 form-group"
+};
+const _hoisted_15$1 = {
+  key: 0,
+  style: {
+    "text-align": "center"
+  }
+};
+const _hoisted_16$1 = {
   class: "table"
 };
 
-const _hoisted_14$1 = /*#__PURE__*/createElementVNode("th", null, null, -1);
+const _hoisted_17 = /*#__PURE__*/createElementVNode("th", null, null, -1);
 
-const _hoisted_15$1 = /*#__PURE__*/createElementVNode("th", null, "Submitted Date", -1);
+const _hoisted_18 = /*#__PURE__*/createElementVNode("th", null, "Submitted Date", -1);
 
-const _hoisted_16$1 = /*#__PURE__*/createElementVNode("th", null, "Status", -1);
+const _hoisted_19 = /*#__PURE__*/createElementVNode("th", null, "Status", -1);
 
-const _hoisted_17 = ["href"];
-const _hoisted_18 = {
+const _hoisted_20 = ["href"];
+const _hoisted_21 = {
   key: 0
 };
-const _hoisted_19 = {
+const _hoisted_22 = {
   key: 1
 };
-const _hoisted_20 = {
+const _hoisted_23 = {
   key: 2
 };
-const _hoisted_21 = {
+const _hoisted_24 = {
   key: 3
 };
-const _hoisted_22 = {
-  key: 4
-};
 function render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  var _ctx$report, _ctx$report2, _ctx$report2$rows, _ctx$report3, _ctx$report4;
+
   return openBlock(), createElementBlock(Fragment, null, [_hoisted_1$8, createElementVNode("div", _hoisted_2$7, [createElementVNode("div", _hoisted_3$4, [_hoisted_4$3, withDirectives(createElementVNode("input", {
     type: "date",
     name: "startDate",
@@ -11152,28 +11204,48 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
     return openBlock(), createElementBlock("option", {
       value: status.id
     }, toDisplayString(status.status), 9, _hoisted_11$1);
-  }), 256))], 512), [[vModelSelect, _ctx.selectedStatus]])]), createElementVNode("div", _hoisted_12$1, [createElementVNode("button", {
+  }), 256))], 512), [[vModelSelect, _ctx.selectedStatus]])]), createElementVNode("div", _hoisted_12$1, [_hoisted_13$1, withDirectives(createElementVNode("input", {
+    type: "text",
+    name: "freeText",
+    id: "freeText",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => _ctx.freeText = $event),
+    class: "form-control"
+  }, null, 512), [[vModelText, _ctx.freeText]])]), createElementVNode("div", _hoisted_14$1, [createElementVNode("button", {
     class: "btn btn-primary",
-    onClick: _cache[3] || (_cache[3] = $event => _ctx.loadData())
-  }, "Execute")])]), createElementVNode("table", _hoisted_13$1, [createElementVNode("thead", null, [createElementVNode("tr", null, [_hoisted_14$1, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.selectedFields, field => {
+    onClick: _cache[4] || (_cache[4] = $event => {
+      _ctx.offset = 0;
+
+      _ctx.loadData();
+    })
+  }, "Execute")])]), (_ctx$report = _ctx.report) !== null && _ctx$report !== void 0 && _ctx$report.rows ? (openBlock(), createElementBlock("div", _hoisted_15$1, [_ctx.offset > 0 ? (openBlock(), createElementBlock("button", {
+    key: 0,
+    onClick: _cache[5] || (_cache[5] = function () {
+      return _ctx.previousPage && _ctx.previousPage(...arguments);
+    }),
+    class: "m-2"
+  }, "Previous")) : createCommentVNode("", true), createTextVNode(" " + toDisplayString(_ctx.offset + 1) + " to " + toDisplayString(_ctx.offset + ((_ctx$report2 = _ctx.report) === null || _ctx$report2 === void 0 ? void 0 : (_ctx$report2$rows = _ctx$report2.rows) === null || _ctx$report2$rows === void 0 ? void 0 : _ctx$report2$rows.length)) + " of " + toDisplayString((_ctx$report3 = _ctx.report) === null || _ctx$report3 === void 0 ? void 0 : _ctx$report3.total) + " ", 1), _ctx.offset + _ctx.report.rows.length < _ctx.report.total ? (openBlock(), createElementBlock("button", {
+    key: 1,
+    onClick: _cache[6] || (_cache[6] = function () {
+      return _ctx.nextPage && _ctx.nextPage(...arguments);
+    }),
+    class: "m-2"
+  }, "Next")) : createCommentVNode("", true)])) : createCommentVNode("", true), createElementVNode("table", _hoisted_16$1, [createElementVNode("thead", null, [createElementVNode("tr", null, [_hoisted_17, (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.selectedFields, field => {
     return openBlock(), createElementBlock("th", null, toDisplayString(field.fieldName), 1);
-  }), 256)), _hoisted_15$1, _hoisted_16$1])]), createElementVNode("tbody", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.reportRows, reportRow => {
+  }), 256)), _hoisted_18, _hoisted_19])]), createElementVNode("tbody", null, [(openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$report4 = _ctx.report) === null || _ctx$report4 === void 0 ? void 0 : _ctx$report4.rows, reportRow => {
     return openBlock(), createElementBlock("tr", null, [createElementVNode("td", null, [createElementVNode("a", {
       href: _ctx.detailedViewURL(reportRow.itemId),
       class: "fa fa-eye",
       target: "_blank"
-    }, null, 8, _hoisted_17)]), (openBlock(true), createElementBlock(Fragment, null, renderList(reportRow.cells, cell => {
+    }, null, 8, _hoisted_20)]), (openBlock(true), createElementBlock(Fragment, null, renderList(reportRow.cells, cell => {
       return openBlock(), createElementBlock("td", null, [(openBlock(true), createElementBlock(Fragment, null, renderList(cell.values, cellValue => {
-        return openBlock(), createElementBlock("div", null, [cellValue.renderType === 'MultilingualText' ? (openBlock(), createElementBlock("div", _hoisted_18, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
-          return openBlock(), createElementBlock("div", null, toDisplayString(txt.value), 1);
-        }), 256))])) : createCommentVNode("", true), cellValue.renderType === 'Options' ? (openBlock(), createElementBlock("ul", _hoisted_19, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
-          return openBlock(), createElementBlock("li", null, toDisplayString(txt.value), 1);
-        }), 256))])) : createCommentVNode("", true), cellValue.renderType === 'MonolingualText' ? (openBlock(), createElementBlock("div", _hoisted_20, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
-          return openBlock(), createElementBlock("div", null, toDisplayString(txt.value), 1);
-        }), 256))])) : createCommentVNode("", true), cellValue.renderType === 'Attachment' ? (openBlock(), createElementBlock("div", _hoisted_21, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
-          return openBlock(), createElementBlock("div", null, toDisplayString(txt.value), 1);
-        }), 256))])) : createCommentVNode("", true), cellValue.renderType === 'Audio' ? (openBlock(), createElementBlock("div", _hoisted_22, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
-          return openBlock(), createElementBlock("div", null, toDisplayString(txt.value), 1);
+        return openBlock(), createElementBlock("div", null, [cellValue.renderType === 'Text' ? (openBlock(), createElementBlock("div", _hoisted_21, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
+          return openBlock(), createElementBlock("div", null, toDisplayString(txt), 1);
+        }), 256))])) : createCommentVNode("", true), cellValue.renderType === 'Options' ? (openBlock(), createElementBlock("ul", _hoisted_22, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
+          return openBlock(), createElementBlock("li", null, toDisplayString(txt), 1);
+        }), 256))])) : createCommentVNode("", true), cellValue.renderType === 'Attachment' ? (openBlock(), createElementBlock("div", _hoisted_23, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
+          return openBlock(), createElementBlock("div", null, " File: " + toDisplayString(txt), 1);
+        }), 256))])) : createCommentVNode("", true), cellValue.renderType === 'Audio' ? (openBlock(), createElementBlock("div", _hoisted_24, [(openBlock(true), createElementBlock(Fragment, null, renderList(cellValue.values, txt => {
+          return openBlock(), createElementBlock("div", null, " Audio: " + toDisplayString(txt), 1);
         }), 256))])) : createCommentVNode("", true)]);
       }), 256))]);
     }), 256)), createElementVNode("td", null, [createElementVNode("div", null, toDisplayString(reportRow.created), 1)]), createElementVNode("td", null, [createElementVNode("div", null, toDisplayString(reportRow.status), 1)])]);
