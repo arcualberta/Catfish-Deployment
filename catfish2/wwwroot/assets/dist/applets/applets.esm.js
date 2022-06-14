@@ -2815,67 +2815,6 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
 
 script$M.render = render$M;
 
-var guid = createCommonjsModule(function (module, exports) {
-exports.__esModule = true;
-var Guid = /** @class */ (function () {
-    function Guid(guid) {
-        if (!guid) {
-            throw new TypeError("Invalid argument; `value` has no value.");
-        }
-        this.value = Guid.EMPTY;
-        if (guid && Guid.isGuid(guid)) {
-            this.value = guid;
-        }
-    }
-    Guid.isGuid = function (guid) {
-        var value = guid.toString();
-        return guid && (guid instanceof Guid || Guid.validator.test(value));
-    };
-    Guid.create = function () {
-        return new Guid([Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-"));
-    };
-    Guid.createEmpty = function () {
-        return new Guid("emptyguid");
-    };
-    Guid.parse = function (guid) {
-        return new Guid(guid);
-    };
-    Guid.raw = function () {
-        return [Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-");
-    };
-    Guid.gen = function (count) {
-        var out = "";
-        for (var i = 0; i < count; i++) {
-            // tslint:disable-next-line:no-bitwise
-            out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        }
-        return out;
-    };
-    Guid.prototype.equals = function (other) {
-        // Comparing string `value` against provided `guid` will auto-call
-        // toString on `guid` for comparison
-        return Guid.isGuid(other) && this.value === other.toString();
-    };
-    Guid.prototype.isEmpty = function () {
-        return this.value === Guid.EMPTY;
-    };
-    Guid.prototype.toString = function () {
-        return this.value;
-    };
-    Guid.prototype.toJSON = function () {
-        return {
-            value: this.value
-        };
-    };
-    Guid.validator = new RegExp("^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$", "i");
-    Guid.EMPTY = "00000000-0000-0000-0000-000000000000";
-    return Guid;
-}());
-exports.Guid = Guid;
-});
-
-var guid$1 = guid;
-
 const getters$7 = {
   rootDataItem: state => {
     var _state$item, _state$item$dataConta, _state$item$dataConta2;
@@ -3610,7 +3549,7 @@ var script$y = defineComponent({
     console.log('Item Viewer setup ...');
     console.log('props: ', JSON.stringify(p));
     const isAdmin = dataAttributes["is-admin"];
-    const siteUrl = guid$1.Guid.parse(dataAttributes["site-url"]);
+    const siteUrl = dataAttributes["site-url"];
     store.commit(Mutations$8.SET_SITE_URL, siteUrl);
     console.log('isAdmin: ', isAdmin);
     const queryParams = p.queryParameters;
@@ -3664,11 +3603,11 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["model"])) : createCommentVNode("", true)])], 64);
 }
 
-var css_248z$6 = "\n.field-name[data-v-65a071f1] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-65a071f1] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
+var css_248z$6 = "\n.field-name[data-v-4033daca] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-4033daca] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
 styleInject(css_248z$6);
 
 script$y.render = render$y;
-script$y.__scopeId = "data-v-65a071f1";
+script$y.__scopeId = "data-v-4033daca";
 
 var eIndexingStatus;
 
@@ -4137,6 +4076,67 @@ function render$t(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script$t.render = render$t;
+
+var guid = createCommonjsModule(function (module, exports) {
+exports.__esModule = true;
+var Guid = /** @class */ (function () {
+    function Guid(guid) {
+        if (!guid) {
+            throw new TypeError("Invalid argument; `value` has no value.");
+        }
+        this.value = Guid.EMPTY;
+        if (guid && Guid.isGuid(guid)) {
+            this.value = guid;
+        }
+    }
+    Guid.isGuid = function (guid) {
+        var value = guid.toString();
+        return guid && (guid instanceof Guid || Guid.validator.test(value));
+    };
+    Guid.create = function () {
+        return new Guid([Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-"));
+    };
+    Guid.createEmpty = function () {
+        return new Guid("emptyguid");
+    };
+    Guid.parse = function (guid) {
+        return new Guid(guid);
+    };
+    Guid.raw = function () {
+        return [Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-");
+    };
+    Guid.gen = function (count) {
+        var out = "";
+        for (var i = 0; i < count; i++) {
+            // tslint:disable-next-line:no-bitwise
+            out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+        return out;
+    };
+    Guid.prototype.equals = function (other) {
+        // Comparing string `value` against provided `guid` will auto-call
+        // toString on `guid` for comparison
+        return Guid.isGuid(other) && this.value === other.toString();
+    };
+    Guid.prototype.isEmpty = function () {
+        return this.value === Guid.EMPTY;
+    };
+    Guid.prototype.toString = function () {
+        return this.value;
+    };
+    Guid.prototype.toJSON = function () {
+        return {
+            value: this.value
+        };
+    };
+    Guid.validator = new RegExp("^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$", "i");
+    Guid.EMPTY = "00000000-0000-0000-0000-000000000000";
+    return Guid;
+}());
+exports.Guid = Guid;
+});
+
+var guid$1 = guid;
 
 var eSubmissionStatus;
 
@@ -11033,7 +11033,7 @@ var script$8 = defineComponent({
     //const queryParameters = p.queryParameters as QueryParameter;
 
     const dataAttributes = p.dataAttributes;
-    const siteUrl = guid$1.Guid.parse(dataAttributes["site-url"]);
+    const siteUrl = dataAttributes["site-url"];
     store.commit(Mutations$1.SET_SITE_URL, siteUrl);
     const itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
     store.commit(Mutations$1.SET_TEMPLATE_ID, itemTemplateId); //store.state.itemTemplateId = itemTemplateId;
