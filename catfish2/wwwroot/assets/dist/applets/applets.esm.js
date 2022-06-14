@@ -1142,7 +1142,8 @@ Object.defineProperties( Store.prototype, prototypeAccessors );
 
 const state$9 = {
   id: null,
-  item: null
+  item: null,
+  siteUrl: null
 };
 
 var ePage;
@@ -1173,6 +1174,7 @@ var Mutations$8;
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_ITEM"] = "SET_ITEM";
   Mutations["CHANGE_STATE"] = "CHANGE_STATE";
+  Mutations["SET_SITE_URL"] = "SET_SITE_URL";
 })(Mutations$8 || (Mutations$8 = {})); //Create a mutation tree that implement all mutation interfaces
 
 
@@ -1190,6 +1192,10 @@ const mutations$b = {
     //state.item
     console.log(JSON.stringify(state));
     console.log(JSON.stringify(payload));
+  },
+
+  [Mutations$8.SET_SITE_URL](state, payload) {
+    state.siteUrl = payload;
   }
 
 };
@@ -1281,7 +1287,7 @@ var Actions$8;
 
 const actions$a = {
   [Actions$8.LOAD_ITEM](store) {
-    const api = window.location.origin + `/applets/api/items/${store.state.id}`;
+    const api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + `/applets/api/items/${store.state.id}`;
     console.log('Item Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
       store.commit(Mutations$8.SET_ITEM, data);
@@ -1290,7 +1296,7 @@ const actions$a = {
 
   [Actions$8.CHANGE_STATE](store, payload) {
     console.log(JSON.stringify(store.state));
-    const api = window.location.origin + `/applets/api/items/deleteItem/${payload}`;
+    const api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + `/applets/api/items/deleteItem/${payload}`;
     console.log('Item Load API: ', api);
     fetch(api, {
       method: "post"
@@ -2809,6 +2815,67 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
 
 script$M.render = render$M;
 
+var guid = createCommonjsModule(function (module, exports) {
+exports.__esModule = true;
+var Guid = /** @class */ (function () {
+    function Guid(guid) {
+        if (!guid) {
+            throw new TypeError("Invalid argument; `value` has no value.");
+        }
+        this.value = Guid.EMPTY;
+        if (guid && Guid.isGuid(guid)) {
+            this.value = guid;
+        }
+    }
+    Guid.isGuid = function (guid) {
+        var value = guid.toString();
+        return guid && (guid instanceof Guid || Guid.validator.test(value));
+    };
+    Guid.create = function () {
+        return new Guid([Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-"));
+    };
+    Guid.createEmpty = function () {
+        return new Guid("emptyguid");
+    };
+    Guid.parse = function (guid) {
+        return new Guid(guid);
+    };
+    Guid.raw = function () {
+        return [Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-");
+    };
+    Guid.gen = function (count) {
+        var out = "";
+        for (var i = 0; i < count; i++) {
+            // tslint:disable-next-line:no-bitwise
+            out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+        return out;
+    };
+    Guid.prototype.equals = function (other) {
+        // Comparing string `value` against provided `guid` will auto-call
+        // toString on `guid` for comparison
+        return Guid.isGuid(other) && this.value === other.toString();
+    };
+    Guid.prototype.isEmpty = function () {
+        return this.value === Guid.EMPTY;
+    };
+    Guid.prototype.toString = function () {
+        return this.value;
+    };
+    Guid.prototype.toJSON = function () {
+        return {
+            value: this.value
+        };
+    };
+    Guid.validator = new RegExp("^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$", "i");
+    Guid.EMPTY = "00000000-0000-0000-0000-000000000000";
+    return Guid;
+}());
+exports.Guid = Guid;
+});
+
+var guid$1 = guid;
+
 const getters$7 = {
   rootDataItem: state => {
     var _state$item, _state$item$dataConta, _state$item$dataConta2;
@@ -3543,6 +3610,8 @@ var script$y = defineComponent({
     console.log('Item Viewer setup ...');
     console.log('props: ', JSON.stringify(p));
     const isAdmin = dataAttributes["is-admin"];
+    const siteUrl = guid$1.Guid.parse(dataAttributes["site-url"]);
+    store.commit(Mutations$8.SET_SITE_URL, siteUrl);
     console.log('isAdmin: ', isAdmin);
     const queryParams = p.queryParameters;
     store.commit(Mutations$8.SET_ID, queryParams.iid); //load the data
@@ -3595,11 +3664,11 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8, ["model"])) : createCommentVNode("", true)])], 64);
 }
 
-var css_248z$6 = "\n.field-name[data-v-f3c870c6] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-f3c870c6] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
+var css_248z$6 = "\n.field-name[data-v-65a071f1] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-65a071f1] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
 styleInject(css_248z$6);
 
 script$y.render = render$y;
-script$y.__scopeId = "data-v-f3c870c6";
+script$y.__scopeId = "data-v-65a071f1";
 
 var eIndexingStatus;
 
@@ -4068,67 +4137,6 @@ function render$t(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script$t.render = render$t;
-
-var guid = createCommonjsModule(function (module, exports) {
-exports.__esModule = true;
-var Guid = /** @class */ (function () {
-    function Guid(guid) {
-        if (!guid) {
-            throw new TypeError("Invalid argument; `value` has no value.");
-        }
-        this.value = Guid.EMPTY;
-        if (guid && Guid.isGuid(guid)) {
-            this.value = guid;
-        }
-    }
-    Guid.isGuid = function (guid) {
-        var value = guid.toString();
-        return guid && (guid instanceof Guid || Guid.validator.test(value));
-    };
-    Guid.create = function () {
-        return new Guid([Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-"));
-    };
-    Guid.createEmpty = function () {
-        return new Guid("emptyguid");
-    };
-    Guid.parse = function (guid) {
-        return new Guid(guid);
-    };
-    Guid.raw = function () {
-        return [Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-");
-    };
-    Guid.gen = function (count) {
-        var out = "";
-        for (var i = 0; i < count; i++) {
-            // tslint:disable-next-line:no-bitwise
-            out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        }
-        return out;
-    };
-    Guid.prototype.equals = function (other) {
-        // Comparing string `value` against provided `guid` will auto-call
-        // toString on `guid` for comparison
-        return Guid.isGuid(other) && this.value === other.toString();
-    };
-    Guid.prototype.isEmpty = function () {
-        return this.value === Guid.EMPTY;
-    };
-    Guid.prototype.toString = function () {
-        return this.value;
-    };
-    Guid.prototype.toJSON = function () {
-        return {
-            value: this.value
-        };
-    };
-    Guid.validator = new RegExp("^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$", "i");
-    Guid.EMPTY = "00000000-0000-0000-0000-000000000000";
-    return Guid;
-}());
-exports.Guid = Guid;
-});
-
-var guid$1 = guid;
 
 var eSubmissionStatus;
 
@@ -10915,7 +10923,8 @@ const state$3 = {
   templateStatus: null,
   id: null,
   offset: 0,
-  pageSize: 25
+  pageSize: 25,
+  siteUrl: null
 };
 
 var Mutations$1;
@@ -10931,6 +10940,7 @@ var Mutations$1;
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_OFFSET"] = "SET_OFFSET";
   Mutations["SET_PAGE_SISE"] = "SET_PAGE_SISE";
+  Mutations["SET_SITE_URL"] = "SET_SITE_URL";
 })(Mutations$1 || (Mutations$1 = {}));
 
 const mutations$3 = {
@@ -10972,6 +10982,10 @@ const mutations$3 = {
 
   [Mutations$1.SET_PAGE_SISE](state, payload) {
     state.pageSize = payload;
+  },
+
+  [Mutations$1.SET_SITE_URL](state, payload) {
+    state.siteUrl = payload;
   }
 
 };
@@ -10985,7 +10999,7 @@ var Actions$1;
 const actions$3 = {
   [Actions$1.LOAD_DATA](store, searchParams) {
     //console.log('Store: ', JSON.stringify(store.state))
-    const api = window.location.origin + `/applets/api/items/GetReportData/${store.state.groupId}/template/${store.state.itemTemplateID}/collection/${store.state.collectionID}?startDate=${searchParams.startDate ? searchParams.startDate : ""}&endDate=${searchParams.endDate ? searchParams.endDate : ""}&status=${searchParams.status ? searchParams.status : ""}`;
+    const api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + `/applets/api/items/GetReportData/${store.state.groupId}/template/${store.state.itemTemplateID}/collection/${store.state.collectionID}?startDate=${searchParams.startDate ? searchParams.startDate : ""}&endDate=${searchParams.endDate ? searchParams.endDate : ""}&status=${searchParams.status ? searchParams.status : ""}`;
     console.log('reports Load API: ', api);
     const formData = new FormData(); //Setting the serialized JSON form model to the datamodel variable in formData
 
@@ -11019,21 +11033,23 @@ var script$8 = defineComponent({
     //const queryParameters = p.queryParameters as QueryParameter;
 
     const dataAttributes = p.dataAttributes;
+    const siteUrl = guid$1.Guid.parse(dataAttributes["site-url"]);
+    store.commit(Mutations$1.SET_SITE_URL, siteUrl);
     const itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
-    store.commit(Mutations$1.SET_TEMPLATE_ID, itemTemplateId);
-    store.state.itemTemplateId = itemTemplateId;
+    store.commit(Mutations$1.SET_TEMPLATE_ID, itemTemplateId); //store.state.itemTemplateId = itemTemplateId;
+
     const collectionId = guid$1.Guid.parse(dataAttributes["collection-id"]);
-    store.commit(Mutations$1.SET_COLLECTION_ID, collectionId);
-    store.state.collectionId = collectionId;
+    store.commit(Mutations$1.SET_COLLECTION_ID, collectionId); //store.state.collectionId = collectionId;
+
     const groupId = guid$1.Guid.parse(dataAttributes["group-id"]);
-    store.commit(Mutations$1.SET_GROUP_ID, groupId);
-    store.state.groupId = groupId;
+    store.commit(Mutations$1.SET_GROUP_ID, groupId); //store.state.groupId = groupId;
+
     const selectedFields = JSON.parse(dataAttributes["selected-fields"]);
-    store.commit(Mutations$1.SET_REPORT_FIELDS, selectedFields);
-    store.state.reportFields = selectedFields;
+    store.commit(Mutations$1.SET_REPORT_FIELDS, selectedFields); //store.state.reportFields = selectedFields;
+
     const templateStatus = JSON.parse(dataAttributes["status"]);
-    store.commit(Mutations$1.SET_STATUS, templateStatus);
-    store.state.templateStatus = templateStatus;
+    store.commit(Mutations$1.SET_STATUS, templateStatus); //store.state.templateStatus = templateStatus;
+
     const queryParams = p.queryParameters;
     store.commit(Mutations$1.SET_ID, queryParams.iid);
     const detailedViewUrlPath = dataAttributes["detailed-url"]; //store.commit(Mutations.SET_DETAILED_VIEW_URL, detailedViewURL)

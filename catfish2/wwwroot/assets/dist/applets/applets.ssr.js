@@ -1252,7 +1252,8 @@ Store.prototype._withCommit = function _withCommit (fn) {
 Object.defineProperties( Store.prototype, prototypeAccessors );//Declare State interface
 var state$9 = {
   id: null,
-  item: null
+  item: null,
+  siteUrl: null
 };var ePage; //Declare State interface
 
 (function (ePage) {
@@ -1280,6 +1281,7 @@ var Mutations$8; //Create a mutation tree that implement all mutation interfaces
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_ITEM"] = "SET_ITEM";
   Mutations["CHANGE_STATE"] = "CHANGE_STATE";
+  Mutations["SET_SITE_URL"] = "SET_SITE_URL";
 })(Mutations$8 || (Mutations$8 = {}));
 
 var mutations$b = (_mutations$5 = {}, _defineProperty(_mutations$5, Mutations$8.SET_ID, function (state, payload) {
@@ -1291,6 +1293,8 @@ var mutations$b = (_mutations$5 = {}, _defineProperty(_mutations$5, Mutations$8.
   //state.item
   console.log(JSON.stringify(state));
   console.log(JSON.stringify(payload));
+}), _defineProperty(_mutations$5, Mutations$8.SET_SITE_URL, function (state, payload) {
+  state.siteUrl = payload;
 }), _mutations$5);var _objectSpread2$4;
 
 var Mutations$7; //Create a mutation tree that implement all mutation interfaces
@@ -1356,7 +1360,7 @@ var Actions$8;
 })(Actions$8 || (Actions$8 = {}));
 
 var actions$a = (_actions$6 = {}, _defineProperty(_actions$6, Actions$8.LOAD_ITEM, function (store) {
-  var api = window.location.origin + "/applets/api/items/".concat(store.state.id);
+  var api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + "/applets/api/items/".concat(store.state.id);
   console.log('Item Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
@@ -1365,7 +1369,7 @@ var actions$a = (_actions$6 = {}, _defineProperty(_actions$6, Actions$8.LOAD_ITE
   });
 }), _defineProperty(_actions$6, Actions$8.CHANGE_STATE, function (store, payload) {
   console.log(JSON.stringify(store.state));
-  var api = window.location.origin + "/applets/api/items/deleteItem/".concat(payload);
+  var api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + "/applets/api/items/deleteItem/".concat(payload);
   console.log('Item Load API: ', api);
   fetch(api, {
     method: "post"
@@ -2835,7 +2839,66 @@ function render$N(_ctx, _cache, $props, $setup, $data, $options) {
 
 function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   return vue.openBlock(), vue.createElementBlock("div", null, [_hoisted_1$v, vue.createElementVNode("div", null, "Item ID: " + vue.toDisplayString(_ctx.queryParameters.id), 1)]);
-}script$M.render = render$M;var getters$7 = {
+}script$M.render = render$M;var guid = createCommonjsModule(function (module, exports) {
+exports.__esModule = true;
+var Guid = /** @class */ (function () {
+    function Guid(guid) {
+        if (!guid) {
+            throw new TypeError("Invalid argument; `value` has no value.");
+        }
+        this.value = Guid.EMPTY;
+        if (guid && Guid.isGuid(guid)) {
+            this.value = guid;
+        }
+    }
+    Guid.isGuid = function (guid) {
+        var value = guid.toString();
+        return guid && (guid instanceof Guid || Guid.validator.test(value));
+    };
+    Guid.create = function () {
+        return new Guid([Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-"));
+    };
+    Guid.createEmpty = function () {
+        return new Guid("emptyguid");
+    };
+    Guid.parse = function (guid) {
+        return new Guid(guid);
+    };
+    Guid.raw = function () {
+        return [Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-");
+    };
+    Guid.gen = function (count) {
+        var out = "";
+        for (var i = 0; i < count; i++) {
+            // tslint:disable-next-line:no-bitwise
+            out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+        return out;
+    };
+    Guid.prototype.equals = function (other) {
+        // Comparing string `value` against provided `guid` will auto-call
+        // toString on `guid` for comparison
+        return Guid.isGuid(other) && this.value === other.toString();
+    };
+    Guid.prototype.isEmpty = function () {
+        return this.value === Guid.EMPTY;
+    };
+    Guid.prototype.toString = function () {
+        return this.value;
+    };
+    Guid.prototype.toJSON = function () {
+        return {
+            value: this.value
+        };
+    };
+    Guid.validator = new RegExp("^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$", "i");
+    Guid.EMPTY = "00000000-0000-0000-0000-000000000000";
+    return Guid;
+}());
+exports.Guid = Guid;
+});
+
+var guid$1 = guid;var getters$7 = {
   rootDataItem: function rootDataItem(state) {
     var _state$item, _state$item$dataConta, _state$item$dataConta2;
 
@@ -3472,6 +3535,8 @@ function render$z(_ctx, _cache, $props, $setup, $data, $options) {
     console.log('Item Viewer setup ...');
     console.log('props: ', JSON.stringify(p));
     var isAdmin = dataAttributes["is-admin"];
+    var siteUrl = guid$1.Guid.parse(dataAttributes["site-url"]);
+    store.commit(Mutations$8.SET_SITE_URL, siteUrl);
     console.log('isAdmin: ', isAdmin);
     var queryParams = p.queryParameters;
     store.commit(Mutations$8.SET_ID, queryParams.iid); //load the data
@@ -3520,9 +3585,9 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     model: _ctx.dataItem
   }, null, 8, ["model"])) : vue.createCommentVNode("", true)])], 64);
-}var css_248z$6 = "\n.field-name[data-v-f3c870c6] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-f3c870c6] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
+}var css_248z$6 = "\n.field-name[data-v-65a071f1] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-65a071f1] {\r\n        color: red;\r\n        margin-left: 30px;\n}\r\n";
 styleInject(css_248z$6);script$y.render = render$y;
-script$y.__scopeId = "data-v-f3c870c6";var eIndexingStatus;
+script$y.__scopeId = "data-v-65a071f1";var eIndexingStatus;
 
 (function (eIndexingStatus) {
   eIndexingStatus[eIndexingStatus["InProgress"] = 1] = "InProgress";
@@ -3941,66 +4006,7 @@ function render$t(_ctx, _cache, $props, $setup, $data, $options) {
       model: card
     }, null, 8, ["model"]);
   }), 256))])]);
-}script$t.render = render$t;var guid = createCommonjsModule(function (module, exports) {
-exports.__esModule = true;
-var Guid = /** @class */ (function () {
-    function Guid(guid) {
-        if (!guid) {
-            throw new TypeError("Invalid argument; `value` has no value.");
-        }
-        this.value = Guid.EMPTY;
-        if (guid && Guid.isGuid(guid)) {
-            this.value = guid;
-        }
-    }
-    Guid.isGuid = function (guid) {
-        var value = guid.toString();
-        return guid && (guid instanceof Guid || Guid.validator.test(value));
-    };
-    Guid.create = function () {
-        return new Guid([Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-"));
-    };
-    Guid.createEmpty = function () {
-        return new Guid("emptyguid");
-    };
-    Guid.parse = function (guid) {
-        return new Guid(guid);
-    };
-    Guid.raw = function () {
-        return [Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-");
-    };
-    Guid.gen = function (count) {
-        var out = "";
-        for (var i = 0; i < count; i++) {
-            // tslint:disable-next-line:no-bitwise
-            out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        }
-        return out;
-    };
-    Guid.prototype.equals = function (other) {
-        // Comparing string `value` against provided `guid` will auto-call
-        // toString on `guid` for comparison
-        return Guid.isGuid(other) && this.value === other.toString();
-    };
-    Guid.prototype.isEmpty = function () {
-        return this.value === Guid.EMPTY;
-    };
-    Guid.prototype.toString = function () {
-        return this.value;
-    };
-    Guid.prototype.toJSON = function () {
-        return {
-            value: this.value
-        };
-    };
-    Guid.validator = new RegExp("^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$", "i");
-    Guid.EMPTY = "00000000-0000-0000-0000-000000000000";
-    return Guid;
-}());
-exports.Guid = Guid;
-});
-
-var guid$1 = guid;var eSubmissionStatus;
+}script$t.render = render$t;var eSubmissionStatus;
 
 (function (eSubmissionStatus) {
   eSubmissionStatus["None"] = "None";
@@ -11187,7 +11193,8 @@ function render$9(_ctx, _cache, $props, $setup, $data, $options) {
   templateStatus: null,
   id: null,
   offset: 0,
-  pageSize: 25
+  pageSize: 25,
+  siteUrl: null
 };var _mutations;
 
 var Mutations$1;
@@ -11203,6 +11210,7 @@ var Mutations$1;
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_OFFSET"] = "SET_OFFSET";
   Mutations["SET_PAGE_SISE"] = "SET_PAGE_SISE";
+  Mutations["SET_SITE_URL"] = "SET_SITE_URL";
 })(Mutations$1 || (Mutations$1 = {}));
 
 var mutations$3 = (_mutations = {}, _defineProperty(_mutations, Mutations$1.SET_TEMPLATE_ID, function (state, payload) {
@@ -11225,6 +11233,8 @@ var mutations$3 = (_mutations = {}, _defineProperty(_mutations, Mutations$1.SET_
   state.offset = payload;
 }), _defineProperty(_mutations, Mutations$1.SET_PAGE_SISE, function (state, payload) {
   state.pageSize = payload;
+}), _defineProperty(_mutations, Mutations$1.SET_SITE_URL, function (state, payload) {
+  state.siteUrl = payload;
 }), _mutations);var Actions$1;
 
 (function (Actions) {
@@ -11233,7 +11243,7 @@ var mutations$3 = (_mutations = {}, _defineProperty(_mutations, Mutations$1.SET_
 
 var actions$3 = _defineProperty({}, Actions$1.LOAD_DATA, function (store, searchParams) {
   //console.log('Store: ', JSON.stringify(store.state))
-  var api = window.location.origin + "/applets/api/items/GetReportData/".concat(store.state.groupId, "/template/").concat(store.state.itemTemplateID, "/collection/").concat(store.state.collectionID, "?startDate=").concat(searchParams.startDate ? searchParams.startDate : "", "&endDate=").concat(searchParams.endDate ? searchParams.endDate : "", "&status=").concat(searchParams.status ? searchParams.status : "");
+  var api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + "/applets/api/items/GetReportData/".concat(store.state.groupId, "/template/").concat(store.state.itemTemplateID, "/collection/").concat(store.state.collectionID, "?startDate=").concat(searchParams.startDate ? searchParams.startDate : "", "&endDate=").concat(searchParams.endDate ? searchParams.endDate : "", "&status=").concat(searchParams.status ? searchParams.status : "");
   console.log('reports Load API: ', api);
   var formData = new FormData(); //Setting the serialized JSON form model to the datamodel variable in formData
 
@@ -11262,21 +11272,23 @@ var actions$3 = _defineProperty({}, Actions$1.LOAD_DATA, function (store, search
     //const queryParameters = p.queryParameters as QueryParameter;
 
     var dataAttributes = p.dataAttributes;
+    var siteUrl = guid$1.Guid.parse(dataAttributes["site-url"]);
+    store.commit(Mutations$1.SET_SITE_URL, siteUrl);
     var itemTemplateId = guid$1.Guid.parse(dataAttributes["template-id"]);
-    store.commit(Mutations$1.SET_TEMPLATE_ID, itemTemplateId);
-    store.state.itemTemplateId = itemTemplateId;
+    store.commit(Mutations$1.SET_TEMPLATE_ID, itemTemplateId); //store.state.itemTemplateId = itemTemplateId;
+
     var collectionId = guid$1.Guid.parse(dataAttributes["collection-id"]);
-    store.commit(Mutations$1.SET_COLLECTION_ID, collectionId);
-    store.state.collectionId = collectionId;
+    store.commit(Mutations$1.SET_COLLECTION_ID, collectionId); //store.state.collectionId = collectionId;
+
     var groupId = guid$1.Guid.parse(dataAttributes["group-id"]);
-    store.commit(Mutations$1.SET_GROUP_ID, groupId);
-    store.state.groupId = groupId;
+    store.commit(Mutations$1.SET_GROUP_ID, groupId); //store.state.groupId = groupId;
+
     var selectedFields = JSON.parse(dataAttributes["selected-fields"]);
-    store.commit(Mutations$1.SET_REPORT_FIELDS, selectedFields);
-    store.state.reportFields = selectedFields;
+    store.commit(Mutations$1.SET_REPORT_FIELDS, selectedFields); //store.state.reportFields = selectedFields;
+
     var templateStatus = JSON.parse(dataAttributes["status"]);
-    store.commit(Mutations$1.SET_STATUS, templateStatus);
-    store.state.templateStatus = templateStatus;
+    store.commit(Mutations$1.SET_STATUS, templateStatus); //store.state.templateStatus = templateStatus;
+
     var queryParams = p.queryParameters;
     store.commit(Mutations$1.SET_ID, queryParams.iid);
     var detailedViewUrlPath = dataAttributes["detailed-url"]; //store.commit(Mutations.SET_DETAILED_VIEW_URL, detailedViewURL)
