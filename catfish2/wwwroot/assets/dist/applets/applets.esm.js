@@ -1287,7 +1287,7 @@ var Actions$8;
 
 const actions$a = {
   [Actions$8.LOAD_ITEM](store) {
-    const api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + `/applets/api/items/${store.state.id}`;
+    const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/${store.state.id}`;
     console.log('Item Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
       store.commit(Mutations$8.SET_ITEM, data);
@@ -1296,7 +1296,7 @@ const actions$a = {
 
   [Actions$8.CHANGE_STATE](store, payload) {
     console.log(JSON.stringify(store.state));
-    const api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + `/applets/api/items/deleteItem/${payload}`;
+    const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/deleteItem/${payload}`;
     console.log('Item Load API: ', api);
     fetch(api, {
       method: "post"
@@ -10999,7 +10999,7 @@ var Actions$1;
 const actions$3 = {
   [Actions$1.LOAD_DATA](store, searchParams) {
     //console.log('Store: ', JSON.stringify(store.state))
-    const api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + `/applets/api/items/GetReportData/${store.state.groupId}/template/${store.state.itemTemplateID}/collection/${store.state.collectionID}?startDate=${searchParams.startDate ? searchParams.startDate : ""}&endDate=${searchParams.endDate ? searchParams.endDate : ""}&status=${searchParams.status ? searchParams.status : ""}`;
+    const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/GetReportData/${store.state.groupId}/template/${store.state.itemTemplateID}/collection/${store.state.collectionID}?startDate=${searchParams.startDate ? searchParams.startDate : ""}&endDate=${searchParams.endDate ? searchParams.endDate : ""}&status=${searchParams.status ? searchParams.status : ""}`;
     console.log('reports Load API: ', api);
     const formData = new FormData(); //Setting the serialized JSON form model to the datamodel variable in formData
 

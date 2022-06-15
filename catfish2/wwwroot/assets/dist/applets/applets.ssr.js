@@ -1360,7 +1360,7 @@ var Actions$8;
 })(Actions$8 || (Actions$8 = {}));
 
 var actions$a = (_actions$6 = {}, _defineProperty(_actions$6, Actions$8.LOAD_ITEM, function (store) {
-  var api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + "/applets/api/items/".concat(store.state.id);
+  var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/".concat(store.state.id);
   console.log('Item Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
@@ -1369,7 +1369,7 @@ var actions$a = (_actions$6 = {}, _defineProperty(_actions$6, Actions$8.LOAD_ITE
   });
 }), _defineProperty(_actions$6, Actions$8.CHANGE_STATE, function (store, payload) {
   console.log(JSON.stringify(store.state));
-  var api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + "/applets/api/items/deleteItem/".concat(payload);
+  var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/deleteItem/".concat(payload);
   console.log('Item Load API: ', api);
   fetch(api, {
     method: "post"
@@ -11243,7 +11243,7 @@ var mutations$3 = (_mutations = {}, _defineProperty(_mutations, Mutations$1.SET_
 
 var actions$3 = _defineProperty({}, Actions$1.LOAD_DATA, function (store, searchParams) {
   //console.log('Store: ', JSON.stringify(store.state))
-  var api = store.state.siteUrl ? store.state.siteUrl : window.location.origin + "/applets/api/items/GetReportData/".concat(store.state.groupId, "/template/").concat(store.state.itemTemplateID, "/collection/").concat(store.state.collectionID, "?startDate=").concat(searchParams.startDate ? searchParams.startDate : "", "&endDate=").concat(searchParams.endDate ? searchParams.endDate : "", "&status=").concat(searchParams.status ? searchParams.status : "");
+  var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/GetReportData/".concat(store.state.groupId, "/template/").concat(store.state.itemTemplateID, "/collection/").concat(store.state.collectionID, "?startDate=").concat(searchParams.startDate ? searchParams.startDate : "", "&endDate=").concat(searchParams.endDate ? searchParams.endDate : "", "&status=").concat(searchParams.status ? searchParams.status : "");
   console.log('reports Load API: ', api);
   var formData = new FormData(); //Setting the serialized JSON form model to the datamodel variable in formData
 
