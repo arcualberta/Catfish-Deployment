@@ -12098,7 +12098,8 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
 }script$1.render = render$1;var state = _objectSpread2$5(_objectSpread2$5({}, flattenedFormFiledState), {}, {
   id: null,
   item: null,
-  permissionList: null
+  permissionList: null,
+  siteUrl: null
 });var _objectSpread2;
 
 var Mutations; //Create a mutation tree that implement all mutation interfaces
@@ -12107,6 +12108,7 @@ var Mutations; //Create a mutation tree that implement all mutation interfaces
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_USER_PERMISSIONS"] = "SET_USER_PERMISSIONS";
   Mutations["SET_ITEM"] = "SET_ITEM";
+  Mutations["SET_SITE_URL"] = "SET_SITE_URL";
 })(Mutations || (Mutations = {}));
 
 var mutations = _objectSpread2$5(_objectSpread2$5({}, mutations$6), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, Mutations.SET_ID, function (state, payload) {
@@ -12125,6 +12127,8 @@ var mutations = _objectSpread2$5(_objectSpread2$5({}, mutations$6), {}, (_object
   payload === null || payload === void 0 ? void 0 : (_payload$metadataSets = payload.metadataSets) === null || _payload$metadataSets === void 0 ? void 0 : (_payload$metadataSets2 = _payload$metadataSets.$values) === null || _payload$metadataSets2 === void 0 ? void 0 : _payload$metadataSets2.forEach(function (fieldContainer) {
     flattenFieldInputs(fieldContainer, state);
   });
+}), _defineProperty(_objectSpread2, Mutations.SET_SITE_URL, function (state, payload) {
+  state.siteUrl = payload;
 }), _objectSpread2));var _actions;
 
 var Actions;
@@ -12137,7 +12141,7 @@ var Actions;
 })(Actions || (Actions = {}));
 
 var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, function (store) {
-  var api = window.location.origin + "/applets/api/items/".concat(store.state.id);
+  var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/".concat(store.state.id);
   console.log('Item Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
@@ -12145,7 +12149,8 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
     store.commit(Mutations.SET_ITEM, data);
   });
 }), _defineProperty(_actions, Actions.GET_USER_ACTIONS, function (store) {
-  var api = window.location.origin + "/applets/api/items/getUserPermissions/".concat(store.state.id);
+  console.log("insude GET_USER_ACTIONS");
+  var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/getUserPermissions/".concat(store.state.id);
   console.log('Permission Load API: ', api);
   fetch(api).then(function (response) {
     return response.json();
@@ -12154,7 +12159,7 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
     store.commit(Mutations.SET_USER_PERMISSIONS, data);
   });
 }), _defineProperty(_actions, Actions.SAVE, function (store) {
-  var api = window.location.origin + "/applets/api/items/update/";
+  var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/update/";
   console.log('Item Update API: ', api);
   var item = store.state.item; //Validating the forms
 
@@ -12216,10 +12221,13 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
     console.log('Item Details setup ...');
     console.log('props: ', JSON.stringify(p));
     var isAdmin = dataAttributes["is-admin"];
-    console.log('isAdmin: ', isAdmin);
+    console.log('isAdmin123: ', isAdmin);
     var queryParams = p.queryParameters;
-    store.commit(Mutations.SET_ID, queryParams.iid); //load the data
+    store.commit(Mutations.SET_ID, queryParams.iid);
+    var siteUrl = dataAttributes["site-url"];
+    store.commit(Mutations.SET_SITE_URL, siteUrl); //load the data
 
+    console.log("before GET_USER_ACTIONS");
     store.dispatch(Actions.GET_USER_ACTIONS);
     store.dispatch(Actions.LOAD_ITEM);
 
@@ -12237,6 +12245,8 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
       //Checks if the current user can update the given field container "fc".
       //Returns true if the editMode = true and if the current user has "Update"
       //permission on the field container "fc"
+      console.log("Check edit permission started.");
+
       if (editMode.value) {
         var _find;
 
@@ -12335,9 +12345,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       model: di
     }, null, 8, ["model"]))]);
   }), 256))], 64);
-}var css_248z = "\n.field-name[data-v-24846760] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-24846760] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-24846760]{\r\n        text-align:right;\n}\n.btn[data-v-24846760]{\r\n        margin: 5px;\n}\r\n";
+}var css_248z = "\n.field-name[data-v-4ffe2d9d] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-4ffe2d9d] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-4ffe2d9d]{\r\n        text-align:right;\n}\n.btn[data-v-4ffe2d9d]{\r\n        margin: 5px;\n}\r\n";
 styleInject(css_248z);script.render = render;
-script.__scopeId = "data-v-24846760";/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$11,KeywordSearch:script$S,ItemTemplateEditor:script$N,ItemEditor:script$M,ItemViewer:script$y,ProcessManager:script$w,Grid:script$t,ChildFormSubmission:script$a,FormSubmission:script$9,Report:script$8,ItemLayout:script$2,EntityManager:script$1,ItemDetails:script});var install = function installApplets(app) {
+script.__scopeId = "data-v-4ffe2d9d";/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$11,KeywordSearch:script$S,ItemTemplateEditor:script$N,ItemEditor:script$M,ItemViewer:script$y,ProcessManager:script$w,Grid:script$t,ChildFormSubmission:script$a,FormSubmission:script$9,Report:script$8,ItemLayout:script$2,EntityManager:script$1,ItemDetails:script});var install = function installApplets(app) {
   Object.entries(components$1).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         componentName = _ref2[0],

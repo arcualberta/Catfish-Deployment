@@ -11882,7 +11882,8 @@ script$1.render = render$1;
 const state = { ...flattenedFormFiledState,
   id: null,
   item: null,
-  permissionList: null
+  permissionList: null,
+  siteUrl: null
 };
 
 var Mutations;
@@ -11891,6 +11892,7 @@ var Mutations;
   Mutations["SET_ID"] = "SET_ID";
   Mutations["SET_USER_PERMISSIONS"] = "SET_USER_PERMISSIONS";
   Mutations["SET_ITEM"] = "SET_ITEM";
+  Mutations["SET_SITE_URL"] = "SET_SITE_URL";
 })(Mutations || (Mutations = {})); //Create a mutation tree that implement all mutation interfaces
 
 
@@ -11916,6 +11918,10 @@ const mutations = { ...mutations$6,
     payload === null || payload === void 0 ? void 0 : (_payload$metadataSets = payload.metadataSets) === null || _payload$metadataSets === void 0 ? void 0 : (_payload$metadataSets2 = _payload$metadataSets.$values) === null || _payload$metadataSets2 === void 0 ? void 0 : _payload$metadataSets2.forEach(fieldContainer => {
       flattenFieldInputs(fieldContainer, state);
     });
+  },
+
+  [Mutations.SET_SITE_URL](state, payload) {
+    state.siteUrl = payload;
   }
 
 };
@@ -11931,7 +11937,7 @@ var Actions;
 
 const actions = {
   [Actions.LOAD_ITEM](store) {
-    const api = window.location.origin + `/applets/api/items/${store.state.id}`;
+    const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/${store.state.id}`;
     console.log('Item Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
       store.commit(Mutations.SET_ITEM, data);
@@ -11939,7 +11945,8 @@ const actions = {
   },
 
   [Actions.GET_USER_ACTIONS](store) {
-    const api = window.location.origin + `/applets/api/items/getUserPermissions/${store.state.id}`;
+    console.log("insude GET_USER_ACTIONS");
+    const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/getUserPermissions/${store.state.id}`;
     console.log('Permission Load API: ', api);
     fetch(api).then(response => response.json()).then(data => {
       console.log(JSON.stringify(data));
@@ -11948,7 +11955,7 @@ const actions = {
   },
 
   [Actions.SAVE](store) {
-    const api = window.location.origin + `/applets/api/items/update/`;
+    const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/update/`;
     console.log('Item Update API: ', api);
     const item = store.state.item; //Validating the forms
 
@@ -12007,10 +12014,13 @@ var script = defineComponent({
     console.log('Item Details setup ...');
     console.log('props: ', JSON.stringify(p));
     const isAdmin = dataAttributes["is-admin"];
-    console.log('isAdmin: ', isAdmin);
+    console.log('isAdmin123: ', isAdmin);
     const queryParams = p.queryParameters;
-    store.commit(Mutations.SET_ID, queryParams.iid); //load the data
+    store.commit(Mutations.SET_ID, queryParams.iid);
+    const siteUrl = dataAttributes["site-url"];
+    store.commit(Mutations.SET_SITE_URL, siteUrl); //load the data
 
+    console.log("before GET_USER_ACTIONS");
     store.dispatch(Actions.GET_USER_ACTIONS);
     store.dispatch(Actions.LOAD_ITEM);
 
@@ -12026,6 +12036,8 @@ var script = defineComponent({
       //Checks if the current user can update the given field container "fc".
       //Returns true if the editMode = true and if the current user has "Update"
       //permission on the field container "fc"
+      console.log("Check edit permission started.");
+
       if (editMode.value) {
         var _store$state$permissi;
 
@@ -12111,11 +12123,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256))], 64);
 }
 
-var css_248z = "\n.field-name[data-v-24846760] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-24846760] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-24846760]{\r\n        text-align:right;\n}\n.btn[data-v-24846760]{\r\n        margin: 5px;\n}\r\n";
+var css_248z = "\n.field-name[data-v-4ffe2d9d] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-4ffe2d9d] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-4ffe2d9d]{\r\n        text-align:right;\n}\n.btn[data-v-4ffe2d9d]{\r\n        margin: 5px;\n}\r\n";
 styleInject(css_248z);
 
 script.render = render;
-script.__scopeId = "data-v-24846760";
+script.__scopeId = "data-v-4ffe2d9d";
 
 /* eslint-disable import/prefer-default-export */
 
