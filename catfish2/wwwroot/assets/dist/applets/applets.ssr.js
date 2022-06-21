@@ -12138,6 +12138,7 @@ var Actions;
   Actions["GET_USER_ACTIONS"] = "GET_USER_ACTIONS";
   Actions["CHANGE_STATE"] = "CHANGE_STATE";
   Actions["SAVE"] = "SAVE";
+  Actions["DELETE"] = "DELETE";
 })(Actions || (Actions = {}));
 
 var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, function (store) {
@@ -12157,6 +12158,26 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
   }).then(function (data) {
     console.log(JSON.stringify(data));
     store.commit(Mutations.SET_USER_PERMISSIONS, data);
+  });
+}), _defineProperty(_actions, Actions.DELETE, function (store) {
+  var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/deleteItem/".concat(store.state.id);
+  console.log('Item Delete API: ', api);
+  var item = store.state.item; //Validating the forms
+
+  if (!item) return;
+  fetch(api, {
+    method: "post",
+    headers: {
+      //"Content-Type": "multipart/form-data"
+      "encType": "multipart/form-data"
+    }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log(JSON.stringify(data));
+    store.commit(FlattenedFormFiledMutations.REMOVE_FIELD_CONTAINERS); //store.commit(Mutations.SET_ITEM, data);
+  }).catch(function (error) {
+    console.log(error);
   });
 }), _defineProperty(_actions, Actions.SAVE, function (store) {
   var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/update/";
@@ -12290,7 +12311,8 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
       }),
       save: function save() {
         return store.dispatch(Actions.SAVE);
-      }
+      } //delete: () => store.dispatch(Actions.DELETE),
+
     };
   },
   storeConfig: {
@@ -12345,9 +12367,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       model: di
     }, null, 8, ["model"]))]);
   }), 256))], 64);
-}var css_248z = "\n.field-name[data-v-4ffe2d9d] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-4ffe2d9d] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-4ffe2d9d]{\r\n        text-align:right;\n}\n.btn[data-v-4ffe2d9d]{\r\n        margin: 5px;\n}\r\n";
+}var css_248z = "\n.field-name[data-v-8c947c54] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-8c947c54] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-8c947c54]{\r\n        text-align:right;\n}\n.btn[data-v-8c947c54]{\r\n        margin: 5px;\n}\r\n";
 styleInject(css_248z);script.render = render;
-script.__scopeId = "data-v-4ffe2d9d";/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$11,KeywordSearch:script$S,ItemTemplateEditor:script$N,ItemEditor:script$M,ItemViewer:script$y,ProcessManager:script$w,Grid:script$t,ChildFormSubmission:script$a,FormSubmission:script$9,Report:script$8,ItemLayout:script$2,EntityManager:script$1,ItemDetails:script});var install = function installApplets(app) {
+script.__scopeId = "data-v-8c947c54";/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$11,KeywordSearch:script$S,ItemTemplateEditor:script$N,ItemEditor:script$M,ItemViewer:script$y,ProcessManager:script$w,Grid:script$t,ChildFormSubmission:script$a,FormSubmission:script$9,Report:script$8,ItemLayout:script$2,EntityManager:script$1,ItemDetails:script});var install = function installApplets(app) {
   Object.entries(components$1).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         componentName = _ref2[0],

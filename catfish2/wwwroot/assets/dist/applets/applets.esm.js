@@ -11933,6 +11933,7 @@ var Actions;
   Actions["GET_USER_ACTIONS"] = "GET_USER_ACTIONS";
   Actions["CHANGE_STATE"] = "CHANGE_STATE";
   Actions["SAVE"] = "SAVE";
+  Actions["DELETE"] = "DELETE";
 })(Actions || (Actions = {}));
 
 const actions = {
@@ -11951,6 +11952,26 @@ const actions = {
     fetch(api).then(response => response.json()).then(data => {
       console.log(JSON.stringify(data));
       store.commit(Mutations.SET_USER_PERMISSIONS, data);
+    });
+  },
+
+  [Actions.DELETE](store) {
+    const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/deleteItem/${store.state.id}`;
+    console.log('Item Delete API: ', api);
+    const item = store.state.item; //Validating the forms
+
+    if (!item) return;
+    fetch(api, {
+      method: "post",
+      headers: {
+        //"Content-Type": "multipart/form-data"
+        "encType": "multipart/form-data"
+      }
+    }).then(response => response.json()).then(data => {
+      console.log(JSON.stringify(data));
+      store.commit(FlattenedFormFiledMutations.REMOVE_FIELD_CONTAINERS); //store.commit(Mutations.SET_ITEM, data);
+    }).catch(error => {
+      console.log(error);
     });
   },
 
@@ -12067,7 +12088,8 @@ var script = defineComponent({
       hasEditPermission,
       isEditable,
       isModified: computed(() => store.state.modified),
-      save: () => store.dispatch(Actions.SAVE)
+      save: () => store.dispatch(Actions.SAVE) //delete: () => store.dispatch(Actions.DELETE),
+
     };
   },
 
@@ -12123,11 +12145,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256))], 64);
 }
 
-var css_248z = "\n.field-name[data-v-4ffe2d9d] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-4ffe2d9d] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-4ffe2d9d]{\r\n        text-align:right;\n}\n.btn[data-v-4ffe2d9d]{\r\n        margin: 5px;\n}\r\n";
+var css_248z = "\n.field-name[data-v-8c947c54] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-8c947c54] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-8c947c54]{\r\n        text-align:right;\n}\n.btn[data-v-8c947c54]{\r\n        margin: 5px;\n}\r\n";
 styleInject(css_248z);
 
 script.render = render;
-script.__scopeId = "data-v-4ffe2d9d";
+script.__scopeId = "data-v-8c947c54";
 
 /* eslint-disable import/prefer-default-export */
 
