@@ -12118,7 +12118,9 @@ var script = defineComponent({
       isEditable,
       isModified: computed(() => store.state.modified),
       save: () => store.dispatch(Actions.SAVE),
-      deleteItem: () => store.dispatch(Actions.DELETE)
+      deleteItem: () => {
+        if (confirm("Do you really want to delete this item?")) store.dispatch(Actions.DELETE);
+      }
     };
   },
 
@@ -12178,11 +12180,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256))], 64);
 }
 
-var css_248z = "\n.field-name[data-v-3065ab1c] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-3065ab1c] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-3065ab1c]{\r\n        text-align:right;\n}\n.btn[data-v-3065ab1c]{\r\n        margin: 5px;\n}\r\n";
+var css_248z = "\n.field-name[data-v-773147d4] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-773147d4] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-773147d4]{\r\n        text-align:right;\n}\n.btn[data-v-773147d4]{\r\n        margin: 5px;\n}\r\n";
 styleInject(css_248z);
 
 script.render = render;
-script.__scopeId = "data-v-3065ab1c";
+script.__scopeId = "data-v-773147d4";
 
 /* eslint-disable import/prefer-default-export */
 
