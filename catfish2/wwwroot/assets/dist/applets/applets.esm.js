@@ -11956,6 +11956,7 @@ const actions = {
   },
 
   [Actions.DELETE](store) {
+    console.log("Delete Action Started");
     const api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + `/applets/api/items/deleteItem/${store.state.id}`;
     console.log('Item Delete API: ', api);
     const item = store.state.item; //Validating the forms
@@ -11967,11 +11968,39 @@ const actions = {
         //"Content-Type": "multipart/form-data"
         "encType": "multipart/form-data"
       }
-    }).then(response => response.json()).then(data => {
-      console.log(JSON.stringify(data));
-      store.commit(FlattenedFormFiledMutations.REMOVE_FIELD_CONTAINERS); //store.commit(Mutations.SET_ITEM, data);
-    }).catch(error => {
-      console.log(error);
+    }).then(response => {
+      //response.json()
+      console.log(response.status);
+
+      switch (response.status) {
+        case 200:
+          window.location.href = "/"; //alert("TODO: change me to redirect to home page.");
+
+          break;
+
+        case 401:
+          alert("Authorization failed.");
+          break;
+
+        case 404:
+          alert("Item not found.");
+          break;
+
+        case 500:
+          alert("Internal server error occurred.");
+          break;
+
+        default:
+          alert("Unknown error occurred.");
+          break;
+      }
+    }) //.then(data => {
+    //    console.log(JSON.stringify(data));
+    //    store.commit(FlattenedFormFiledMutations.REMOVE_FIELD_CONTAINERS);
+    //    //store.commit(Mutations.SET_ITEM, data);
+    //})
+    .catch(error => {
+      console.log("error", error);
     });
   },
 
@@ -12088,8 +12117,8 @@ var script = defineComponent({
       hasEditPermission,
       isEditable,
       isModified: computed(() => store.state.modified),
-      save: () => store.dispatch(Actions.SAVE) //delete: () => store.dispatch(Actions.DELETE),
-
+      save: () => store.dispatch(Actions.SAVE),
+      deleteItem: () => store.dispatch(Actions.DELETE)
     };
   },
 
@@ -12124,7 +12153,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     class: "btn btn-success"
   }, "Save")) : createCommentVNode("", true), _ctx.hasEditPermission() ? (openBlock(), createElementBlock("button", {
     key: 1,
-    onClick: _cache[1] || (_cache[1] = $event => _ctx.editMode = !_ctx.editMode),
+    onClick: _cache[1] || (_cache[1] = $event => _ctx.deleteItem()),
+    class: "btn btn-danger"
+  }, "Delete")) : createCommentVNode("", true), _ctx.hasEditPermission() ? (openBlock(), createElementBlock("button", {
+    key: 2,
+    onClick: _cache[2] || (_cache[2] = $event => _ctx.editMode = !_ctx.editMode),
     class: "btn btn-primary"
   }, [_ctx.editMode ? (openBlock(), createElementBlock("span", _hoisted_2, "View")) : (openBlock(), createElementBlock("span", _hoisted_3, "Edit"))])) : createCommentVNode("", true)]), (openBlock(true), createElementBlock(Fragment, null, renderList((_ctx$dataItem = _ctx.dataItem) === null || _ctx$dataItem === void 0 ? void 0 : (_ctx$dataItem$metadat = _ctx$dataItem.metadataSets) === null || _ctx$dataItem$metadat === void 0 ? void 0 : _ctx$dataItem$metadat.$values, ms => {
     return openBlock(), createElementBlock("div", null, [createElementVNode("h4", null, toDisplayString(_ctx.getContainerName(ms)), 1), _ctx.isEditable(ms) ? (openBlock(), createBlock(_component_FieldContainerEditor, {
@@ -12145,11 +12178,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256))], 64);
 }
 
-var css_248z = "\n.field-name[data-v-8c947c54] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-8c947c54] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-8c947c54]{\r\n        text-align:right;\n}\n.btn[data-v-8c947c54]{\r\n        margin: 5px;\n}\r\n";
+var css_248z = "\n.field-name[data-v-3065ab1c] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-3065ab1c] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-3065ab1c]{\r\n        text-align:right;\n}\n.btn[data-v-3065ab1c]{\r\n        margin: 5px;\n}\r\n";
 styleInject(css_248z);
 
 script.render = render;
-script.__scopeId = "data-v-8c947c54";
+script.__scopeId = "data-v-3065ab1c";
 
 /* eslint-disable import/prefer-default-export */
 

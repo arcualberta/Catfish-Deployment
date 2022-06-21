@@ -12160,6 +12160,7 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
     store.commit(Mutations.SET_USER_PERMISSIONS, data);
   });
 }), _defineProperty(_actions, Actions.DELETE, function (store) {
+  console.log("Delete Action Started");
   var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/deleteItem/".concat(store.state.id);
   console.log('Item Delete API: ', api);
   var item = store.state.item; //Validating the forms
@@ -12172,12 +12173,38 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
       "encType": "multipart/form-data"
     }
   }).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    console.log(JSON.stringify(data));
-    store.commit(FlattenedFormFiledMutations.REMOVE_FIELD_CONTAINERS); //store.commit(Mutations.SET_ITEM, data);
-  }).catch(function (error) {
-    console.log(error);
+    //response.json()
+    console.log(response.status);
+
+    switch (response.status) {
+      case 200:
+        window.location.href = "/"; //alert("TODO: change me to redirect to home page.");
+
+        break;
+
+      case 401:
+        alert("Authorization failed.");
+        break;
+
+      case 404:
+        alert("Item not found.");
+        break;
+
+      case 500:
+        alert("Internal server error occurred.");
+        break;
+
+      default:
+        alert("Unknown error occurred.");
+        break;
+    }
+  }) //.then(data => {
+  //    console.log(JSON.stringify(data));
+  //    store.commit(FlattenedFormFiledMutations.REMOVE_FIELD_CONTAINERS);
+  //    //store.commit(Mutations.SET_ITEM, data);
+  //})
+  .catch(function (error) {
+    console.log("error", error);
   });
 }), _defineProperty(_actions, Actions.SAVE, function (store) {
   var api = (store.state.siteUrl ? store.state.siteUrl : window.location.origin) + "/applets/api/items/update/";
@@ -12311,8 +12338,10 @@ var actions = (_actions = {}, _defineProperty(_actions, Actions.LOAD_ITEM, funct
       }),
       save: function save() {
         return store.dispatch(Actions.SAVE);
-      } //delete: () => store.dispatch(Actions.DELETE),
-
+      },
+      deleteItem: function deleteItem() {
+        return store.dispatch(Actions.DELETE);
+      }
     };
   },
   storeConfig: {
@@ -12347,6 +12376,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "Save")) : vue.createCommentVNode("", true), _ctx.hasEditPermission() ? (vue.openBlock(), vue.createElementBlock("button", {
     key: 1,
     onClick: _cache[1] || (_cache[1] = function ($event) {
+      return _ctx.deleteItem();
+    }),
+    class: "btn btn-danger"
+  }, "Delete")) : vue.createCommentVNode("", true), _ctx.hasEditPermission() ? (vue.openBlock(), vue.createElementBlock("button", {
+    key: 2,
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return _ctx.editMode = !_ctx.editMode;
     }),
     class: "btn btn-primary"
@@ -12367,9 +12402,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       model: di
     }, null, 8, ["model"]))]);
   }), 256))], 64);
-}var css_248z = "\n.field-name[data-v-8c947c54] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-8c947c54] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-8c947c54]{\r\n        text-align:right;\n}\n.btn[data-v-8c947c54]{\r\n        margin: 5px;\n}\r\n";
+}var css_248z = "\n.field-name[data-v-3065ab1c] {\r\n        font-weight: bold !important;\n}\n.fa-remove[data-v-3065ab1c] {\r\n        color: red;\r\n        margin-left: 30px;\n}\n.controls[data-v-3065ab1c]{\r\n        text-align:right;\n}\n.btn[data-v-3065ab1c]{\r\n        margin: 5px;\n}\r\n";
 styleInject(css_248z);script.render = render;
-script.__scopeId = "data-v-8c947c54";/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$11,KeywordSearch:script$S,ItemTemplateEditor:script$N,ItemEditor:script$M,ItemViewer:script$y,ProcessManager:script$w,Grid:script$t,ChildFormSubmission:script$a,FormSubmission:script$9,Report:script$8,ItemLayout:script$2,EntityManager:script$1,ItemDetails:script});var install = function installApplets(app) {
+script.__scopeId = "data-v-3065ab1c";/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Carousel:script$11,KeywordSearch:script$S,ItemTemplateEditor:script$N,ItemEditor:script$M,ItemViewer:script$y,ProcessManager:script$w,Grid:script$t,ChildFormSubmission:script$a,FormSubmission:script$9,Report:script$8,ItemLayout:script$2,EntityManager:script$1,ItemDetails:script});var install = function installApplets(app) {
   Object.entries(components$1).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         componentName = _ref2[0],
