@@ -13189,8 +13189,19 @@ script$g.render = render$g;var useFormStore = defineStore('FormStore', {
         console.error('Item Load API Error:', error);
       });
     },
-    submitForm: function submitForm() {
+    loadItem: function loadItem(itemId) {
       var _this2 = this;
+
+      var api = this.apiRoot + "/applets/api/items/".concat(itemId);
+      console.log('Item Load API: ', api);
+      fetch(api).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this2.form = data;
+      });
+    },
+    submitForm: function submitForm() {
+      var _this3 = this;
 
       var api = this.apiRoot + "/applets/api/items?itemTemplateId=" + this.itemTemplateId + "&groupId=" + this.groupId + "&collectionId=" + this.collectionId;
       console.log('submitForm:');
@@ -13216,9 +13227,9 @@ script$g.render = render$g;var useFormStore = defineStore('FormStore', {
         console.log(JSON.stringify(data)); // this.submissionFailed = data !== "Success";
         // router.push({name:'joinConfirmation'})
 
-        _this2.submissionFailed = false;
+        _this3.submissionFailed = false;
       }).catch(function (error) {
-        _this2.submissionFailed = true;
+        _this3.submissionFailed = true;
         console.error('Form submission failed:', error);
       });
     },
@@ -13249,23 +13260,29 @@ script$g.render = render$g;var useFormStore = defineStore('FormStore', {
   },
   setup: function setup(p) {
     console.log("setup");
-    var pinia = createPinia(); // getActivePinia();
-
+    var pinia = createPinia();
+    var formStore = useFormStore(pinia);
     console.log(JSON.stringify(pinia));
     var dataAttributes = p.dataAttributes;
     var itemTemplateId = guid$2.Guid.parse(dataAttributes["template-id"]);
-    var formId = guid$2.Guid.parse(dataAttributes["form-id"]);
     var collectionId = guid$2.Guid.parse(dataAttributes["collection-id"]);
     var groupId = dataAttributes["group-id"] ? guid$2.Guid.parse(dataAttributes["group-id"]) : null;
     var apiServiceRoot = dataAttributes["site-url"];
-    var formStore = useFormStore(pinia);
-    formStore.setFormId(formId);
-    formStore.setTemplateId(itemTemplateId);
-    formStore.setCollectionId(collectionId);
-    if (groupId) formStore.setGroupId(groupId);
-    formStore.setApiRoot(apiServiceRoot); // console.log("settings: api: " + formStore.apiRoot + " - frmId: " + formStore.formId + " -tmpId:  " + formStore.itemTemplateId + " - collId" + formStore.collectionId)
+    var queryParams = p.queryParameters;
+    var itemId = queryParams.iid;
 
-    formStore.fetchData();
+    if (itemId) {
+      formStore.loadItem(itemId);
+    } else {
+      var formId = guid$2.Guid.parse(dataAttributes["form-id"]);
+      formStore.setFormId(formId);
+      formStore.setTemplateId(itemTemplateId);
+      formStore.setCollectionId(collectionId);
+      if (groupId) formStore.setGroupId(groupId);
+      formStore.setApiRoot(apiServiceRoot); // console.log("settings: api: " + formStore.apiRoot + " - frmId: " + formStore.formId + " -tmpId:  " + formStore.itemTemplateId + " - collId" + formStore.collectionId)
+
+      formStore.fetchData();
+    }
 
     var submitForm = function submitForm() {
       if (index.helpers.validateForm(formStore.form)) {

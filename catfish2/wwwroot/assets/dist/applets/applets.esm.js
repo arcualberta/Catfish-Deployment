@@ -12916,6 +12916,14 @@ const useFormStore = defineStore('FormStore', {
       });
     },
 
+    loadItem(itemId) {
+      const api = this.apiRoot + `/applets/api/items/${itemId}`;
+      console.log('Item Load API: ', api);
+      fetch(api).then(response => response.json()).then(data => {
+        this.form = data;
+      });
+    },
+
     submitForm() {
       const api = this.apiRoot + "/applets/api/items?itemTemplateId=" + this.itemTemplateId + "&groupId=" + this.groupId + "&collectionId=" + this.collectionId;
       console.log('submitForm:');
@@ -12981,23 +12989,29 @@ var script$9 = defineComponent({
 
   setup(p) {
     console.log("setup");
-    const pinia = createPinia(); // getActivePinia();
-
+    const pinia = createPinia();
+    const formStore = useFormStore(pinia);
     console.log(JSON.stringify(pinia));
     const dataAttributes = p.dataAttributes;
     const itemTemplateId = guid$2.Guid.parse(dataAttributes["template-id"]);
-    const formId = guid$2.Guid.parse(dataAttributes["form-id"]);
     const collectionId = guid$2.Guid.parse(dataAttributes["collection-id"]);
     const groupId = dataAttributes["group-id"] ? guid$2.Guid.parse(dataAttributes["group-id"]) : null;
     const apiServiceRoot = dataAttributes["site-url"];
-    const formStore = useFormStore(pinia);
-    formStore.setFormId(formId);
-    formStore.setTemplateId(itemTemplateId);
-    formStore.setCollectionId(collectionId);
-    if (groupId) formStore.setGroupId(groupId);
-    formStore.setApiRoot(apiServiceRoot); // console.log("settings: api: " + formStore.apiRoot + " - frmId: " + formStore.formId + " -tmpId:  " + formStore.itemTemplateId + " - collId" + formStore.collectionId)
+    const queryParams = p.queryParameters;
+    const itemId = queryParams.iid;
 
-    formStore.fetchData();
+    if (itemId) {
+      formStore.loadItem(itemId);
+    } else {
+      const formId = guid$2.Guid.parse(dataAttributes["form-id"]);
+      formStore.setFormId(formId);
+      formStore.setTemplateId(itemTemplateId);
+      formStore.setCollectionId(collectionId);
+      if (groupId) formStore.setGroupId(groupId);
+      formStore.setApiRoot(apiServiceRoot); // console.log("settings: api: " + formStore.apiRoot + " - frmId: " + formStore.formId + " -tmpId:  " + formStore.itemTemplateId + " - collId" + formStore.collectionId)
+
+      formStore.fetchData();
+    }
 
     const submitForm = () => {
       if (index.helpers.validateForm(formStore.form)) {
