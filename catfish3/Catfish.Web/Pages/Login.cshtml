@@ -4,15 +4,14 @@
 
 @{
     @inject IConfiguration configuration;
-    var siteUrl = configuration.GetSection("SiteConfig:SiteUrl").Value;
-    if (string.IsNullOrEmpty(siteUrl))
-        siteUrl = "/";
-    else if (!siteUrl.EndsWith("/"))
-        siteUrl += "/";
 
     var redirectLocation = Request.Query["ret"].ToString();
     if (string.IsNullOrEmpty(redirectLocation))
-        redirectLocation = siteUrl;
+    {       
+        redirectLocation = configuration.GetSection("SiteConfig:SiteUrl").Value;
+        if (string.IsNullOrEmpty(redirectLocation))
+            redirectLocation = "/";
+    }
 }
 
 @if (!string.IsNullOrEmpty(Model.ErrorMessage))
@@ -25,8 +24,8 @@
 <script>
     function handleCredentialResponse(response) {
         console.log("Encoded JWT ID token: " + response.credential);
-        const api = '@siteUrl' + 'google';
-        fetch(api, {
+        //fetch("https://localhost:5010/api/GoogleIdentity", {
+        fetch("https://localhost:5000/google", {
             body: JSON.stringify(response.credential),
             method: 'POST',
             headers: {
