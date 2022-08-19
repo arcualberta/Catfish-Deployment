@@ -2406,6 +2406,7 @@
           "CatfishExtensions": "1.0.0",
           "Microsoft.AspNetCore.Authentication.Google": "6.0.7",
           "Piranha": "10.1.0",
+          "Piranha.AspNetCore": "10.1.0",
           "Piranha.AspNetCore.Hosting": "10.1.0",
           "Piranha.AspNetCore.Identity": "10.1.0",
           "Piranha.AttributeBuilder": "10.1.0",
