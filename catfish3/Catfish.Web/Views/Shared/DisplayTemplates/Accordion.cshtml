@@ -1,15 +1,12 @@
 ﻿@model CatfishWebExtensions.Blocks.Accordion
-@using CatfishWebExtensions.Blocks;
 
 @inject CatfishExtensions.Helpers.ICatfishAppConfiguration _catfishConfiguration;
 
 @{
     var css_classes = Model.CSSClasses.Value;
-   
 }
 
-<div class="accordion" id="accordion-@Model.Id">
-
+<div class="accordion @css_classes" id="accordion-@Model.Id">
     @foreach(var block in Model.Items)
     {
         <div class="accordion-item">
