@@ -1,0 +1,96 @@
+﻿@model string;
+@using Newtonsoft.Json;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Piranha.AspNetCore.Services.IApplicationService _webApp
+@inject CatfishWebExtensions.Interfaces.IAssetRegistry _assetRegistry;
+@inject IConfiguration _configuration;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor;
+@inject CatfishWebExtensions.Interfaces.ICatfishUserManager _usrManager;
+
+<noscript>
+    <strong>We're sorry but Vue Applets don't work without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+
+@{
+    var pageId = Guid.NewGuid();
+    var mountPointId = string.Format("app-{0}", pageId);
+
+    _assetRegistry.RegisterScript("assets/public/vendors/vue3/vue.global.prod.min.js",
+                                  "assets/public/vendors/vue3/vue.global.min.js");
+
+    _assetRegistry.RegisterScript("assets/public/vendors/vuedemi/index.iife.min.js");
+
+    _assetRegistry.RegisterScript("assets/public/vendors/pinia/pinia.iife.prod.min.js",
+                                  "assets/public/vendors/pinia/pinia.iife.min.js");
+
+    _assetRegistry.RegisterScript("assets/applets/applets.umd.js",
+                                  "assets/applets/applets.umd.js");
+
+    _assetRegistry.RegisterScript("assets/public/vendors/vuerouter/vuerouter.global.js");
+
+    // _assetRegistry.RegisterStylesheet("assets/css/style.min.css");
+    _assetRegistry.RegisterStylesheet("assets/applets/style.css");
+
+    var repositoryMicroserviceApiRoot = _configuration.GetSection("SiteConfig:RepositoryMicroServiceUrl").Value?.TrimEnd('/');
+
+    //January 06 2023 -- get current login user
+    // step 1
+    string currUserName = _httpContextAccessor.HttpContext.User.Identity.Name;
+    //step 2 -- get thejwt login token from webExternsion method
+    // AsyncCallback CatfihUserNamanegr get userjwtLogin token 
+    var jwt = await _usrManager.GetUserJwtLoginTokenAsync(currUserName, _httpContextAccessor.HttpContext.User.Identity.IsAuthenticated);
+
+    Console.WriteLine(jwt);
+
+
+}
+
+
+<partial name="_AssetRegistry" />
+
+<div id="@mountPointId"></div>
+
+@{
+    //Creating a dictionary of all data attributes
+    var dataAttributes = new Dictionary<string, object>();
+    foreach (var pair in ViewData)
+    {
+        if (pair.Key.StartsWith("data-"))
+            dataAttributes.Add(pair.Key.Substring(5), pair.Value);
+    }
+    dataAttributes.Add("SiteUrl", ConfigHelper.SiteUrl);
+    dataAttributes.Add("RepositoryMicroserviceUrl", repositoryMicroserviceApiRoot);
+    dataAttributes.Add("UserJwtToken", jwt);
+
+}
+
+<script>
+
+    const applet = CatfishUI.Apps.@{@Model}.App;
+    if (!applet)
+        throw '@{@string.Format("CatfishUI.Apps.{0}.App not found", Model);}'
+
+    const pinia = CatfishUI.Apps.@{@Model}?.pinia;
+
+    const router = CatfishUI.Apps.@{@Model}?.router;
+    
+    const app = Vue.createApp(applet, {
+        dataAttributes: @Html.Raw(JsonConvert.SerializeObject(dataAttributes))
+    });
+
+    app.use(CatfishUI.BootstrapVue3);
+    app.use(CatfishUI.IconsPlugin);
+
+    app.component('font-awesome-icon', CatfishUI.FontAwesomeIcon);
+
+    if (pinia)
+        app.use(pinia)
+
+    if (router)
+        app.use(router)
+
+    app.mount('#@mountPointId');
+
+</script>
+
