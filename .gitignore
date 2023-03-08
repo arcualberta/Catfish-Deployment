@@ -1,10 +1,2 @@
-/catfish2/appsettings.json
-/catfish2/wwwroot/uploads
-/catfish2/wwwroot/Log
-/catfish2/wwwroot/assets/css/public/custom.css
-/catfish2/wwwroot/debug.log
-/catfish2/catfish2-0-GoogleCalendarServiceAccount.json
-/catfish2/Areas/Applets/UI
-/catfish2/Areas/Applets/UI.Lib
-/catfish3/Catfish.Web/appsettings.json
-/catfish3/Catfish.Web/wwwroot/uploads
+appsettings.json
+Catfish.Web/wwwroot/uploads
