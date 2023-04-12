@@ -5,7 +5,7 @@
 @inject ICatfishAppConfiguration _catfishAppConfig;
 @inject Piranha.IApi _piranhaApi;
 @inject Piranha.Manager.ManagerLocalizer Localizer
-@{
+@*@{
     var currentSite = await WebApp.Site.GetContentAsync<CatfishWebExtensions.Models.Sites.CatfishWebsite>();
     var imgUrl = Model?.Logo.Media.PublicUrl;
     var title = Model?.Title;
@@ -38,3 +38,4 @@
     
 
 </div>
+*@
