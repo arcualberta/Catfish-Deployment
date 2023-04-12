@@ -1,10 +1,10 @@
 ﻿@model CatfishWebExtensions.Models.Sites.Footers.DefaultFooter
 
 @{
-    var upperFooter = Model.UpperFooter;
-    var logo = Model.Logo.Media.PublicUrl;
-    var footerTitle = Model.FooterTitle;
-    var copyright = Model.Copyright;
+    var upperFooter = Model?.UpperFooter;
+    var logo = Model?.Logo.Media.PublicUrl;
+    var footerTitle = Model?.FooterTitle;
+    var copyright = Model?.Copyright;
     if (logo.StartsWith("~"))
     {
         logo = logo.Substring(1);

@@ -7,11 +7,11 @@
 @inject Piranha.Manager.ManagerLocalizer Localizer
 @{
     var currentSite = await WebApp.Site.GetContentAsync<CatfishWebExtensions.Models.Sites.CatfishWebsite>();
-    var imgUrl = Model.Logo.Media.PublicUrl;
-    var title = Model.Title;
-    var siteTitle = Model.SiteTitle;
-    var upperLevel = Model.UpperHeader;
-    var siteURL = Model.SiteURL;
+    var imgUrl = Model?.Logo.Media.PublicUrl;
+    var title = Model?.Title;
+    var siteTitle = Model?.SiteTitle;
+    var upperLevel = Model?.UpperHeader;
+    var siteURL = Model?.SiteURL;
     if (imgUrl.StartsWith("~"))
     {
         imgUrl = imgUrl.Substring(1);
