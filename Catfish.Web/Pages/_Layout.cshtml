@@ -53,12 +53,11 @@
     <partial name="_AssetRegistry" />
 </head>
 
-<body>
+<body style="padding:0">
     <partial name="Headers/_DefaultHeader" model=@catfishSiteCustomHeaderContent/>
 
-    <nav class="navbar navbar-expand-md navbar-light ">
-        <div class="container">
-            <a class="navbar-brand" href="~/">@Html.Raw(siteTitle)</a>
+    <nav class="navbar-color navbar navbar-expand-md navbar-light ">
+        <div class=" container">
             <partial name="Menu/_DefaultMenu" />
         </div>
     </nav>
