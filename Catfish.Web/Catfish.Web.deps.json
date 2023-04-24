@@ -360,6 +360,7 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
+      "FontAwesome/4.7.0": {},
       "Markdig/0.26.0": {
         "runtime": {
           "lib/netcoreapp3.1/Markdig.dll": {
@@ -2525,6 +2526,7 @@
       "CatfishWebExtensions/1.0.0": {
         "dependencies": {
           "CatfishExtensions": "1.0.0",
+          "FontAwesome": "4.7.0",
           "Microsoft.AspNetCore.Authentication.Google": "6.0.7",
           "Piranha": "10.1.0",
           "Piranha.AspNetCore": "10.1.0",
@@ -4283,6 +4285,13 @@
       "sha512": "sha512-uMgbqOdu9ZG5cIOty0C85hzzayBH2i9BthnS5FlMqKtMSHDv4ts81a2jS1VFaDBVhlBeIqJ/kQKjQY95BZde9w==",
       "path": "automapper/10.1.1",
       "hashPath": "automapper.10.1.1.nupkg.sha512"
+    },
+    "FontAwesome/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg==",
+      "path": "fontawesome/4.7.0",
+      "hashPath": "fontawesome.4.7.0.nupkg.sha512"
     },
     "Markdig/0.26.0": {
       "type": "package",
