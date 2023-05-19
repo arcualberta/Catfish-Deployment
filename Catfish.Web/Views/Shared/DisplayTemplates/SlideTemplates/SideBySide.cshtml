@@ -6,6 +6,7 @@
     var content = Model?.Content.Value;
     var title = Model?.Title.Value;
     var link = Model?.Link;
+    var imageLayout = Model?.ImageLayout.Value;
     if (url.StartsWith("~"))
     {
         url = url.Substring(1);
@@ -18,7 +19,15 @@
     <div class="carousel-item @isActive">
     <div class="row">
         <div class="hidden-xs hidden-sm col-md-5">
-            <div class="std-img" style="background-image: url(@url)"></div>
+            @if(imageLayout == eImageLayout.Circle)
+            {
+                <div class="std-img" style="background-image: url(@url)"></div>
+            }
+            else
+            {
+                <div class="reg-img" style="background-image: url(@url)"></div>  
+            }
+
         </div>
         <div class="col-xs-12 col-md-7 article-desc">
             <div>
