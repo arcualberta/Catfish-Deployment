@@ -1,4 +1,5 @@
 @page
+
 @model ArchivePage<StandardArchive, Piranha.Models.PostInfo>
 @{
     ViewData["Title"] = !string.IsNullOrEmpty(Model.Data.MetaTitle) ? Model.Data.MetaTitle : Model.Data.Title;
@@ -12,7 +13,15 @@
             + (Model.Archive.Year.HasValue ? $"/{Model.Archive.Year}" : "" )
             + (Model.Archive.Month.HasValue ? $"/{Model.Archive.Month}" : "");
     };
+
+    bool isCatfishArchive = Model.Data is CatfishArchive;
 }
+@if (isCatfishArchive)
+    {
+       var pages = Model.Data as CatfishArchive;
+       <partial name="DisplayTemplates/Partial/ArchivePost" model="@Model" />
+    }
+    else{
 @section head {
     @WebApp.MetaTags(Model.Data)
 }
@@ -135,3 +144,4 @@
         }
     </div>
 </main>
+}

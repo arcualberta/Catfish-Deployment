@@ -1,0 +1,22 @@
+﻿@using static CatfishWebExtensions.Constants.Enums
+@model ArchivePage<StandardArchive, Piranha.Models.PostInfo>
+@{
+    var i = (int) ViewData["index"];
+    var post = Model.Archive.Posts[i];
+}
+    <div class="col-md-12 post-list">
+        <article>
+             @{
+            var data = Model.Data as CatfishArchive;
+            //Enum.TryParse<eArchivePostLayout>(data.ArchivePageSetting.PostLayout.Value, out eArchiveListLayout layout);
+            if(data.ArchivePageSetting.PostLayout.Value == eArchivePostLayout.SideBySide)
+            {
+                <partial name="DisplayTemplates/Partial/CatfishPostSideBySide" model="@Model" />
+            }
+            else
+            {
+                <partial name="DisplayTemplates/Partial/CatfishPostUpright" model="@Model" />
+            }
+        }
+        </article>
+    </div>
