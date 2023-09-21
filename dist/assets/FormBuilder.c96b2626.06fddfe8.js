@@ -1,0 +1,1 @@
+import{d as s,K as t,o as e,I as i,h as o,L as n,M as p}from"./index.9e7bd0c1.js";const u=s({__name:"FormBuilder",setup(f){const a=t().params.id,r=p.dataRepositoryApiRoot+"/api/forms";return(m,d)=>(e(),i(o(n),{"api-root":r,"form-id":o(a)},null,8,["form-id"]))}});export{u as default};
