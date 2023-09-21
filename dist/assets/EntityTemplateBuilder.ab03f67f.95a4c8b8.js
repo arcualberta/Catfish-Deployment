@@ -1,1 +1,0 @@
-import{d as e,K as a,o,I as s,h as n,X as p,M as r}from"./index.1d7284ef.js";const f=e({__name:"EntityTemplateBuilder",setup(i){a();const t=r.dataRepositoryApiRoot+"/api/entity-templates";return(l,m)=>(o(),s(n(p),{"api-root":t}))}});export{f as default};
