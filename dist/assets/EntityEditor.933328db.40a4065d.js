@@ -1,1 +1,0 @@
-import{d as o,K as a,o as e,I as s,h as n,Z as i,M as r}from"./index.9e7bd0c1.js";const m=o({__name:"EntityEditor",setup(p){a();const t=r.dataRepositoryApiRoot+"/api/entities";return(c,d)=>(e(),s(n(i),{"api-root":t}))}});export{m as default};
