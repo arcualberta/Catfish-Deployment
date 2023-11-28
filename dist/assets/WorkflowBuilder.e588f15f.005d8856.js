@@ -1,1 +1,0 @@
-import{d as e,K as t,o as i,I as n,h as o,i as s,N as r}from"./index.63d66322.js";const d=e({__name:"WorkflowBuilder",setup(l){const a=t().params.id;return(p,c)=>(i(),n(o(r),{"pinia-instance":o(s)(),"repository-root":"https://localhost:5020/","workflow-id":o(a)},null,8,["pinia-instance","workflow-id"]))}});export{d as default};
