@@ -1,0 +1,1 @@
+import{d as r,a8 as s,a4 as n,o as p,y as i,x as o,a9 as m,a7 as d}from"./index.3d324e24.js";const k=r({__name:"FormBuilder",setup(f){const a=s().params.id,t=d.dataRepositoryApiRoot+"/api/forms",e=n().jwtToken;return(l,u)=>(p(),i(o(m),{"api-root":t,"form-id":o(a),"jwt-token":o(e)},null,8,["form-id","jwt-token"]))}});export{k as default};
