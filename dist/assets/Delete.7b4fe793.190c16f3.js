@@ -1,0 +1,1 @@
+import{d as o,a5 as n,f as r,j as d,k as c,l as u,s as t,ay as a,m,u as p,F as f}from"./index.3cb1385d.js";const y=o({__name:"Delete",setup(i){const s=n(),l=r(()=>{var e;return(e=s.params)==null?void 0:e.id});return(e,g)=>(d(),c(f,null,[u("h4",null,[t("Delete "),a(e.$slots,"object-type")]),a(e.$slots,"delete-delegate"),t(" "+m(p(l)),1)],64))}});export{y as default};

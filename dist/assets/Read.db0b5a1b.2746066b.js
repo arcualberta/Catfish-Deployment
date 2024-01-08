@@ -1,1 +1,0 @@
-import{d as r,a8 as n,u as l,o as d,c,a as u,E as a,r as t,v as p,x as m,F as i}from"./index.841e7f98.js";const x=r({__name:"Read",setup(f){const s=n(),o=l(()=>{var e;return(e=s.params)==null?void 0:e.id});return(e,g)=>(d(),c(i,null,[u("h4",null,[a("Read "),t(e.$slots,"object-type")]),t(e.$slots,"read-delegate"),a(" "+p(m(o)),1)],64))}});export{x as default};
