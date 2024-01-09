@@ -1,0 +1,1 @@
+import{aC as a,j as s,k as o,l as r,s as l,aA as t,F as n}from"./index.4e91d7a9.js";const c={};function d(e,m){return s(),o(n,null,[r("h4",null,[l("Create "),t(e.$slots,"object-type")]),t(e.$slots,"create-delegate")],64)}const p=a(c,[["render",d]]);export{p as default};
