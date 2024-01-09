@@ -1,1 +1,0 @@
-import{d as r,a5 as n,f as l,j as d,k as c,l as u,s as a,ay as s,m,u as p,F as f}from"./index.3cb1385d.js";const y=r({__name:"Read",setup(i){const t=n(),o=l(()=>{var e;return(e=t.params)==null?void 0:e.id});return(e,g)=>(d(),c(f,null,[u("h4",null,[a("Read "),s(e.$slots,"object-type")]),s(e.$slots,"read-delegate"),a(" "+m(p(o)),1)],64))}});export{y as default};

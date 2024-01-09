@@ -1,1 +1,0 @@
-import{d as u,a1 as r,a2 as i,f as c,w as l,j as p,p as h,u as o,a3 as f,a4 as m}from"./index.3cb1385d.js";const _=u({__name:"Login",setup(d){const t=r(),s=i(),n=c(()=>t.loginResult);l(()=>n.value,async a=>{a!=null&&a.success&&s.push("/")});const e=m.authorizationApiRoot;return(a,g)=>(p(),h(o(f),{"authorization-root":o(e)},null,8,["authorization-root"]))}});export{_ as default};

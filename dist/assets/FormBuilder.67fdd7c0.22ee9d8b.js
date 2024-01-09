@@ -1,1 +1,0 @@
-import{d as r,a5 as s,a1 as n,j as p,p as i,u as o,a6 as m,a4 as d}from"./index.3cb1385d.js";const k=r({__name:"FormBuilder",setup(u){const a=s().params.id,t=d.dataRepositoryApiRoot+"/api/forms",e=n().jwtToken;return(f,l)=>(p(),i(o(m),{"api-root":t,"form-id":o(a),"jwt-token":o(e)},null,8,["form-id","jwt-token"]))}});export{k as default};
