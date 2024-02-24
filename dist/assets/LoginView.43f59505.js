@@ -1,1 +1,0 @@
-import{d as e,E as n,o as t,c as a,b as i,e as s,h as c}from"./index.b315c1a0.js";const r={class:"login"},m=e({__name:"LoginView",setup(_){return(p,l)=>{const o=n("Login");return t(),a("div",r,[i(o,{authorizationRoot:s(c).authorizationApiRoot},null,8,["authorizationRoot"])])}}});export{m as default};

@@ -1,1 +1,0 @@
-import{d as o,a7 as n,f as r,j as d,k as c,l as u,s as t,aA as a,m,u as p,F as f}from"./index.543944db.js";const B=o({__name:"Delete",setup(i){const s=n(),l=r(()=>{var e;return(e=s.params)==null?void 0:e.id});return(e,g)=>(d(),c(f,null,[u("h4",null,[t("Delete "),a(e.$slots,"object-type")]),a(e.$slots,"delete-delegate"),t(" "+m(p(l)),1)],64))}});export{B as default};
