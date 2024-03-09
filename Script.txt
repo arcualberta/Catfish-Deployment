@@ -27,3 +27,19 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+EXEC sp_rename N'[FormTemplates].[FormDefinition]', N'Fields', N'COLUMN';
+GO
+
+ALTER TABLE [FormTemplates] ADD [Status] nvarchar(max) NULL;
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240308201122_MappedFormTemplateFieldsToStrings', N'8.0.2');
+GO
+
+COMMIT;
+GO
+
